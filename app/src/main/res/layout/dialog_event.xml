@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <NumberPicker
+                    android:id="@+id/numberPickerHour"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_vertical"
+                    android:layout_weight="1"/>
+                <NumberPicker
+                    android:id="@+id/numberPickerMinute"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_vertical"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <EditText
+                android:id="@+id/editTextTitleNewEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:hint="@string/title"/>
+            <EditText
+                android:id="@+id/editTextSpeakNewEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:hint="@string/read_text"/>
+            <CheckBox
+                android:id="@+id/checkBoxAlarmNewEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/play_alarm"/>
+            <CheckBox
+                android:id="@+id/checkBoxDisplayNewEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/display_event"/>
+            <Button
+                android:id="@+id/buttonNewEventOK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/save"/>
+            <Button
+                android:id="@+id/buttonNewEventRemove"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/remove"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Clock</string>
+    <string name="app_name_long">Fullscreen Clock</string>
+
+    <string name="clock_prefilled" translatable="false">00:00</string>
+    <string name="clock_prefilled_seconds" translatable="false">00</string>
+    <string name="battery_prefilled" translatable="false">100%</string>
+
+    <string name="developer_website" translatable="false">https://georg-sieber.de</string>
+    <string name="unlock_api" translatable="false">"https://apps.georg-sieber.de/activate/app.php"</string>
+
+    <string name="analog_clock">Analog Clock</string>
+    <string name="show_seconds_hand">Show Seconds Hand</string>
+    <string name="digital_clock">Digital Clock</string>
+    <string name="show_seconds">Show Seconds</string>
+    <string name="format_24hrs">Use 24-Hours-Format</string>
+    <string name="events">Events</string>
+    <string name="events_define_description">Define recurring reminders, voice prompts and notification tones.</string>
+    <string name="edit_events">Edit Events…</string>
+    <string name="apply">Apply</string>
+    <string name="save">Save</string>
+    <string name="display_event">Show On Screen</string>
+    <string name="play_alarm">Play Alarm Sound</string>
+    <string name="read_text">Speak Text</string>
+    <string name="title">Title</string>
+    <string name="remove">Remove</string>
+    <string name="show_analog_clock">Show Analog Clock</string>
+    <string name="show_digital_clock">Show Digital Clock</string>
+    <string name="new_event">New Event…</string>
+    <string name="unlock_settings">Unlock Settings…</string>
+    <string name="ok">OK</string>
+    <string name="activation_failed">Activation failed</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+    <string name="review_app_title">Do you like this app? Please submit a review.</string>
+    <string name="review_now">Rate now at the Play Store…</string>
+    <string name="purchase_support_note">By unlocking the settings with an in-app purchase, you support the further development of this app ♥</string>
+    <string name="background">Background</string>
+    <string name="general">General</string>
+    <string name="keep_screen_on">Keep Screen On</string>
+    <string name="use_own_color">Use Custom Color</string>
+    <string name="use_own_images">Use Custom Images</string>
+    <string name="clock_face">Clock Face…</string>
+    <string name="hour_hand">Hour Hand…</string>
+    <string name="minute_hand">Minute Hand…</string>
+    <string name="seconds_hand">Seconds Hand…</string>
+    <string name="own_images_note">Images should be square (same width and height) and width and height should not be larger than 1000px.</string>
+    <string name="choose_own_background_image">Choose Custom Background Image…</string>
+    <string name="use_own_image">Use Custom Image</string>
+    <string name="use_own_color_for_seconds_hand">Use Custom Color For Seconds Hand</string>
+    <string name="use_own_color_for_hour_and_minutes_hand">Use Custom Color For Hour And Minutes Hand</string>
+    <string name="use_own_color_for_clock_face">Use Custom Color For Clock Face</string>
+    <string name="find_clock_faces_online">Find Clock Faces Online…</string>
+    <string name="show_battery_status_when_power_supply_is_not_plugged_in">Show Battery Status\n(When Power Supply Is Not Plugged In)</string>
+</resources>

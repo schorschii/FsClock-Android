@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/fullscreenRootView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    tools:context=".FullscreenActivity">
+
+    <systems.sieber.fsclock.FsClockView
+        android:id="@+id/fullscreen_fsclock_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/fullscreen_content_controls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/fab"
+            android:focusable="true"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/ic_settings_white_24dp"
+            android:layout_margin="30dp"
+            android:onClick="openSettings"/>
+    </LinearLayout>
+
+</FrameLayout>

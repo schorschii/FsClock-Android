@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearLayoutInAppPurchase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <Button
+                    android:id="@+id/buttonUnlockSettings"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:enabled="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="doBuyUnlockSettings"
+                    android:text="@string/unlock_settings" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/purchase_support_note" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/general"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxKeepScreenOn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/keep_screen_on" />
+                <CheckBox
+                    android:id="@+id/checkBoxShowBatteryInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_battery_status_when_power_supply_is_not_plugged_in" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/analog_clock"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxShowAnalogClock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_analog_clock" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxSecondsAnalog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_seconds_hand" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxOwnColorAnalogClockFace"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/use_own_color_for_clock_face" />
+                <CheckBox
+                    android:id="@+id/checkBoxOwnColorAnalog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/use_own_color_for_hour_and_minutes_hand" />
+                <CheckBox
+                    android:id="@+id/checkBoxOwnColorAnalogSeconds"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/use_own_color_for_seconds_hand" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <GridLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_row="0"
+                            android:layout_column="0"
+                            android:text="@string/red" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarRedAnalog"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_row="0"
+                            android:layout_column="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:max="255"
+                            android:progress="190" />
+
+                        <TextView
+                            android:layout_row="1"
+                            android:layout_column="0"
+                            android:text="@string/green" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarGreenAnalog"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_row="1"
+                            android:layout_column="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:max="255"
+                            android:progress="190" />
+
+                        <TextView
+                            android:layout_row="2"
+                            android:layout_column="0"
+                            android:text="@string/blue" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarBlueAnalog"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_row="2"
+                            android:layout_column="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:max="255"
+                            android:progress="190" />
+                    </GridLayout>
+
+                    <View
+                        android:id="@+id/viewColorPreviewAnalog"
+                        android:layout_width="26dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary" />
+                </LinearLayout>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxOwnImageAnalog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/use_own_images" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/own_images_note"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/buttonChooseClockFace"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickChooseClockFace"
+                        android:text="@string/clock_face" />
+                    <Button
+                        android:id="@+id/buttonChooseHoursHand"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickChooseHoursHand"
+                        android:text="@string/hour_hand" />
+                    <Button
+                        android:id="@+id/buttonChooseMinutesHand"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickChooseMinutesHand"
+                        android:text="@string/minute_hand" />
+                    <Button
+                        android:id="@+id/buttonChooseSecondsHand"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickChooseSecondsHand"
+                        android:text="@string/seconds_hand" />
+                </LinearLayout>
+                <Button
+                    android:id="@+id/buttonImagesOnline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onClickImagesOnline"
+                    style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                    android:text="@string/find_clock_faces_online" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/digital_clock"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxShowDigitalClock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_digital_clock" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxSecondsDigital"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_seconds" />
+
+                <CheckBox
+                    android:id="@+id/checkBox24HrsFormat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/format_24hrs" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <GridLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_row="0"
+                            android:layout_column="0"
+                            android:text="@string/red" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarRedDigital"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_row="0"
+                            android:layout_column="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:max="255"
+                            android:progress="190" />
+
+                        <TextView
+                            android:layout_row="1"
+                            android:layout_column="0"
+                            android:text="@string/green" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarGreenDigital"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_row="1"
+                            android:layout_column="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:max="255"
+                            android:progress="190" />
+
+                        <TextView
+                            android:layout_row="2"
+                            android:layout_column="0"
+                            android:text="@string/blue" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarBlueDigital"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_row="2"
+                            android:layout_column="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:max="255"
+                            android:progress="190" />
+                    </GridLayout>
+
+                    <View
+                        android:id="@+id/viewColorPreviewDigital"
+                        android:layout_width="26dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/background"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <GridLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_row="0"
+                            android:layout_column="0"
+                            android:text="@string/red" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarRedBack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_row="0"
+                            android:layout_column="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:max="255"
+                            android:progress="190" />
+
+                        <TextView
+                            android:layout_row="1"
+                            android:layout_column="0"
+                            android:text="@string/green" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarGreenBack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_row="1"
+                            android:layout_column="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:max="255"
+                            android:progress="190" />
+
+                        <TextView
+                            android:layout_row="2"
+                            android:layout_column="0"
+                            android:text="@string/blue" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarBlueBack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_row="2"
+                            android:layout_column="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:max="255"
+                            android:progress="190" />
+                    </GridLayout>
+
+                    <View
+                        android:id="@+id/viewColorPreviewBack"
+                        android:layout_width="26dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary" />
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/checkBoxOwnImageBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/use_own_image" />
+                <Button
+                    android:id="@+id/buttonChooseBackground"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:onClick="onClickChooseBackground"
+                    android:text="@string/choose_own_background_image" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/events"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/events_define_description"
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
+
+                <Button
+                    android:id="@+id/buttonNewEvent"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="newEvent"
+                    android:text="@string/new_event" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutSettingsEvents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

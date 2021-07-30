@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_main">50dp</dimen>
+    <dimen name="margin_clock">20dp</dimen>
+    <dimen name="margin_clock_land">70dp</dimen>
+</resources>
