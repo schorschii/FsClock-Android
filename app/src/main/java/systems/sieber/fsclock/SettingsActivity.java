@@ -31,6 +31,14 @@ import android.widget.NumberPicker;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.amazon.device.iap.PurchasingListener;
+import com.amazon.device.iap.model.FulfillmentResult;
+import com.amazon.device.iap.model.Product;
+import com.amazon.device.iap.model.ProductDataResponse;
+import com.amazon.device.iap.model.PurchaseResponse;
+import com.amazon.device.iap.model.PurchaseUpdatesResponse;
+import com.amazon.device.iap.model.Receipt;
+import com.amazon.device.iap.model.UserDataResponse;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
@@ -59,12 +67,16 @@ import com.huawei.hms.iap.entity.PurchaseIntentResult;
 import com.huawei.hms.iap.entity.PurchaseResultInfo;
 import com.huawei.hms.support.api.client.Status;
 
+import com.amazon.device.iap.PurchasingService;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -79,6 +91,7 @@ public class SettingsActivity extends AppCompatActivity {
     static final int HUAWEI_PURCHASE_REQUEST = 6666;
 
     boolean mLoadHuaweiIap = false;
+    boolean mLoadAmazonIap = false;
 
     SettingsActivity me;
 
@@ -134,7 +147,7 @@ public class SettingsActivity extends AppCompatActivity {
         try {
             PackageInfo pInfo = this.getPackageManager().getPackageInfo(getPackageName(), 0);
             setTitle(getTitle() + " " + pInfo.versionName);
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch(PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -211,6 +224,7 @@ public class SettingsActivity extends AppCompatActivity {
         try {
             ApplicationInfo ai = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
             if(ai.metaData.getInt("huaweiiap", 0) > 0) mLoadHuaweiIap = true;
+            if(ai.metaData.getInt("amazoniap", 0) > 0) mLoadAmazonIap = true;
         } catch(PackageManager.NameNotFoundException ignored) { }
         mButtonUnlockSettings.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -291,6 +305,16 @@ public class SettingsActivity extends AppCompatActivity {
                     Log.e("IAP", e.getMessage());
                 }
             });
+
+        } else if(mLoadAmazonIap) {
+
+            // init amazon billing client
+            final AmazonPurchasingListener purchasingListener = new AmazonPurchasingListener(this);
+            PurchasingService.registerListener(this.getApplicationContext(), purchasingListener);
+            final Set<String> productSkus = new HashSet<String>();
+            productSkus.add("settings");
+            PurchasingService.getProductData(productSkus);
+            PurchasingService.getPurchaseUpdates(true);
 
         } else {
 
@@ -381,6 +405,8 @@ public class SettingsActivity extends AppCompatActivity {
     public void doBuyUnlockSettings(View v) {
         if(mLoadHuaweiIap) {
             doBuyHuawei("settings", IapClient.PriceType.IN_APP_NONCONSUMABLE);
+        } else if(mLoadAmazonIap) {
+            PurchasingService.purchase("settings");
         } else {
             doBuy(skuDetailsUnlockSettings);
         }
@@ -430,7 +456,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onSuccess(ConsumeOwnedPurchaseResult result) {
                 // Consume success
-                Toast.makeText(context, "Pay success, and the product has been delivered", Toast.LENGTH_SHORT).show();
+                Log.i("IAP", "Pay success, and the product has been delivered");
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -442,10 +468,7 @@ public class SettingsActivity extends AppCompatActivity {
                     Status status = apiException.getStatus();
                     int returnCode = apiException.getStatusCode();
                     Log.e("IAP", "consumeOwnedPurchase fail,returnCode: " + returnCode);
-                } else {
-                    // Other external errors
                 }
-
             }
         });
     }
@@ -472,7 +495,7 @@ public class SettingsActivity extends AppCompatActivity {
                 switch(purchaseResultInfo.getReturnCode()) {
                     case OrderStatusCode.ORDER_STATE_SUCCESS:
                         try {
-                            //consumeOwnedPurchase(this, purchaseResultInfo.getInAppPurchaseData());
+                            //consumeOwnedPurchase(this, purchaseResultInfo.getInAppPurchaseData()); // DO NOT USE THIS FOR NON-CONSUMABLES!
                             InAppPurchaseData inAppPurchaseData = new InAppPurchaseData(purchaseResultInfo.getInAppPurchaseData());
                             Log.e("IAP", "unlocked "+inAppPurchaseData.getProductId());
                             mFc.unlockPurchase(inAppPurchaseData.getProductId());
@@ -864,6 +887,86 @@ public class SettingsActivity extends AppCompatActivity {
     public static File getStorage(Context c, String filename) {
         File exportDir = c.getExternalFilesDir(null);
         return new File(exportDir, filename);
+    }
+
+    static class AmazonPurchasingListener implements PurchasingListener {
+        SettingsActivity mSettingsActivityReference;
+        public AmazonPurchasingListener(SettingsActivity sa) {
+            this.mSettingsActivityReference = sa;
+        }
+        @Override
+        public void onUserDataResponse(final UserDataResponse response) {
+            final UserDataResponse.RequestStatus status = response.getRequestStatus();
+            switch(status) {
+                case SUCCESSFUL:
+                    //iapManager.setAmazonUserId(response.getUserData().getUserId(), response.getUserData().getMarketplace());
+                    break;
+                case FAILED:
+                case NOT_SUPPORTED:
+                    break;
+            }
+        }
+        @Override
+        public void onProductDataResponse(final ProductDataResponse response) {
+            final ProductDataResponse.RequestStatus status = response.getRequestStatus();
+            switch(status) {
+                case SUCCESSFUL:
+                    for(Product p : response.getProductData().values()) {
+                        if(p.getSku().equals("settings")) {
+                            mSettingsActivityReference.setupPayButton(p.getSku(), p.getPrice());
+                        }
+                    }
+                    break;
+                case FAILED:
+                case NOT_SUPPORTED:
+                    break;
+            }
+        }
+        @Override
+        public void onPurchaseUpdatesResponse(final PurchaseUpdatesResponse response) {
+            final PurchaseUpdatesResponse.RequestStatus status = response.getRequestStatus();
+            switch(status) {
+                case SUCCESSFUL:
+                    for(final Receipt receipt : response.getReceipts()) {
+                        if(!receipt.isCanceled() && receipt.getSku().equals("settings")) {
+                            mSettingsActivityReference.mFc.unlockPurchase(receipt.getSku());
+                            mSettingsActivityReference.loadPurchases();
+                            PurchasingService.notifyFulfillment(receipt.getReceiptId(), FulfillmentResult.FULFILLED);
+                        }
+                    }
+                    if(response.hasMore()) {
+                        PurchasingService.getPurchaseUpdates(false);
+                    }
+                    break;
+                case FAILED:
+                case NOT_SUPPORTED:
+                    break;
+            }
+        }
+        @Override
+        public void onPurchaseResponse(final PurchaseResponse response) {
+            final String requestId = response.getRequestId().toString();
+            final String userId = response.getUserData().getUserId();
+            final PurchaseResponse.RequestStatus status = response.getRequestStatus();
+            switch(status) {
+                case SUCCESSFUL:
+                case ALREADY_PURCHASED:
+                    final Receipt receipt = response.getReceipt();
+                    if(!receipt.isCanceled() && receipt.getSku().equals("settings")) {
+                        mSettingsActivityReference.mFc.unlockPurchase(receipt.getSku());
+                        mSettingsActivityReference.loadPurchases();
+                        PurchasingService.notifyFulfillment(receipt.getReceiptId(), FulfillmentResult.FULFILLED);
+                    }
+                    break;
+                case INVALID_SKU:
+                    //final Set<String> unavailableSkus = new HashSet<String>();
+                    //unavailableSkus.add(response.getReceipt().getSku());
+                    break;
+                case FAILED:
+                case NOT_SUPPORTED:
+                    break;
+            }
+        }
     }
 
 }

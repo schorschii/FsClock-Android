@@ -11,16 +11,20 @@ android {
         versionName "1.4.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
-        manifestPlaceholders = [ huaweiiap: "0" ]
+        manifestPlaceholders = [ huaweiiap: "0", amazoniap: "0" ]
     }
     buildTypes {
-        release {
+        google {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        releasehuawei {
+        huawei {
             initWith release
             manifestPlaceholders = [ huaweiiap: "1" ]
+        }
+        amazon {
+            initWith release
+            manifestPlaceholders = [ amazoniap: "1" ]
         }
     }
 }
@@ -33,4 +37,5 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.android.billingclient:billing:3.0.3'
     implementation 'com.huawei.hms:iap:4.0.4.301'
+    implementation files('libs/in-app-purchasing-2.0.76.jar')
 }
