@@ -11,21 +11,18 @@ import android.view.View;
 public class FullscreenDream extends DreamService {
 
     FsClockView mContentView;
-    View mControlsView;
 
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         setInteractive(false);
         setFullscreen(true);
-        setContentView(R.layout.activity_fullscreen);
+        setContentView(R.layout.dream_fullscreen);
 
         // find views
-        mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_fsclock_view);
 
         // start clock
-        mControlsView.setVisibility(View.INVISIBLE);
         mContentView.resume();
 
         // init battery info

@@ -53,4 +53,5 @@
     <string name="use_own_color_for_clock_face">Use Custom Color For Clock Face</string>
     <string name="find_clock_faces_online">Find Clock Faces Online…</string>
     <string name="show_battery_status_when_power_supply_is_not_plugged_in">Show Battery Status\n(When Power Supply Is Not Plugged In)</string>
+    <string name="open_settings">Open Settings</string>
 </resources>
