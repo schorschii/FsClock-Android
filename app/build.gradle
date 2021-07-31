@@ -14,9 +14,12 @@ android {
         manifestPlaceholders = [ huaweiiap: "0", amazoniap: "0" ]
     }
     buildTypes {
-        google {
+        release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        google {
+            initWith release
         }
         huawei {
             initWith release
