@@ -109,6 +109,14 @@ public class FsClockView extends FrameLayout {
         // init calendar
         readCalendar();
 
+        // init preferences
+        loadSettings(null);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
         // init text to speech
         tts = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
             @Override
@@ -118,9 +126,15 @@ public class FsClockView extends FrameLayout {
                 }
             }
         });
+    }
 
-        // init preferences
-        loadSettings(null);
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+
+        // destroy tts service connection
+        tts.stop();
+        tts.shutdown();
     }
 
     private void startTimer() {

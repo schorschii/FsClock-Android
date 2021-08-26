@@ -22,11 +22,26 @@ public class FullscreenDream extends DreamService {
         // find views
         mContentView = findViewById(R.id.fullscreen_fsclock_view);
 
-        // start clock
-        mContentView.resume();
-
         // init battery info
         registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+    }
+
+    @Override
+    public void onDreamingStarted() {
+        // start the clock
+        mContentView.resume();
+    }
+
+    @Override
+    public void onDreamingStopped() {
+        // stop the clock
+        mContentView.pause();
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        // unregister battery receiver
+        unregisterReceiver(this.mBatInfoReceiver);
     }
 
     private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {

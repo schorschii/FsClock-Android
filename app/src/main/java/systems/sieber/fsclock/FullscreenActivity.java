@@ -94,20 +94,27 @@ public class FullscreenActivity extends AppCompatActivity {
                 me.toggle();
             }
         });
-
-        // init battery info
-        registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
     }
 
     @Override
     public void onPause() {
         super.onPause();
+
+        // stop the clock
         mContentView.pause();
+
+        // unregister receiver
+        unregisterReceiver(this.mBatInfoReceiver);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+        // init battery info
+        registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+
+        // start the clock
         mContentView.resume();
         incrementStartedCounter();
         showAdOtherApps();
