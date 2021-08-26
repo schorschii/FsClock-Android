@@ -146,9 +146,9 @@ public class FsClockView extends FrameLayout {
                 final SimpleDateFormat sdfDate = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.getDefault());
                 final SimpleDateFormat sdfTime = new SimpleDateFormat(format24hrs?"HH:mm":"hh:mm");
                 final SimpleDateFormat sdfSeconds = new SimpleDateFormat("ss");
-                //runOnUiThread(new Runnable() {
-                //    @Override
-                //    public void run() {
+                post(new Runnable() {
+                    @Override
+                    public void run() {
                         mClockText.setText(sdfTime.format(cal.getTime()));
                         mSecondsText.setText(sdfSeconds.format(cal.getTime()));
                         mDateText.setText(sdfDate.format(cal.getTime()));
@@ -158,28 +158,28 @@ public class FsClockView extends FrameLayout {
                         mSecondsHand.setRotation(secRotation);
                         mMinutesHand.setRotation(minRotation);
                         mHoursHand.setRotation(hrsRotation);
-                //    }
-                //});
+                    }
+                });
             }
         };
         TimerTask taskCalendarUpdate = new TimerTask() {
             @Override
             public void run() {
-                //runOnUiThread(new Runnable() {
-                //    @Override
-                //    public void run() {
+                post(new Runnable() {
+                    @Override
+                    public void run() {
                         updateEventView();
-                //    }
-                //});
+                    }
+                });
             }
         };
         TimerTask taskCheckEvent = new TimerTask() {
             @Override
             public void run() {
-                //runOnUiThread(new Runnable() {
+                post(new Runnable() {
                     final Calendar cal = Calendar.getInstance();
-               //     @Override
-               //     public void run() {
+                    @Override
+                    public void run() {
                         if(events != null) {
                             for(Event e : events) {
                                 if(cal.get(Calendar.HOUR_OF_DAY) == e.triggerHour
@@ -189,8 +189,8 @@ public class FsClockView extends FrameLayout {
                                 }
                             }
                         }
-                //    }
-                //});
+                    }
+                });
             }
         };
 
