@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 
@@ -74,6 +75,7 @@ public class FullscreenActivity extends AppCompatActivity {
                     if(result.getResultCode() == Activity.RESULT_OK) {
                         mContentView.loadSettings(me);
                     }
+                    hide();
                 }
             });
 
@@ -130,12 +132,25 @@ public class FullscreenActivity extends AppCompatActivity {
     };
 
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        boolean handled = false;
+        switch(keyCode) {
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+            case KeyEvent.KEYCODE_MENU:
+            case KeyEvent.KEYCODE_SETTINGS:
+                openSettings(null);
+                handled = true; break;
+        }
+        return handled || super.onKeyDown(keyCode, event);
+    }
+
+    @Override
     public void onRequestPermissionsResult(int callbackId, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(callbackId, permissions, grantResults);
         int i = 0;
-        for (String p : permissions) {
-            if (p.equals(Manifest.permission.READ_CALENDAR)) {
-                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+        for(String p : permissions) {
+            if(p.equals(Manifest.permission.READ_CALENDAR)) {
+                if(grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                     mContentView.updateEventView();
                 }
             }
