@@ -441,6 +441,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="15dp" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dseg_font_note"
+                    android:textSize="11sp"
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
             </LinearLayout>
 
         </LinearLayout>

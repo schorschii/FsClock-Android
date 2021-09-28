@@ -54,4 +54,5 @@
     <string name="find_clock_faces_online">Find Clock Faces Online…</string>
     <string name="show_battery_status_when_power_supply_is_not_plugged_in">Show Battery Status\n(When Power Supply Is Not Plugged In)</string>
     <string name="open_settings">Open Settings</string>
+    <string name="dseg_font_note" translatable="false">"DSEG" Font Copyright (c) 2017, keshikan (http://www.keshikan.net).\nThis Font Software is licensed under the SIL Open Font License, Version 1.1 (http://scripts.sil.org/OFL).</string>
 </resources>
