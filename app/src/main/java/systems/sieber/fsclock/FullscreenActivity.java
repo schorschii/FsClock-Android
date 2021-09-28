@@ -4,12 +4,14 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.UiModeManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.BatteryManager;
 
@@ -90,12 +92,18 @@ public class FullscreenActivity extends AppCompatActivity {
         // find views
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_fsclock_view);
-        mContentView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                me.toggle();
-            }
-        });
+
+        UiModeManager uiModeManager = (UiModeManager) getSystemService(UI_MODE_SERVICE);
+        int mode = uiModeManager.getCurrentModeType();
+        if(mode != Configuration.UI_MODE_TYPE_TELEVISION) {
+            // we do not enable the onTouch event on TVs because this intersects with the onKeyDown event
+            mContentView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    me.toggle();
+                }
+            });
+        }
     }
 
     @Override
