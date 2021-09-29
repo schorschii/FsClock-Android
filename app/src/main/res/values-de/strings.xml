@@ -47,4 +47,5 @@
     <string name="find_clock_faces_online">Weitere Zifferblätter und Zeiger online…</string>
     <string name="show_battery_status_when_power_supply_is_not_plugged_in">Zeige Akku-Status\n(wenn Netzteil nicht angeschlossen ist)</string>
     <string name="open_settings">Einstellungen öffnen</string>
+    <string name="tv_settings_note">Hinweis: OK oder MENU-Taste drücken, um die Einstellungen zu öffnen.</string>
 </resources>

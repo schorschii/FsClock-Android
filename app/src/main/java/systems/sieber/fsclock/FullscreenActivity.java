@@ -28,12 +28,15 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
 
 public class FullscreenActivity extends AppCompatActivity {
 
     private final FullscreenActivity me = this;
 
     SharedPreferences mSharedPref;
+
+    UiModeManager uiModeManager;
 
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
@@ -85,6 +88,7 @@ public class FullscreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
+        uiModeManager = (UiModeManager) getSystemService(UI_MODE_SERVICE);
 
         // init settings
         mSharedPref = getSharedPreferences(SettingsActivity.SHARED_PREF_DOMAIN, Context.MODE_PRIVATE);
@@ -92,10 +96,7 @@ public class FullscreenActivity extends AppCompatActivity {
         // find views
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_fsclock_view);
-
-        UiModeManager uiModeManager = (UiModeManager) getSystemService(UI_MODE_SERVICE);
-        int mode = uiModeManager.getCurrentModeType();
-        if(mode != Configuration.UI_MODE_TYPE_TELEVISION) {
+        if(uiModeManager.getCurrentModeType() != Configuration.UI_MODE_TYPE_TELEVISION) {
             // we do not enable the onTouch event on TVs because this intersects with the onKeyDown event
             mContentView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -128,6 +129,19 @@ public class FullscreenActivity extends AppCompatActivity {
         mContentView.resume();
         incrementStartedCounter();
         showAdOtherApps();
+
+        // show TV keys info
+        if(uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION) {
+            int tvHintShown = mSharedPref.getInt("tv-hint-shown", 0);
+            if(tvHintShown == 0) {
+                // increment counter
+                SharedPreferences.Editor editor = mSharedPref.edit();
+                editor.putInt("tv-hint-shown", tvHintShown + 1);
+                editor.apply();
+                // show info
+                Toast.makeText(this, getString(R.string.tv_settings_note), Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
