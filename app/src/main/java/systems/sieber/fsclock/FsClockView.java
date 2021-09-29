@@ -13,13 +13,13 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.CalendarContract;
 import android.speech.tts.TextToSpeech;
+import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
@@ -143,7 +143,8 @@ public class FsClockView extends FrameLayout {
             @Override
             public void run() {
                 final Calendar cal = Calendar.getInstance();
-                final SimpleDateFormat sdfDate = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.getDefault());
+                final SimpleDateFormat sdfSystem = (SimpleDateFormat) DateFormat.getDateFormat(getContext());
+                final SimpleDateFormat sdfDate = new SimpleDateFormat("EEEE, "+sdfSystem.toLocalizedPattern().replace("yy", "yyyy"), Locale.getDefault());
                 final SimpleDateFormat sdfTime = new SimpleDateFormat(format24hrs?"HH:mm":"hh:mm");
                 final SimpleDateFormat sdfSeconds = new SimpleDateFormat("ss");
                 post(new Runnable() {
