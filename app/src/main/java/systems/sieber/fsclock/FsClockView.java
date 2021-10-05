@@ -287,7 +287,7 @@ public class FsClockView extends FrameLayout {
             if(img.exists()) {
                 try {
                     Bitmap myBitmap = BitmapFactory.decodeFile(img.getAbsolutePath());
-                    this.setBackground(new BitmapDrawable(myBitmap));
+                    mRootView.setBackground(new BitmapDrawable(myBitmap));
                 } catch(Exception ignored) {
                     Toast.makeText(getContext(), "Image corrupted or too large", Toast.LENGTH_SHORT).show();
                 }
