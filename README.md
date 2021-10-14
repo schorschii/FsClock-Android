@@ -5,10 +5,12 @@
 [![APK Download](.github/apk-badge.svg)](https://github.com/schorschii/FsClock-Android/releases)
 
 Simple Fullscreen Clock Screensaver
-- Analog and digital clock can be activated or deactivated individually
-- Date and weekday display
-- Display of appointments
-- Color can be adjusted
+- analog and digital clock can be activated or deactivated individually
+- optional date and weekday display
+- displays appointments from Android calendar or internal event database
+- adjustable background and clock color
+- can be set as Android system screensaver ("DayDream")
+- compatible with Android TV devices
 
 ## Screenshots
 ![Screenshot](.github/screenshot.png)
