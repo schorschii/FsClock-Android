@@ -45,7 +45,8 @@
     <string name="use_own_color_for_hour_and_minutes_hand">Eigene Farbe für Stunden- und Minutenzeiger verwenden</string>
     <string name="use_own_color_for_clock_face">Eigene Farbe für Zifferblatt verwenden</string>
     <string name="find_clock_faces_online">Weitere Zifferblätter und Zeiger online…</string>
-    <string name="show_battery_status_when_power_supply_is_not_plugged_in">Zeige Akku-Status\n(wenn Netzteil nicht angeschlossen ist)</string>
+    <string name="show_battery_status_when_power_supply_is_not_plugged_in">Zeige Akku-Status beim Entladen</string>
+    <string name="show_battery_status_when_power_supply_is_plugged_in">Zeige Akku-Status beim Laden</string>
     <string name="open_settings">Einstellungen öffnen</string>
     <string name="tv_settings_note">Hinweis: OK oder MENU-Taste drücken, um die Einstellungen zu öffnen.</string>
 </resources>

@@ -381,7 +381,8 @@ public class FsClockView extends FrameLayout {
 
     @SuppressLint("SetTextI18n")
     void updateBattery(int plugged, int level) {
-        if(plugged == 0 && mSharedPref.getBoolean("show-battery-info", true)) {
+        if((plugged == 0 && mSharedPref.getBoolean("show-battery-info", true))
+        || (plugged != 0 && mSharedPref.getBoolean("show-battery-info-when-charging", false))) {
             mBatteryText.setText(level + "%");
             mBatteryView.setVisibility(View.VISIBLE);
             if(level < 10) {

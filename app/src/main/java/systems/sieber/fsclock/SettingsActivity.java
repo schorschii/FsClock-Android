@@ -108,6 +108,7 @@ public class SettingsActivity extends AppCompatActivity {
     Button mButtonUnlockSettings;
     CheckBox mCheckBoxKeepScreenOn;
     CheckBox mCheckBoxShowBatteryInfo;
+    CheckBox mCheckBoxShowBatteryInfoWhenCharging;
     CheckBox mCheckBoxAnalogClockShow;
     CheckBox mCheckBoxAnalogClockShowSeconds;
     CheckBox mCheckBoxAnalogClockOwnColorClockFace;
@@ -157,6 +158,7 @@ public class SettingsActivity extends AppCompatActivity {
         mButtonUnlockSettings = findViewById(R.id.buttonUnlockSettings);
         mCheckBoxKeepScreenOn = findViewById(R.id.checkBoxKeepScreenOn);
         mCheckBoxShowBatteryInfo = findViewById(R.id.checkBoxShowBatteryInfo);
+        mCheckBoxShowBatteryInfoWhenCharging = findViewById(R.id.checkBoxShowBatteryInfoWhenCharging);
         mCheckBoxAnalogClockShow = findViewById(R.id.checkBoxShowAnalogClock);
         mCheckBoxAnalogClockShowSeconds = findViewById(R.id.checkBoxSecondsAnalog);
         mCheckBoxAnalogClockOwnColorClockFace = findViewById(R.id.checkBoxOwnColorAnalogClockFace);
@@ -190,6 +192,7 @@ public class SettingsActivity extends AppCompatActivity {
         mSharedPref = getSharedPreferences(SHARED_PREF_DOMAIN, Context.MODE_PRIVATE);
         mCheckBoxKeepScreenOn.setChecked( mSharedPref.getBoolean("keep-screen-on", true) );
         mCheckBoxShowBatteryInfo.setChecked( mSharedPref.getBoolean("show-battery-info", true) );
+        mCheckBoxShowBatteryInfoWhenCharging.setChecked( mSharedPref.getBoolean("show-battery-info-when-charging", false) );
         mCheckBoxAnalogClockShow.setChecked( mSharedPref.getBoolean("show-analog", true) );
         mCheckBoxAnalogClockShowSeconds.setChecked( mSharedPref.getBoolean("show-seconds-analog", true) );
         mCheckBoxAnalogClockOwnColorClockFace.setChecked( mSharedPref.getBoolean("own-color-analog-clock-face", true) );
@@ -239,6 +242,7 @@ public class SettingsActivity extends AppCompatActivity {
     private void enableDisableAllSettings(boolean state) {
         mCheckBoxKeepScreenOn.setEnabled(state);
         mCheckBoxShowBatteryInfo.setEnabled(state);
+        mCheckBoxShowBatteryInfoWhenCharging.setEnabled(state);
         mCheckBoxAnalogClockShow.setEnabled(state);
         mCheckBoxAnalogClockShowSeconds.setEnabled(state);
         mCheckBoxAnalogClockOwnColorClockFace.setEnabled(state);
@@ -656,6 +660,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         editor.putBoolean("keep-screen-on", mCheckBoxKeepScreenOn.isChecked());
         editor.putBoolean("show-battery-info", mCheckBoxShowBatteryInfo.isChecked());
+        editor.putBoolean("show-battery-info-when-charging", mCheckBoxShowBatteryInfoWhenCharging.isChecked());
         editor.putBoolean("show-analog", mCheckBoxAnalogClockShow.isChecked());
         editor.putBoolean("own-color-analog-clock-face", mCheckBoxAnalogClockOwnColorClockFace.isChecked());
         editor.putBoolean("own-color-analog", mCheckBoxAnalogClockOwnColor.isChecked());

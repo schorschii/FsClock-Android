@@ -52,7 +52,8 @@
     <string name="use_own_color_for_hour_and_minutes_hand">Use Custom Color For Hour And Minutes Hand</string>
     <string name="use_own_color_for_clock_face">Use Custom Color For Clock Face</string>
     <string name="find_clock_faces_online">Find Clock Faces Online…</string>
-    <string name="show_battery_status_when_power_supply_is_not_plugged_in">Show Battery Status\n(When Power Supply Is Not Plugged In)</string>
+    <string name="show_battery_status_when_power_supply_is_not_plugged_in">Show Battery Status When Discharging</string>
+    <string name="show_battery_status_when_power_supply_is_plugged_in">Show Battery Status When Charging</string>
     <string name="open_settings">Open Settings</string>
     <string name="dseg_font_note" translatable="false">"DSEG" Font Copyright (c) 2017, keshikan (http://www.keshikan.net).\nThis Font Software is licensed under the SIL Open Font License, Version 1.1 (http://scripts.sil.org/OFL).</string>
     <string name="tv_settings_note">Hint: Press OK or MENU button to enter settings.</string>
