@@ -49,4 +49,13 @@
     <string name="show_battery_status_when_power_supply_is_plugged_in">Zeige Akku-Status beim Laden</string>
     <string name="open_settings">Einstellungen öffnen</string>
     <string name="tv_settings_note">Hinweis: OK oder MENU-Taste drücken, um die Einstellungen zu öffnen.</string>
+    <string name="more_apps">Weitere Apps</string>
+    <string name="customer_database_for_android">Kundendatenbank für Android</string>
+    <string name="remote_pointer_for_android">RemotePointer für Android</string>
+    <string name="ballbreak_for_android">BallBreak für Android</string>
+    <string name="masterplan_workforce_management">MASTERPLAN Dienstplaner</string>
+    <string name="open_computer_orchestration">Open Computer Orchestration</string>
+    <string name="open_source_text">Diese App ist Open Source. Wenn Sie die App oder die Übersetzungen verbessern möchten, besuchen Sie bitte das Repository auf Github.</string>
+    <string name="open_source">Gabel mich</string>
+    <string name="fsclock_on_github">Vollbild-Uhr-Bildschirmschoner auf GitHub</string>
 </resources>

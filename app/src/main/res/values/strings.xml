@@ -57,4 +57,14 @@
     <string name="open_settings">Open Settings</string>
     <string name="dseg_font_note" translatable="false">"DSEG" Font Copyright (c) 2017, keshikan (http://www.keshikan.net).\nThis Font Software is licensed under the SIL Open Font License, Version 1.1 (http://scripts.sil.org/OFL).</string>
     <string name="tv_settings_note">Hint: Press OK or MENU button to enter settings.</string>
+    <string name="more_apps">More Apps</string>
+    <string name="customer_database_for_android">Customer Database for Android</string>
+    <string name="remote_pointer_for_android">RemotePointer for Android</string>
+    <string name="digital_amp_analog_clock_screensaver">Digital &amp; Analog Clock for Android</string>
+    <string name="ballbreak_for_android">BallBreak for Android</string>
+    <string name="masterplan_workforce_management">MASTERPLAN Workforce Management</string>
+    <string name="open_computer_orchestration">Open Computer Orchestration</string>
+    <string name="open_source_text">This app is Open Source. If you want to improve the app or its translations, please check out the repository on Github.</string>
+    <string name="open_source">Fork Me</string>
+    <string name="fsclock_on_github">Fullscreen Clock Screensaver on GitHub</string>
 </resources>
