@@ -836,10 +836,6 @@ public class SettingsActivity extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_BACKGROUND_REQUEST);
     }
-    public void onClickImagesOnline(View v) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://georg-sieber.de/?page=app-fsclock"));
-        startActivity(browserIntent);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -976,36 +972,32 @@ public class SettingsActivity extends AppCompatActivity {
 
 
     public final static String URL_GITHUB          = "https://github.com/schorschii/FsClock-Android";
-    public final static String APPID_REMOTEPOINTER = "systems.sieber.remotespotlight";
     public final static String APPID_CUSTOMERDB    = "de.georgsieber.customerdb";
+    public final static String APPID_REMOTEPOINTER = "systems.sieber.remotespotlight";
     public final static String APPID_BALLBREAK     = "de.georgsieber.ballbreak";
-    public final static String APPID_FSCLOCK       = "systems.sieber.fsclock";
-    public final static String URL_MASTERPLAN      = "https://github.com/schorschii/masterplan";
     public final static String URL_OCO             = "https://github.com/schorschii/oco-server";
+    public final static String URL_MASTERPLAN      = "https://github.com/schorschii/masterplan";
 
     public void onClickGithub(View v) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_GITHUB));
         startActivity(browserIntent);
     }
-    public void onClickMasterplan(View v) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_MASTERPLAN));
-        startActivity(browserIntent);
+    public void onClickCustomerDatabaseApp(View v) {
+        openPlayStore(this, APPID_CUSTOMERDB);
+    }
+    public void onClickRemotePointerApp(View v) {
+        openPlayStore(this, APPID_REMOTEPOINTER);
+    }
+    public void onClickBallBreakApp(View v) {
+        openPlayStore(this, APPID_BALLBREAK);
     }
     public void onClickOco(View v) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_OCO));
         startActivity(browserIntent);
     }
-    public void onClickCustomerDatabaseApp(View v) {
-        openPlayStore(this, APPID_CUSTOMERDB);
-    }
-    public void onClickFsClockApp(View v) {
-        openPlayStore(this, APPID_FSCLOCK);
-    }
-    public void onClickBallBreakApp(View v) {
-        openPlayStore(this, APPID_BALLBREAK);
-    }
-    public void onClickRemotePointerApp(View v) {
-        openPlayStore(this, APPID_REMOTEPOINTER);
+    public void onClickMasterplan(View v) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_MASTERPLAN));
+        startActivity(browserIntent);
     }
 
     public static void openPlayStore(AppCompatActivity a, String appId) {

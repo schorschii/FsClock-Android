@@ -218,13 +218,6 @@
                         android:onClick="onClickChooseSecondsHand"
                         android:text="@string/seconds_hand" />
                 </LinearLayout>
-                <Button
-                    android:id="@+id/buttonImagesOnline"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="onClickImagesOnline"
-                    style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-                    android:text="@string/find_clock_faces_online" />
 
                 <Space
                     android:layout_width="match_parent"
