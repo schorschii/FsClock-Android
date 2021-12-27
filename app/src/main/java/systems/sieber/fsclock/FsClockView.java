@@ -226,6 +226,17 @@ public class FsClockView extends FrameLayout {
         else
             findViewById(R.id.digitalClockContainer).setVisibility(View.GONE);
 
+        if(mSharedPref.getBoolean("show-date", true))
+            mDateText.setVisibility(View.VISIBLE);
+        else {
+            mDateText.setVisibility(View.INVISIBLE);
+        }
+
+        if(!mSharedPref.getBoolean("show-digital", true) && !mSharedPref.getBoolean("show-date", true))
+            findViewById(R.id.digitalClockAndDateContainer).setVisibility(GONE);
+        else
+            findViewById(R.id.digitalClockAndDateContainer).setVisibility(VISIBLE);
+
         if(mSharedPref.getBoolean("show-seconds-analog", true))
             findViewById(R.id.imageViewClockSecondsHand).setVisibility(View.VISIBLE);
         else

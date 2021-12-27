@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:id="@+id/fsclockRootView"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fsclockRootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000">
 
     <LinearLayout
-        android:layout_margin="@dimen/margin_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_main"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
@@ -32,123 +32,142 @@
             android:layout_gravity="top"
             android:layout_marginLeft="@dimen/margin_clock"
             android:layout_marginRight="@dimen/margin_clock">
+
             <ImageView
                 android:id="@+id/imageViewClockBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:adjustViewBounds="true"
-                android:layout_column="0"
                 android:layout_row="0"
-                app:srcCompat="@drawable/ic_bg"/>
+                android:layout_column="0"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_bg" />
+
             <ImageView
                 android:id="@+id/imageViewClockHoursHand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:adjustViewBounds="true"
-                android:layout_column="0"
                 android:layout_row="0"
-                app:srcCompat="@drawable/ic_h"/>
+                android:layout_column="0"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_h" />
+
             <ImageView
                 android:id="@+id/imageViewClockMinutesHand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:adjustViewBounds="true"
-                android:layout_column="0"
                 android:layout_row="0"
-                app:srcCompat="@drawable/ic_m"/>
+                android:layout_column="0"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_m" />
+
             <ImageView
                 android:id="@+id/imageViewClockSecondsHand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:adjustViewBounds="true"
-                android:layout_column="0"
                 android:layout_row="0"
-                app:srcCompat="@drawable/ic_s"/>
+                android:layout_column="0"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_s" />
         </GridLayout>
-        
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="15dp" />
 
         <LinearLayout
-            android:id="@+id/digitalClockContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_vertical"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/textViewClock"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:maxLines="1"
-                android:text="@string/clock_prefilled"
-                android:layout_gravity="fill_horizontal|bottom"
-                android:gravity="bottom|right"
-                android:layout_weight="5"
-                android:textColor="@color/font"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="30dp"
-                app:autoSizeMaxTextSize="1000dp"
-                app:autoSizeStepGranularity="1px"
-                tools:ignore="NestedWeights" />
-            <TextView
-                android:id="@+id/textViewClockSeconds"
-                android:layout_gravity="fill_horizontal|bottom"
-                android:gravity="bottom|left"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:maxLines="1"
-                android:text="@string/clock_prefilled_seconds"
-                android:textColor="@color/font"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="5dp"
-                app:autoSizeMaxTextSize="500dp"
-                app:autoSizeStepGranularity="1px" />
-        </LinearLayout>
-        <TextView
-            android:id="@+id/textViewDate"
-            android:gravity="center"
-            android:layout_gravity="fill_vertical"
-            android:layout_weight="1"
-            android:textAlignment="center"
+            android:id="@+id/digitalClockAndDateContainer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:maxLines="1"
-            android:text="@string/clock_prefilled"
-            android:textColor="@color/font"
-            app:autoSizeTextType="uniform"
-            app:autoSizeMinTextSize="20dp"
-            app:autoSizeMaxTextSize="800dp"
-            app:autoSizeStepGranularity="1px" />
+            android:layout_gravity="fill_vertical"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/digitalClockContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_vertical"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
+
+                <TextView
+                    android:id="@+id/textViewClock"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="fill_horizontal|bottom"
+                    android:layout_weight="5"
+                    android:gravity="bottom|right"
+                    android:maxLines="1"
+                    android:text="@string/clock_prefilled"
+                    android:textColor="@color/font"
+                    app:autoSizeMaxTextSize="1000dp"
+                    app:autoSizeMinTextSize="30dp"
+                    app:autoSizeStepGranularity="1px"
+                    app:autoSizeTextType="uniform"
+                    tools:ignore="NestedWeights" />
+
+                <TextView
+                    android:id="@+id/textViewClockSeconds"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="fill_horizontal|bottom"
+                    android:layout_weight="1"
+                    android:gravity="bottom|left"
+                    android:maxLines="1"
+                    android:text="@string/clock_prefilled_seconds"
+                    android:textColor="@color/font"
+                    app:autoSizeMaxTextSize="500dp"
+                    app:autoSizeMinTextSize="5dp"
+                    app:autoSizeStepGranularity="1px"
+                    app:autoSizeTextType="uniform" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewDate"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="fill_vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@string/clock_prefilled"
+                android:textAlignment="center"
+                android:textColor="@color/font"
+                app:autoSizeMaxTextSize="800dp"
+                app:autoSizeMinTextSize="20dp"
+                app:autoSizeStepGranularity="1px"
+                app:autoSizeTextType="uniform" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayoutBattery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
         android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="0dp"
         android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/imageViewBattery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_battery_full_black_24dp"/>
+            app:srcCompat="@drawable/ic_battery_full_black_24dp" />
+
         <TextView
             android:id="@+id/textViewBattery"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:textColor="@color/font"
             android:text="@string/battery_prefilled"
-            android:textSize="20sp"/>
+            android:textColor="@color/font"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </FrameLayout>

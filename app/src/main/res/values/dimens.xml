@@ -2,5 +2,4 @@
 <resources>
     <dimen name="margin_main">50dp</dimen>
     <dimen name="margin_clock">20dp</dimen>
-    <dimen name="margin_clock_land">70dp</dimen>
 </resources>

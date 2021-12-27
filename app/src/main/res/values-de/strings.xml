@@ -19,6 +19,7 @@
     <string name="remove">Entfernen</string>
     <string name="show_analog_clock">Analoguhr anzeigen</string>
     <string name="show_digital_clock">Digitaluhr anzeigen</string>
+    <string name="show_date">Datum anzeigen</string>
     <string name="new_event">Neues Event…</string>
     <string name="unlock_settings">Einstellungen freischalten…</string>
     <string name="ok">OK</string>

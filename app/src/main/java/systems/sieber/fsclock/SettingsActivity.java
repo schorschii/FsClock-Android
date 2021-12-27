@@ -120,6 +120,7 @@ public class SettingsActivity extends AppCompatActivity {
     Button mButtonChooseMinutesHand;
     Button mButtonChooseSecondsHand;
     CheckBox mCheckBoxDigitalClockShow;
+    CheckBox mCheckBoxDateShow;
     CheckBox mCheckBoxDigitalClockShowSeconds;
     CheckBox mCheckBoxDigitalClock24Format;
     SeekBar mSeekBarRedAnalog;
@@ -170,6 +171,7 @@ public class SettingsActivity extends AppCompatActivity {
         mButtonChooseMinutesHand = findViewById(R.id.buttonChooseMinutesHand);
         mButtonChooseSecondsHand = findViewById(R.id.buttonChooseSecondsHand);
         mCheckBoxDigitalClockShow = findViewById(R.id.checkBoxShowDigitalClock);
+        mCheckBoxDateShow = findViewById(R.id.checkBoxShowDate);
         mCheckBoxDigitalClockShowSeconds = findViewById(R.id.checkBoxSecondsDigital);
         mCheckBoxDigitalClock24Format = findViewById(R.id.checkBox24HrsFormat);
         mSeekBarRedAnalog = findViewById(R.id.seekBarRedAnalog);
@@ -200,6 +202,7 @@ public class SettingsActivity extends AppCompatActivity {
         mCheckBoxAnalogClockOwnColorSeconds.setChecked( mSharedPref.getBoolean("own-color-analog-seconds", false) );
         mCheckBoxAnalogClockOwnImage.setChecked( mSharedPref.getBoolean("own-image-analog", false) );
         mCheckBoxDigitalClockShow.setChecked( mSharedPref.getBoolean("show-digital", true) );
+        mCheckBoxDateShow.setChecked( mSharedPref.getBoolean("show-date", true) );
         mCheckBoxDigitalClockShowSeconds.setChecked( mSharedPref.getBoolean("show-seconds-digital", true) );
         mCheckBoxDigitalClock24Format.setChecked( mSharedPref.getBoolean("24hrs", true) );
         mSeekBarRedAnalog.setProgress( mSharedPref.getInt("color-red-analog", 255) );
@@ -254,6 +257,7 @@ public class SettingsActivity extends AppCompatActivity {
         mButtonChooseMinutesHand.setEnabled(state);
         mButtonChooseSecondsHand.setEnabled(state);
         mCheckBoxDigitalClockShow.setEnabled(state);
+        mCheckBoxDateShow.setEnabled(state);
         mCheckBoxDigitalClockShowSeconds.setEnabled(state);
         mCheckBoxDigitalClock24Format.setEnabled(state);
         mSeekBarRedAnalog.setEnabled(state);
@@ -667,6 +671,7 @@ public class SettingsActivity extends AppCompatActivity {
         editor.putBoolean("own-color-analog-seconds", mCheckBoxAnalogClockOwnColorSeconds.isChecked());
         editor.putBoolean("own-image-analog", mCheckBoxAnalogClockOwnImage.isChecked());
         editor.putBoolean("show-digital", mCheckBoxDigitalClockShow.isChecked());
+        editor.putBoolean("show-date", mCheckBoxDateShow.isChecked());
         editor.putBoolean("show-seconds-analog", mCheckBoxAnalogClockShowSeconds.isChecked());
         editor.putBoolean("show-seconds-digital", mCheckBoxDigitalClockShowSeconds.isChecked());
         editor.putBoolean("24hrs", mCheckBoxDigitalClock24Format.isChecked());

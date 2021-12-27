@@ -236,6 +236,12 @@
                     android:text="@string/show_digital_clock" />
 
                 <CheckBox
+                    android:id="@+id/checkBoxShowDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_date" />
+
+                <CheckBox
                     android:id="@+id/checkBoxSecondsDigital"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
