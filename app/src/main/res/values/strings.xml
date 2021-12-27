@@ -66,4 +66,7 @@
     <string name="open_source_text">This app is Open Source. If you want to improve the app or its translations, please check out the repository on Github.</string>
     <string name="open_source">Fork Me</string>
     <string name="fsclock_on_github">Fullscreen Clock Screensaver on GitHub</string>
+    <string name="allow_system_calendar_access">Allow System Calendar Access…</string>
+    <string name="access_already_granted">Access already granted</string>
+    <string name="access_denied_by_user">You have previously denied calendar access. Please go to the Android settings and manually grant calendar access for this app.</string>
 </resources>

@@ -106,9 +106,6 @@ public class FsClockView extends FrameLayout {
         mSecondsText.setTypeface(fontLed);
         mDateText.setTypeface(fontDate);
 
-        // init calendar
-        readCalendar();
-
         // init preferences
         loadSettings(mActivity);
     }
@@ -382,14 +379,6 @@ public class FsClockView extends FrameLayout {
             } else {
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
             }
-        }
-    }
-
-    private void readCalendar() {
-        if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_CALENDAR) == PackageManager.PERMISSION_GRANTED) {
-            updateEventView();
-        } else if(mActivity != null) {
-            ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.READ_CALENDAR}, 1);
         }
     }
 

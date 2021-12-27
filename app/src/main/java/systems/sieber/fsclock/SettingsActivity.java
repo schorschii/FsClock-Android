@@ -1,5 +1,6 @@
 package systems.sieber.fsclock;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -14,8 +15,11 @@ import android.graphics.Color;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -82,6 +86,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     static final String SHARED_PREF_DOMAIN = "CLOCK";
 
+    static final int PERMISSION_REQUEST = 0;
     static final int PICK_CLOCK_FACE_REQUEST = 1;
     static final int PICK_HOURS_HAND_REQUEST = 2;
     static final int PICK_MINUTES_HAND_REQUEST = 3;
@@ -1010,6 +1015,47 @@ public class SettingsActivity extends AppCompatActivity {
             a.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appId)));
         } catch (android.content.ActivityNotFoundException anfe) {
             a.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appId)));
+        }
+    }
+
+    public void allowSystemCalendarAccess(View v) {
+        int permissionCheckResult = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CALENDAR);
+        if(permissionCheckResult == PackageManager.PERMISSION_GRANTED) {
+            infoDialog(getString(R.string.access_already_granted));
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALENDAR}, PERMISSION_REQUEST);
+        }
+    }
+
+    private void infoDialog(String text) {
+        final AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+        dlg.setMessage(text);
+        dlg.setPositiveButton(getString(R.string.ok),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        dlg.setCancelable(true);
+        dlg.create().show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == PERMISSION_REQUEST) {
+            for(int i = 0, len = permissions.length; i < len; i++) {
+                String permission = permissions[i];
+                if(grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        boolean showRationale = shouldShowRequestPermissionRationale(permission);
+                        if(!showRationale) {
+                            // user also CHECKED "never ask again"
+                            infoDialog(getString(R.string.access_denied_by_user));
+                        }
+                    }
+                }
+            }
         }
     }
 
