@@ -96,6 +96,7 @@ public class FullscreenActivity extends AppCompatActivity {
         // find views
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_fsclock_view);
+        mContentView.mActivity = this;
         if(uiModeManager.getCurrentModeType() != Configuration.UI_MODE_TYPE_TELEVISION) {
             // we do not enable the onTouch event on TVs because this intersects with the onKeyDown event
             mContentView.setOnClickListener(new View.OnClickListener() {

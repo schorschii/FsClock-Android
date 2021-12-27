@@ -21,6 +21,7 @@ import android.provider.CalendarContract;
 import android.speech.tts.TextToSpeech;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -43,7 +44,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class FsClockView extends FrameLayout {
-    FsClockView me = this;
     AppCompatActivity mActivity;
 
     SharedPreferences mSharedPref;
@@ -110,7 +110,7 @@ public class FsClockView extends FrameLayout {
         readCalendar();
 
         // init preferences
-        loadSettings(null);
+        loadSettings(mActivity);
     }
 
     @Override
@@ -205,10 +205,13 @@ public class FsClockView extends FrameLayout {
 
     void loadSettings(Activity a) {
         if(a != null) {
-            if(mSharedPref.getBoolean("keep-screen-on", true))
+            if(mSharedPref.getBoolean("keep-screen-on", true)) {
                 a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            else
+                Log.e("SCREEN", "Keep ON");
+            } else {
                 a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                Log.e("SCREEN", "Keep OFF");
+            }
         }
 
         Gson gson = new Gson();
@@ -482,6 +485,7 @@ public class FsClockView extends FrameLayout {
     }
 
     protected void resume() {
+        loadSettings(mActivity);
         startTimer();
     }
 }
