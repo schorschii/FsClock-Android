@@ -6,9 +6,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:checkboxStyle">@style/MyCheckBoxStyle</item>
+
         <!-- No Action Bar -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- on Amazon Fire TV 4K, CheckBox label text is displayed in light gray on white, almost unreadable, so we set it manually to black -->
+    <style name="MyCheckBoxStyle" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:textColor">@color/colorSettingsCheckBoxes</item>
     </style>
 
 </resources>

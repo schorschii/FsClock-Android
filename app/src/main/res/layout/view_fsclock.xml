@@ -22,7 +22,7 @@
             android:layout_marginBottom="15dp"
             android:gravity="center"
             android:text="@string/events"
-            android:textColor="@color/font"
+            android:textColor="@color/colorDefaultClock"
             android:textSize="25sp" />
 
         <GridLayout
@@ -103,7 +103,7 @@
                     android:gravity="bottom|right"
                     android:maxLines="1"
                     android:text="@string/clock_prefilled"
-                    android:textColor="@color/font"
+                    android:textColor="@color/colorDefaultClock"
                     app:autoSizeMaxTextSize="1000dp"
                     app:autoSizeMinTextSize="30dp"
                     app:autoSizeStepGranularity="1px"
@@ -119,7 +119,7 @@
                     android:gravity="bottom|left"
                     android:maxLines="1"
                     android:text="@string/clock_prefilled_seconds"
-                    android:textColor="@color/font"
+                    android:textColor="@color/colorDefaultClock"
                     app:autoSizeMaxTextSize="500dp"
                     app:autoSizeMinTextSize="5dp"
                     app:autoSizeStepGranularity="1px"
@@ -136,7 +136,7 @@
                 android:maxLines="1"
                 android:text="@string/clock_prefilled"
                 android:textAlignment="center"
-                android:textColor="@color/font"
+                android:textColor="@color/colorDefaultClock"
                 app:autoSizeMaxTextSize="800dp"
                 app:autoSizeMinTextSize="20dp"
                 app:autoSizeStepGranularity="1px"
@@ -166,7 +166,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/battery_prefilled"
-            android:textColor="@color/font"
+            android:textColor="@color/colorDefaultClock"
             android:textSize="20sp" />
     </LinearLayout>
 
