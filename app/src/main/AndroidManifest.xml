@@ -11,6 +11,7 @@
     <uses-feature android:name="android.software.leanback" android:required="false" />
 
     <application
+        android:name=".FsClockApp"
         android:allowBackup="true"
         android:largeHeap="true"
         android:label="@string/app_name"
