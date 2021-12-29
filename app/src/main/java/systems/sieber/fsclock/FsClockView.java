@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
@@ -22,7 +23,10 @@ import android.speech.tts.TextToSpeech;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Display;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -94,19 +98,73 @@ public class FsClockView extends FrameLayout {
         mBatteryImage.setImageResource(R.drawable.ic_battery_full_black_24dp);
 
         // init font
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            mClockText.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-            mSecondsText.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-            mDateText.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-        }
-        Typeface fontLed = ResourcesCompat.getFont(c, R.font.dseg7classic_regular);
-        Typeface fontDate = ResourcesCompat.getFont(c, R.font.cairo_regular);
+        final Typeface fontLed = ResourcesCompat.getFont(c, R.font.dseg7classic_regular);
+        final Typeface fontDate = ResourcesCompat.getFont(c, R.font.cairo_regular);
         mClockText.setTypeface(fontLed);
         mSecondsText.setTypeface(fontLed);
         mDateText.setTypeface(fontDate);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // auto-calc text size
+            mClockText.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            mSecondsText.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            mDateText.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        } else {
+            // calc text sizes manually on older Android versions
+            updateClock();
+            WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+            Display display = wm.getDefaultDisplay();
+            final Point size = new Point();
+            display.getSize(size);
+            getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    int clockTextContainerWidth = mClockText.getWidth();
+                    int secondsContainerWidth = mSecondsText.getWidth();
+                    int dateContainerWidth = mDateText.getWidth();
+                    String clockText = mClockText.getText().toString();
+                    String secondsText = mSecondsText.getText().toString();
+                    String dateText = mDateText.getText().toString();
+                    for(int i = 140; i >= 50; i-=2) {
+                        int textWidth = getTextWidth(getContext(), clockText, i, size, fontLed);
+                        if(textWidth < clockTextContainerWidth) {
+                            mClockText.setTextSize(i);
+                            Log.i("CALC_TSIZE_CLOCK", i+" => "+textWidth+" (max "+clockTextContainerWidth+") @ "+clockText);
+                            break;
+                        }
+                    }
+                    for(int i = 80; i >= 20; i-=2) {
+                        int textWidth = getTextWidth(getContext(), secondsText, i, size, fontLed);
+                        if(textWidth < secondsContainerWidth) {
+                            mSecondsText.setTextSize(i);
+                            Log.i("CALC_TSIZE_SECS", i+" => "+textWidth+" (max "+secondsContainerWidth+") @ "+secondsText);
+                            break;
+                        }
+                    }
+                    for(int i = 120; i >= 20; i-=2) {
+                        int textWidth = getTextWidth(getContext(), dateText, i, size, fontDate);
+                        if(textWidth < dateContainerWidth) {
+                            mDateText.setTextSize(i);
+                            Log.i("CALC_TSIZE_DATE", i+" => "+textWidth+" (max "+dateContainerWidth+") @ "+dateText);
+                            break;
+                        }
+                    }
+                }
+            });
+        }
 
         // init preferences
         loadSettings(mActivity);
+    }
+
+    public static int getTextWidth(Context context, CharSequence text, int textSize, Point deviceSize, Typeface typeface) {
+        TextView textView = new TextView(context);
+        textView.setTypeface(typeface);
+        textView.setText(text, TextView.BufferType.SPANNABLE);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+        int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(deviceSize.x, View.MeasureSpec.AT_MOST);
+        int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(deviceSize.y, View.MeasureSpec.UNSPECIFIED);
+        textView.measure(widthMeasureSpec, heightMeasureSpec);
+        return textView.getMeasuredWidth();
     }
 
     @Override
@@ -133,28 +191,32 @@ public class FsClockView extends FrameLayout {
         tts.shutdown();
     }
 
+    @SuppressLint("SimpleDateFormat")
+    private void updateClock() {
+        final Calendar cal = Calendar.getInstance();
+        final SimpleDateFormat sdfSystem = (SimpleDateFormat) DateFormat.getDateFormat(getContext());
+        final SimpleDateFormat sdfDate = new SimpleDateFormat("EEEE, "+sdfSystem.toLocalizedPattern().replace("yy", "yyyy"), Locale.getDefault());
+        final SimpleDateFormat sdfTime = new SimpleDateFormat(format24hrs ? "HH:mm" : "hh:mm");
+        final SimpleDateFormat sdfSeconds = new SimpleDateFormat("ss");
+        mClockText.setText(sdfTime.format(cal.getTime()));
+        mSecondsText.setText(sdfSeconds.format(cal.getTime()));
+        mDateText.setText(sdfDate.format(cal.getTime()));
+        float secRotation = (cal.get(Calendar.SECOND) + ((float)cal.get(Calendar.MILLISECOND)/1000)) * 360 / 60;
+        float minRotation = (cal.get(Calendar.MINUTE) + ((float)cal.get(Calendar.SECOND)/60)) * 360 / 60;
+        float hrsRotation = (cal.get(Calendar.HOUR) + ((float)cal.get(Calendar.MINUTE)/60)) * 360 / 12;
+        mSecondsHand.setRotation(secRotation);
+        mMinutesHand.setRotation(minRotation);
+        mHoursHand.setRotation(hrsRotation);
+    }
     private void startTimer() {
         TimerTask taskAnalogClock = new TimerTask() {
             @SuppressLint("SimpleDateFormat")
             @Override
             public void run() {
-                final Calendar cal = Calendar.getInstance();
-                final SimpleDateFormat sdfSystem = (SimpleDateFormat) DateFormat.getDateFormat(getContext());
-                final SimpleDateFormat sdfDate = new SimpleDateFormat("EEEE, "+sdfSystem.toLocalizedPattern().replace("yy", "yyyy"), Locale.getDefault());
-                final SimpleDateFormat sdfTime = new SimpleDateFormat(format24hrs?"HH:mm":"hh:mm");
-                final SimpleDateFormat sdfSeconds = new SimpleDateFormat("ss");
                 post(new Runnable() {
                     @Override
                     public void run() {
-                        mClockText.setText(sdfTime.format(cal.getTime()));
-                        mSecondsText.setText(sdfSeconds.format(cal.getTime()));
-                        mDateText.setText(sdfDate.format(cal.getTime()));
-                        float secRotation = (cal.get(Calendar.SECOND) + ((float)cal.get(Calendar.MILLISECOND)/1000)) * 360 / 60;
-                        float minRotation = (cal.get(Calendar.MINUTE) + ((float)cal.get(Calendar.SECOND)/60)) * 360 / 60;
-                        float hrsRotation = (cal.get(Calendar.HOUR) + ((float)cal.get(Calendar.MINUTE)/60)) * 360 / 12;
-                        mSecondsHand.setRotation(secRotation);
-                        mMinutesHand.setRotation(minRotation);
-                        mHoursHand.setRotation(hrsRotation);
+                        updateClock();
                     }
                 });
             }
