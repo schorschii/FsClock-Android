@@ -6,16 +6,22 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- on Amazon Fire TV 4K, CheckBox label text is displayed in light gray on white, almost unreadable, so we set it manually to black -->
         <item name="android:checkboxStyle">@style/MyCheckBoxStyle</item>
+        <!-- this should change the checkbox ripple color for better visibility of which checkbox is focused
+            when using directional pads to navigate through the settings, but only works for unchecked checkboxes...
+            Do you have an idea? Pull requests welcome :)
+            As a workaround, I now changed the text color of focused checkboxes (using MyCheckBoxStyle).
+            <item name="colorControlHighlight">@color/checkbox_text_color</item> -->
 
         <!-- No Action Bar -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <!-- on Amazon Fire TV 4K, CheckBox label text is displayed in light gray on white, almost unreadable, so we set it manually to black -->
     <style name="MyCheckBoxStyle" parent="Widget.AppCompat.CompoundButton.CheckBox">
-        <item name="android:textColor">@color/colorSettingsCheckBoxes</item>
+        <item name="android:textColor">@color/checkbox_text_color</item>
     </style>
 
 </resources>
