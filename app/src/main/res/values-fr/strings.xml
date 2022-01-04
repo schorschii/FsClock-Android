@@ -57,8 +57,8 @@
     <string name="open_computer_orchestration">Ouvrir l\'orchestration de l\'ordinateur</string>
     <string name="open_source_text">Cette application est Open Source. Si vous souhaitez am&#233;liorer l\'application ou ses traductions, veuillez consulter le r&#233;f&#233;rentiel sur Github.</string>
     <string name="open_source">Fourche-moi</string>
-    <string name="fsclock_on_github">&#201;conomiseur d\'&#233;cran d\'horloge plein &#233;cran sur GitHub</string>
     <string name="allow_system_calendar_access">Autoriser l\'accès au calendrier système…</string>
     <string name="access_already_granted">Accès déjà accordé</string>
     <string name="access_denied_by_user">Vous avez précédemment refusé l\'accès au calendrier. Veuillez accéder aux paramètres Android et accorder manuellement l\'accès au calendrier pour cette application.</string>
+    <string name="fire_tv_notes">Avis important pour les appareils FireTV: Amazon FireOS n\'autorise pas officiellement la modification de l\'économiseur d\'écran du système en une application tierce, mais il existe une solution de contournement possible à l\'aide des outils de développement. Les détails sont expliqués dans le dépôt Github (voir ci-dessous). Sans la solution de contournement, l\'horloge peut toujours être démarrée sur les appareils FireTV comme une application normale.</string>
 </resources>

@@ -6,7 +6,7 @@
     <string name="clock_prefilled_seconds" translatable="false">00</string>
     <string name="battery_prefilled" translatable="false">100%</string>
 
-    <string name="developer_website" translatable="false">https://georg-sieber.de</string>
+    <string name="project_website" translatable="false">https://github.com/schorschii/FsClock-Android</string>
     <string name="unlock_api" translatable="false">"https://apps.georg-sieber.de/activate/app.php"</string>
 
     <string name="analog_clock">Analog Clock</string>
@@ -65,8 +65,8 @@
     <string name="open_computer_orchestration">Open Computer Orchestration</string>
     <string name="open_source_text">This app is Open Source. If you want to improve the app or its translations, please check out the repository on Github.</string>
     <string name="open_source">Fork Me</string>
-    <string name="fsclock_on_github">Fullscreen Clock Screensaver on GitHub</string>
     <string name="allow_system_calendar_access">Allow System Calendar Access…</string>
     <string name="access_already_granted">Access already granted</string>
     <string name="access_denied_by_user">You have previously denied calendar access. Please go to the Android settings and manually grant calendar access for this app.</string>
+    <string name="fire_tv_notes">Important notice for FireTV devices: Amazon FireOS does not officially allow changing the system screensaver to a 3rd party app, but there is a workaround possible using the developer tools. Details are explained in the Github repo (see below). Without the workaround, the clock can still be started on FireTV devices like a normal app.</string>
 </resources>

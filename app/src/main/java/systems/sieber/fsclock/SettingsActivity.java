@@ -160,8 +160,9 @@ public class SettingsActivity extends AppCompatActivity {
         try {
             PackageInfo pInfo = this.getPackageManager().getPackageInfo(getPackageName(), 0);
             setTitle(getTitle() + " " + pInfo.versionName);
-        } catch(PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+        } catch(PackageManager.NameNotFoundException ignored) { }
+        if(getPackageManager().hasSystemFeature("amazon.hardware.fire_tv")) {
+            findViewById(R.id.textViewFireTvNotes).setVisibility(View.VISIBLE);
         }
 
         // find views
@@ -987,7 +988,6 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
-    public final static String URL_GITHUB          = "https://github.com/schorschii/FsClock-Android";
     public final static String APPID_CUSTOMERDB    = "de.georgsieber.customerdb";
     public final static String APPID_REMOTEPOINTER = "systems.sieber.remotespotlight";
     public final static String APPID_BALLBREAK     = "de.georgsieber.ballbreak";
@@ -995,7 +995,7 @@ public class SettingsActivity extends AppCompatActivity {
     public final static String URL_MASTERPLAN      = "https://github.com/schorschii/masterplan";
 
     public void onClickGithub(View v) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_GITHUB));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.project_website)));
         startActivity(browserIntent);
     }
     public void onClickCustomerDatabaseApp(View v) {

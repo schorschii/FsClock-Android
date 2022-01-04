@@ -56,8 +56,8 @@
     <string name="open_computer_orchestration">Открытая компьютерная оркестровка</string>
     <string name="open_source_text">Это приложение с открытым исходным кодом. Если вы хотите улучшить приложение или его переводы, посетите репозиторий на Github.</string>
     <string name="open_source">Вилка меня</string>
-    <string name="fsclock_on_github">Полноэкранная заставка с часами на GitHub</string>
     <string name="allow_system_calendar_access">Разрешить доступ к системному календарю…</string>
     <string name="access_already_granted">Доступ уже предоставлен</string>
     <string name="access_denied_by_user">Вы ранее запрещали доступ к календарю. Перейдите в настройки Android и вручную предоставьте доступ к календарю для этого приложения.</string>
+    <string name="fire_tv_notes">Важное замечание для устройств FireTV: Amazon FireOS официально не позволяет заменять системную заставку на стороннее приложение, но есть обходной путь с помощью инструментов разработчика. Подробности объяснены в репозитории Github (см. Ниже). Без обходного пути часы все еще можно запускать на устройствах FireTV, как обычное приложение.</string>
 </resources>

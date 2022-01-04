@@ -57,8 +57,8 @@
     <string name="open_computer_orchestration">Open Computer Orchestration</string>
     <string name="open_source_text">Diese App ist Open Source. Wenn Sie die App oder die Übersetzungen verbessern möchten, besuchen Sie bitte das Repository auf Github.</string>
     <string name="open_source">Gabel mich</string>
-    <string name="fsclock_on_github">Vollbild-Uhr-Bildschirmschoner auf GitHub</string>
     <string name="allow_system_calendar_access">Zugriff auf System-Kalender erlauben…</string>
     <string name="access_already_granted">Zugriff wurde bereits erlaubt</string>
     <string name="access_denied_by_user">Sie haben den Kalenderzugriff zuvor abgelehnt. Bitte gehen Sie in die Android-Einstellungen und gewähren Sie den Kalenderzugriff manuell für diese App.</string>
+    <string name="fire_tv_notes">Wichtiger Hinweis für FireTV-Geräte: Amazon FireOS erlaubt es offiziell nicht den Systembildschirmschoner auf eine Drittanbieter-App zu ändern, aber es gibt ein Workaround über die Entwicklertools. Details werden im Github-Repo erklärt (siehe unten). Ohne den Workaround kann die Uhr auf FireTV-Geräten trotzdem wie eine normale App gestartet werden.</string>
 </resources>
