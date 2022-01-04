@@ -24,4 +24,9 @@
         <item name="android:textColor">@color/checkbox_text_color</item>
     </style>
 
+    <style name="Widget.AppCompat.Button.Colored" parent="@style/ThemeOverlay.AppCompat.DayNight">
+        <item name="android:textColor">@color/color_button_text</item>
+        <item name="backgroundTint">@color/color_button_background</item>
+    </style>
+
 </resources>
