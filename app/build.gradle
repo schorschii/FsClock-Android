@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.huawei.agconnect'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     defaultConfig {
         applicationId "systems.sieber.fsclock"
         minSdkVersion 17
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 22
         versionName "1.7.3"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
