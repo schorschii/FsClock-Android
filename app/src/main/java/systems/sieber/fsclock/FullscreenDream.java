@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.service.dreams.DreamService;
 import android.view.View;
 
@@ -21,6 +22,15 @@ public class FullscreenDream extends DreamService {
 
         // find views
         mContentView = findViewById(R.id.fullscreen_fsclock_view);
+
+        // hide the system navigation bar with the same flags as done in the Android clock app
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        }
 
         // init battery info
         registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
