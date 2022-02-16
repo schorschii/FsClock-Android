@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -996,32 +997,35 @@ public class SettingsActivity extends AppCompatActivity {
     public final static String URL_MASTERPLAN      = "https://github.com/schorschii/masterplan";
 
     public void onClickGithub(View v) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.project_website)));
-        startActivity(browserIntent);
+        openBrowser(getString(R.string.project_website));
     }
     public void onClickCustomerDatabaseApp(View v) {
-        openPlayStore(this, APPID_CUSTOMERDB);
+        openPlayStore(APPID_CUSTOMERDB);
     }
     public void onClickRemotePointerApp(View v) {
-        openPlayStore(this, APPID_REMOTEPOINTER);
+        openPlayStore(APPID_REMOTEPOINTER);
     }
     public void onClickBallBreakApp(View v) {
-        openPlayStore(this, APPID_BALLBREAK);
+        openPlayStore(APPID_BALLBREAK);
     }
     public void onClickOco(View v) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_OCO));
-        startActivity(browserIntent);
+        openBrowser(URL_OCO);
     }
     public void onClickMasterplan(View v) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_MASTERPLAN));
-        startActivity(browserIntent);
+        openBrowser(URL_MASTERPLAN);
     }
-
-    public static void openPlayStore(AppCompatActivity a, String appId) {
+    private void openBrowser(String url) {
         try {
-            a.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appId)));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(browserIntent);
+        } catch(SecurityException ignored) {
+        } catch(ActivityNotFoundException ignored) {}
+    }
+    private void openPlayStore(String appId) {
+        try {
+            this.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appId)));
         } catch (android.content.ActivityNotFoundException anfe) {
-            a.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appId)));
+            this.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appId)));
         }
     }
 
