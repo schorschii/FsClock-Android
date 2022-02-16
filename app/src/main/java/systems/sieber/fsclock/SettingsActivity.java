@@ -741,6 +741,7 @@ public class SettingsActivity extends AppCompatActivity {
                             loadPurchases();
                         } else {
                             Log.i("ACTIVATION", "> " + responseBody);
+                            if(me == null || me.isFinishing() || me.isDestroyed()) return;
                             AlertDialog ad = new AlertDialog.Builder(me).create();
                             ad.setMessage(getResources().getString(R.string.activation_failed));
                             ad.setButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
