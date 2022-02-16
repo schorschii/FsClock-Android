@@ -51,7 +51,9 @@ public class FullscreenDream extends DreamService {
     @Override
     public void onDetachedFromWindow() {
         // unregister battery receiver
-        unregisterReceiver(this.mBatInfoReceiver);
+        try {
+            unregisterReceiver(this.mBatInfoReceiver);
+        } catch(IllegalArgumentException ignored) {}
     }
 
     private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
