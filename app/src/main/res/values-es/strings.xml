@@ -61,4 +61,5 @@
     <string name="access_already_granted">Acceso ya concedido</string>
     <string name="access_denied_by_user">Has denegado previamente el acceso al calendario. Vaya a la configuración de Android y otorgue manualmente acceso al calendario para esta aplicación.</string>
     <string name="fire_tv_notes">Aviso importante para dispositivos FireTV: Amazon FireOS no permite oficialmente cambiar el protector de pantalla del sistema a una aplicación de terceros, pero existe una solución alternativa con las herramientas de desarrollo. Los detalles se explican en el repositorio de Github (ver más abajo). Sin la solución alternativa, el reloj aún se puede iniciar en dispositivos FireTV como una aplicación normal.</string>
+    <string name="no_web_browser_found">No se encontró ningún navegador web para abrir esta URL</string>
 </resources>

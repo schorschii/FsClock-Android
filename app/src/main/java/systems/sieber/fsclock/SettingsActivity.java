@@ -1019,12 +1019,15 @@ public class SettingsActivity extends AppCompatActivity {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(browserIntent);
         } catch(SecurityException ignored) {
-        } catch(ActivityNotFoundException ignored) {}
+            infoDialog(getString(R.string.no_web_browser_found), url);
+        } catch(ActivityNotFoundException ignored) {
+            infoDialog(getString(R.string.no_web_browser_found), url);
+        }
     }
     private void openPlayStore(String appId) {
         try {
             this.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appId)));
-        } catch (android.content.ActivityNotFoundException anfe) {
+        } catch(android.content.ActivityNotFoundException anfe) {
             this.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appId)));
         }
     }
@@ -1032,15 +1035,16 @@ public class SettingsActivity extends AppCompatActivity {
     public void allowSystemCalendarAccess(View v) {
         int permissionCheckResult = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CALENDAR);
         if(permissionCheckResult == PackageManager.PERMISSION_GRANTED) {
-            infoDialog(getString(R.string.access_already_granted));
+            infoDialog(null, getString(R.string.access_already_granted));
         } else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALENDAR}, PERMISSION_REQUEST);
         }
     }
 
-    private void infoDialog(String text) {
+    private void infoDialog(String title, String text) {
         final AlertDialog.Builder dlg = new AlertDialog.Builder(this);
-        dlg.setMessage(text);
+        if(title != null) dlg.setTitle(title);
+        if(text != null) dlg.setMessage(text);
         dlg.setPositiveButton(getString(R.string.ok),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -1062,7 +1066,7 @@ public class SettingsActivity extends AppCompatActivity {
                         boolean showRationale = shouldShowRequestPermissionRationale(permission);
                         if(!showRationale) {
                             // user also CHECKED "never ask again"
-                            infoDialog(getString(R.string.access_denied_by_user));
+                            infoDialog(null, getString(R.string.access_denied_by_user));
                         }
                     }
                 }

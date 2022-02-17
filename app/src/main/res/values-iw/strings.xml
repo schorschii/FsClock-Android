@@ -62,4 +62,5 @@
     <string name="access_already_granted">הגישה כבר ניתנה</string>
     <string name="access_denied_by_user">דחית בעבר גישה ליומן. נא עבור להגדרות אנדרואיד והענק ידנית גישה ליומן עבור אפליקציה זו.</string>
     <string name="fire_tv_notes">הודעה חשובה עבור מכשירי FireTV: Amazon FireOS אינה מאפשרת רשמית לשנות את שומר המסך של המערכת לאפליקציה של צד שלישי, אך ישנה פתרון אפשרי באמצעות כלי המפתחים. פרטים מוסברים בריפו של Github (ראה להלן). ללא הפתרון לעקיפת הבעיה, עדיין ניתן להפעיל את השעון במכשירי FireTV כמו אפליקציה רגילה.</string>
+    <string name="no_web_browser_found">לא נמצא דפדפן אינטרנט לפתיחת כתובת האתר הזו</string>
 </resources>

@@ -69,4 +69,5 @@
     <string name="access_already_granted">Access already granted</string>
     <string name="access_denied_by_user">You have previously denied calendar access. Please go to the Android settings and manually grant calendar access for this app.</string>
     <string name="fire_tv_notes">Important notice for FireTV devices: Amazon FireOS does not officially allow changing the system screensaver to a 3rd party app, but there is a workaround possible using the developer tools. Details are explained in the Github repo (see below). Without the workaround, the clock can still be started on FireTV devices like a normal app.</string>
+    <string name="no_web_browser_found">No web browser found to open this URL</string>
 </resources>
