@@ -7,8 +7,8 @@ android {
         applicationId "systems.sieber.fsclock"
         minSdkVersion 17
         targetSdkVersion 31
-        versionCode 23
-        versionName "1.7.4"
+        versionCode 24
+        versionName "1.7.5"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
         manifestPlaceholders = [ huaweiiap: "0", amazoniap: "0" ]
