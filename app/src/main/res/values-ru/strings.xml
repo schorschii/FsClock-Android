@@ -61,4 +61,6 @@
     <string name="access_denied_by_user">Вы ранее запрещали доступ к календарю. Перейдите в настройки Android и вручную предоставьте доступ к календарю для этого приложения.</string>
     <string name="fire_tv_notes">Важное замечание для устройств FireTV: Amazon FireOS официально не позволяет заменять системную заставку на стороннее приложение, но есть обходной путь с помощью инструментов разработчика. Подробности объяснены в репозитории Github (см. Ниже). Без обходного пути часы все еще можно запускать на устройствах FireTV, как обычное приложение.</string>
     <string name="no_web_browser_found">Не найден веб-браузер для открытия этого URL-адреса</string>
+    <string name="set_as_screensaver_in_android_settings">Сделать заставкой в настройках Android…</string>
+    <string name="screensaver_not_supported">Это устройство не поддерживает заставки Android.</string>
 </resources>

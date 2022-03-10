@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.UiModeManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,6 +13,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Color;
 
 import androidx.annotation.NonNull;
@@ -23,6 +25,7 @@ import androidx.core.content.ContextCompat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -162,8 +165,18 @@ public class SettingsActivity extends AppCompatActivity {
             PackageInfo pInfo = this.getPackageManager().getPackageInfo(getPackageName(), 0);
             setTitle(getTitle() + " " + pInfo.versionName);
         } catch(PackageManager.NameNotFoundException ignored) { }
+
+        // hide dream settings button if not supported
+        UiModeManager uiModeManager = (UiModeManager) getSystemService(UI_MODE_SERVICE);
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2
+        || uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION) {
+            findViewById(R.id.buttonDreamSettings).setVisibility(View.GONE);
+        }
+
+        // show screensaver note on FireTV
         if(getPackageManager().hasSystemFeature("amazon.hardware.fire_tv")) {
             findViewById(R.id.textViewFireTvNotes).setVisibility(View.VISIBLE);
+            findViewById(R.id.buttonDreamSettings).setVisibility(View.GONE);
         }
 
         // find views
@@ -985,6 +998,16 @@ public class SettingsActivity extends AppCompatActivity {
                 case FAILED:
                 case NOT_SUPPORTED:
                     break;
+            }
+        }
+    }
+
+    public void onClickDreamSettings(View v) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            try {
+                startActivity(new Intent(Settings.ACTION_DREAM_SETTINGS));
+            } catch(ActivityNotFoundException e) {
+                infoDialog(null, getString(R.string.screensaver_not_supported));
             }
         }
     }

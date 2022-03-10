@@ -62,4 +62,6 @@
     <string name="access_denied_by_user">Has denegado previamente el acceso al calendario. Vaya a la configuración de Android y otorgue manualmente acceso al calendario para esta aplicación.</string>
     <string name="fire_tv_notes">Aviso importante para dispositivos FireTV: Amazon FireOS no permite oficialmente cambiar el protector de pantalla del sistema a una aplicación de terceros, pero existe una solución alternativa con las herramientas de desarrollo. Los detalles se explican en el repositorio de Github (ver más abajo). Sin la solución alternativa, el reloj aún se puede iniciar en dispositivos FireTV como una aplicación normal.</string>
     <string name="no_web_browser_found">No se encontró ningún navegador web para abrir esta URL</string>
+    <string name="set_as_screensaver_in_android_settings">Establecer como protector de pantalla en la configuración de Android…</string>
+    <string name="screensaver_not_supported">Este dispositivo no es compatible con los protectores de pantalla de Android.</string>
 </resources>

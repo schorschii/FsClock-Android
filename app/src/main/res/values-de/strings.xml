@@ -62,4 +62,6 @@
     <string name="access_denied_by_user">Sie haben den Kalenderzugriff zuvor abgelehnt. Bitte gehen Sie in die Android-Einstellungen und gewähren Sie den Kalenderzugriff manuell für diese App.</string>
     <string name="fire_tv_notes">Wichtiger Hinweis für FireTV-Geräte: Amazon FireOS erlaubt es offiziell nicht den Systembildschirmschoner auf eine Drittanbieter-App zu ändern, aber es gibt ein Workaround über die Entwicklertools. Details werden im Github-Repo erklärt (siehe unten). Ohne den Workaround kann die Uhr auf FireTV-Geräten trotzdem wie eine normale App gestartet werden.</string>
     <string name="no_web_browser_found">Kein Webbrowser zum Öffnen der URL gefunden</string>
+    <string name="set_as_screensaver_in_android_settings">Als Bildschirmschoner in Android-Einstellungen einstellen…</string>
+    <string name="screensaver_not_supported">Dieses Gerät unterstützt keine Bildschirmschoner.</string>
 </resources>

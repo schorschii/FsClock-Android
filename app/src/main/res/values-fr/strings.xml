@@ -62,4 +62,6 @@
     <string name="access_denied_by_user">Vous avez précédemment refusé l\'accès au calendrier. Veuillez accéder aux paramètres Android et accorder manuellement l\'accès au calendrier pour cette application.</string>
     <string name="fire_tv_notes">Avis important pour les appareils FireTV: Amazon FireOS n\'autorise pas officiellement la modification de l\'économiseur d\'écran du système en une application tierce, mais il existe une solution de contournement possible à l\'aide des outils de développement. Les détails sont expliqués dans le dépôt Github (voir ci-dessous). Sans la solution de contournement, l\'horloge peut toujours être démarrée sur les appareils FireTV comme une application normale.</string>
     <string name="no_web_browser_found">Aucun navigateur Web trouvé pour ouvrir cette URL</string>
+    <string name="set_as_screensaver_in_android_settings">Définir comme économiseur d\'écran dans les paramètres Android…</string>
+    <string name="screensaver_not_supported">Cet appareil ne prend pas en charge les économiseurs d\'écran Android.</string>
 </resources>
