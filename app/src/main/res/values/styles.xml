@@ -30,4 +30,8 @@
         <item name="backgroundTint">@color/color_button_background</item>
     </style>
 
+    <style name="width_match_parent_max_200">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
 </resources>
