@@ -129,7 +129,7 @@ public class FullscreenActivity extends AppCompatActivity {
         // start the clock
         mContentView.resume();
         incrementStartedCounter();
-        showAdOtherApps();
+        showDialogReview();
 
         // show TV keys info
         if(uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION) {
@@ -239,9 +239,9 @@ public class FullscreenActivity extends AppCompatActivity {
         editor.putInt("started", oldStartedValue+1);
         editor.apply();
     }
-    private void showAdOtherApps() {
-        if(mSharedPref.getInt("started", 0) % 12 == 0
-                && mSharedPref.getInt("ad-other-apps-shown", 0) < 2) {
+    private void showDialogReview() {
+        if(mSharedPref.getInt("started", 0) % 14 == 0
+                && mSharedPref.getInt("ad-other-apps-shown", 0) < 1) {
             // increment counter
             SharedPreferences.Editor editor = mSharedPref.edit();
             editor.putInt("ad-other-apps-shown", mSharedPref.getInt("ad-other-apps-shown", 0)+1);
@@ -250,7 +250,7 @@ public class FullscreenActivity extends AppCompatActivity {
             // show ad "other apps"
             final Dialog ad = new Dialog(this);
             ad.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            ad.setContentView(R.layout.dialog_otherapps);
+            ad.setContentView(R.layout.dialog_review);
             ad.setCancelable(true);
             ad.findViewById(R.id.buttonReviewNow).setOnClickListener(new View.OnClickListener() {
                 @Override
