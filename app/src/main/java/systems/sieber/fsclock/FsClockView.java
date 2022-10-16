@@ -265,10 +265,10 @@ public class FsClockView extends FrameLayout {
         if(a != null) {
             if(mSharedPref.getBoolean("keep-screen-on", true)) {
                 a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                Log.e("SCREEN", "Keep ON");
+                Log.i("SCREEN", "Keep ON");
             } else {
                 a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                Log.e("SCREEN", "Keep OFF");
+                Log.i("SCREEN", "Keep OFF");
             }
         }
 

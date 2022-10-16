@@ -52,11 +52,11 @@ import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.ProductDetails;
+import com.android.billingclient.api.ProductDetailsResponseListener;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.PurchasesUpdatedListener;
-import com.android.billingclient.api.SkuDetails;
-import com.android.billingclient.api.SkuDetailsParams;
-import com.android.billingclient.api.SkuDetailsResponseListener;
+import com.android.billingclient.api.QueryProductDetailsParams;
 import com.google.gson.Gson;
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
@@ -85,6 +85,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -107,7 +108,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     FeatureCheck mFc;
     BillingClient mBillingClient;
-    SkuDetails skuDetailsUnlockSettings;
+    ProductDetails skuDetailsUnlockSettings;
 
     Gson mGson = new Gson();
     ArrayList<Event> mEvents = new ArrayList<>();
@@ -311,8 +312,13 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void featureCheckReady(boolean fetchSuccess) {
                 if(mFc.unlockedSettings) {
-                    mLinearLayoutPurchaseContainer.setVisibility(View.GONE);
-                    enableDisableAllSettings(true);
+                    runOnUiThread(new Runnable(){
+                        @Override
+                        public void run() {
+                            mLinearLayoutPurchaseContainer.setVisibility(View.GONE);
+                            enableDisableAllSettings(true);
+                        }
+                    });
                 }
             }
         });
@@ -345,7 +351,7 @@ public class SettingsActivity extends AppCompatActivity {
             // init amazon billing client
             final AmazonPurchasingListener purchasingListener = new AmazonPurchasingListener(this);
             PurchasingService.registerListener(this.getApplicationContext(), purchasingListener);
-            final Set<String> productSkus = new HashSet<String>();
+            final Set<String> productSkus = new HashSet<>();
             productSkus.add("settings");
             PurchasingService.getProductData(productSkus);
             PurchasingService.getPurchaseUpdates(true);
@@ -360,10 +366,11 @@ public class SettingsActivity extends AppCompatActivity {
                         public void onPurchasesUpdated(@NonNull BillingResult billingResult, List<Purchase> purchases) {
                             int responseCode = billingResult.getResponseCode();
                             if(responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
-                                Log.i("BILLING", "onPurchasesUpdated OK");
                                 for(Purchase purchase : purchases) {
                                     if(purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
-                                        mFc.unlockPurchase(purchase.getSku());
+                                        for(String sku : purchase.getProducts()) {
+                                            mFc.unlockPurchase(sku);
+                                        }
                                         FeatureCheck.acknowledgePurchase(mBillingClient, purchase);
                                         loadPurchases();
                                     }
@@ -377,7 +384,6 @@ public class SettingsActivity extends AppCompatActivity {
                 @Override
                 public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
                     if(billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-                        Log.i("BILLING", "onBillingSetupFinished OK");
                         querySkus();
                     } else {
                         Log.e("BILLING", billingResult.getResponseCode() + " " + billingResult.getDebugMessage());
@@ -398,36 +404,36 @@ public class SettingsActivity extends AppCompatActivity {
         return req;
     }
     private void querySkus() {
-        ArrayList<String> skuList = new ArrayList<>();
-        skuList.add("settings");
-        SkuDetailsParams.Builder params = SkuDetailsParams
-                .newBuilder()
-                .setSkusList(skuList)
-                .setType(BillingClient.SkuType.INAPP);
-        mBillingClient.querySkuDetailsAsync(params.build(), new SkuDetailsResponseListener() {
-            @SuppressWarnings("SwitchStatementWithTooFewBranches")
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onSkuDetailsResponse(@NonNull BillingResult billingResult, List<SkuDetails> skuDetailsList) {
-                if(billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && skuDetailsList != null) {
-                    Log.i("BILLING", "onSkuDetailsResponse OK : " + skuDetailsList.size());
-                    for(SkuDetails skuDetails : skuDetailsList) {
-                        String sku = skuDetails.getSku();
-                        String price = skuDetails.getPrice();
-                        setupPayButton(sku, price, skuDetails);
+        ArrayList<QueryProductDetailsParams.Product> productList = new ArrayList<>();
+        productList.add(QueryProductDetailsParams.Product.newBuilder()
+                .setProductId("settings")
+                .setProductType(BillingClient.ProductType.INAPP)
+                .build()
+        );
+        QueryProductDetailsParams params = QueryProductDetailsParams.newBuilder()
+                .setProductList(productList)
+                .build();
+        mBillingClient.queryProductDetailsAsync(params, new ProductDetailsResponseListener() {
+                    public void onProductDetailsResponse(@NonNull BillingResult billingResult, @NonNull List<ProductDetails> productDetailsList) {
+                        if(billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                            for(ProductDetails skuDetails : productDetailsList) {
+                                String sku = skuDetails.getProductId();
+                                String price = Objects.requireNonNull(skuDetails.getOneTimePurchaseOfferDetails()).getFormattedPrice();
+                                setupPayButton(sku, price, skuDetails);
+                            }
+                        } else {
+                            Log.e("BILLING", billingResult.getResponseCode() + " " + billingResult.getDebugMessage());
+                        }
                     }
-                } else {
-                    Log.e("BILLING", billingResult.getResponseCode() + " " + billingResult.getDebugMessage());
                 }
-            }
-        });
+        );
     }
     private void setupPayButton(String sku, String price) {
         setupPayButton(sku, price, null);
     }
     @SuppressLint("SetTextI18n")
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
-    private void setupPayButton(String sku, String price, SkuDetails skuDetails) {
+    private void setupPayButton(String sku, String price, ProductDetails skuDetails) {
         switch(sku) {
             case "settings":
                 if(skuDetails != null) skuDetailsUnlockSettings = skuDetails;
@@ -446,10 +452,20 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
     @SuppressWarnings("UnusedReturnValue")
-    private BillingResult doBuy(SkuDetails sku) {
+    private BillingResult doBuy(ProductDetails sku) {
         if(sku == null) return null;
+        List<BillingFlowParams.ProductDetailsParams> productDetailsParamsList = new ArrayList<>();
+        productDetailsParamsList.add(
+                BillingFlowParams.ProductDetailsParams.newBuilder()
+                    // retrieve a value for "productDetails" by calling queryProductDetailsAsync()
+                    .setProductDetails(sku)
+                    // to get an offer token, call ProductDetails.getSubscriptionOfferDetails()
+                    // for a list of offers that are available to the user
+                    //.setOfferToken(selectedOfferToken)
+                    .build()
+        );
         BillingFlowParams flowParams = BillingFlowParams.newBuilder()
-                .setSkuDetails(sku)
+                .setProductDetailsParamsList(productDetailsParamsList)
                 .build();
         return mBillingClient.launchBillingFlow(this, flowParams);
     }

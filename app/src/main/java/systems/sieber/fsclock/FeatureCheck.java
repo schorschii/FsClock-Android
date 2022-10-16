@@ -5,15 +5,17 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
+import androidx.annotation.NonNull;
+
 import com.android.billingclient.api.AcknowledgePurchaseParams;
 import com.android.billingclient.api.AcknowledgePurchaseResponseListener;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.Purchase;
-import com.android.billingclient.api.PurchaseHistoryRecord;
-import com.android.billingclient.api.PurchaseHistoryResponseListener;
+import com.android.billingclient.api.PurchasesResponseListener;
 import com.android.billingclient.api.PurchasesUpdatedListener;
+import com.android.billingclient.api.QueryPurchasesParams;
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
 import com.huawei.hmf.tasks.Task;
@@ -32,8 +34,6 @@ class FeatureCheck {
     private Context mContext;
     private SharedPreferences mSettings;
     private boolean mLoadHuaweiIap;
-
-    private final static boolean USE_CACHE = true;
 
     FeatureCheck(Context c) {
         mContext = c;
@@ -101,36 +101,33 @@ class FeatureCheck {
                     .enablePendingPurchases()
                     .setListener(new PurchasesUpdatedListener() {
                         @Override
-                        public void onPurchasesUpdated(BillingResult billingResult, List<Purchase> list) {
+                        public void onPurchasesUpdated(@NonNull BillingResult billingResult, List<Purchase> list) {
                         }
                     }).build();
             mBillingClient.startConnection(new BillingClientStateListener() {
                 @Override
-                public void onBillingSetupFinished(BillingResult billingResult) {
+                public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
                     if(billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
                         // query purchases
-                        if(USE_CACHE) {
-                            Purchase.PurchasesResult purchasesResult = mBillingClient.queryPurchases(BillingClient.SkuType.INAPP);
-                            processPurchases(purchasesResult.getResponseCode(), purchasesResult.getPurchasesList());
-                            Purchase.PurchasesResult subscriptionResult = mBillingClient.queryPurchases(BillingClient.SkuType.SUBS);
-                            processSubscription(subscriptionResult.getResponseCode(), subscriptionResult.getPurchasesList());
-                            isReady = true;
-                        } else {
-                            // not implemented anymore
-                            mBillingClient.queryPurchaseHistoryAsync(BillingClient.SkuType.INAPP, new PurchaseHistoryResponseListener() {
+                        mBillingClient.queryPurchasesAsync(
+                            QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.INAPP).build(),
+                            new PurchasesResponseListener() {
                                 @Override
-                                public void onPurchaseHistoryResponse(BillingResult billingResult, List<PurchaseHistoryRecord> list) {
-                                    //processPurchases(billingResult.getResponseCode(), list);
-                                    isReady = true;
+                                public void onQueryPurchasesResponse(@NonNull BillingResult billingResult, @NonNull List<Purchase> list) {
+                                    processPurchases(billingResult.getResponseCode(), list);
                                 }
-                            });
-                            mBillingClient.queryPurchaseHistoryAsync(BillingClient.SkuType.SUBS, new PurchaseHistoryResponseListener() {
+                            }
+                        );
+                        mBillingClient.queryPurchasesAsync(
+                            QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.SUBS).build(),
+                            new PurchasesResponseListener() {
                                 @Override
-                                public void onPurchaseHistoryResponse(BillingResult billingResult, List<PurchaseHistoryRecord> list) {
-                                    //processSubscription(billingResult.getResponseCode(), list);
+                                public void onQueryPurchasesResponse(@NonNull BillingResult billingResult, @NonNull List<Purchase> list) {
+                                    processSubscription(billingResult.getResponseCode(), list);
                                 }
-                            });
-                        }
+                            }
+                        );
+                        isReady = true;
                     } else {
                         isReady = true;
                         if(listener != null) listener.featureCheckReady(false);
@@ -154,7 +151,7 @@ class FeatureCheck {
                     .build();
             client.acknowledgePurchase(acknowledgePurchaseParams, new AcknowledgePurchaseResponseListener() {
                 @Override
-                public void onAcknowledgePurchaseResponse(BillingResult billingResult) { }
+                public void onAcknowledgePurchaseResponse(@NonNull BillingResult billingResult) { }
             });
         }
     }
@@ -163,7 +160,9 @@ class FeatureCheck {
         if(responseCode == BillingClient.BillingResponseCode.OK) {
             for(Purchase p : purchasesList) {
                 if(p.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
-                    unlockPurchase(p.getSku());
+                    for(String sku : p.getProducts()) {
+                        unlockPurchase(sku);
+                    }
                     acknowledgePurchase(mBillingClient, p);
                 }
             }
@@ -177,16 +176,16 @@ class FeatureCheck {
         if(responseCode == BillingClient.BillingResponseCode.OK) {
             for(Purchase p : purchasesList) {
                 if(p.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
-                    if(p.getSku().equals("...")) {
-                        // process subscription here...
-                        /*
-                        SharedPreferences.Editor editor = mSettings.edit();
-                        editor.putString("sync-purchase-token", p.getPurchaseToken());
-                        editor.apply();
-                        if(p.isAutoRenewing()) {
-                            unlockPurchase("sync");
-                        }
-                        */
+                    for(String sku : p.getProducts()) {
+                        /* if(sku.equals("...")) {
+                            // process subscription here...
+                            SharedPreferences.Editor editor = mSettings.edit();
+                            editor.putString("sync-purchase-token", p.getPurchaseToken());
+                            editor.apply();
+                            if(p.isAutoRenewing()) {
+                                unlockPurchase("sync");
+                            }
+                        } */
                     }
                     acknowledgePurchase(mBillingClient, p);
                 }
