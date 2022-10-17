@@ -64,4 +64,8 @@
     <string name="no_web_browser_found">Kein Webbrowser zum Öffnen der URL gefunden</string>
     <string name="set_as_screensaver_in_android_settings">Als Bildschirmschoner in Android-Einstellungen festlegen…</string>
     <string name="screensaver_not_supported">Dieses Gerät unterstützt keine Bildschirmschoner.</string>
+    <string name="play_store_not_avail">Google Play Store nicht verfügbar</string>
+    <string name="amazon_store_not_avail">Amazon App Store nicht verfügbar</string>
+    <string name="huawei_store_not_avail">Huawei App Gallery nicht verfügbar</string>
+    <string name="could_not_fetch_prices">Die aktuellen Preise für In-App-Einkäufe konnten nicht geladen werden.</string>
 </resources>

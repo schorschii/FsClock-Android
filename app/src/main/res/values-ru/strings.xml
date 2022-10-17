@@ -63,4 +63,8 @@
     <string name="no_web_browser_found">Не найден веб-браузер для открытия этого URL-адреса</string>
     <string name="set_as_screensaver_in_android_settings">Сделать заставкой в настройках Android…</string>
     <string name="screensaver_not_supported">Это устройство не поддерживает заставки Android.</string>
+    <string name="play_store_not_avail">Магазин Google Play недоступен</string>
+    <string name="amazon_store_not_avail">Amazon App Store недоступен</string>
+    <string name="huawei_store_not_avail">Галерея приложений Huawei недоступна</string>
+    <string name="could_not_fetch_prices">Не удалось получить текущие цены для покупок в приложении.</string>
 </resources>

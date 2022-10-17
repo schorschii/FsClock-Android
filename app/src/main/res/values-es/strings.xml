@@ -64,4 +64,8 @@
     <string name="no_web_browser_found">No se encontró ningún navegador web para abrir esta URL</string>
     <string name="set_as_screensaver_in_android_settings">Establecer como protector de pantalla en la configuración de Android…</string>
     <string name="screensaver_not_supported">Este dispositivo no es compatible con los protectores de pantalla de Android.</string>
+    <string name="play_store_not_avail">Google Play Store no disponible</string>
+    <string name="amazon_store_not_avail">Tienda de aplicaciones de Amazon no disponible</string>
+    <string name="huawei_store_not_avail">Galería de aplicaciones de Huawei no disponible</string>
+    <string name="could_not_fetch_prices">No se pudieron obtener los precios actuales para las compras dentro de la aplicación.</string>
 </resources>

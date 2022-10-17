@@ -65,4 +65,8 @@
     <string name="no_web_browser_found">לא נמצא דפדפן אינטרנט לפתיחת כתובת האתר הזו</string>
     <string name="set_as_screensaver_in_android_settings">הגדר כשומר מסך בהגדרות אנדרואיד…</string>
     <string name="screensaver_not_supported">מכשיר זה אינו תומך בשומרי מסך של אנדרואיד.</string>
+    <string name="play_store_not_avail">חנות Google Play אינה זמינה</string>
+    <string name="amazon_store_not_avail">Amazon App Store לא זמין</string>
+    <string name="huawei_store_not_avail">גלריית האפליקציות של Huawei אינה זמינה</string>
+    <string name="could_not_fetch_prices">לא ניתן היה להביא מחירים נוכחיים עבור רכישות מתוך האפליקציה.</string>
 </resources>

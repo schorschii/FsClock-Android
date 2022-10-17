@@ -23,6 +23,7 @@ import com.android.billingclient.api.ProductDetailsResponseListener;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONObject;
 
@@ -107,7 +108,12 @@ public class SettingsActivity extends BaseSettingsActivity {
                 if(billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
                     querySkus();
                 } else {
-                    Log.e("BILLING", billingResult.getResponseCode() + " " + billingResult.getDebugMessage());
+                    Snackbar.make(
+                            findViewById(R.id.settingsMainView),
+                            getResources().getString(R.string.play_store_not_avail) + " - " +
+                                    getResources().getString(R.string.could_not_fetch_prices),
+                            Snackbar.LENGTH_LONG)
+                            .show();
                 }
             }
             @Override

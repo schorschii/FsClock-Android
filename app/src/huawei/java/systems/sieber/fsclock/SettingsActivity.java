@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
 import com.huawei.hmf.tasks.Task;
@@ -100,6 +101,12 @@ public class SettingsActivity extends BaseSettingsActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(Exception e) {
+                Snackbar.make(
+                    findViewById(R.id.settingsMainView),
+                        getResources().getString(R.string.huawei_store_not_avail) + " - " +
+                                getResources().getString(R.string.could_not_fetch_prices),
+                        Snackbar.LENGTH_LONG)
+                        .show();
                 Log.e("IAP", e.getMessage());
             }
         });

@@ -22,6 +22,7 @@ import com.amazon.device.iap.model.Receipt;
 import com.amazon.device.iap.model.UserDataResponse;
 
 import com.amazon.device.iap.PurchasingService;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -178,6 +179,12 @@ public class SettingsActivity extends BaseSettingsActivity {
                     break;
                 case FAILED:
                 case NOT_SUPPORTED:
+                    Snackbar.make(
+                        mSettingsActivityReference.findViewById(R.id.settingsMainView),
+                        mSettingsActivityReference.getResources().getString(R.string.amazon_store_not_avail) + " - " +
+                                mSettingsActivityReference.getResources().getString(R.string.could_not_fetch_prices),
+                        Snackbar.LENGTH_LONG)
+                        .show();
                     Log.e("PURCHASE-productdata", status.toString());
                     break;
             }

@@ -64,4 +64,8 @@
     <string name="no_web_browser_found">Aucun navigateur Web trouvé pour ouvrir cette URL</string>
     <string name="set_as_screensaver_in_android_settings">Définir comme économiseur d\'écran dans les paramètres Android…</string>
     <string name="screensaver_not_supported">Cet appareil ne prend pas en charge les économiseurs d\'écran Android.</string>
+    <string name="play_store_not_avail">Google Play Store n\'est pas disponible</string>
+    <string name="amazon_store_not_avail">Amazon App Store non disponible</string>
+    <string name="huawei_store_not_avail">Galerie d\'applications Huawei non disponible</string>
+    <string name="could_not_fetch_prices">Impossible de récupérer les prix actuels pour les achats intégrés.</string>
 </resources>

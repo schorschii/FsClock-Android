@@ -64,4 +64,8 @@
     <string name="no_web_browser_found">Nessun browser web trovato per aprire questo URL</string>
     <string name="set_as_screensaver_in_android_settings">Imposta come salvaschermo nelle impostazioni di Android…</string>
     <string name="screensaver_not_supported">Questo dispositivo non supporta gli screensaver Android.</string>
+    <string name="play_store_not_avail">Google Play Store non disponibile</string>
+    <string name="amazon_store_not_avail">Amazon App Store non disponibile</string>
+    <string name="huawei_store_not_avail">Huawei App Gallery non disponibile</string>
+    <string name="could_not_fetch_prices">Impossibile recuperare i prezzi correnti per gli acquisti in-app.</string>
 </resources>
