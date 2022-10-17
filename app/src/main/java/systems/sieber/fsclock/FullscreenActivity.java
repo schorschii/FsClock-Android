@@ -106,6 +106,9 @@ public class FullscreenActivity extends AppCompatActivity {
                 }
             });
         }
+
+        // initial event state update
+        mContentView.updateEventView();
     }
 
     @Override
