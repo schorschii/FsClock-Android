@@ -78,6 +78,8 @@ import com.huawei.hms.support.api.client.Status;
 
 import com.amazon.device.iap.PurchasingService;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -766,20 +768,20 @@ public class SettingsActivity extends AppCompatActivity {
                 hr.setReadyListener(new HttpRequest.readyListener() {
                     @Override
                     public void ready(int statusCode, String responseBody) {
-                        if(statusCode == 999 && responseBody.trim().equals("")) {
+                        try {
+                            if(statusCode != 999) {
+                                throw new Exception("Invalid status code: " + statusCode);
+                            }
+                            JSONObject licenseInfo = new JSONObject(responseBody);
                             mFc.unlockPurchase(sku);
                             loadPurchases();
-                        } else {
-                            Log.i("ACTIVATION", "> " + responseBody);
+                        } catch(Exception e) {
+                            Log.e("ACTIVATION",  e.getMessage() + " - " + responseBody);
                             if(me == null || me.isFinishing() || me.isDestroyed()) return;
                             AlertDialog ad = new AlertDialog.Builder(me).create();
-                            ad.setMessage(getResources().getString(R.string.activation_failed));
-                            ad.setButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
+                            ad.setTitle(getResources().getString(R.string.activation_failed));
+                            ad.setMessage(e.getMessage());
+                            ad.setButton(Dialog.BUTTON_POSITIVE, getResources().getString(R.string.ok), (DialogInterface.OnClickListener) null);
                             ad.show();
                         }
                     }

@@ -7,7 +7,7 @@
     <string name="battery_prefilled" translatable="false">100%</string>
 
     <string name="project_website" translatable="false">https://github.com/schorschii/FsClock-Android</string>
-    <string name="unlock_api" translatable="false">"https://apps.georg-sieber.de/activate/app.php"</string>
+    <string name="unlock_api" translatable="false">"https://apps.sieber.systems/activate"</string>
 
     <string name="analog_clock">Analog Clock</string>
     <string name="show_seconds_hand">Show Seconds Hand</string>
