@@ -461,13 +461,13 @@ public class BaseSettingsActivity extends AppCompatActivity {
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    editEvent(e);
+                    onClickEditEvent(e);
                 }
             });
             llEvents.addView(b);
         }
     }
-    public void newEvent(View v) {
+    public void onClickNewEvent(View v) {
         final Dialog ad = new Dialog(this);
         ad.requestWindowFeature(Window.FEATURE_NO_TITLE);
         ad.setContentView(R.layout.dialog_event);
@@ -492,7 +492,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
             }
         });
     }
-    public void editEvent(final Event e) {
+    public void onClickEditEvent(final Event e) {
         final Dialog ad = new Dialog(this);
         ad.requestWindowFeature(Window.FEATURE_NO_TITLE);
         ad.setContentView(R.layout.dialog_event);
@@ -612,7 +612,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         }
     }
 
-    public void allowSystemCalendarAccess(View v) {
+    public void onClickAllowSystemCalendarAccess(View v) {
         int permissionCheckResult = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CALENDAR);
         if(permissionCheckResult == PackageManager.PERMISSION_GRANTED) {
             infoDialog(null, getString(R.string.access_already_granted));
