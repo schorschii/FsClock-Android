@@ -22,13 +22,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="UnusedAttribute">
 
-        <meta-data
-            android:name="huaweiiap"
-            android:value="${huaweiiap}"/>
-        <meta-data
-            android:name="amazoniap"
-            android:value="${amazoniap}"/>
-
         <service
             android:name=".FullscreenDream"
             android:exported="true"
@@ -66,11 +59,12 @@
             </intent-filter>
         </receiver>
 
-        <receiver android:name = "com.amazon.device.iap.ResponseReceiver"
-            android:permission = "com.amazon.inapp.purchasing.Permission.NOTIFY"
-            android:exported="true">
+        <receiver android:name="com.amazon.device.iap.ResponseReceiver"
+            android:permission="com.amazon.inapp.purchasing.Permission.NOTIFY"
+            android:exported="true"
+            tools:ignore="MissingClass">
             <intent-filter>
-                <action android:name = "com.amazon.inapp.purchasing.NOTIFY" />
+                <action android:name="com.amazon.inapp.purchasing.NOTIFY" />
             </intent-filter>
         </receiver>
 

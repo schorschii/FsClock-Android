@@ -9,4 +9,5 @@
 /build
 /captures
 .externalNativeBuild
-assets
+/assets
+/app/src/main/assets/AppstoreAuthenticationKey.pem

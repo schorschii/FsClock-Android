@@ -627,6 +627,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="15dp" />
 
+                <TextView
+                    android:id="@+id/textViewBuildInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textSize="11sp"
+                    android:text="" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
             </LinearLayout>
 
         </LinearLayout>

@@ -2,8 +2,6 @@ package systems.sieber.fsclock;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 
 import androidx.annotation.NonNull;
 
@@ -16,16 +14,6 @@ import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.PurchasesResponseListener;
 import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.QueryPurchasesParams;
-import com.huawei.hmf.tasks.OnFailureListener;
-import com.huawei.hmf.tasks.OnSuccessListener;
-import com.huawei.hmf.tasks.Task;
-import com.huawei.hms.iap.Iap;
-import com.huawei.hms.iap.IapApiException;
-import com.huawei.hms.iap.IapClient;
-import com.huawei.hms.iap.entity.InAppPurchaseData;
-import com.huawei.hms.iap.entity.OwnedPurchasesReq;
-import com.huawei.hms.iap.entity.OwnedPurchasesResult;
-import com.huawei.hms.support.api.client.Status;
 
 import java.util.List;
 
@@ -33,7 +21,6 @@ class FeatureCheck {
     private BillingClient mBillingClient;
     private Context mContext;
     private SharedPreferences mSettings;
-    private boolean mLoadHuaweiIap;
 
     FeatureCheck(Context c) {
         mContext = c;
@@ -52,64 +39,20 @@ class FeatureCheck {
         mSettings = mContext.getSharedPreferences(SettingsActivity.SHARED_PREF_DOMAIN, 0);
         unlockedSettings = mSettings.getBoolean("purchased-settings", false);
 
-        try {
-            ApplicationInfo ai = mContext.getPackageManager().getApplicationInfo(mContext.getPackageName(), PackageManager.GET_META_DATA);
-            if(ai.metaData.getInt("huaweiiap", 0) > 0) mLoadHuaweiIap = true;
-        } catch(PackageManager.NameNotFoundException ignored) { }
-
         // init billing client - get purchases later for other devices
-        if(mLoadHuaweiIap) {
-
-            OwnedPurchasesReq ownedPurchasesReq = new OwnedPurchasesReq();
-            ownedPurchasesReq.setPriceType(IapClient.PriceType.IN_APP_NONCONSUMABLE);
-            Task<OwnedPurchasesResult> task = Iap.getIapClient(mContext).obtainOwnedPurchases(ownedPurchasesReq);
-            task.addOnSuccessListener(new OnSuccessListener<OwnedPurchasesResult>() {
-                @Override
-                public void onSuccess(OwnedPurchasesResult result) {
-                    if(result != null && result.getInAppPurchaseDataList() != null) {
-                        for(int i = 0; i < result.getInAppPurchaseDataList().size(); i++) {
-                            String inAppPurchaseData = result.getInAppPurchaseDataList().get(i);
-                            String InAppSignature = result.getInAppSignature().get(i);
-                            try {
-                                InAppPurchaseData inAppPurchaseDataBean = new InAppPurchaseData(inAppPurchaseData);
-                                if(inAppPurchaseDataBean.getPurchaseState() == InAppPurchaseData.PurchaseState.PURCHASED) {
-                                    //unlockPurchase(inAppPurchaseDataBean.getProductId());
-                                }
-                                processPurchasesResult = true;
-                                processSubscriptionsResult = true;
-                                finish();
-                            } catch(Exception ignored) { }
-                        }
+        mBillingClient = BillingClient.newBuilder(mContext)
+                .enablePendingPurchases()
+                .setListener(new PurchasesUpdatedListener() {
+                    @Override
+                    public void onPurchasesUpdated(@NonNull BillingResult billingResult, List<Purchase> list) {
                     }
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(Exception e) {
-                    if(e instanceof IapApiException) {
-                        IapApiException apiException = (IapApiException)e;
-                        Status status = apiException.getStatus();
-                        int returnCode = apiException.getStatusCode();
-                    } else {
-                        // Other external errors
-                    }
-                }
-            });
-
-        } else {
-
-            mBillingClient = BillingClient.newBuilder(mContext)
-                    .enablePendingPurchases()
-                    .setListener(new PurchasesUpdatedListener() {
-                        @Override
-                        public void onPurchasesUpdated(@NonNull BillingResult billingResult, List<Purchase> list) {
-                        }
-                    }).build();
-            mBillingClient.startConnection(new BillingClientStateListener() {
-                @Override
-                public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
-                    if(billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-                        // query purchases
-                        mBillingClient.queryPurchasesAsync(
+                }).build();
+        mBillingClient.startConnection(new BillingClientStateListener() {
+            @Override
+            public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
+                if(billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                    // query purchases
+                    mBillingClient.queryPurchasesAsync(
                             QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.INAPP).build(),
                             new PurchasesResponseListener() {
                                 @Override
@@ -117,8 +60,8 @@ class FeatureCheck {
                                     processPurchases(billingResult.getResponseCode(), list);
                                 }
                             }
-                        );
-                        mBillingClient.queryPurchasesAsync(
+                    );
+                    mBillingClient.queryPurchasesAsync(
                             QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.SUBS).build(),
                             new PurchasesResponseListener() {
                                 @Override
@@ -126,18 +69,16 @@ class FeatureCheck {
                                     processSubscription(billingResult.getResponseCode(), list);
                                 }
                             }
-                        );
-                        isReady = true;
-                    } else {
-                        isReady = true;
-                        if(listener != null) listener.featureCheckReady(false);
-                    }
+                    );
+                    isReady = true;
+                } else {
+                    isReady = true;
+                    if(listener != null) listener.featureCheckReady(false);
                 }
-                @Override
-                public void onBillingServiceDisconnected() { }
-            });
-
-        }
+            }
+            @Override
+            public void onBillingServiceDisconnected() { }
+        });
 
     }
 

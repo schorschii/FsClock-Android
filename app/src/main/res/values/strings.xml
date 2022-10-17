@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Clock</string>
     <string name="app_name_long">Fullscreen Clock</string>
+    <string name="build_info" translatable="false">Build Info</string>
 
     <string name="clock_prefilled" translatable="false">00:00</string>
     <string name="clock_prefilled_seconds" translatable="false">00</string>
