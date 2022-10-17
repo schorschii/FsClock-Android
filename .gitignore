@@ -11,3 +11,4 @@
 .externalNativeBuild
 /assets
 /app/src/main/assets/AppstoreAuthenticationKey.pem
+/release
