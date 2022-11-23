@@ -194,8 +194,17 @@ public class FsClockView extends FrameLayout {
     @SuppressLint("SimpleDateFormat")
     private void updateClock() {
         final Calendar cal = Calendar.getInstance();
+
+        // compile date format
         final SimpleDateFormat sdfSystem = (SimpleDateFormat) DateFormat.getDateFormat(getContext());
-        final SimpleDateFormat sdfDate = new SimpleDateFormat("EEEE, "+sdfSystem.toLocalizedPattern().replace("yy", "yyyy"), Locale.getDefault());
+        String strDatePattern = "EEEE, " + sdfSystem.toLocalizedPattern(); // day of week followed by localized date
+        if(!strDatePattern.contains("yyyy")) {
+            // devices with API level 17 or below return date format already with yyyy,
+            // for all other devices we manually replace yy with yyyy
+            strDatePattern = strDatePattern.replace("yy", "yyyy");
+        }
+
+        final SimpleDateFormat sdfDate = new SimpleDateFormat(strDatePattern, Locale.getDefault());
         final SimpleDateFormat sdfTime = new SimpleDateFormat(format24hrs ? "HH:mm" : "hh:mm");
         final SimpleDateFormat sdfSeconds = new SimpleDateFormat("ss");
         mClockText.setText(sdfTime.format(cal.getTime()));
