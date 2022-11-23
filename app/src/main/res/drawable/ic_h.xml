@@ -1,8 +1,10 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="130dp"
-    android:height="130dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:width="400dp"
+    android:height="400dp"
     android:viewportWidth="130"
-    android:viewportHeight="130">
+    android:viewportHeight="130"
+    tools:ignore="VectorRaster">
   <path
       android:pathData="M63.55,27.527h2.9v58.373h-2.9z"
       android:strokeLineJoin="round"
