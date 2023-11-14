@@ -93,8 +93,13 @@ public class SettingsActivity extends BaseSettingsActivity {
             @Override
             public void onSuccess(ProductInfoResult result) {
                 if(result != null && !result.getProductInfoList().isEmpty()) {
-                    for(ProductInfo pi : result.getProductInfoList()) {
-                        setupPayButton(pi.getProductId(), pi.getPrice());
+                    for(final ProductInfo pi : result.getProductInfoList()) {
+                        runOnUiThread(new Runnable(){
+                            @Override
+                            public void run() {
+                                setupPayButton(pi.getProductId(), pi.getPrice());
+                            }
+                        });
                     }
                 }
             }

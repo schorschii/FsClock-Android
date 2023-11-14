@@ -171,9 +171,14 @@ public class SettingsActivity extends BaseSettingsActivity {
             final ProductDataResponse.RequestStatus status = response.getRequestStatus();
             switch(status) {
                 case SUCCESSFUL:
-                    for(Product p : response.getProductData().values()) {
+                    for(final Product p : response.getProductData().values()) {
                         if(p.getSku().equals("settings")) {
-                            mSettingsActivityReference.setupPayButton(p.getSku(), p.getPrice());
+                            runOnUiThread(new Runnable(){
+                                @Override
+                                public void run() {
+                                    mSettingsActivityReference.setupPayButton(p.getSku(), p.getPrice());
+                                }
+                            });
                         }
                     }
                     break;

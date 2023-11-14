@@ -133,10 +133,15 @@ public class SettingsActivity extends BaseSettingsActivity {
         mBillingClient.queryProductDetailsAsync(params, new ProductDetailsResponseListener() {
                     public void onProductDetailsResponse(@NonNull BillingResult billingResult, @NonNull List<ProductDetails> productDetailsList) {
                         if(billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-                            for(ProductDetails skuDetails : productDetailsList) {
-                                String sku = skuDetails.getProductId();
-                                String price = Objects.requireNonNull(skuDetails.getOneTimePurchaseOfferDetails()).getFormattedPrice();
-                                setupPayButton(sku, price, skuDetails);
+                            for(final ProductDetails skuDetails : productDetailsList) {
+                                final String sku = skuDetails.getProductId();
+                                final String price = Objects.requireNonNull(skuDetails.getOneTimePurchaseOfferDetails()).getFormattedPrice();
+                                runOnUiThread(new Runnable(){
+                                    @Override
+                                    public void run() {
+                                        setupPayButton(sku, price, skuDetails);
+                                    }
+                                });
                             }
                         } else {
                             Log.e("BILLING", billingResult.getResponseCode() + " " + billingResult.getDebugMessage());
