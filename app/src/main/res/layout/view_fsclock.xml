@@ -25,6 +25,11 @@
             android:textColor="@color/colorDefaultClock"
             android:textSize="25sp" />
 
+        <Space
+            android:background="#f00"
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
         <GridLayout
             android:id="@+id/analogClockContainer"
             android:layout_width="match_parent"
