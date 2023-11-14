@@ -12,6 +12,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.BatteryManager;
 
@@ -22,6 +23,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -105,6 +108,16 @@ public class FullscreenActivity extends AppCompatActivity {
                     me.toggle();
                 }
             });
+        }
+
+        // apply own background color to navigation bar - especially for Samsung One UI, which displays a white navbar by default
+        int colorBack = Color.argb(0xff,
+                mSharedPref.getInt("color-red-back", 0),
+                mSharedPref.getInt("color-green-back", 0),
+                mSharedPref.getInt("color-blue-back", 0)
+        );
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(colorBack);
         }
 
         // initial event state update
