@@ -5,6 +5,5 @@
     <color name="colorAccent">#d6575e</color>
     <color name="colorDefaultClock">#fff</color>
     <color name="colorSettingsCheckBoxes">#222</color>
-    <color name="colorBackgroundSplash">#000</color>
     <color name="colorBackground">#FAFAFA</color>
 </resources>
