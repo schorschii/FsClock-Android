@@ -2,7 +2,7 @@
 <resources>
     <dimen name="margin_main">50dp</dimen>
     <dimen name="margin_clock">20dp</dimen>
-    <dimen name="space_color_preview">9dp</dimen>
+    <dimen name="space_color_preview">8dp</dimen>
     <dimen name="width_color_preview">18dp</dimen>
     <dimen name="padding_setting">7dp</dimen>
 </resources>
