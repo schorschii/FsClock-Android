@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Clock</string>
     <string name="app_name_long">Fullscreen Clock</string>
-    <string name="build_info" translatable="false">Build Info</string>
 
     <string name="clock_prefilled" translatable="false">00:00</string>
     <string name="clock_prefilled_seconds" translatable="false">00</string>
@@ -10,6 +9,9 @@
     <string name="project_website" translatable="false">https://github.com/schorschii/FsClock-Android</string>
     <string name="unlock_api" translatable="false">"https://apps.sieber.systems/activate"</string>
 
+    <string name="dseg_font_note" translatable="false">"DSEG" Font Copyright (c) 2017, keshikan (http://www.keshikan.net).\nThis Font Software is licensed under the SIL Open Font License, Version 1.1 (http://scripts.sil.org/OFL).</string>
+
+    <string name="version">Version</string>
     <string name="analog_clock">Analog Clock</string>
     <string name="show_seconds_hand">Show Seconds Hand</string>
     <string name="digital_clock">Digital Clock</string>
@@ -47,7 +49,7 @@
     <string name="hour_hand">Hour Hand…</string>
     <string name="minute_hand">Minute Hand…</string>
     <string name="seconds_hand">Seconds Hand…</string>
-    <string name="own_images_note">Images should be square (same width and height) and width and height should not be larger than 1000px.</string>
+    <string name="own_images_note">Custom images should be square (same width and height) and width and height should not be larger than 1000px.</string>
     <string name="choose_own_background_image">Choose Custom Background Image…</string>
     <string name="use_own_image">Use Custom Image</string>
     <string name="use_own_color_for_seconds_hand">Use Custom Color For Seconds Hand</string>
@@ -56,7 +58,6 @@
     <string name="show_battery_status_when_power_supply_is_not_plugged_in">Show Battery Status When Discharging</string>
     <string name="show_battery_status_when_power_supply_is_plugged_in">Show Battery Status When Charging</string>
     <string name="open_settings">Open Settings</string>
-    <string name="dseg_font_note" translatable="false">"DSEG" Font Copyright (c) 2017, keshikan (http://www.keshikan.net).\nThis Font Software is licensed under the SIL Open Font License, Version 1.1 (http://scripts.sil.org/OFL).</string>
     <string name="tv_settings_note">Hint: Press OK or MENU button to enter settings.</string>
     <string name="more_apps">More Apps</string>
     <string name="customer_database_for_android">Customer Database for Android</string>
@@ -77,4 +78,5 @@
     <string name="amazon_store_not_avail">Amazon App Store not available</string>
     <string name="huawei_store_not_avail">Huawei App Gallery not available</string>
     <string name="could_not_fetch_prices">Could not fetch current prices for in-app purchases.</string>
+    <string name="choose_color">Choose color…</string>
 </resources>

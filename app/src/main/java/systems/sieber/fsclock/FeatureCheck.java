@@ -18,6 +18,16 @@ import com.android.billingclient.api.QueryPurchasesParams;
 import java.util.List;
 
 class FeatureCheck {
+
+    /*  It is not allowed to modify this file in order to bypass license checks.
+        I made this app open source hoping people will learn something from this project.
+        But keep in mind: open source means free as "free speech" but not as in "free beer".
+        At first glance, it may not look like it, but even this "tiny" clock app takes a lot of time to maintain because of the
+        quirks of different Android versions and devices in combination with auto text sizing and the DreamService implementation (FireTV!!!).
+        Please be so kind and support further development by purchasing the in-app purchase in one of the app stores.
+        It's up to you how long this app will be maintained. Thanks for your support.
+    */
+
     private BillingClient mBillingClient;
     private Context mContext;
     private SharedPreferences mSettings;

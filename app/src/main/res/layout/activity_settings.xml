@@ -141,71 +141,29 @@
                     android:layout_height="5dp" />
 
                 <LinearLayout
+                    android:id="@+id/viewColorChangerAnalog"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <GridLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:layout_row="0"
-                            android:layout_column="0"
-                            android:text="@string/red" />
-
-                        <SeekBar
-                            android:id="@+id/seekBarRedAnalog"
-                            android:background="@drawable/ripple_bg"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_row="0"
-                            android:layout_column="1"
-                            android:layout_gravity="fill_horizontal"
-                            android:max="255"
-                            android:progress="190" />
-
-                        <TextView
-                            android:layout_row="1"
-                            android:layout_column="0"
-                            android:text="@string/green" />
-
-                        <SeekBar
-                            android:id="@+id/seekBarGreenAnalog"
-                            android:background="@drawable/ripple_bg"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_row="1"
-                            android:layout_column="1"
-                            android:layout_gravity="fill_horizontal"
-                            android:max="255"
-                            android:progress="190" />
-
-                        <TextView
-                            android:layout_row="2"
-                            android:layout_column="0"
-                            android:text="@string/blue" />
-
-                        <SeekBar
-                            android:id="@+id/seekBarBlueAnalog"
-                            android:background="@drawable/ripple_bg"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_row="2"
-                            android:layout_column="1"
-                            android:layout_gravity="fill_horizontal"
-                            android:max="255"
-                            android:progress="190" />
-                    </GridLayout>
-
+                    android:padding="@dimen/padding_setting"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground">
                     <View
                         android:id="@+id/viewColorPreviewAnalog"
-                        android:layout_width="26dp"
+                        android:layout_width="@dimen/width_color_preview"
                         android:layout_height="match_parent"
                         android:background="@color/colorPrimary" />
+                    <Space
+                        android:layout_width="@dimen/space_color_preview"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/checkbox_text_color"
+                        android:duplicateParentState="true"
+                        android:text="@string/choose_color" />
                 </LinearLayout>
                 <Space
                     android:layout_width="match_parent"
@@ -294,71 +252,29 @@
                     android:layout_height="5dp" />
 
                 <LinearLayout
+                    android:id="@+id/viewColorChangerDigital"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <GridLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:layout_row="0"
-                            android:layout_column="0"
-                            android:text="@string/red" />
-
-                        <SeekBar
-                            android:id="@+id/seekBarRedDigital"
-                            android:background="@drawable/ripple_bg"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_row="0"
-                            android:layout_column="1"
-                            android:layout_gravity="fill_horizontal"
-                            android:max="255"
-                            android:progress="190" />
-
-                        <TextView
-                            android:layout_row="1"
-                            android:layout_column="0"
-                            android:text="@string/green" />
-
-                        <SeekBar
-                            android:id="@+id/seekBarGreenDigital"
-                            android:background="@drawable/ripple_bg"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_row="1"
-                            android:layout_column="1"
-                            android:layout_gravity="fill_horizontal"
-                            android:max="255"
-                            android:progress="190" />
-
-                        <TextView
-                            android:layout_row="2"
-                            android:layout_column="0"
-                            android:text="@string/blue" />
-
-                        <SeekBar
-                            android:id="@+id/seekBarBlueDigital"
-                            android:background="@drawable/ripple_bg"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_row="2"
-                            android:layout_column="1"
-                            android:layout_gravity="fill_horizontal"
-                            android:max="255"
-                            android:progress="190" />
-                    </GridLayout>
-
+                    android:padding="@dimen/padding_setting"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground">
                     <View
                         android:id="@+id/viewColorPreviewDigital"
-                        android:layout_width="26dp"
+                        android:layout_width="@dimen/width_color_preview"
                         android:layout_height="match_parent"
                         android:background="@color/colorPrimary" />
+                    <Space
+                        android:layout_width="@dimen/space_color_preview"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/checkbox_text_color"
+                        android:duplicateParentState="true"
+                        android:text="@string/choose_color" />
                 </LinearLayout>
 
                 <Space
@@ -382,71 +298,29 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <LinearLayout
+                    android:id="@+id/viewColorChangerBack"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <GridLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:layout_row="0"
-                            android:layout_column="0"
-                            android:text="@string/red" />
-
-                        <SeekBar
-                            android:id="@+id/seekBarRedBack"
-                            android:background="@drawable/ripple_bg"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_row="0"
-                            android:layout_column="1"
-                            android:layout_gravity="fill_horizontal"
-                            android:max="255"
-                            android:progress="190" />
-
-                        <TextView
-                            android:layout_row="1"
-                            android:layout_column="0"
-                            android:text="@string/green" />
-
-                        <SeekBar
-                            android:id="@+id/seekBarGreenBack"
-                            android:background="@drawable/ripple_bg"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_row="1"
-                            android:layout_column="1"
-                            android:layout_gravity="fill_horizontal"
-                            android:max="255"
-                            android:progress="190" />
-
-                        <TextView
-                            android:layout_row="2"
-                            android:layout_column="0"
-                            android:text="@string/blue" />
-
-                        <SeekBar
-                            android:id="@+id/seekBarBlueBack"
-                            android:background="@drawable/ripple_bg"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_row="2"
-                            android:layout_column="1"
-                            android:layout_gravity="fill_horizontal"
-                            android:max="255"
-                            android:progress="190" />
-                    </GridLayout>
-
+                    android:padding="@dimen/padding_setting"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground">
                     <View
                         android:id="@+id/viewColorPreviewBack"
-                        android:layout_width="26dp"
+                        android:layout_width="@dimen/width_color_preview"
                         android:layout_height="match_parent"
                         android:background="@color/colorPrimary" />
+                    <Space
+                        android:layout_width="@dimen/space_color_preview"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/checkbox_text_color"
+                        android:duplicateParentState="true"
+                        android:text="@string/choose_color" />
                 </LinearLayout>
 
                 <CheckBox

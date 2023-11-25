@@ -2,6 +2,7 @@
     <string name="app_name">Horloge</string>
     <string name="app_name_long">Horloge plein &#233;cran</string>
 
+    <string name="version">Version</string>
     <string name="analog_clock">Horloge analogique</string>
     <string name="show_seconds_hand">Afficher la trotteuse</string>
     <string name="digital_clock">Horloge digitale</string>
@@ -68,4 +69,5 @@
     <string name="amazon_store_not_avail">Amazon App Store non disponible</string>
     <string name="huawei_store_not_avail">Galerie d\'applications Huawei non disponible</string>
     <string name="could_not_fetch_prices">Impossible de récupérer les prix actuels pour les achats intégrés.</string>
+    <string name="choose_color">Choisir la couleur…</string>
 </resources>

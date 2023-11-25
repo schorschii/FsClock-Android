@@ -2,6 +2,7 @@
     <string name="app_name">Orologio</string>
     <string name="app_name_long">Orologio a schermo intero</string>
 
+    <string name="version">Versione</string>
     <string name="analog_clock">Orologio analogico</string>
     <string name="show_seconds_hand">Mostra lancetta dei secondi</string>
     <string name="digital_clock">Orologio digitale</string>
@@ -68,4 +69,5 @@
     <string name="amazon_store_not_avail">Amazon App Store non disponibile</string>
     <string name="huawei_store_not_avail">Huawei App Gallery non disponibile</string>
     <string name="could_not_fetch_prices">Impossibile recuperare i prezzi correnti per gli acquisti in-app.</string>
+    <string name="choose_color">Scegli il colore…</string>
 </resources>

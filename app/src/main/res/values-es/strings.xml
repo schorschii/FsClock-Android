@@ -2,6 +2,7 @@
     <string name="app_name">Reloj</string>
     <string name="app_name_long">Reloj de pantalla completa</string>
 
+    <string name="version">Version</string>
     <string name="analog_clock">Reloj analogo</string>
     <string name="show_seconds_hand">Mostrar la mano de los segundos</string>
     <string name="digital_clock">Reloj digital</string>
@@ -68,4 +69,5 @@
     <string name="amazon_store_not_avail">Tienda de aplicaciones de Amazon no disponible</string>
     <string name="huawei_store_not_avail">Galería de aplicaciones de Huawei no disponible</string>
     <string name="could_not_fetch_prices">No se pudieron obtener los precios actuales para las compras dentro de la aplicación.</string>
+    <string name="choose_color">Elige el color…</string>
 </resources>
