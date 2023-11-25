@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Часы</string>
     <string name="app_name_long">Полноэкранные часы</string>
+
+    <string name="version">Версия</string>
     <string name="analog_clock">Аналоговые часы</string>
     <string name="show_seconds_hand">Показать секундную стрелку</string>
     <string name="digital_clock">Цифровые часы</string>
@@ -8,7 +10,6 @@
     <string name="format_24hrs">Использовать 24-часовой формат</string>
     <string name="events">События</string>
     <string name="events_define_description">Определите повторяющиеся напоминания, голосовые подсказки и сигналы уведомлений.</string>
-    <string name="edit_events">Изменить события…</string>
     <string name="apply">Применять</string>
     <string name="save">Сохранять</string>
     <string name="display_event">Показать на экране</string>
@@ -32,7 +33,6 @@
     <string name="background">Задний план</string>
     <string name="general">Общий</string>
     <string name="keep_screen_on">Оставьте экран включенным</string>
-    <string name="use_own_color">Использовать собственный цвет</string>
     <string name="use_own_images">Использовать собственные изображения</string>
     <string name="clock_face">Циферблат…</string>
     <string name="hour_hand">Часовая стрелка…</string>
@@ -67,4 +67,5 @@
     <string name="amazon_store_not_avail">Amazon App Store недоступен</string>
     <string name="huawei_store_not_avail">Галерея приложений Huawei недоступна</string>
     <string name="could_not_fetch_prices">Не удалось получить текущие цены для покупок в приложении.</string>
+    <string name="choose_color">Выберите цвет…</string>
 </resources>

@@ -2,6 +2,8 @@
 <resources>
   <string name="app_name">Klok</string>
   <string name="app_name_long">Klok op volledig scherm</string>
+
+  <string name="version">Version</string>
   <string name="analog_clock">Analoge klok</string>
   <string name="show_seconds_hand">Secondewijzer weergeven</string>
   <string name="digital_clock">Digitale klok</string>
@@ -9,7 +11,6 @@
   <string name="format_24hrs">Gebruik het 24-uursformaat</string>
   <string name="events">Evenementen</string>
   <string name="events_define_description">Definieer terugkerende herinneringen, gesproken aanwijzingen en meldingstonen.</string>
-  <string name="edit_events">Gebeurtenissen bewerken…</string>
   <string name="apply">Toepassen</string>
   <string name="save">Redden</string>
   <string name="display_event">Toon op scherm</string>
@@ -33,7 +34,6 @@
   <string name="background">Achtergrond</string>
   <string name="general">Algemeen</string>
   <string name="keep_screen_on">Houd het scherm ingeschakeld</string>
-  <string name="use_own_color">Gebruik aangepaste kleur</string>
   <string name="use_own_images">Gebruik aangepaste afbeeldingen</string>
   <string name="clock_face">Wijzerplaat…</string>
   <string name="hour_hand">Uurwijzer…</string>
@@ -57,7 +57,7 @@
   <string name="open_computer_orchestration">Open computerorkestratie</string>
   <string name="open_source_text">Deze app is Open Source.  Als je de app of de vertalingen ervan wilt verbeteren, bekijk dan de repository op Github.</string>
   <string name="open_source">Vork mij</string>
-  <string name="allow_system_calendar_access">Toegang tot systeemagenda toestaan...</string>
+  <string name="allow_system_calendar_access">Toegang tot systeemagenda toestaan…</string>
   <string name="access_already_granted">Toegang al verleend</string>
   <string name="access_denied_by_user">U heeft eerder de toegang tot de agenda geweigerd.  Ga naar de Android-instellingen en verleen handmatig agendatoegang voor deze app.</string>
   <string name="fire_tv_notes">Belangrijke mededeling voor FireTV-apparaten: Amazon FireOS staat officieel niet toe dat de schermbeveiliging van het systeem wordt gewijzigd in een app van derden, maar er is een oplossing mogelijk met behulp van de ontwikkelaarstools.  Details worden uitgelegd in de Github-repository (zie hieronder).  Zonder deze oplossing kan de klok nog steeds worden gestart op FireTV-apparaten zoals een normale app.</string>
@@ -68,4 +68,5 @@
   <string name="amazon_store_not_avail">Amazon App Store niet beschikbaar</string>
   <string name="huawei_store_not_avail">Huawei App Gallery niet beschikbaar</string>
   <string name="could_not_fetch_prices">Kan de huidige prijzen voor in-app-aankopen niet ophalen.</string>
+  <string name="choose_color">Kies een kleur…</string>
 </resources>

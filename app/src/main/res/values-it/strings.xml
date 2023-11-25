@@ -2,6 +2,7 @@
     <string name="app_name">Orologio</string>
     <string name="app_name_long">Orologio a schermo intero</string>
 
+    <string name="version">Versione</string>
     <string name="analog_clock">Orologio analogico</string>
     <string name="show_seconds_hand">Mostra lancetta dei secondi</string>
     <string name="digital_clock">Orologio digitale</string>
@@ -9,7 +10,6 @@
     <string name="format_24hrs">Usa formato 24 ore</string>
     <string name="events">Eventi</string>
     <string name="events_define_description">Definisci promemoria ricorrenti, messaggi vocali e toni di notifica.</string>
-    <string name="edit_events">Modifica eventi&#8230;</string>
     <string name="apply">Applicare</string>
     <string name="save">Salva</string>
     <string name="display_event">Mostra sullo schermo</string>
@@ -33,7 +33,6 @@
     <string name="background">Sfondo</string>
     <string name="general">Generale</string>
     <string name="keep_screen_on">Tieni lo schermo acceso</string>
-    <string name="use_own_color">Usa colore personalizzato</string>
     <string name="use_own_images">Usa immagini personalizzate</string>
     <string name="clock_face">Quadrante&#8230;</string>
     <string name="hour_hand">Lancetta delle ore&#8230;</string>
@@ -68,4 +67,5 @@
     <string name="amazon_store_not_avail">Amazon App Store non disponibile</string>
     <string name="huawei_store_not_avail">Huawei App Gallery non disponibile</string>
     <string name="could_not_fetch_prices">Impossibile recuperare i prezzi correnti per gli acquisti in-app.</string>
+    <string name="choose_color">Scegli il colore…</string>
 </resources>

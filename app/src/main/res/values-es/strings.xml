@@ -2,6 +2,7 @@
     <string name="app_name">Reloj</string>
     <string name="app_name_long">Reloj de pantalla completa</string>
 
+    <string name="version">Version</string>
     <string name="analog_clock">Reloj analogo</string>
     <string name="show_seconds_hand">Mostrar la mano de los segundos</string>
     <string name="digital_clock">Reloj digital</string>
@@ -9,7 +10,6 @@
     <string name="format_24hrs">Usar formato de 24 horas</string>
     <string name="events">Eventos</string>
     <string name="events_define_description">Defina recordatorios recurrentes, indicaciones de voz y tonos de notificaci&#243;n.</string>
-    <string name="edit_events">Editar eventos&#8230;</string>
     <string name="apply">Solicitar</string>
     <string name="save">Ahorrar</string>
     <string name="display_event">Mostrar en pantalla</string>
@@ -33,7 +33,6 @@
     <string name="background">Fondo</string>
     <string name="general">General</string>
     <string name="keep_screen_on">Mantener la pantalla encendida</string>
-    <string name="use_own_color">Usar color personalizado</string>
     <string name="use_own_images">Usar im&#225;genes personalizadas</string>
     <string name="clock_face">La cara del reloj&#8230;</string>
     <string name="hour_hand">Horario&#8230;</string>
@@ -68,4 +67,5 @@
     <string name="amazon_store_not_avail">Tienda de aplicaciones de Amazon no disponible</string>
     <string name="huawei_store_not_avail">Galería de aplicaciones de Huawei no disponible</string>
     <string name="could_not_fetch_prices">No se pudieron obtener los precios actuales para las compras dentro de la aplicación.</string>
+    <string name="choose_color">Elige el color…</string>
 </resources>

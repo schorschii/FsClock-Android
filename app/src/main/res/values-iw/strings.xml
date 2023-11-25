@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name">שָׁעוֹן</string>
     <string name="app_name_long">שעון מסך מלא</string>
+
+    <string name="version">גִרְסָה</string>
     <string name="analog_clock">שעון אנלוגי</string>
     <string name="show_seconds_hand">הצג יד שניה</string>
     <string name="digital_clock">שעון דיגיטלי</string>
@@ -9,7 +11,6 @@
     <string name="format_24hrs">השתמש בפורמט 24 שעות</string>
     <string name="events">אירועים</string>
     <string name="events_define_description">הגדר תזכורות חוזרות, הנחיות קוליות וצלילי התראות.</string>
-    <string name="edit_events">ערוך אירועים…</string>
     <string name="apply">להגיש מועמדות</string>
     <string name="save">להציל</string>
     <string name="display_event">הצג על המסך</string>
@@ -33,7 +34,6 @@
     <string name="background">רקע כללי</string>
     <string name="general">כללי</string>
     <string name="keep_screen_on">השאר מסך דלוק</string>
-    <string name="use_own_color">השתמש בצבע מותאם אישית</string>
     <string name="use_own_images">השתמש בתמונות מותאמות אישית</string>
     <string name="clock_face">פני שעון…</string>
     <string name="hour_hand">מחוג השעות…</string>
@@ -48,7 +48,6 @@
     <string name="show_battery_status_when_power_supply_is_not_plugged_in">הצג את מצב הסוללה בעת פריקה</string>
     <string name="show_battery_status_when_power_supply_is_plugged_in">הצג את מצב הסוללה בעת טעינה</string>
     <string name="open_settings">פתח את ההגדרות</string>
-    <string name="dseg_font_note" translatable="false">"DSEG" Font Copyright (c) 2017, keshikan (http://www.keshikan.net).\nThis Font Software is licensed under the SIL Open Font License, Version 1.1 (http://scripts.sil.org/OFL).</string>
     <string name="tv_settings_note">רמז: לחץ על מקש OK או MENU כדי להיכנס להגדרות.</string>
     <string name="more_apps">עוד אפליקציות</string>
     <string name="customer_database_for_android">מאגר לקוחות עבור אנדרואיד</string>
@@ -69,4 +68,5 @@
     <string name="amazon_store_not_avail">Amazon App Store לא זמין</string>
     <string name="huawei_store_not_avail">גלריית האפליקציות של Huawei אינה זמינה</string>
     <string name="could_not_fetch_prices">לא ניתן היה להביא מחירים נוכחיים עבור רכישות מתוך האפליקציה.</string>
+    <string name="choose_color">בחרי צבע…</string>
 </resources>

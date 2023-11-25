@@ -173,12 +173,7 @@ public class SettingsActivity extends BaseSettingsActivity {
                 case SUCCESSFUL:
                     for(final Product p : response.getProductData().values()) {
                         if(p.getSku().equals("settings")) {
-                            runOnUiThread(new Runnable(){
-                                @Override
-                                public void run() {
-                                    mSettingsActivityReference.setupPayButton(p.getSku(), p.getPrice());
-                                }
-                            });
+                            mSettingsActivityReference.setupPayButton(p.getSku(), p.getPrice());
                         }
                     }
                     break;

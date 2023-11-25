@@ -2,6 +2,7 @@
     <string name="app_name">Uhr</string>
     <string name="app_name_long">Vollbild-Uhr</string>
 
+    <string name="version">Version</string>
     <string name="analog_clock">Analoguhr</string>
     <string name="show_seconds_hand">Sekundenzeiger anzeigen</string>
     <string name="digital_clock">Digitaluhr</string>
@@ -9,7 +10,6 @@
     <string name="format_24hrs">24-Stunden-Format benutzen</string>
     <string name="events">Events</string>
     <string name="events_define_description">Definieren Sie wiederkehrende Erinnerungen, Sprachansagen und Hinweistöne.</string>
-    <string name="edit_events">Events bearbeiten…</string>
     <string name="apply">Übernehmen</string>
     <string name="save">Speichern</string>
     <string name="display_event">Auf Display anzeigen</string>
@@ -33,13 +33,12 @@
     <string name="background">Hintergrund</string>
     <string name="general">Allgemein</string>
     <string name="keep_screen_on">Bildschirm eingeschaltet lassen</string>
-    <string name="use_own_color">Eigene Farbe verwenden</string>
     <string name="use_own_images">Eigene Bilder verwenden</string>
     <string name="clock_face">Zifferblatt…</string>
     <string name="hour_hand">Stundenzeiger…</string>
     <string name="minute_hand">Minutenzeiger…</string>
     <string name="seconds_hand">Sekundenzeiger…</string>
-    <string name="own_images_note">Die Bilder sollten quadratisch sein (gleiche Breite und Höhe) und die Höhe und Breite sollte nicht größer als 1000px sein.</string>
+    <string name="own_images_note">Eigene Bilder sollten quadratisch sein (gleiche Breite und Höhe) und die Höhe und Breite sollte nicht größer als 1000px sein.</string>
     <string name="choose_own_background_image">Eigenes Hintergrundbild wählen…</string>
     <string name="use_own_image">Eigenes Bild verwenden</string>
     <string name="use_own_color_for_seconds_hand">Eigene Farbe für Sekundenzeiger verwenden</string>
@@ -68,4 +67,5 @@
     <string name="amazon_store_not_avail">Amazon App Store nicht verfügbar</string>
     <string name="huawei_store_not_avail">Huawei App Gallery nicht verfügbar</string>
     <string name="could_not_fetch_prices">Die aktuellen Preise für In-App-Einkäufe konnten nicht geladen werden.</string>
+    <string name="choose_color">Farbe auswählen…</string>
 </resources>

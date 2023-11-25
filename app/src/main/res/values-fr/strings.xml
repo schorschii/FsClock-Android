@@ -2,6 +2,7 @@
     <string name="app_name">Horloge</string>
     <string name="app_name_long">Horloge plein &#233;cran</string>
 
+    <string name="version">Version</string>
     <string name="analog_clock">Horloge analogique</string>
     <string name="show_seconds_hand">Afficher la trotteuse</string>
     <string name="digital_clock">Horloge digitale</string>
@@ -9,7 +10,6 @@
     <string name="format_24hrs">Utiliser le format 24 heures</string>
     <string name="events">&#201;v&#233;nements</string>
     <string name="events_define_description">D&#233;finissez des rappels r&#233;currents, des invites vocales et des tonalit&#233;s de notification.</string>
-    <string name="edit_events">Modifier les &#233;v&#233;nements&#8230;</string>
     <string name="apply">Appliquer</string>
     <string name="save">Sauvegarder</string>
     <string name="display_event">Afficher &#224; l\'&#233;cran</string>
@@ -33,7 +33,6 @@
     <string name="background">Fond</string>
     <string name="general">G&#233;n&#233;ral</string>
     <string name="keep_screen_on">Gardez l\'&#233;cran allum&#233;</string>
-    <string name="use_own_color">Utiliser une couleur personnalis&#233;e</string>
     <string name="use_own_images">Utiliser des images personnalis&#233;es</string>
     <string name="clock_face">Cadran d\'horloge&#8230;</string>
     <string name="hour_hand">Petite aiguille&#8230;</string>
@@ -68,4 +67,5 @@
     <string name="amazon_store_not_avail">Amazon App Store non disponible</string>
     <string name="huawei_store_not_avail">Galerie d\'applications Huawei non disponible</string>
     <string name="could_not_fetch_prices">Impossible de récupérer les prix actuels pour les achats intégrés.</string>
+    <string name="choose_color">Choisir la couleur…</string>
 </resources>

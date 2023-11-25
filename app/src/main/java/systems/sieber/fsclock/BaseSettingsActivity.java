@@ -79,18 +79,15 @@ public class BaseSettingsActivity extends AppCompatActivity {
     CheckBox mCheckBoxDateShow;
     CheckBox mCheckBoxDigitalClockShowSeconds;
     CheckBox mCheckBoxDigitalClock24Format;
-    SeekBar mSeekBarRedAnalog;
-    SeekBar mSeekBarGreenAnalog;
-    SeekBar mSeekBarBlueAnalog;
+    View mColorChangerAnalog;
     View mColorPreviewAnalog;
-    SeekBar mSeekBarRedDigital;
-    SeekBar mSeekBarGreenDigital;
-    SeekBar mSeekBarBlueDigital;
+    int mColorAnalog;
+    View mColorChangerDigital;
     View mColorPreviewDigital;
-    SeekBar mSeekBarRedBack;
-    SeekBar mSeekBarGreenBack;
-    SeekBar mSeekBarBlueBack;
+    int mColorDigital;
+    View mColorChangerBack;
     View mColorPreviewBack;
+    int mColorBack;
     CheckBox mCheckBoxBackgroundOwnImage;
     Button mButtonChooseCustomBackground;
     Button mButtonNewEvent;
@@ -111,7 +108,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
             PackageInfo pInfo = this.getPackageManager().getPackageInfo(getPackageName(), 0);
             setTitle(getTitle() + " " + pInfo.versionName);
             ((TextView) findViewById(R.id.textViewBuildInfo)).setText(
-                    getString(R.string.build_info) + ": " + pInfo.versionName + " (" + pInfo.versionCode + ") " + BuildConfig.BUILD_TYPE + " " + BuildConfig.FLAVOR
+                    getString(R.string.version) + " " + pInfo.versionName + " (" + pInfo.versionCode + ") " + BuildConfig.BUILD_TYPE + " " + BuildConfig.FLAVOR
             );
         } catch(PackageManager.NameNotFoundException ignored) { }
 
@@ -149,17 +146,11 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxDateShow = findViewById(R.id.checkBoxShowDate);
         mCheckBoxDigitalClockShowSeconds = findViewById(R.id.checkBoxSecondsDigital);
         mCheckBoxDigitalClock24Format = findViewById(R.id.checkBox24HrsFormat);
-        mSeekBarRedAnalog = findViewById(R.id.seekBarRedAnalog);
-        mSeekBarGreenAnalog = findViewById(R.id.seekBarGreenAnalog);
-        mSeekBarBlueAnalog = findViewById(R.id.seekBarBlueAnalog);
+        mColorChangerAnalog = findViewById(R.id.viewColorChangerAnalog);
         mColorPreviewAnalog = findViewById(R.id.viewColorPreviewAnalog);
-        mSeekBarRedDigital = findViewById(R.id.seekBarRedDigital);
-        mSeekBarGreenDigital = findViewById(R.id.seekBarGreenDigital);
-        mSeekBarBlueDigital = findViewById(R.id.seekBarBlueDigital);
+        mColorChangerDigital = findViewById(R.id.viewColorChangerDigital);
         mColorPreviewDigital = findViewById(R.id.viewColorPreviewDigital);
-        mSeekBarRedBack = findViewById(R.id.seekBarRedBack);
-        mSeekBarGreenBack = findViewById(R.id.seekBarGreenBack);
-        mSeekBarBlueBack = findViewById(R.id.seekBarBlueBack);
+        mColorChangerBack = findViewById(R.id.viewColorChangerBack);
         mColorPreviewBack = findViewById(R.id.viewColorPreviewBack);
         mCheckBoxBackgroundOwnImage = findViewById(R.id.checkBoxOwnImageBackground);
         mButtonChooseCustomBackground = findViewById(R.id.buttonChooseBackground);
@@ -180,15 +171,9 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxDateShow.setChecked( mSharedPref.getBoolean("show-date", true) );
         mCheckBoxDigitalClockShowSeconds.setChecked( mSharedPref.getBoolean("show-seconds-digital", true) );
         mCheckBoxDigitalClock24Format.setChecked( mSharedPref.getBoolean("24hrs", true) );
-        mSeekBarRedAnalog.setProgress( mSharedPref.getInt("color-red-analog", 255) );
-        mSeekBarGreenAnalog.setProgress( mSharedPref.getInt("color-green-analog", 255) );
-        mSeekBarBlueAnalog.setProgress( mSharedPref.getInt("color-blue-analog", 255) );
-        mSeekBarRedDigital.setProgress( mSharedPref.getInt("color-red", 255) );
-        mSeekBarGreenDigital.setProgress( mSharedPref.getInt("color-green", 255) );
-        mSeekBarBlueDigital.setProgress( mSharedPref.getInt("color-blue", 255) );
-        mSeekBarRedBack.setProgress( mSharedPref.getInt("color-red-back", 0) );
-        mSeekBarGreenBack.setProgress( mSharedPref.getInt("color-green-back", 0) );
-        mSeekBarBlueBack.setProgress( mSharedPref.getInt("color-blue-back", 0) );
+        mColorAnalog = Color.argb(255, mSharedPref.getInt("color-red-analog", 255), mSharedPref.getInt("color-green-analog", 255), mSharedPref.getInt("color-blue-analog", 255));
+        mColorDigital = Color.argb(255, mSharedPref.getInt("color-red", 255), mSharedPref.getInt("color-green", 255), mSharedPref.getInt("color-blue", 255));
+        mColorBack = Color.argb(255, mSharedPref.getInt("color-red-back", 0), mSharedPref.getInt("color-green-back", 0), mSharedPref.getInt("color-blue-back", 0));
         mCheckBoxBackgroundOwnImage.setChecked( mSharedPref.getBoolean("own-image-back", false) );
 
         // load events
@@ -272,15 +257,9 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxDateShow.setEnabled(state);
         mCheckBoxDigitalClockShowSeconds.setEnabled(state);
         mCheckBoxDigitalClock24Format.setEnabled(state);
-        mSeekBarRedAnalog.setEnabled(state);
-        mSeekBarGreenAnalog.setEnabled(state);
-        mSeekBarBlueAnalog.setEnabled(state);
-        mSeekBarRedDigital.setEnabled(state);
-        mSeekBarGreenDigital.setEnabled(state);
-        mSeekBarBlueDigital.setEnabled(state);
-        mSeekBarRedBack.setEnabled(state);
-        mSeekBarGreenBack.setEnabled(state);
-        mSeekBarBlueBack.setEnabled(state);
+        mColorChangerAnalog.setEnabled(state);
+        mColorChangerDigital.setEnabled(state);
+        mColorChangerBack.setEnabled(state);
         mCheckBoxBackgroundOwnImage.setEnabled(state);
         mButtonChooseCustomBackground.setEnabled(state);
         mButtonNewEvent.setEnabled(state);
@@ -288,106 +267,109 @@ public class BaseSettingsActivity extends AppCompatActivity {
 
     private void initColorPreview() {
         // analog color
-        mSeekBarRedAnalog.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        updateColorPreview(mColorAnalog, mColorPreviewAnalog);
+        mColorChangerAnalog.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                updateColorPreview(mSeekBarRedAnalog.getProgress(), mSeekBarGreenAnalog.getProgress(), mSeekBarBlueAnalog.getProgress(), mColorPreviewAnalog);
+            public void onClick(View view) {
+                showColorDialog(mColorAnalog, new ColorDialogCallback() {
+                    @Override
+                    public void ok(int red, int green, int blue) {
+                        mColorAnalog = Color.argb(0xff, red, green, blue);
+                        updateColorPreview(mColorAnalog, mColorPreviewAnalog);
+                    }
+                });
             }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) { }
         });
-        mSeekBarGreenAnalog.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                updateColorPreview(mSeekBarRedAnalog.getProgress(), mSeekBarGreenAnalog.getProgress(), mSeekBarBlueAnalog.getProgress(), mColorPreviewAnalog);
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) { }
-        });
-        mSeekBarBlueAnalog.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                updateColorPreview(mSeekBarRedAnalog.getProgress(), mSeekBarGreenAnalog.getProgress(), mSeekBarBlueAnalog.getProgress(), mColorPreviewAnalog);
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) { }
-        });
-        updateColorPreview(mSeekBarRedAnalog.getProgress(), mSeekBarGreenAnalog.getProgress(), mSeekBarBlueAnalog.getProgress(), mColorPreviewAnalog);
 
         // digital color
-        mSeekBarRedDigital.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        updateColorPreview(mColorDigital, mColorPreviewDigital);
+        mColorChangerDigital.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                updateColorPreview(mSeekBarRedDigital.getProgress(), mSeekBarGreenDigital.getProgress(), mSeekBarBlueDigital.getProgress(), mColorPreviewDigital);
+            public void onClick(View view) {
+                showColorDialog(mColorDigital, new ColorDialogCallback() {
+                    @Override
+                    public void ok(int red, int green, int blue) {
+                        mColorDigital = Color.argb(0xff, red, green, blue);
+                        updateColorPreview(mColorDigital, mColorPreviewDigital);
+                    }
+                });
             }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) { }
         });
-        mSeekBarGreenDigital.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                updateColorPreview(mSeekBarRedDigital.getProgress(), mSeekBarGreenDigital.getProgress(), mSeekBarBlueDigital.getProgress(), mColorPreviewDigital);
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) { }
-        });
-        mSeekBarBlueDigital.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                updateColorPreview(mSeekBarRedDigital.getProgress(), mSeekBarGreenDigital.getProgress(), mSeekBarBlueDigital.getProgress(), mColorPreviewDigital);
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) { }
-        });
-        updateColorPreview(mSeekBarRedDigital.getProgress(), mSeekBarGreenDigital.getProgress(), mSeekBarBlueDigital.getProgress(), mColorPreviewDigital);
 
         // background color
-        mSeekBarRedBack.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        updateColorPreview(mColorBack, mColorPreviewBack);
+        mColorChangerBack.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                updateColorPreview(mSeekBarRedBack.getProgress(), mSeekBarGreenBack.getProgress(), mSeekBarBlueBack.getProgress(), mColorPreviewBack);
+            public void onClick(View view) {
+                showColorDialog(mColorBack, new ColorDialogCallback() {
+                    @Override
+                    public void ok(int red, int green, int blue) {
+                        mColorBack = Color.argb(0xff, red, green, blue);
+                        updateColorPreview(mColorBack, mColorPreviewBack);
+                    }
+                });
             }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) { }
         });
-        mSeekBarGreenBack.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                updateColorPreview(mSeekBarRedBack.getProgress(), mSeekBarGreenBack.getProgress(), mSeekBarBlueBack.getProgress(), mColorPreviewBack);
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) { }
-        });
-        mSeekBarBlueBack.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                updateColorPreview(mSeekBarRedBack.getProgress(), mSeekBarGreenBack.getProgress(), mSeekBarBlueBack.getProgress(), mColorPreviewBack);
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) { }
-        });
-        updateColorPreview(mSeekBarRedBack.getProgress(), mSeekBarGreenBack.getProgress(), mSeekBarBlueBack.getProgress(), mColorPreviewBack);
     }
-    private void updateColorPreview(int red, int green, int blue, View v) {
-        v.setBackgroundColor(Color.argb(0xff, red, green, blue));
+    private void updateColorPreview(int color, View v) {
+        v.setBackgroundColor(Color.argb(0xff, Color.red(color), Color.green(color), Color.blue(color)));
+    }
+    interface ColorDialogCallback {
+        void ok(int red, int green, int blue);
+    }
+    private void showColorDialog(int initialColor, final ColorDialogCallback colorDialogFinished) {
+        final Dialog ad = new Dialog(this);
+        ad.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        ad.setContentView(R.layout.dialog_color);
+        final SeekBar seekBarRed = ad.findViewById(R.id.seekBarRed);
+        final SeekBar seekBarGreen = ad.findViewById(R.id.seekBarGreen);
+        final SeekBar seekBarBlue = ad.findViewById(R.id.seekBarBlue);
+        final View colorPreview = ad.findViewById(R.id.viewColorPreview);
+        seekBarRed.setProgress(Color.red(initialColor));
+        seekBarGreen.setProgress(Color.green(initialColor));
+        seekBarBlue.setProgress(Color.blue(initialColor));
+        seekBarRed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                updateColorPreview(Color.argb(0xff, seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress()), colorPreview);
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) { }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) { }
+        });
+        seekBarGreen.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                updateColorPreview(Color.argb(0xff, seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress()), colorPreview);
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) { }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) { }
+        });
+        seekBarBlue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                updateColorPreview(Color.argb(0xff, seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress()), colorPreview);
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) { }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) { }
+        });
+        updateColorPreview(Color.argb(0xff, seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress()), colorPreview);
+        ad.show();
+        ad.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        ad.findViewById(R.id.buttonOK).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(colorDialogFinished != null) {
+                    colorDialogFinished.ok(seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress());
+                }
+                ad.dismiss();
+            }
+        });
     }
 
     private void save() {
@@ -407,15 +389,15 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.putBoolean("show-seconds-digital", mCheckBoxDigitalClockShowSeconds.isChecked());
         editor.putBoolean("24hrs", mCheckBoxDigitalClock24Format.isChecked());
         editor.putString("events", mGson.toJson(mEvents.toArray()));
-        editor.putInt("color-red-analog", mSeekBarRedAnalog.getProgress());
-        editor.putInt("color-green-analog", mSeekBarGreenAnalog.getProgress());
-        editor.putInt("color-blue-analog", mSeekBarBlueAnalog.getProgress());
-        editor.putInt("color-red", mSeekBarRedDigital.getProgress());
-        editor.putInt("color-green", mSeekBarGreenDigital.getProgress());
-        editor.putInt("color-blue", mSeekBarBlueDigital.getProgress());
-        editor.putInt("color-red-back", mSeekBarRedBack.getProgress());
-        editor.putInt("color-green-back", mSeekBarGreenBack.getProgress());
-        editor.putInt("color-blue-back", mSeekBarBlueBack.getProgress());
+        editor.putInt("color-red-analog", Color.red(mColorAnalog));
+        editor.putInt("color-green-analog", Color.green(mColorAnalog));
+        editor.putInt("color-blue-analog", Color.blue(mColorAnalog));
+        editor.putInt("color-red", Color.red(mColorDigital));
+        editor.putInt("color-green", Color.green(mColorDigital));
+        editor.putInt("color-blue", Color.blue(mColorDigital));
+        editor.putInt("color-red-back", Color.red(mColorBack));
+        editor.putInt("color-green-back", Color.green(mColorBack));
+        editor.putInt("color-blue-back", Color.blue(mColorBack));
         editor.putBoolean("own-image-back", mCheckBoxBackgroundOwnImage.isChecked());
 
         editor.apply();
