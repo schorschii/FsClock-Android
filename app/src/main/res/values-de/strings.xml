@@ -10,7 +10,6 @@
     <string name="format_24hrs">24-Stunden-Format benutzen</string>
     <string name="events">Events</string>
     <string name="events_define_description">Definieren Sie wiederkehrende Erinnerungen, Sprachansagen und Hinweistöne.</string>
-    <string name="edit_events">Events bearbeiten…</string>
     <string name="apply">Übernehmen</string>
     <string name="save">Speichern</string>
     <string name="display_event">Auf Display anzeigen</string>
@@ -34,7 +33,6 @@
     <string name="background">Hintergrund</string>
     <string name="general">Allgemein</string>
     <string name="keep_screen_on">Bildschirm eingeschaltet lassen</string>
-    <string name="use_own_color">Eigene Farbe verwenden</string>
     <string name="use_own_images">Eigene Bilder verwenden</string>
     <string name="clock_face">Zifferblatt…</string>
     <string name="hour_hand">Stundenzeiger…</string>

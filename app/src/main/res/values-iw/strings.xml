@@ -11,7 +11,6 @@
     <string name="format_24hrs">השתמש בפורמט 24 שעות</string>
     <string name="events">אירועים</string>
     <string name="events_define_description">הגדר תזכורות חוזרות, הנחיות קוליות וצלילי התראות.</string>
-    <string name="edit_events">ערוך אירועים…</string>
     <string name="apply">להגיש מועמדות</string>
     <string name="save">להציל</string>
     <string name="display_event">הצג על המסך</string>
@@ -35,7 +34,6 @@
     <string name="background">רקע כללי</string>
     <string name="general">כללי</string>
     <string name="keep_screen_on">השאר מסך דלוק</string>
-    <string name="use_own_color">השתמש בצבע מותאם אישית</string>
     <string name="use_own_images">השתמש בתמונות מותאמות אישית</string>
     <string name="clock_face">פני שעון…</string>
     <string name="hour_hand">מחוג השעות…</string>

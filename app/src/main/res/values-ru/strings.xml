@@ -10,7 +10,6 @@
     <string name="format_24hrs">Использовать 24-часовой формат</string>
     <string name="events">События</string>
     <string name="events_define_description">Определите повторяющиеся напоминания, голосовые подсказки и сигналы уведомлений.</string>
-    <string name="edit_events">Изменить события…</string>
     <string name="apply">Применять</string>
     <string name="save">Сохранять</string>
     <string name="display_event">Показать на экране</string>
@@ -34,7 +33,6 @@
     <string name="background">Задний план</string>
     <string name="general">Общий</string>
     <string name="keep_screen_on">Оставьте экран включенным</string>
-    <string name="use_own_color">Использовать собственный цвет</string>
     <string name="use_own_images">Использовать собственные изображения</string>
     <string name="clock_face">Циферблат…</string>
     <string name="hour_hand">Часовая стрелка…</string>

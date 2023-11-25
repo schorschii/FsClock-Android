@@ -11,7 +11,6 @@
   <string name="format_24hrs">Gebruik het 24-uursformaat</string>
   <string name="events">Evenementen</string>
   <string name="events_define_description">Definieer terugkerende herinneringen, gesproken aanwijzingen en meldingstonen.</string>
-  <string name="edit_events">Gebeurtenissen bewerken…</string>
   <string name="apply">Toepassen</string>
   <string name="save">Redden</string>
   <string name="display_event">Toon op scherm</string>
@@ -35,7 +34,6 @@
   <string name="background">Achtergrond</string>
   <string name="general">Algemeen</string>
   <string name="keep_screen_on">Houd het scherm ingeschakeld</string>
-  <string name="use_own_color">Gebruik aangepaste kleur</string>
   <string name="use_own_images">Gebruik aangepaste afbeeldingen</string>
   <string name="clock_face">Wijzerplaat…</string>
   <string name="hour_hand">Uurwijzer…</string>

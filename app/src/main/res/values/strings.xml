@@ -19,7 +19,6 @@
     <string name="format_24hrs">Use 24-Hours-Format</string>
     <string name="events">Events</string>
     <string name="events_define_description">Define recurring reminders, voice prompts and notification tones.</string>
-    <string name="edit_events">Edit Events…</string>
     <string name="apply">Apply</string>
     <string name="save">Save</string>
     <string name="display_event">Show On Screen</string>
@@ -43,7 +42,6 @@
     <string name="background">Background</string>
     <string name="general">General</string>
     <string name="keep_screen_on">Keep Screen On</string>
-    <string name="use_own_color">Use Custom Color</string>
     <string name="use_own_images">Use Custom Images</string>
     <string name="clock_face">Clock Face…</string>
     <string name="hour_hand">Hour Hand…</string>
