@@ -84,7 +84,6 @@ public class FullscreenActivity extends AppCompatActivity {
                     if(result.getResultCode() == Activity.RESULT_OK) {
                         mContentView.loadSettings(me);
                     }
-                    hide();
                 }
             });
 
@@ -169,6 +168,9 @@ public class FullscreenActivity extends AppCompatActivity {
                 Toast.makeText(this, getString(R.string.tv_settings_note), Toast.LENGTH_LONG).show();
             }
         }
+
+        // enter fullscreen mode (again)
+        hide();
     }
 
     private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
@@ -205,13 +207,6 @@ public class FullscreenActivity extends AppCompatActivity {
             }
             i++;
         }
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        hide();
-        //delayedHide(100);
     }
 
     private void toggle() {
