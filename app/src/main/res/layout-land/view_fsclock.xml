@@ -149,32 +149,32 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linearLayoutBattery"
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutBattery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageViewBattery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_battery_full_black_24dp" />
 
-            <ImageView
-                android:id="@+id/imageViewBattery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:srcCompat="@drawable/ic_battery_full_black_24dp" />
-
-            <TextView
-                android:id="@+id/textViewBattery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/battery_prefilled"
-                android:textColor="@color/colorDefaultClock"
-                android:textSize="20sp" />
-        </LinearLayout>
-
+        <TextView
+            android:id="@+id/textViewBattery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/battery_prefilled"
+            android:textColor="@color/colorDefaultClock"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </FrameLayout>
