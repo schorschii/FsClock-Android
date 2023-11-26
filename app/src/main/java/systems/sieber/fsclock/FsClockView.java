@@ -350,7 +350,7 @@ public class FsClockView extends FrameLayout {
         // init custom background color
         mRootView.setBackgroundColor(mSharedPref.getInt("color-back", 0xff000000));
 
-        // init custom images
+        // init custom background image
         if(mSharedPref.getBoolean("own-image-back", false)) {
             File img = SettingsActivity.getStorage(getContext(), SettingsActivity.FILENAME_BACKGROUND_IMAGE);
             if(img.exists()) {
@@ -363,6 +363,11 @@ public class FsClockView extends FrameLayout {
             }
         }
 
+        // init (custom) analog clock images
+        mClockBackgroundImage.setImageResource(R.drawable.ic_bg);
+        mHoursHand.setImageResource(R.drawable.ic_h);
+        mMinutesHand.setImageResource(R.drawable.ic_m);
+        mSecondsHand.setImageResource(R.drawable.ic_s);
         if(mSharedPref.getBoolean("own-image-analog", false)) {
             File img = SettingsActivity.getStorage(getContext(), SettingsActivity.FILENAME_CLOCK_FACE);
             if(img.exists()) {
@@ -403,11 +408,6 @@ public class FsClockView extends FrameLayout {
                     Toast.makeText(getContext(), "Image corrupted or too large", Toast.LENGTH_SHORT).show();
                 }
             }
-        } else {
-            mClockBackgroundImage.setImageResource(R.drawable.ic_bg);
-            mHoursHand.setImageResource(R.drawable.ic_h);
-            mMinutesHand.setImageResource(R.drawable.ic_m);
-            mSecondsHand.setImageResource(R.drawable.ic_s);
         }
     }
 
