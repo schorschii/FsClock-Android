@@ -2,8 +2,7 @@
 <resources>
   <string name="app_name">Klok</string>
   <string name="app_name_long">Klok op volledig scherm</string>
-
-  <string name="version">Version</string>
+  <string name="version">Versie</string>
   <string name="analog_clock">Analoge klok</string>
   <string name="show_seconds_hand">Secondewijzer weergeven</string>
   <string name="digital_clock">Digitale klok</string>
@@ -12,10 +11,10 @@
   <string name="events">Evenementen</string>
   <string name="events_define_description">Definieer terugkerende herinneringen, gesproken aanwijzingen en meldingstonen.</string>
   <string name="apply">Toepassen</string>
-  <string name="save">Redden</string>
+  <string name="save">Opslaan</string>
   <string name="display_event">Toon op scherm</string>
   <string name="play_alarm">Speel alarmgeluid af</string>
-  <string name="read_text">Spreek tekst</string>
+  <string name="read_text">Lees tekst</string>
   <string name="title">Titel</string>
   <string name="remove">Verwijderen</string>
   <string name="show_analog_clock">Toon analoge klok</string>
@@ -26,7 +25,7 @@
   <string name="ok">OK</string>
   <string name="activation_failed">Activatie mislukt</string>
   <string name="red">Rood</string>
-  <string name="green">Groente</string>
+  <string name="green">Groen</string>
   <string name="blue">Blauw</string>
   <string name="review_app_title">Vind je deze app leuk?  Dien een beoordeling in.</string>
   <string name="review_now">Beoordeel nu in de Play Store…</string>
@@ -50,11 +49,11 @@
   <string name="open_settings">Open instellingen</string>
   <string name="tv_settings_note">Tip: Druk op de OK- of MENU-knop om de instellingen in te voeren.</string>
   <string name="more_apps">Meer apps</string>
-  <string name="customer_database_for_android">Klantendatabase voor Android</string>
+  <string name="customer_database_for_android">Gebruikers database voor Android</string>
   <string name="remote_pointer_for_android">RemotePointer voor Android</string>
   <string name="ballbreak_for_android">BallBreak voor Android</string>
-  <string name="masterplan_workforce_management">MASTERPLAN Personeelsbeheer</string>
-  <string name="open_computer_orchestration">Open computerorkestratie</string>
+  <string name="masterplan_workforce_management">MASTERPLAN Beheer</string>
+  <string name="open_computer_orchestration">Open geautomatiseerde configuratie</string>
   <string name="open_source_text">Deze app is Open Source.  Als je de app of de vertalingen ervan wilt verbeteren, bekijk dan de repository op Github.</string>
   <string name="open_source">Vork mij</string>
   <string name="allow_system_calendar_access">Toegang tot systeemagenda toestaan…</string>
@@ -70,7 +69,7 @@
   <string name="could_not_fetch_prices">Kan de huidige prijzen voor in-app-aankopen niet ophalen.</string>
   <string name="choose_color">Kies een kleur…</string>
   <string name="use_custom_color">Gebruik je eigen kleur</string>
-  <string name="apply_for_all">Solliciteer voor iedereen</string>
+  <string name="apply_for_all">Toepassen voor iedereen</string>
   <string name="buy_a_code">Koop een code…</string>
   <string name="unlock_code">Ontgrendelcode</string>
 </resources>
