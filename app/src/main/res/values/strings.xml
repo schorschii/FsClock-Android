@@ -77,4 +77,6 @@
     <string name="huawei_store_not_avail">Huawei App Gallery not available</string>
     <string name="could_not_fetch_prices">Could not fetch current prices for in-app purchases.</string>
     <string name="choose_color">Choose color…</string>
+    <string name="use_custom_color">Use Custom Color</string>
+    <string name="apply_for_all">Apply for all</string>
 </resources>

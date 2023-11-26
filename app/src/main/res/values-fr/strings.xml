@@ -68,4 +68,6 @@
     <string name="huawei_store_not_avail">Galerie d\'applications Huawei non disponible</string>
     <string name="could_not_fetch_prices">Impossible de récupérer les prix actuels pour les achats intégrés.</string>
     <string name="choose_color">Choisir la couleur…</string>
+    <string name="use_custom_color">Utilisez votre propre couleur</string>
+    <string name="apply_for_all">Postuler pour tous</string>
 </resources>

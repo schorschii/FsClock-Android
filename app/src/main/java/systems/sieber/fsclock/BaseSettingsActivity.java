@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
@@ -67,9 +68,6 @@ public class BaseSettingsActivity extends AppCompatActivity {
     CheckBox mCheckBoxShowBatteryInfoWhenCharging;
     CheckBox mCheckBoxAnalogClockShow;
     CheckBox mCheckBoxAnalogClockShowSeconds;
-    CheckBox mCheckBoxAnalogClockOwnColorClockFace;
-    CheckBox mCheckBoxAnalogClockOwnColor;
-    CheckBox mCheckBoxAnalogClockOwnColorSeconds;
     CheckBox mCheckBoxAnalogClockOwnImage;
     Button mButtonChooseClockFace;
     Button mButtonChooseHoursHand;
@@ -79,9 +77,22 @@ public class BaseSettingsActivity extends AppCompatActivity {
     CheckBox mCheckBoxDateShow;
     CheckBox mCheckBoxDigitalClockShowSeconds;
     CheckBox mCheckBoxDigitalClock24Format;
-    View mColorChangerAnalog;
-    View mColorPreviewAnalog;
-    int mColorAnalog;
+    View mColorChangerAnalogFace;
+    View mColorPreviewAnalogFace;
+    View mColorChangerAnalogHours;
+    View mColorPreviewAnalogHours;
+    View mColorChangerAnalogMinutes;
+    View mColorPreviewAnalogMinutes;
+    View mColorChangerAnalogSeconds;
+    View mColorPreviewAnalogSeconds;
+    int mColorAnalogFace;
+    int mColorAnalogHours;
+    int mColorAnalogMinutes;
+    int mColorAnalogSeconds;
+    boolean mCustomColorAnalogFace;
+    boolean mCustomColorAnalogHours;
+    boolean mCustomColorAnalogMinutes;
+    boolean mCustomColorAnalogSeconds;
     View mColorChangerDigital;
     View mColorPreviewDigital;
     int mColorDigital;
@@ -134,9 +145,6 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxShowBatteryInfoWhenCharging = findViewById(R.id.checkBoxShowBatteryInfoWhenCharging);
         mCheckBoxAnalogClockShow = findViewById(R.id.checkBoxShowAnalogClock);
         mCheckBoxAnalogClockShowSeconds = findViewById(R.id.checkBoxSecondsAnalog);
-        mCheckBoxAnalogClockOwnColorClockFace = findViewById(R.id.checkBoxOwnColorAnalogClockFace);
-        mCheckBoxAnalogClockOwnColor = findViewById(R.id.checkBoxOwnColorAnalog);
-        mCheckBoxAnalogClockOwnColorSeconds = findViewById(R.id.checkBoxOwnColorAnalogSeconds);
         mCheckBoxAnalogClockOwnImage = findViewById(R.id.checkBoxOwnImageAnalog);
         mButtonChooseClockFace = findViewById(R.id.buttonChooseClockFace);
         mButtonChooseHoursHand = findViewById(R.id.buttonChooseHoursHand);
@@ -146,8 +154,14 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxDateShow = findViewById(R.id.checkBoxShowDate);
         mCheckBoxDigitalClockShowSeconds = findViewById(R.id.checkBoxSecondsDigital);
         mCheckBoxDigitalClock24Format = findViewById(R.id.checkBox24HrsFormat);
-        mColorChangerAnalog = findViewById(R.id.viewColorChangerAnalog);
-        mColorPreviewAnalog = findViewById(R.id.viewColorPreviewAnalog);
+        mColorChangerAnalogFace = findViewById(R.id.viewColorChangerAnalogFace);
+        mColorPreviewAnalogFace = findViewById(R.id.viewColorPreviewAnalogFace);
+        mColorChangerAnalogHours = findViewById(R.id.viewColorChangerAnalogHour);
+        mColorPreviewAnalogHours = findViewById(R.id.viewColorPreviewAnalogHour);
+        mColorChangerAnalogMinutes = findViewById(R.id.viewColorChangerAnalogMinute);
+        mColorPreviewAnalogMinutes = findViewById(R.id.viewColorPreviewAnalogMinute);
+        mColorChangerAnalogSeconds = findViewById(R.id.viewColorChangerAnalogSecond);
+        mColorPreviewAnalogSeconds = findViewById(R.id.viewColorPreviewAnalogSecond);
         mColorChangerDigital = findViewById(R.id.viewColorChangerDigital);
         mColorPreviewDigital = findViewById(R.id.viewColorPreviewDigital);
         mColorChangerBack = findViewById(R.id.viewColorChangerBack);
@@ -163,17 +177,21 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxShowBatteryInfoWhenCharging.setChecked( mSharedPref.getBoolean("show-battery-info-when-charging", false) );
         mCheckBoxAnalogClockShow.setChecked( mSharedPref.getBoolean("show-analog", true) );
         mCheckBoxAnalogClockShowSeconds.setChecked( mSharedPref.getBoolean("show-seconds-analog", true) );
-        mCheckBoxAnalogClockOwnColorClockFace.setChecked( mSharedPref.getBoolean("own-color-analog-clock-face", true) );
-        mCheckBoxAnalogClockOwnColor.setChecked( mSharedPref.getBoolean("own-color-analog", true) );
-        mCheckBoxAnalogClockOwnColorSeconds.setChecked( mSharedPref.getBoolean("own-color-analog-seconds", false) );
+        mCustomColorAnalogFace = mSharedPref.getBoolean("own-color-analog-clock-face", true);
+        mCustomColorAnalogHours = mSharedPref.getBoolean("own-color-analog-hours", true);
+        mCustomColorAnalogMinutes = mSharedPref.getBoolean("own-color-analog-minutes", true);
+        mCustomColorAnalogSeconds = mSharedPref.getBoolean("own-color-analog-seconds", false);
         mCheckBoxAnalogClockOwnImage.setChecked( mSharedPref.getBoolean("own-image-analog", false) );
         mCheckBoxDigitalClockShow.setChecked( mSharedPref.getBoolean("show-digital", true) );
         mCheckBoxDateShow.setChecked( mSharedPref.getBoolean("show-date", true) );
         mCheckBoxDigitalClockShowSeconds.setChecked( mSharedPref.getBoolean("show-seconds-digital", true) );
         mCheckBoxDigitalClock24Format.setChecked( mSharedPref.getBoolean("24hrs", true) );
-        mColorAnalog = Color.argb(255, mSharedPref.getInt("color-red-analog", 255), mSharedPref.getInt("color-green-analog", 255), mSharedPref.getInt("color-blue-analog", 255));
-        mColorDigital = Color.argb(255, mSharedPref.getInt("color-red", 255), mSharedPref.getInt("color-green", 255), mSharedPref.getInt("color-blue", 255));
-        mColorBack = Color.argb(255, mSharedPref.getInt("color-red-back", 0), mSharedPref.getInt("color-green-back", 0), mSharedPref.getInt("color-blue-back", 0));
+        mColorAnalogFace = mSharedPref.getInt("color-analog-face", 0xffffffff);
+        mColorAnalogHours = mSharedPref.getInt("color-analog-hours", 0xffffffff);
+        mColorAnalogMinutes = mSharedPref.getInt("color-analog-minutes", 0xffffffff);
+        mColorAnalogSeconds = mSharedPref.getInt("color-analog-seconds", 0xffffffff);
+        mColorDigital = mSharedPref.getInt("color-digital", 0xffffffff);
+        mColorBack = mSharedPref.getInt("color-back", 0xff000000);
         mCheckBoxBackgroundOwnImage.setChecked( mSharedPref.getBoolean("own-image-back", false) );
 
         // load events
@@ -245,9 +263,6 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxShowBatteryInfoWhenCharging.setEnabled(state);
         mCheckBoxAnalogClockShow.setEnabled(state);
         mCheckBoxAnalogClockShowSeconds.setEnabled(state);
-        mCheckBoxAnalogClockOwnColorClockFace.setEnabled(state);
-        mCheckBoxAnalogClockOwnColor.setEnabled(state);
-        mCheckBoxAnalogClockOwnColorSeconds.setEnabled(state);
         mCheckBoxAnalogClockOwnImage.setEnabled(state);
         mButtonChooseClockFace.setEnabled(state);
         mButtonChooseHoursHand.setEnabled(state);
@@ -257,7 +272,10 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxDateShow.setEnabled(state);
         mCheckBoxDigitalClockShowSeconds.setEnabled(state);
         mCheckBoxDigitalClock24Format.setEnabled(state);
-        mColorChangerAnalog.setEnabled(state);
+        mColorChangerAnalogFace.setEnabled(state);
+        mColorChangerAnalogHours.setEnabled(state);
+        mColorChangerAnalogMinutes.setEnabled(state);
+        mColorChangerAnalogSeconds.setEnabled(state);
         mColorChangerDigital.setEnabled(state);
         mColorChangerBack.setEnabled(state);
         mCheckBoxBackgroundOwnImage.setEnabled(state);
@@ -267,15 +285,74 @@ public class BaseSettingsActivity extends AppCompatActivity {
 
     private void initColorPreview() {
         // analog color
-        updateColorPreview(mColorAnalog, mColorPreviewAnalog);
-        mColorChangerAnalog.setOnClickListener(new View.OnClickListener() {
+        updateColorPreview(mColorAnalogFace, mColorPreviewAnalogFace);
+        mColorChangerAnalogFace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showColorDialog(mColorAnalog, new ColorDialogCallback() {
+                showColorDialog(mCustomColorAnalogFace, mColorAnalogFace, new ColorDialogCallback() {
                     @Override
-                    public void ok(int red, int green, int blue) {
-                        mColorAnalog = Color.argb(0xff, red, green, blue);
-                        updateColorPreview(mColorAnalog, mColorPreviewAnalog);
+                    public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
+                        if(applyForAll) {
+                            applyColorForAllAnalog(customColor, Color.argb(0xff, red, green, blue));
+                        } else {
+                            mColorAnalogFace = Color.argb(0xff, red, green, blue);
+                            mCustomColorAnalogFace = customColor;
+                            updateColorPreview(mColorAnalogFace, mColorPreviewAnalogFace);
+                        }
+                    }
+                });
+            }
+        });
+        updateColorPreview(mColorAnalogHours, mColorPreviewAnalogHours);
+        mColorChangerAnalogHours.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showColorDialog(mCustomColorAnalogHours, mColorAnalogHours, new ColorDialogCallback() {
+                    @Override
+                    public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
+                        if(applyForAll) {
+                            applyColorForAllAnalog(customColor, Color.argb(0xff, red, green, blue));
+                        } else {
+                            mColorAnalogHours = Color.argb(0xff, red, green, blue);
+                            mCustomColorAnalogHours = customColor;
+                            updateColorPreview(mColorAnalogHours, mColorPreviewAnalogHours);
+                        }
+                    }
+                });
+            }
+        });
+        updateColorPreview(mColorAnalogMinutes, mColorPreviewAnalogMinutes);
+        mColorChangerAnalogMinutes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showColorDialog(mCustomColorAnalogMinutes, mColorAnalogMinutes, new ColorDialogCallback() {
+                    @Override
+                    public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
+                        if(applyForAll) {
+                            applyColorForAllAnalog(customColor, Color.argb(0xff, red, green, blue));
+                        } else {
+                            mColorAnalogMinutes = Color.argb(0xff, red, green, blue);
+                            mCustomColorAnalogMinutes = customColor;
+                            updateColorPreview(mColorAnalogMinutes, mColorPreviewAnalogMinutes);
+                        }
+                    }
+                });
+            }
+        });
+        updateColorPreview(mColorAnalogSeconds, mColorPreviewAnalogSeconds);
+        mColorChangerAnalogSeconds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showColorDialog(mCustomColorAnalogSeconds, mColorAnalogSeconds, new ColorDialogCallback() {
+                    @Override
+                    public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
+                        if(applyForAll) {
+                            applyColorForAllAnalog(customColor, Color.argb(0xff, red, green, blue));
+                        } else {
+                            mColorAnalogSeconds = Color.argb(0xff, red, green, blue);
+                            mCustomColorAnalogSeconds = customColor;
+                            updateColorPreview(mColorAnalogSeconds, mColorPreviewAnalogSeconds);
+                        }
                     }
                 });
             }
@@ -286,9 +363,9 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorChangerDigital.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showColorDialog(mColorDigital, new ColorDialogCallback() {
+                showColorDialog(null, mColorDigital, new ColorDialogCallback() {
                     @Override
-                    public void ok(int red, int green, int blue) {
+                    public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
                         mColorDigital = Color.argb(0xff, red, green, blue);
                         updateColorPreview(mColorDigital, mColorPreviewDigital);
                     }
@@ -301,9 +378,9 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorChangerBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showColorDialog(mColorBack, new ColorDialogCallback() {
+                showColorDialog(null, mColorBack, new ColorDialogCallback() {
                     @Override
-                    public void ok(int red, int green, int blue) {
+                    public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
                         mColorBack = Color.argb(0xff, red, green, blue);
                         updateColorPreview(mColorBack, mColorPreviewBack);
                     }
@@ -311,20 +388,55 @@ public class BaseSettingsActivity extends AppCompatActivity {
             }
         });
     }
+    private void applyColorForAllAnalog(boolean customColor, int color) {
+        mColorAnalogFace = color;
+        mCustomColorAnalogFace = customColor;
+        updateColorPreview(mColorAnalogFace, mColorPreviewAnalogFace);
+        mColorAnalogHours = color;
+        mCustomColorAnalogHours = customColor;
+        updateColorPreview(mColorAnalogHours, mColorPreviewAnalogHours);
+        mColorAnalogMinutes = color;
+        mCustomColorAnalogMinutes = customColor;
+        updateColorPreview(mColorAnalogMinutes, mColorPreviewAnalogMinutes);
+        mColorAnalogSeconds = color;
+        mCustomColorAnalogSeconds = customColor;
+        updateColorPreview(mColorAnalogSeconds, mColorPreviewAnalogSeconds);
+    }
     private void updateColorPreview(int color, View v) {
         v.setBackgroundColor(Color.argb(0xff, Color.red(color), Color.green(color), Color.blue(color)));
     }
     interface ColorDialogCallback {
-        void ok(int red, int green, int blue);
+        void ok(boolean customColor, int red, int green, int blue, boolean applyForAll);
     }
-    private void showColorDialog(int initialColor, final ColorDialogCallback colorDialogFinished) {
+    private void showColorDialog(Boolean customColor, int initialColor, final ColorDialogCallback colorDialogFinished) {
         final Dialog ad = new Dialog(this);
         ad.requestWindowFeature(Window.FEATURE_NO_TITLE);
         ad.setContentView(R.layout.dialog_color);
+        final CheckBox checkBoxCustomColor = ad.findViewById(R.id.checkBoxCustomColor);
         final SeekBar seekBarRed = ad.findViewById(R.id.seekBarRed);
         final SeekBar seekBarGreen = ad.findViewById(R.id.seekBarGreen);
         final SeekBar seekBarBlue = ad.findViewById(R.id.seekBarBlue);
         final View colorPreview = ad.findViewById(R.id.viewColorPreview);
+        final Button buttonOkForAll = ad.findViewById(R.id.buttonOkForAll);
+        if(customColor == null) {
+            checkBoxCustomColor.setVisibility(View.GONE);
+            buttonOkForAll.setVisibility(View.GONE);
+        } else {
+            checkBoxCustomColor.setChecked(customColor);
+            if(!customColor) {
+                seekBarRed.setEnabled(false);
+                seekBarGreen.setEnabled(false);
+                seekBarBlue.setEnabled(false);
+            }
+        }
+        checkBoxCustomColor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                seekBarRed.setEnabled(b);
+                seekBarGreen.setEnabled(b);
+                seekBarBlue.setEnabled(b);
+            }
+        });
         seekBarRed.setProgress(Color.red(initialColor));
         seekBarGreen.setProgress(Color.green(initialColor));
         seekBarBlue.setProgress(Color.blue(initialColor));
@@ -365,7 +477,16 @@ public class BaseSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(colorDialogFinished != null) {
-                    colorDialogFinished.ok(seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress());
+                    colorDialogFinished.ok(checkBoxCustomColor.isChecked(), seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress(), false);
+                }
+                ad.dismiss();
+            }
+        });
+        ad.findViewById(R.id.buttonOkForAll).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(colorDialogFinished != null) {
+                    colorDialogFinished.ok(checkBoxCustomColor.isChecked(), seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress(), true);
                 }
                 ad.dismiss();
             }
@@ -379,9 +500,10 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.putBoolean("show-battery-info", mCheckBoxShowBatteryInfo.isChecked());
         editor.putBoolean("show-battery-info-when-charging", mCheckBoxShowBatteryInfoWhenCharging.isChecked());
         editor.putBoolean("show-analog", mCheckBoxAnalogClockShow.isChecked());
-        editor.putBoolean("own-color-analog-clock-face", mCheckBoxAnalogClockOwnColorClockFace.isChecked());
-        editor.putBoolean("own-color-analog", mCheckBoxAnalogClockOwnColor.isChecked());
-        editor.putBoolean("own-color-analog-seconds", mCheckBoxAnalogClockOwnColorSeconds.isChecked());
+        editor.putBoolean("own-color-analog-clock-face", mCustomColorAnalogFace);
+        editor.putBoolean("own-color-analog-hours", mCustomColorAnalogHours);
+        editor.putBoolean("own-color-analog-minutes", mCustomColorAnalogMinutes);
+        editor.putBoolean("own-color-analog-seconds", mCustomColorAnalogSeconds);
         editor.putBoolean("own-image-analog", mCheckBoxAnalogClockOwnImage.isChecked());
         editor.putBoolean("show-digital", mCheckBoxDigitalClockShow.isChecked());
         editor.putBoolean("show-date", mCheckBoxDateShow.isChecked());
@@ -389,15 +511,12 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.putBoolean("show-seconds-digital", mCheckBoxDigitalClockShowSeconds.isChecked());
         editor.putBoolean("24hrs", mCheckBoxDigitalClock24Format.isChecked());
         editor.putString("events", mGson.toJson(mEvents.toArray()));
-        editor.putInt("color-red-analog", Color.red(mColorAnalog));
-        editor.putInt("color-green-analog", Color.green(mColorAnalog));
-        editor.putInt("color-blue-analog", Color.blue(mColorAnalog));
-        editor.putInt("color-red", Color.red(mColorDigital));
-        editor.putInt("color-green", Color.green(mColorDigital));
-        editor.putInt("color-blue", Color.blue(mColorDigital));
-        editor.putInt("color-red-back", Color.red(mColorBack));
-        editor.putInt("color-green-back", Color.green(mColorBack));
-        editor.putInt("color-blue-back", Color.blue(mColorBack));
+        editor.putInt("color-analog-face", mColorAnalogFace);
+        editor.putInt("color-analog-hours", mColorAnalogHours);
+        editor.putInt("color-analog-minutes", mColorAnalogMinutes);
+        editor.putInt("color-analog-seconds", mColorAnalogSeconds);
+        editor.putInt("color-digital", mColorDigital);
+        editor.putInt("color-back", mColorBack);
         editor.putBoolean("own-image-back", mCheckBoxBackgroundOwnImage.isChecked());
 
         editor.apply();

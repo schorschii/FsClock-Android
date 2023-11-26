@@ -68,4 +68,6 @@
     <string name="huawei_store_not_avail">Галерея приложений Huawei недоступна</string>
     <string name="could_not_fetch_prices">Не удалось получить текущие цены для покупок в приложении.</string>
     <string name="choose_color">Выберите цвет…</string>
+    <string name="use_custom_color">Используйте свой собственный цвет</string>
+    <string name="apply_for_all">Подать заявку на все</string>
 </resources>

@@ -69,4 +69,6 @@
     <string name="huawei_store_not_avail">גלריית האפליקציות של Huawei אינה זמינה</string>
     <string name="could_not_fetch_prices">לא ניתן היה להביא מחירים נוכחיים עבור רכישות מתוך האפליקציה.</string>
     <string name="choose_color">בחרי צבע…</string>
+    <string name="use_custom_color">השתמש בצבע משלך</string>
+    <string name="apply_for_all">הגש בקשה על כולם</string>
 </resources>

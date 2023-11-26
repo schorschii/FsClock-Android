@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -318,11 +317,7 @@ public class FsClockView extends FrameLayout {
             findViewById(R.id.textViewClockSeconds).setVisibility(View.GONE);
 
         // init custom digital color
-        int colorDigital = Color.argb(0xff,
-                mSharedPref.getInt("color-red", 255),
-                mSharedPref.getInt("color-green", 255),
-                mSharedPref.getInt("color-blue", 255)
-        );
+        int colorDigital = mSharedPref.getInt("color-digital", 0xffffffff);
         mClockText.setTextColor(colorDigital);
         mSecondsText.setTextColor(colorDigital);
         mDateText.setTextColor(colorDigital);
@@ -331,36 +326,29 @@ public class FsClockView extends FrameLayout {
         mBatteryImage.setColorFilter(colorDigital, PorterDuff.Mode.SRC_ATOP);
 
         // init custom analog color
-        int colorAnalog = Color.argb(0xff,
-                mSharedPref.getInt("color-red-analog", 255),
-                mSharedPref.getInt("color-green-analog", 255),
-                mSharedPref.getInt("color-blue-analog", 255)
-        );
         if(mSharedPref.getBoolean("own-color-analog-clock-face", true)) {
-            mClockBackgroundImage.setColorFilter(colorAnalog, PorterDuff.Mode.SRC_ATOP);
+            mClockBackgroundImage.setColorFilter(mSharedPref.getInt("color-analog-face", 0xffffffff), PorterDuff.Mode.SRC_ATOP);
         } else {
             mClockBackgroundImage.clearColorFilter();
         }
-        if(mSharedPref.getBoolean("own-color-analog", true)) {
-            mHoursHand.setColorFilter(colorAnalog, PorterDuff.Mode.SRC_ATOP);
-            mMinutesHand.setColorFilter(colorAnalog, PorterDuff.Mode.SRC_ATOP);
+        if(mSharedPref.getBoolean("own-color-analog-hours", true)) {
+            mHoursHand.setColorFilter(mSharedPref.getInt("color-analog-hours", 0xffffffff), PorterDuff.Mode.SRC_ATOP);
         } else {
             mHoursHand.clearColorFilter();
+        }
+        if(mSharedPref.getBoolean("own-color-analog-minutes", true)) {
+            mMinutesHand.setColorFilter(mSharedPref.getInt("color-analog-minutes", 0xffffffff), PorterDuff.Mode.SRC_ATOP);
+        } else {
             mMinutesHand.clearColorFilter();
         }
         if(mSharedPref.getBoolean("own-color-analog-seconds", false)) {
-            mSecondsHand.setColorFilter(colorAnalog, PorterDuff.Mode.SRC_ATOP);
+            mSecondsHand.setColorFilter(mSharedPref.getInt("color-analog-seconds", 0xffffffff), PorterDuff.Mode.SRC_ATOP);
         } else {
             mSecondsHand.clearColorFilter();
         }
 
         // init custom background color
-        int colorBack = Color.argb(0xff,
-                mSharedPref.getInt("color-red-back", 0),
-                mSharedPref.getInt("color-green-back", 0),
-                mSharedPref.getInt("color-blue-back", 0)
-        );
-        mRootView.setBackgroundColor(colorBack);
+        mRootView.setBackgroundColor(mSharedPref.getInt("color-back", 0xff000000));
 
         // init custom images
         if(mSharedPref.getBoolean("own-image-back", false)) {

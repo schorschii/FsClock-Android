@@ -68,4 +68,6 @@
     <string name="huawei_store_not_avail">Huawei App Gallery nicht verfügbar</string>
     <string name="could_not_fetch_prices">Die aktuellen Preise für In-App-Einkäufe konnten nicht geladen werden.</string>
     <string name="choose_color">Farbe auswählen…</string>
+    <string name="use_custom_color">Eigene Farbe verwendenr</string>
+    <string name="apply_for_all">Für alle übernehmen</string>
 </resources>
