@@ -68,4 +68,8 @@
     <string name="huawei_store_not_avail">Huawei App Gallery non disponibile</string>
     <string name="could_not_fetch_prices">Impossibile recuperare i prezzi correnti per gli acquisti in-app.</string>
     <string name="choose_color">Scegli il colore…</string>
+    <string name="use_custom_color">Usa il tuo colore</string>
+    <string name="apply_for_all">Candidati per tutti</string>
+    <string name="buy_a_code">Acquista un codice…</string>
+    <string name="unlock_code">Codice di sblocco</string>
 </resources>

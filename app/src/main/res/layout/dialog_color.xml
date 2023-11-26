@@ -6,6 +6,12 @@
     android:orientation="vertical"
     android:padding="10dp">
 
+    <CheckBox
+        android:id="@+id/checkBoxCustomColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/use_custom_color" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,6 +84,7 @@
             android:layout_height="match_parent"
             android:background="@color/colorPrimary" />
     </LinearLayout>
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="5dp" />
@@ -87,6 +94,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:text="@string/ok"/>
+        android:text="@string/ok" />
+
+    <Button
+        android:id="@+id/buttonOkForAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/apply_for_all" />
 
 </LinearLayout>

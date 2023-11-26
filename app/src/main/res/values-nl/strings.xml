@@ -29,7 +29,7 @@
   <string name="green">Groente</string>
   <string name="blue">Blauw</string>
   <string name="review_app_title">Vind je deze app leuk?  Dien een beoordeling in.</string>
-  <string name="review_now">Beoordeel nu in de Play Store...</string>
+  <string name="review_now">Beoordeel nu in de Play Store…</string>
   <string name="purchase_support_note">Door de instellingen te ontgrendelen met een in-app-aankoop steun je de verdere ontwikkeling van deze app ♥</string>
   <string name="background">Achtergrond</string>
   <string name="general">Algemeen</string>
@@ -40,7 +40,7 @@
   <string name="minute_hand">Minutenwijzer…</string>
   <string name="seconds_hand">Secondewijzer…</string>
   <string name="own_images_note">Afbeeldingen moeten vierkant zijn (dezelfde breedte en hoogte) en de breedte en hoogte mogen niet groter zijn dan 1000 px.</string>
-  <string name="choose_own_background_image">Kies een aangepaste achtergrondafbeelding...</string>
+  <string name="choose_own_background_image">Kies een aangepaste achtergrondafbeelding…</string>
   <string name="use_own_image">Gebruik aangepaste afbeelding</string>
   <string name="use_own_color_for_seconds_hand">Gebruik een aangepaste kleur voor de secondewijzer</string>
   <string name="use_own_color_for_hour_and_minutes_hand">Gebruik een aangepaste kleur voor de uren- en minutenwijzer</string>
@@ -69,4 +69,8 @@
   <string name="huawei_store_not_avail">Huawei App Gallery niet beschikbaar</string>
   <string name="could_not_fetch_prices">Kan de huidige prijzen voor in-app-aankopen niet ophalen.</string>
   <string name="choose_color">Kies een kleur…</string>
+  <string name="use_custom_color">Gebruik je eigen kleur</string>
+  <string name="apply_for_all">Solliciteer voor iedereen</string>
+  <string name="buy_a_code">Koop een code…</string>
+  <string name="unlock_code">Ontgrendelcode</string>
 </resources>

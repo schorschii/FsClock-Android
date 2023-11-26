@@ -121,53 +121,133 @@
                     android:layout_height="wrap_content"
                     android:text="@string/show_seconds_hand" />
 
-                <CheckBox
-                    android:id="@+id/checkBoxOwnColorAnalogClockFace"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/use_own_color_for_clock_face" />
-                <CheckBox
-                    android:id="@+id/checkBoxOwnColorAnalog"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/use_own_color_for_hour_and_minutes_hand" />
-                <CheckBox
-                    android:id="@+id/checkBoxOwnColorAnalogSeconds"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/use_own_color_for_seconds_hand" />
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp" />
-
                 <LinearLayout
-                    android:id="@+id/viewColorChangerAnalog"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/padding_setting"
-                    android:focusable="true"
-                    android:clickable="true"
-                    android:background="?attr/selectableItemBackground">
-                    <View
-                        android:id="@+id/viewColorPreviewAnalog"
-                        android:layout_width="@dimen/width_color_preview"
-                        android:layout_height="match_parent"
-                        android:background="@color/colorPrimary" />
-                    <Space
-                        android:layout_width="@dimen/space_color_preview"
-                        android:layout_height="match_parent" />
-                    <TextView
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/viewColorChangerAnalogFace"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/checkbox_text_color"
-                        android:duplicateParentState="true"
-                        android:text="@string/choose_color" />
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_setting"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <View
+                            android:id="@+id/viewColorPreviewAnalogFace"
+                            android:layout_width="@dimen/width_color_preview"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimary" />
+                        <Space
+                            android:layout_width="@dimen/space_color_preview"
+                            android:layout_height="match_parent" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/checkbox_text_color"
+                            android:duplicateParentState="true"
+                            android:text="@string/clock_face" />
+                    </LinearLayout>
                 </LinearLayout>
-                <Space
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="5dp" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/viewColorChangerAnalogHour"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_setting"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <View
+                            android:id="@+id/viewColorPreviewAnalogHour"
+                            android:layout_width="@dimen/width_color_preview"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimary" />
+                        <Space
+                            android:layout_width="@dimen/space_color_preview"
+                            android:layout_height="match_parent" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/checkbox_text_color"
+                            android:duplicateParentState="true"
+                            android:text="@string/hour_hand" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/viewColorChangerAnalogMinute"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_setting"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <View
+                            android:id="@+id/viewColorPreviewAnalogMinute"
+                            android:layout_width="@dimen/width_color_preview"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimary" />
+                        <Space
+                            android:layout_width="@dimen/space_color_preview"
+                            android:layout_height="match_parent" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/checkbox_text_color"
+                            android:duplicateParentState="true"
+                            android:text="@string/minute_hand" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/viewColorChangerAnalogSecond"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_setting"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <View
+                            android:id="@+id/viewColorPreviewAnalogSecond"
+                            android:layout_width="@dimen/width_color_preview"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimary" />
+                        <Space
+                            android:layout_width="@dimen/space_color_preview"
+                            android:layout_height="match_parent" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/checkbox_text_color"
+                            android:duplicateParentState="true"
+                            android:text="@string/seconds_hand" />
+                    </LinearLayout>
+                </LinearLayout>
 
                 <CheckBox
                     android:id="@+id/checkBoxOwnImageAnalog"

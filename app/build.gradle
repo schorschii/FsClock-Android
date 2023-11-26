@@ -25,6 +25,9 @@ android {
     }
     flavorDimensions "appstore"
     productFlavors {
+        standalone {
+            dimension "appstore"
+        }
         google {
             dimension "appstore"
         }
@@ -42,7 +45,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.android.billingclient:billing:5.0.0'
+    implementation 'com.android.billingclient:billing:5.0.0' // TODO: googleImplementation to save space in standalone build
     huaweiImplementation 'com.huawei.hms:iap:4.0.4.301'
     amazonImplementation 'com.amazon.device:amazon-appstore-sdk:3.0.3'
 }
