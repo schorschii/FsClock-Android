@@ -79,4 +79,6 @@
     <string name="choose_color">Choose color…</string>
     <string name="use_custom_color">Use Custom Color</string>
     <string name="apply_for_all">Apply for all</string>
+    <string name="buy_a_code">Buy a code…</string>
+    <string name="unlock_code">Unlock Code</string>
 </resources>

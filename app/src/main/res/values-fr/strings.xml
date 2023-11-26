@@ -70,4 +70,6 @@
     <string name="choose_color">Choisir la couleur…</string>
     <string name="use_custom_color">Utilisez votre propre couleur</string>
     <string name="apply_for_all">Postuler pour tous</string>
+    <string name="buy_a_code">Acheter un code…</string>
+    <string name="unlock_code">Code de dévérouillage</string>
 </resources>

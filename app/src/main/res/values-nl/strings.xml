@@ -71,4 +71,6 @@
   <string name="choose_color">Kies een kleur…</string>
   <string name="use_custom_color">Gebruik je eigen kleur</string>
   <string name="apply_for_all">Solliciteer voor iedereen</string>
+  <string name="buy_a_code">Koop een code…</string>
+  <string name="unlock_code">Ontgrendelcode</string>
 </resources>

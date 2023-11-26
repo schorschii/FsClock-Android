@@ -70,4 +70,6 @@
     <string name="choose_color">Выберите цвет…</string>
     <string name="use_custom_color">Используйте свой собственный цвет</string>
     <string name="apply_for_all">Подать заявку на все</string>
+    <string name="buy_a_code">Купите код…</string>
+    <string name="unlock_code">Код разблокировки</string>
 </resources>

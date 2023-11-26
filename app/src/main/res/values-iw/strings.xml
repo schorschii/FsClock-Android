@@ -71,4 +71,6 @@
     <string name="choose_color">בחרי צבע…</string>
     <string name="use_custom_color">השתמש בצבע משלך</string>
     <string name="apply_for_all">הגש בקשה על כולם</string>
+    <string name="buy_a_code">קנה קוד…</string>
+    <string name="unlock_code">קוד פתיחה</string>
 </resources>

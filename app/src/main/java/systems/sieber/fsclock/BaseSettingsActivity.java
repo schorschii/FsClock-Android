@@ -522,6 +522,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    // TODO: better image selection with a spinner beside each color selector
     public void onClickChooseClockFace(View v) {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -695,7 +696,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
     public void onClickMasterplan(View v) {
         openBrowser(URL_MASTERPLAN);
     }
-    private void openBrowser(String url) {
+    void openBrowser(String url) {
         try {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(browserIntent);
