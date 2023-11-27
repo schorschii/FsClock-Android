@@ -34,7 +34,6 @@
 
             <SeekBar
                 android:id="@+id/seekBarRed"
-                android:background="@drawable/ripple_bg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_row="0"
@@ -51,7 +50,6 @@
 
             <SeekBar
                 android:id="@+id/seekBarGreen"
-                android:background="@drawable/ripple_bg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_row="1"
@@ -68,7 +66,6 @@
 
             <SeekBar
                 android:id="@+id/seekBarBlue"
-                android:background="@drawable/ripple_bg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_row="2"

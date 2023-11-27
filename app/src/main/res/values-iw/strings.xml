@@ -35,10 +35,10 @@
     <string name="general">כללי</string>
     <string name="keep_screen_on">השאר מסך דלוק</string>
     <string name="use_own_images">השתמש בתמונות מותאמות אישית</string>
-    <string name="clock_face">פני שעון…</string>
-    <string name="hour_hand">מחוג השעות…</string>
-    <string name="minute_hand">מחוג דקות…</string>
-    <string name="seconds_hand">יד שניות…</string>
+    <string name="clock_face_color">צבע פני השעון…</string>
+    <string name="hour_hand_color">צבע יד שעה…</string>
+    <string name="minute_hand_color">צבע יד דקות…</string>
+    <string name="seconds_hand_color">צבע יד שניות…</string>
     <string name="own_images_note">התמונות צריכות להיות מרובעות (אותו רוחב וגובה) והרוחב והגובה לא יהיו גדולים מ-1000 פיקסלים.</string>
     <string name="choose_own_background_image">בחר תמונת רקע מותאמת אישית…</string>
     <string name="use_own_image">השתמש בתמונה מותאמת אישית</string>
@@ -73,4 +73,6 @@
     <string name="apply_for_all">הגש בקשה על כולם</string>
     <string name="buy_a_code">קנה קוד…</string>
     <string name="unlock_code">קוד פתיחה</string>
+    <string name="default_design">עיצוב ברירת מחדל</string>
+    <string name="custom_image">תמונה מותאמת אישית…</string>
 </resources>

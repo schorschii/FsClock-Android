@@ -2,4 +2,5 @@
 <resources>
     <color name="colorSettingsCheckBoxes">#fff</color>
     <color name="colorBackground">#181818</color> <!-- original: #303030 -->
+    <color name="colorBackgroundSecondary">#303030</color>
 </resources>

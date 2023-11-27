@@ -1,23 +1,23 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight">
-        <!-- Customize your theme here. -->
+    <!-- base application theme -->
+    <style name="BaseAppTheme" parent="Theme.AppCompat.DayNight">
+        <!-- app colors -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/colorBackground</item>
 
-        <!-- custom checkbox style to improve visibility on special (TV) devices -->
-        <item name="android:checkboxStyle">@style/MyCheckBoxStyle</item>
-        <!-- <item name="android:seekBarStyle">@style/MyCheckBoxStyle</item>
-            ... this should set the custom ripple for all seekbars but it's not working,
-            I now set the background manually on each seekbar ... pull requests welcome :) -->
+        <!-- custom widget styles to improve visibility on special (TV) devices -->
+        <item name="checkboxStyle">@style/MyCheckBoxStyle</item>
+        <item name="seekBarStyle">@style/MySeekBarStyle</item>
+        <item name="spinnerStyle">@style/MySpinnerStyle</item>
 
-        <!-- No Action Bar -->
+        <!-- no action bar -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="AppTheme" parent="BaseAppTheme" />
 
     <style name="MyCheckBoxStyle" parent="Widget.AppCompat.CompoundButton.CheckBox">
         <!-- on Amazon Fire TV 4K, CheckBox label text is displayed in light gray on white, almost unreadable, so we set it manually to black -->
@@ -26,11 +26,26 @@
         <item name="android:background">@drawable/ripple_bg</item>
     </style>
 
+    <style name="MySeekBarStyle" parent="Widget.AppCompat.SeekBar">
+        <!-- increase visibility of the ripple (the highlight circle which appears when focusing the seekbar via (dpad) keys) -->
+        <item name="android:background">@drawable/ripple_bg</item>
+    </style>
+
+    <style name="MySpinnerStyle" parent="Widget.AppCompat.Spinner">
+        <!-- hide the default drop down arrow -->
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:paddingEnd">25dp</item>
+        <!-- increase the contrast of the dropdown menu to the activity background in dark mode by setting a custom background color -->
+        <item name="android:popupBackground">@color/colorBackgroundSecondary</item>
+    </style>
+
     <style name="Widget.AppCompat.Button.Colored" parent="@style/ThemeOverlay.AppCompat.DayNight">
+        <!-- force white text on colored buttons -->
         <item name="android:textColor">@color/color_button_text</item>
         <item name="backgroundTint">@color/color_button_background</item>
     </style>
 
+    <!-- settings container width: match parent but only until a max size (better UX for TVs) -->
     <style name="width_match_parent_max_200">
         <item name="android:layout_width">match_parent</item>
     </style>

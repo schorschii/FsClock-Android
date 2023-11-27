@@ -34,10 +34,10 @@
     <string name="general">Общий</string>
     <string name="keep_screen_on">Оставьте экран включенным</string>
     <string name="use_own_images">Использовать собственные изображения</string>
-    <string name="clock_face">Циферблат…</string>
-    <string name="hour_hand">Часовая стрелка…</string>
-    <string name="minute_hand">Минутная стрелка…</string>
-    <string name="seconds_hand">Секундная стрелка…</string>
+    <string name="clock_face_color">Цвет циферблата часов…</string>
+    <string name="hour_hand_color">Цвет часовой стрелки…</string>
+    <string name="minute_hand_color">Цвет минутной стрелки…</string>
+    <string name="seconds_hand_color">Цвет секундной стрелки…</string>
     <string name="own_images_note">Изображения должны быть квадратными (одинаковой ширины и высоты), а ширина и высота не должны превышать 1000 пикселей.</string>
     <string name="choose_own_background_image">Выбрать пользовательское фоновое изображение…</string>
     <string name="use_own_image">Использовать настраиваемое изображение</string>
@@ -72,4 +72,6 @@
     <string name="apply_for_all">Подать заявку на все</string>
     <string name="buy_a_code">Купите код…</string>
     <string name="unlock_code">Код разблокировки</string>
+    <string name="default_design">Дизайн по умолчанию</string>
+    <string name="custom_image">Пользовательское изображение…</string>
 </resources>

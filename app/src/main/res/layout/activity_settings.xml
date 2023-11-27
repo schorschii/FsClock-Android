@@ -149,8 +149,23 @@
                             android:layout_weight="1"
                             android:textColor="@color/checkbox_text_color"
                             android:duplicateParentState="true"
-                            android:text="@string/clock_face" />
+                            android:text="@string/clock_face_color" />
                     </LinearLayout>
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="30dp"
+                            android:paddingEnd="2dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:src="@drawable/spinner_arrow" />
+                        <Spinner
+                            android:id="@+id/spinnerDesignAnalogFace"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </FrameLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -181,8 +196,23 @@
                             android:layout_weight="1"
                             android:textColor="@color/checkbox_text_color"
                             android:duplicateParentState="true"
-                            android:text="@string/hour_hand" />
+                            android:text="@string/hour_hand_color" />
                     </LinearLayout>
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="30dp"
+                            android:paddingEnd="2dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:src="@drawable/spinner_arrow" />
+                        <Spinner
+                            android:id="@+id/spinnerDesignAnalogHours"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </FrameLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -213,8 +243,23 @@
                             android:layout_weight="1"
                             android:textColor="@color/checkbox_text_color"
                             android:duplicateParentState="true"
-                            android:text="@string/minute_hand" />
+                            android:text="@string/minute_hand_color" />
                     </LinearLayout>
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="30dp"
+                            android:paddingEnd="2dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:src="@drawable/spinner_arrow" />
+                        <Spinner
+                            android:id="@+id/spinnerDesignAnalogMinutes"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </FrameLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -245,52 +290,23 @@
                             android:layout_weight="1"
                             android:textColor="@color/checkbox_text_color"
                             android:duplicateParentState="true"
-                            android:text="@string/seconds_hand" />
+                            android:text="@string/seconds_hand_color" />
                     </LinearLayout>
-                </LinearLayout>
-
-                <CheckBox
-                    android:id="@+id/checkBoxOwnImageAnalog"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/use_own_images" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textSize="11sp"
-                    android:text="@string/own_images_note"/>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <Button
-                        android:id="@+id/buttonChooseClockFace"
-                        android:layout_weight="1"
+                    <FrameLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:onClick="onClickChooseClockFace"
-                        android:text="@string/clock_face" />
-                    <Button
-                        android:id="@+id/buttonChooseHoursHand"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:onClick="onClickChooseHoursHand"
-                        android:text="@string/hour_hand" />
-                    <Button
-                        android:id="@+id/buttonChooseMinutesHand"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:onClick="onClickChooseMinutesHand"
-                        android:text="@string/minute_hand" />
-                    <Button
-                        android:id="@+id/buttonChooseSecondsHand"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:onClick="onClickChooseSecondsHand"
-                        android:text="@string/seconds_hand" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="30dp"
+                            android:paddingEnd="2dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:src="@drawable/spinner_arrow" />
+                        <Spinner
+                            android:id="@+id/spinnerDesignAnalogSeconds"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </FrameLayout>
                 </LinearLayout>
 
                 <Space
@@ -364,6 +380,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_setting"
                     android:text="@string/dseg_font_note"
                     android:textSize="11sp" />
 

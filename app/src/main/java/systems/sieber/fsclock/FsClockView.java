@@ -326,17 +326,17 @@ public class FsClockView extends FrameLayout {
         mBatteryImage.setColorFilter(colorDigital, PorterDuff.Mode.SRC_ATOP);
 
         // init custom analog color
-        if(mSharedPref.getBoolean("own-color-analog-clock-face", true)) {
+        if(mSharedPref.getBoolean("own-color-analog-clock-face", false)) {
             mClockBackgroundImage.setColorFilter(mSharedPref.getInt("color-analog-face", 0xffffffff), PorterDuff.Mode.SRC_ATOP);
         } else {
             mClockBackgroundImage.clearColorFilter();
         }
-        if(mSharedPref.getBoolean("own-color-analog-hours", true)) {
+        if(mSharedPref.getBoolean("own-color-analog-hours", false)) {
             mHoursHand.setColorFilter(mSharedPref.getInt("color-analog-hours", 0xffffffff), PorterDuff.Mode.SRC_ATOP);
         } else {
             mHoursHand.clearColorFilter();
         }
-        if(mSharedPref.getBoolean("own-color-analog-minutes", true)) {
+        if(mSharedPref.getBoolean("own-color-analog-minutes", false)) {
             mMinutesHand.setColorFilter(mSharedPref.getInt("color-analog-minutes", 0xffffffff), PorterDuff.Mode.SRC_ATOP);
         } else {
             mMinutesHand.clearColorFilter();
@@ -368,45 +368,44 @@ public class FsClockView extends FrameLayout {
         mHoursHand.setImageResource(R.drawable.ic_h);
         mMinutesHand.setImageResource(R.drawable.ic_m);
         mSecondsHand.setImageResource(R.drawable.ic_s);
-        if(mSharedPref.getBoolean("own-image-analog", false)) {
-            File img = SettingsActivity.getStorage(getContext(), SettingsActivity.FILENAME_CLOCK_FACE);
-            if(img.exists()) {
-                try {
-                    Bitmap myBitmap = BitmapFactory.decodeFile(img.getAbsolutePath());
-                    mClockBackgroundImage.setImageBitmap(myBitmap);
-                } catch(Exception ignored) {
-                    Toast.makeText(getContext(), "Image corrupted or too large", Toast.LENGTH_SHORT).show();
-                }
-            }
 
-            img = SettingsActivity.getStorage(getContext(), SettingsActivity.FILENAME_HOURS_HAND);
-            if(img.exists()) {
-                try {
-                    Bitmap myBitmap = BitmapFactory.decodeFile(img.getAbsolutePath());
-                    mHoursHand.setImageBitmap(myBitmap);
-                } catch(Exception ignored) {
-                    Toast.makeText(getContext(), "Image corrupted or too large", Toast.LENGTH_SHORT).show();
-                }
+        File img = SettingsActivity.getStorage(getContext(), SettingsActivity.FILENAME_CLOCK_FACE);
+        if (img.exists()) {
+            try {
+                Bitmap myBitmap = BitmapFactory.decodeFile(img.getAbsolutePath());
+                mClockBackgroundImage.setImageBitmap(myBitmap);
+            } catch (Exception ignored) {
+                Toast.makeText(getContext(), "Image corrupted or too large", Toast.LENGTH_SHORT).show();
             }
+        }
 
-            img = SettingsActivity.getStorage(getContext(), SettingsActivity.FILENAME_MINUTES_HAND);
-            if(img.exists()) {
-                try {
-                    Bitmap myBitmap = BitmapFactory.decodeFile(img.getAbsolutePath());
-                    mMinutesHand.setImageBitmap(myBitmap);
-                } catch(Exception ignored) {
-                    Toast.makeText(getContext(), "Image corrupted or too large", Toast.LENGTH_SHORT).show();
-                }
+        img = SettingsActivity.getStorage(getContext(), SettingsActivity.FILENAME_HOURS_HAND);
+        if (img.exists()) {
+            try {
+                Bitmap myBitmap = BitmapFactory.decodeFile(img.getAbsolutePath());
+                mHoursHand.setImageBitmap(myBitmap);
+            } catch (Exception ignored) {
+                Toast.makeText(getContext(), "Image corrupted or too large", Toast.LENGTH_SHORT).show();
             }
+        }
 
-            img = SettingsActivity.getStorage(getContext(), SettingsActivity.FILENAME_SECONDS_HAND);
-            if(img.exists()) {
-                try {
-                    Bitmap myBitmap = BitmapFactory.decodeFile(img.getAbsolutePath());
-                    mSecondsHand.setImageBitmap(myBitmap);
-                } catch(Exception ignored) {
-                    Toast.makeText(getContext(), "Image corrupted or too large", Toast.LENGTH_SHORT).show();
-                }
+        img = SettingsActivity.getStorage(getContext(), SettingsActivity.FILENAME_MINUTES_HAND);
+        if (img.exists()) {
+            try {
+                Bitmap myBitmap = BitmapFactory.decodeFile(img.getAbsolutePath());
+                mMinutesHand.setImageBitmap(myBitmap);
+            } catch (Exception ignored) {
+                Toast.makeText(getContext(), "Image corrupted or too large", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        img = SettingsActivity.getStorage(getContext(), SettingsActivity.FILENAME_SECONDS_HAND);
+        if (img.exists()) {
+            try {
+                Bitmap myBitmap = BitmapFactory.decodeFile(img.getAbsolutePath());
+                mSecondsHand.setImageBitmap(myBitmap);
+            } catch (Exception ignored) {
+                Toast.makeText(getContext(), "Image corrupted or too large", Toast.LENGTH_SHORT).show();
             }
         }
     }

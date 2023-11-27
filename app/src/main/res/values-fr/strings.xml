@@ -34,10 +34,10 @@
     <string name="general">G&#233;n&#233;ral</string>
     <string name="keep_screen_on">Gardez l\'&#233;cran allum&#233;</string>
     <string name="use_own_images">Utiliser des images personnalis&#233;es</string>
-    <string name="clock_face">Cadran d\'horloge&#8230;</string>
-    <string name="hour_hand">Petite aiguille&#8230;</string>
-    <string name="minute_hand">Grande aiguille&#8230;</string>
-    <string name="seconds_hand">Aiguille des secondes&#8230;</string>
+    <string name="clock_face_color">Couleur du cadran de l\'horloge…</string>
+    <string name="hour_hand_color">Couleur de l\'aiguille des heures…</string>
+    <string name="minute_hand_color">Couleur de l\'aiguille des minutes…</string>
+    <string name="seconds_hand_color">Couleur de l\'aiguille des secondes…</string>
     <string name="own_images_note">Les images doivent &#234;tre carr&#233;es (m&#234;me largeur et hauteur) et la largeur et la hauteur ne doivent pas d&#233;passer 1000px.</string>
     <string name="choose_own_background_image">Choisissez une image d\'arri&#232;re-plan personnalis&#233;e&#8230;</string>
     <string name="use_own_image">Utiliser une image personnalis&#233;e</string>
@@ -72,4 +72,6 @@
     <string name="apply_for_all">Postuler pour tous</string>
     <string name="buy_a_code">Acheter un code…</string>
     <string name="unlock_code">Code de dévérouillage</string>
+    <string name="default_design">Conception par défaut</string>
+    <string name="custom_image">Image personnalisée…</string>
 </resources>

@@ -22,6 +22,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -29,7 +31,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -68,11 +72,10 @@ public class BaseSettingsActivity extends AppCompatActivity {
     CheckBox mCheckBoxShowBatteryInfoWhenCharging;
     CheckBox mCheckBoxAnalogClockShow;
     CheckBox mCheckBoxAnalogClockShowSeconds;
-    CheckBox mCheckBoxAnalogClockOwnImage;
-    Button mButtonChooseClockFace;
-    Button mButtonChooseHoursHand;
-    Button mButtonChooseMinutesHand;
-    Button mButtonChooseSecondsHand;
+    Spinner mSpinnerDesignAnalogFace;
+    Spinner mSpinnerDesignAnalogHours;
+    Spinner mSpinnerDesignAnalogMinutes;
+    Spinner mSpinnerDesignAnalogSeconds;
     CheckBox mCheckBoxDigitalClockShow;
     CheckBox mCheckBoxDateShow;
     CheckBox mCheckBoxDigitalClockShowSeconds;
@@ -145,11 +148,10 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxShowBatteryInfoWhenCharging = findViewById(R.id.checkBoxShowBatteryInfoWhenCharging);
         mCheckBoxAnalogClockShow = findViewById(R.id.checkBoxShowAnalogClock);
         mCheckBoxAnalogClockShowSeconds = findViewById(R.id.checkBoxSecondsAnalog);
-        mCheckBoxAnalogClockOwnImage = findViewById(R.id.checkBoxOwnImageAnalog);
-        mButtonChooseClockFace = findViewById(R.id.buttonChooseClockFace);
-        mButtonChooseHoursHand = findViewById(R.id.buttonChooseHoursHand);
-        mButtonChooseMinutesHand = findViewById(R.id.buttonChooseMinutesHand);
-        mButtonChooseSecondsHand = findViewById(R.id.buttonChooseSecondsHand);
+        mSpinnerDesignAnalogFace = findViewById(R.id.spinnerDesignAnalogFace);
+        mSpinnerDesignAnalogHours = findViewById(R.id.spinnerDesignAnalogHours);
+        mSpinnerDesignAnalogMinutes = findViewById(R.id.spinnerDesignAnalogMinutes);
+        mSpinnerDesignAnalogSeconds = findViewById(R.id.spinnerDesignAnalogSeconds);
         mCheckBoxDigitalClockShow = findViewById(R.id.checkBoxShowDigitalClock);
         mCheckBoxDateShow = findViewById(R.id.checkBoxShowDate);
         mCheckBoxDigitalClockShowSeconds = findViewById(R.id.checkBoxSecondsDigital);
@@ -177,11 +179,10 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxShowBatteryInfoWhenCharging.setChecked( mSharedPref.getBoolean("show-battery-info-when-charging", false) );
         mCheckBoxAnalogClockShow.setChecked( mSharedPref.getBoolean("show-analog", true) );
         mCheckBoxAnalogClockShowSeconds.setChecked( mSharedPref.getBoolean("show-seconds-analog", true) );
-        mCustomColorAnalogFace = mSharedPref.getBoolean("own-color-analog-clock-face", true);
-        mCustomColorAnalogHours = mSharedPref.getBoolean("own-color-analog-hours", true);
-        mCustomColorAnalogMinutes = mSharedPref.getBoolean("own-color-analog-minutes", true);
+        mCustomColorAnalogFace = mSharedPref.getBoolean("own-color-analog-clock-face", false);
+        mCustomColorAnalogHours = mSharedPref.getBoolean("own-color-analog-hours", false);
+        mCustomColorAnalogMinutes = mSharedPref.getBoolean("own-color-analog-minutes", false);
         mCustomColorAnalogSeconds = mSharedPref.getBoolean("own-color-analog-seconds", false);
-        mCheckBoxAnalogClockOwnImage.setChecked( mSharedPref.getBoolean("own-image-analog", false) );
         mCheckBoxDigitalClockShow.setChecked( mSharedPref.getBoolean("show-digital", true) );
         mCheckBoxDateShow.setChecked( mSharedPref.getBoolean("show-date", true) );
         mCheckBoxDigitalClockShowSeconds.setChecked( mSharedPref.getBoolean("show-seconds-digital", true) );
@@ -201,8 +202,9 @@ public class BaseSettingsActivity extends AppCompatActivity {
         }
         displayEvents();
 
-        // init color preview
+        // init UI elements
         initColorPreview();
+        initImageSpinner();
     }
 
     @Override
@@ -233,28 +235,22 @@ public class BaseSettingsActivity extends AppCompatActivity {
         if(resultCode != RESULT_OK) return;
 
         switch(requestCode) {
-            case(PICK_CLOCK_FACE_REQUEST) : {
-                processImage(getStorage(this, FILENAME_CLOCK_FACE), data);
+            case(PICK_CLOCK_FACE_REQUEST):
+                processImage(FILENAME_CLOCK_FACE, data);
                 break;
-            }
-            case(PICK_HOURS_HAND_REQUEST) : {
-                processImage(getStorage(this, FILENAME_HOURS_HAND), data);
+            case(PICK_HOURS_HAND_REQUEST):
+                processImage(FILENAME_HOURS_HAND, data);
                 break;
-            }
-            case(PICK_MINUTES_HAND_REQUEST) : {
-                processImage(getStorage(this, FILENAME_MINUTES_HAND), data);
+            case(PICK_MINUTES_HAND_REQUEST):
+                processImage(FILENAME_MINUTES_HAND, data);
                 break;
-            }
-            case(PICK_SECONDS_HAND_REQUEST) : {
-                processImage(getStorage(this, FILENAME_SECONDS_HAND), data);
+            case(PICK_SECONDS_HAND_REQUEST):
+                processImage(FILENAME_SECONDS_HAND, data);
                 break;
-            }
-            case(PICK_BACKGROUND_REQUEST) : {
-                processImage(getStorage(this, FILENAME_BACKGROUND_IMAGE), data);
+            case(PICK_BACKGROUND_REQUEST):
+                processImage(FILENAME_BACKGROUND_IMAGE, data);
                 break;
-            }
         }
-
     }
 
     protected void enableDisableAllSettings(boolean state) {
@@ -263,11 +259,10 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxShowBatteryInfoWhenCharging.setEnabled(state);
         mCheckBoxAnalogClockShow.setEnabled(state);
         mCheckBoxAnalogClockShowSeconds.setEnabled(state);
-        mCheckBoxAnalogClockOwnImage.setEnabled(state);
-        mButtonChooseClockFace.setEnabled(state);
-        mButtonChooseHoursHand.setEnabled(state);
-        mButtonChooseMinutesHand.setEnabled(state);
-        mButtonChooseSecondsHand.setEnabled(state);
+        mSpinnerDesignAnalogFace.setEnabled(state);
+        mSpinnerDesignAnalogHours.setEnabled(state);
+        mSpinnerDesignAnalogMinutes.setEnabled(state);
+        mSpinnerDesignAnalogSeconds.setEnabled(state);
         mCheckBoxDigitalClockShow.setEnabled(state);
         mCheckBoxDateShow.setEnabled(state);
         mCheckBoxDigitalClockShowSeconds.setEnabled(state);
@@ -283,6 +278,48 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mButtonNewEvent.setEnabled(state);
     }
 
+    private void initImageSpinner() {
+        String[] options = {
+                getString(R.string.default_design),
+                getString(R.string.custom_image)
+        };
+        ArrayAdapter dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, options);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        mSpinnerDesignAnalogFace.setAdapter(dataAdapter);
+        mSpinnerDesignAnalogFace.setSelection(existsImage(FILENAME_CLOCK_FACE) ? 1 : 0, false);
+        mSpinnerDesignAnalogHours.setAdapter(dataAdapter);
+        mSpinnerDesignAnalogHours.setSelection(existsImage(FILENAME_HOURS_HAND) ? 1 : 0, false);
+        mSpinnerDesignAnalogMinutes.setAdapter(dataAdapter);
+        mSpinnerDesignAnalogMinutes.setSelection(existsImage(FILENAME_MINUTES_HAND) ? 1 : 0, false);
+        mSpinnerDesignAnalogSeconds.setAdapter(dataAdapter);
+        mSpinnerDesignAnalogSeconds.setSelection(existsImage(FILENAME_SECONDS_HAND) ? 1 : 0, false);
+
+        AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(adapterView.getId() == mSpinnerDesignAnalogFace.getId()) {
+                    if(i == 0) removeImage(FILENAME_CLOCK_FACE);
+                    else chooseImage(PICK_CLOCK_FACE_REQUEST);
+                } else if(adapterView.getId() == mSpinnerDesignAnalogHours.getId()) {
+                    if(i == 0) removeImage(FILENAME_HOURS_HAND);
+                    else chooseImage(PICK_HOURS_HAND_REQUEST);
+                } else if(adapterView.getId() == mSpinnerDesignAnalogMinutes.getId()) {
+                    if(i == 0) removeImage(FILENAME_MINUTES_HAND);
+                    else chooseImage(PICK_MINUTES_HAND_REQUEST);
+                } else if(adapterView.getId() == mSpinnerDesignAnalogSeconds.getId()) {
+                    if(i == 0) removeImage(FILENAME_SECONDS_HAND);
+                    else chooseImage(PICK_SECONDS_HAND_REQUEST);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) { }
+        };
+        mSpinnerDesignAnalogFace.setOnItemSelectedListener(listener);
+        mSpinnerDesignAnalogHours.setOnItemSelectedListener(listener);
+        mSpinnerDesignAnalogMinutes.setOnItemSelectedListener(listener);
+        mSpinnerDesignAnalogSeconds.setOnItemSelectedListener(listener);
+    }
     private void initColorPreview() {
         // analog color
         updateColorPreview(mColorAnalogFace, mColorPreviewAnalogFace);
@@ -504,7 +541,6 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.putBoolean("own-color-analog-hours", mCustomColorAnalogHours);
         editor.putBoolean("own-color-analog-minutes", mCustomColorAnalogMinutes);
         editor.putBoolean("own-color-analog-seconds", mCustomColorAnalogSeconds);
-        editor.putBoolean("own-image-analog", mCheckBoxAnalogClockOwnImage.isChecked());
         editor.putBoolean("show-digital", mCheckBoxDigitalClockShow.isChecked());
         editor.putBoolean("show-date", mCheckBoxDateShow.isChecked());
         editor.putBoolean("show-seconds-analog", mCheckBoxAnalogClockShowSeconds.isChecked());
@@ -522,30 +558,12 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    // TODO: better image selection with a spinner beside each color selector
-    public void onClickChooseClockFace(View v) {
+    private void chooseImage(int requestId) {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_CLOCK_FACE_REQUEST);
-    }
-    public void onClickChooseHoursHand(View v) {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_HOURS_HAND_REQUEST);
-    }
-    public void onClickChooseMinutesHand(View v) {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_MINUTES_HAND_REQUEST);
-    }
-    public void onClickChooseSecondsHand(View v) {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_SECONDS_HAND_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, "Select Image"), requestId);
+        Toast.makeText(this, getString(R.string.own_images_note), Toast.LENGTH_LONG).show();
     }
     public void onClickChooseBackground(View v) {
         Intent intent = new Intent();
@@ -631,9 +649,10 @@ public class BaseSettingsActivity extends AppCompatActivity {
         });
     }
 
-    private void processImage(File fl, Intent data) {
+    private void processImage(String path, Intent data) {
         if(data == null || data.getData() == null) return;
         try {
+            File fl = getStorage(this, path);
             InputStream inputStream = this.getContentResolver().openInputStream(data.getData());
             byte[] targetArray = new byte[inputStream.available()];
             inputStream.read(targetArray);
@@ -643,6 +662,20 @@ public class BaseSettingsActivity extends AppCompatActivity {
             stream.close();
             scanFile(fl);
         } catch(Exception ignored) { }
+    }
+    private void removeImage(String path) {
+        try {
+            File fl = getStorage(this, path);
+            fl.delete();
+            scanFile(fl);
+        } catch(Exception ignored) { }
+    }
+    private boolean existsImage(String path) {
+        try {
+            File fl = getStorage(this, path);
+            return fl.exists();
+        } catch(Exception ignored) { }
+        return false;
     }
 
     private void scanFile(File f) {

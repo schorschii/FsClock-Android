@@ -34,10 +34,10 @@
     <string name="general">Allgemein</string>
     <string name="keep_screen_on">Bildschirm eingeschaltet lassen</string>
     <string name="use_own_images">Eigene Bilder verwenden</string>
-    <string name="clock_face">Zifferblatt…</string>
-    <string name="hour_hand">Stundenzeiger…</string>
-    <string name="minute_hand">Minutenzeiger…</string>
-    <string name="seconds_hand">Sekundenzeiger…</string>
+    <string name="clock_face_color">Zifferblatt-Farbe…</string>
+    <string name="hour_hand_color">Stundenzeiger-Farbe…</string>
+    <string name="minute_hand_color">Minutenzeiger-Farbe…</string>
+    <string name="seconds_hand_color">Sekundenzeiger-Farbe…</string>
     <string name="own_images_note">Eigene Bilder sollten quadratisch sein (gleiche Breite und Höhe) und die Höhe und Breite sollte nicht größer als 1000px sein.</string>
     <string name="choose_own_background_image">Eigenes Hintergrundbild wählen…</string>
     <string name="use_own_image">Eigenes Bild verwenden</string>
@@ -68,8 +68,10 @@
     <string name="huawei_store_not_avail">Huawei App Gallery nicht verfügbar</string>
     <string name="could_not_fetch_prices">Die aktuellen Preise für In-App-Einkäufe konnten nicht geladen werden.</string>
     <string name="choose_color">Farbe auswählen…</string>
-    <string name="use_custom_color">Eigene Farbe verwendenr</string>
+    <string name="use_custom_color">Eigene Farbe verwenden</string>
     <string name="apply_for_all">Für alle übernehmen</string>
     <string name="buy_a_code">Code kaufen…</string>
     <string name="unlock_code">Freischaltcode</string>
+    <string name="default_design">Standard-Design</string>
+    <string name="custom_image">Eigenes Bild…</string>
 </resources>

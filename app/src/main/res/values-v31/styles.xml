@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:colorBackground">@color/colorBackground</item>
+    <style name="AppTheme" parent="BaseAppTheme">
+        <!-- fix the splash screen icon by filling the background -->
         <item name="android:windowSplashScreenIconBackgroundColor">@color/ic_launcher_background</item>
-
-        <!-- custom checkbox style to improve visibility on special (TV) devices -->
-        <item name="android:checkboxStyle">@style/MyCheckBoxStyle</item>
-        <!-- <item name="android:seekBarStyle">@style/MyCheckBoxStyle</item>
-            ... this should set the custom ripple for all seekbars but it's not working,
-            I now set the background manually on each seekbar ... pull requests welcome :) -->
-
-        <!-- No Action Bar -->
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 </resources>

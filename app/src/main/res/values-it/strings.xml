@@ -34,10 +34,10 @@
     <string name="general">Generale</string>
     <string name="keep_screen_on">Tieni lo schermo acceso</string>
     <string name="use_own_images">Usa immagini personalizzate</string>
-    <string name="clock_face">Quadrante&#8230;</string>
-    <string name="hour_hand">Lancetta delle ore&#8230;</string>
-    <string name="minute_hand">Mano minuta&#8230;</string>
-    <string name="seconds_hand">Lancetta dei secondi&#8230;</string>
+    <string name="clock_face_color">Colore del quadrante dell\'orologio…</string>
+    <string name="hour_hand_color">Colore lancetta delle ore…</string>
+    <string name="minute_hand_color">Colore lancetta dei minuti…</string>
+    <string name="seconds_hand_color">Colore lancetta dei secondi…</string>
     <string name="own_images_note">Le immagini devono essere quadrate (stessa larghezza e altezza) e larghezza e altezza non devono essere maggiori di 1000 px.</string>
     <string name="choose_own_background_image">Scegli immagine di sfondo personalizzata&#8230;</string>
     <string name="use_own_image">Usa immagine personalizzata</string>
@@ -72,4 +72,6 @@
     <string name="apply_for_all">Candidati per tutti</string>
     <string name="buy_a_code">Acquista un codice…</string>
     <string name="unlock_code">Codice di sblocco</string>
+    <string name="default_design">Progettazione predefinita</string>
+    <string name="custom_image">Immagine personalizzata…</string>
 </resources>

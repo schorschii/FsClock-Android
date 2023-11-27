@@ -43,10 +43,10 @@
     <string name="general">General</string>
     <string name="keep_screen_on">Keep Screen On</string>
     <string name="use_own_images">Use Custom Images</string>
-    <string name="clock_face">Clock Face…</string>
-    <string name="hour_hand">Hour Hand…</string>
-    <string name="minute_hand">Minute Hand…</string>
-    <string name="seconds_hand">Seconds Hand…</string>
+    <string name="clock_face_color">Clock Face Color…</string>
+    <string name="hour_hand_color">Hour Hand Color…</string>
+    <string name="minute_hand_color">Minute Hand Color…</string>
+    <string name="seconds_hand_color">Seconds Hand Color…</string>
     <string name="own_images_note">Custom images should be square (same width and height) and width and height should not be larger than 1000px.</string>
     <string name="choose_own_background_image">Choose Custom Background Image…</string>
     <string name="use_own_image">Use Custom Image</string>
@@ -81,4 +81,6 @@
     <string name="apply_for_all">Apply for all</string>
     <string name="buy_a_code">Buy a code…</string>
     <string name="unlock_code">Unlock Code</string>
+    <string name="default_design">Default Design</string>
+    <string name="custom_image">Custom Image…</string>
 </resources>

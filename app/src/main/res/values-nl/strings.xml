@@ -34,10 +34,10 @@
   <string name="general">Algemeen</string>
   <string name="keep_screen_on">Houd het scherm ingeschakeld</string>
   <string name="use_own_images">Gebruik aangepaste afbeeldingen</string>
-  <string name="clock_face">Wijzerplaat…</string>
-  <string name="hour_hand">Uurwijzer…</string>
-  <string name="minute_hand">Minutenwijzer…</string>
-  <string name="seconds_hand">Secondewijzer…</string>
+  <string name="clock_face_color">Kleur wijzerplaat…</string>
+  <string name="hour_hand_color">Uurwijzerkleur…</string>
+  <string name="minute_hand_color">Minutenwijzerkleur…</string>
+  <string name="seconds_hand_color">Secondewijzerkleur…</string>
   <string name="own_images_note">Afbeeldingen moeten vierkant zijn (dezelfde breedte en hoogte) en de breedte en hoogte mogen niet groter zijn dan 1000 px.</string>
   <string name="choose_own_background_image">Kies een aangepaste achtergrondafbeelding…</string>
   <string name="use_own_image">Gebruik aangepaste afbeelding</string>
@@ -72,4 +72,6 @@
   <string name="apply_for_all">Toepassen voor iedereen</string>
   <string name="buy_a_code">Koop een code…</string>
   <string name="unlock_code">Ontgrendelcode</string>
+  <string name="default_design">Standaardontwerp</string>
+  <string name="custom_image">Aangepaste afbeelding…</string>
 </resources>
