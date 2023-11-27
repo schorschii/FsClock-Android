@@ -1,7 +1,6 @@
 package systems.sieber.fsclock;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 
@@ -17,7 +16,7 @@ import com.android.billingclient.api.QueryPurchasesParams;
 
 import java.util.List;
 
-class FeatureCheck {
+class FeatureCheck extends BaseFeatureCheck {
 
     /*  It is not allowed to modify this file in order to bypass license checks.
         I made this app open source hoping people will learn something from this project.
@@ -29,11 +28,9 @@ class FeatureCheck {
     */
 
     private BillingClient mBillingClient;
-    private Context mContext;
-    private SharedPreferences mSettings;
 
     FeatureCheck(Context c) {
-        mContext = c;
+        super(c);
     }
 
     private featureCheckReadyListener listener = null;
@@ -45,11 +42,9 @@ class FeatureCheck {
     }
 
     void init() {
-        // get settings (faster than google play - after purchase done, billing client needs minutes to realize the purchase)
-        mSettings = mContext.getSharedPreferences(SettingsActivity.SHARED_PREF_DOMAIN, 0);
-        unlockedSettings = mSettings.getBoolean("purchased-settings", false);
+        super.init();
 
-        // init billing client - get purchases later for other devices
+        // init billing client - get purchases done on other devices
         mBillingClient = BillingClient.newBuilder(mContext)
                 .enablePendingPurchases()
                 .setListener(new PurchasesUpdatedListener() {
@@ -157,22 +152,6 @@ class FeatureCheck {
                     listener.featureCheckReady(false);
                 }
             }
-        }
-    }
-
-    boolean isReady = false;
-
-    boolean unlockedSettings = false;
-
-    @SuppressWarnings("SwitchStatementWithTooFewBranches")
-    void unlockPurchase(String sku) {
-        SharedPreferences.Editor editor = mSettings.edit();
-        switch(sku) {
-            case "settings":
-                unlockedSettings = true;
-                editor.putBoolean("purchased-settings", true);
-                editor.apply();
-                break;
         }
     }
 

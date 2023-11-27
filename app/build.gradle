@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.huawei.agconnect'
 
 android {
-    compileSdkVersion 34
     defaultConfig {
         applicationId "systems.sieber.fsclock"
         minSdkVersion 17
         targetSdkVersion 34
+        compileSdk 34
         versionCode 25
         versionName "1.8.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -45,7 +45,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.android.billingclient:billing:5.0.0' // TODO: googleImplementation to save space in standalone build
+    googleImplementation 'com.android.billingclient:billing:5.0.0'
     huaweiImplementation 'com.huawei.hms:iap:4.0.4.301'
     amazonImplementation 'com.amazon.device:amazon-appstore-sdk:3.0.3'
 }
