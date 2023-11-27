@@ -498,7 +498,7 @@ public class FsClockView extends FrameLayout {
             end.set(Calendar.SECOND, 0);
             end.add(Calendar.DATE, 1);
 
-            String selection = "((dtstart >= "+start.getTimeInMillis()+") AND (dtend <= "+end.getTimeInMillis()+"))";
+            String selection = "((dtstart >= "+start.getTimeInMillis()+") AND (dtstart <= "+end.getTimeInMillis()+"))";
             //Log.e("EVENT", sdfLog.format(start.getTime()));
             //Log.e("EVENT", sdfLog.format(end.getTime()));
 
