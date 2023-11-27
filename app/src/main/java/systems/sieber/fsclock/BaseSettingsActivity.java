@@ -232,23 +232,40 @@ public class BaseSettingsActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode != RESULT_OK) return;
 
         switch(requestCode) {
             case(PICK_CLOCK_FACE_REQUEST):
-                processImage(FILENAME_CLOCK_FACE, data);
+                if(resultCode == RESULT_OK) {
+                    processImage(FILENAME_CLOCK_FACE, data);
+                } else {
+                    mSpinnerDesignAnalogFace.setSelection(existsImage(FILENAME_CLOCK_FACE) ? 1 : 0, false);
+                }
                 break;
             case(PICK_HOURS_HAND_REQUEST):
-                processImage(FILENAME_HOURS_HAND, data);
+                if(resultCode == RESULT_OK) {
+                    processImage(FILENAME_HOURS_HAND, data);
+                } else {
+                    mSpinnerDesignAnalogHours.setSelection(existsImage(FILENAME_HOURS_HAND) ? 1 : 0, false);
+                }
                 break;
             case(PICK_MINUTES_HAND_REQUEST):
-                processImage(FILENAME_MINUTES_HAND, data);
+                if(resultCode == RESULT_OK) {
+                    processImage(FILENAME_MINUTES_HAND, data);
+                } else {
+                    mSpinnerDesignAnalogMinutes.setSelection(existsImage(FILENAME_MINUTES_HAND) ? 1 : 0, false);
+                }
                 break;
             case(PICK_SECONDS_HAND_REQUEST):
-                processImage(FILENAME_SECONDS_HAND, data);
+                if(resultCode == RESULT_OK) {
+                    processImage(FILENAME_SECONDS_HAND, data);
+                } else {
+                    mSpinnerDesignAnalogSeconds.setSelection(existsImage(FILENAME_SECONDS_HAND) ? 1 : 0, false);
+                }
                 break;
             case(PICK_BACKGROUND_REQUEST):
-                processImage(FILENAME_BACKGROUND_IMAGE, data);
+                if(resultCode == RESULT_OK) {
+                    processImage(FILENAME_BACKGROUND_IMAGE, data);
+                }
                 break;
         }
     }
