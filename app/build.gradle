@@ -7,7 +7,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 34
         compileSdk 34
-        versionCode 26
+        versionCode 27
         versionName "1.9.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
@@ -45,7 +45,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.code.gson:gson:2.8.6'
-    googleImplementation 'com.android.billingclient:billing:5.0.0'
+    googleImplementation 'com.android.billingclient:billing:5.2.1'
     huaweiImplementation 'com.huawei.hms:iap:4.0.4.301'
     amazonImplementation 'com.amazon.device:amazon-appstore-sdk:3.0.3'
 }
