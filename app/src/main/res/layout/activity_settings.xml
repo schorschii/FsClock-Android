@@ -171,7 +171,7 @@
                             android:layout_height="30dp"
                             android:paddingEnd="2dp"
                             android:layout_gravity="center_vertical|end"
-                            android:src="@drawable/spinner_arrow" />
+                            app:srcCompat="@drawable/spinner_arrow" />
                         <Spinner
                             android:id="@+id/spinnerDesignAnalogFace"
                             android:layout_width="match_parent"
@@ -224,7 +224,7 @@
                             android:layout_height="30dp"
                             android:paddingEnd="2dp"
                             android:layout_gravity="center_vertical|end"
-                            android:src="@drawable/spinner_arrow" />
+                            app:srcCompat="@drawable/spinner_arrow" />
                         <Spinner
                             android:id="@+id/spinnerDesignAnalogHours"
                             android:layout_width="match_parent"
@@ -277,7 +277,7 @@
                             android:layout_height="30dp"
                             android:paddingEnd="2dp"
                             android:layout_gravity="center_vertical|end"
-                            android:src="@drawable/spinner_arrow" />
+                            app:srcCompat="@drawable/spinner_arrow" />
                         <Spinner
                             android:id="@+id/spinnerDesignAnalogMinutes"
                             android:layout_width="match_parent"
@@ -330,7 +330,7 @@
                             android:layout_height="30dp"
                             android:paddingEnd="2dp"
                             android:layout_gravity="center_vertical|end"
-                            android:src="@drawable/spinner_arrow" />
+                            app:srcCompat="@drawable/spinner_arrow" />
                         <Spinner
                             android:id="@+id/spinnerDesignAnalogSeconds"
                             android:layout_width="match_parent"
@@ -486,7 +486,7 @@
                             android:layout_height="30dp"
                             android:paddingEnd="2dp"
                             android:layout_gravity="center_vertical|end"
-                            android:src="@drawable/spinner_arrow" />
+                            app:srcCompat="@drawable/spinner_arrow" />
                         <Spinner
                             android:id="@+id/spinnerDesignBack"
                             android:layout_width="match_parent"
