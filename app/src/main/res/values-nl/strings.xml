@@ -77,4 +77,5 @@
   <string name="custom_image_stretch">Aangepaste afbeelding (uitrekken)…</string>
   <string name="custom_image_zoom">Aangepaste afbeelding (zoom)…</string>
   <string name="no_image">Geen afbeelding</string>
+  <string name="force_landscape_view_only_when_started_manually">Liggend formaat forceren (alleen bij handmatig starten van de app)</string>
 </resources>

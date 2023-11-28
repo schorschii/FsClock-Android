@@ -68,6 +68,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
     CheckBox mCheckBoxKeepScreenOn;
     CheckBox mCheckBoxShowBatteryInfo;
     CheckBox mCheckBoxShowBatteryInfoWhenCharging;
+    CheckBox mCheckBoxForceLandscape;
     CheckBox mCheckBoxAnalogClockShow;
     CheckBox mCheckBoxAnalogClockShowSeconds;
     Spinner mSpinnerDesignAnalogFace;
@@ -144,6 +145,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxKeepScreenOn = findViewById(R.id.checkBoxKeepScreenOn);
         mCheckBoxShowBatteryInfo = findViewById(R.id.checkBoxShowBatteryInfo);
         mCheckBoxShowBatteryInfoWhenCharging = findViewById(R.id.checkBoxShowBatteryInfoWhenCharging);
+        mCheckBoxForceLandscape = findViewById(R.id.checkBoxForceLandscape);
         mCheckBoxAnalogClockShow = findViewById(R.id.checkBoxShowAnalogClock);
         mCheckBoxAnalogClockShowSeconds = findViewById(R.id.checkBoxSecondsAnalog);
         mSpinnerDesignAnalogFace = findViewById(R.id.spinnerDesignAnalogFace);
@@ -174,6 +176,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxKeepScreenOn.setChecked( mSharedPref.getBoolean("keep-screen-on", true) );
         mCheckBoxShowBatteryInfo.setChecked( mSharedPref.getBoolean("show-battery-info", true) );
         mCheckBoxShowBatteryInfoWhenCharging.setChecked( mSharedPref.getBoolean("show-battery-info-when-charging", false) );
+        mCheckBoxForceLandscape.setChecked( mSharedPref.getBoolean("force-landscape", false) );
         mCheckBoxAnalogClockShow.setChecked( mSharedPref.getBoolean("show-analog", true) );
         mCheckBoxAnalogClockShowSeconds.setChecked( mSharedPref.getBoolean("show-seconds-analog", true) );
         mCustomColorAnalogFace = mSharedPref.getBoolean("own-color-analog-clock-face", false);
@@ -565,6 +568,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.putBoolean("keep-screen-on", mCheckBoxKeepScreenOn.isChecked());
         editor.putBoolean("show-battery-info", mCheckBoxShowBatteryInfo.isChecked());
         editor.putBoolean("show-battery-info-when-charging", mCheckBoxShowBatteryInfoWhenCharging.isChecked());
+        editor.putBoolean("force-landscape", mCheckBoxForceLandscape.isChecked());
         editor.putBoolean("show-analog", mCheckBoxAnalogClockShow.isChecked());
         editor.putBoolean("own-color-analog-clock-face", mCustomColorAnalogFace);
         editor.putBoolean("own-color-analog-hours", mCustomColorAnalogHours);

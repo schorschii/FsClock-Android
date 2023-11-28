@@ -98,6 +98,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/show_battery_status_when_power_supply_is_plugged_in" />
+                <CheckBox
+                    android:id="@+id/checkBoxForceLandscape"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/force_landscape_view_only_when_started_manually" />
 
                 <Space
                     android:layout_width="match_parent"

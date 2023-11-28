@@ -77,4 +77,5 @@
     <string name="custom_image_stretch">Пользовательское изображение (Растянуть)…</string>
     <string name="custom_image_zoom">Пользовательское изображение (увеличение)…</string>
     <string name="no_image">Нет изображения</string>
+    <string name="force_landscape_view_only_when_started_manually">Принудительно использовать альбомный формат (только при запуске приложения вручную)</string>
 </resources>

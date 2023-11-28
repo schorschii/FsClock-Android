@@ -78,4 +78,5 @@
     <string name="custom_image_stretch">תמונה מותאמת אישית (מתיחה)…</string>
     <string name="custom_image_zoom">תמונה מותאמת אישית (זום)…</string>
     <string name="no_image">אין תמונה</string>
+    <string name="force_landscape_view_only_when_started_manually">לכפות פורמט לרוחב (רק בעת הפעלת האפליקציה ידנית)</string>
 </resources>

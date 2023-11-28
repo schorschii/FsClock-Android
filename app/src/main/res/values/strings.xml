@@ -86,4 +86,5 @@
     <string name="custom_image_stretch">Custom Image (Stretch)…</string>
     <string name="custom_image_zoom">Custom Image (Zoom)…</string>
     <string name="no_image">No Image</string>
+    <string name="force_landscape_view_only_when_started_manually">Force landscape view (only when started manually)</string>
 </resources>

@@ -77,4 +77,5 @@
     <string name="custom_image_stretch">Immagine personalizzata (allungata)…</string>
     <string name="custom_image_zoom">Immagine personalizzata (Zoom)…</string>
     <string name="no_image">Nessuna immagine</string>
+    <string name="force_landscape_view_only_when_started_manually">Forza il formato orizzontale (solo quando si avvia manualmente l\'app)</string>
 </resources>

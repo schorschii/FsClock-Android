@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -167,6 +168,13 @@ public class FullscreenActivity extends AppCompatActivity {
                 // show info
                 Toast.makeText(this, getString(R.string.tv_settings_note), Toast.LENGTH_LONG).show();
             }
+        }
+
+        // force landscape if requested
+        if(mSharedPref.getBoolean("force-landscape", false)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         }
 
         // enter fullscreen mode (again)
