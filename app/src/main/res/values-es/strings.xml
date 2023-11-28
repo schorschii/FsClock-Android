@@ -74,4 +74,7 @@
     <string name="unlock_code">Código de desbloqueo</string>
     <string name="default_design">Diseño predeterminado</string>
     <string name="custom_image">Imagen personalizada…</string>
+    <string name="custom_image_stretch">Imagen personalizada (estirada)…</string>
+    <string name="custom_image_zoom">Imagen personalizada (zoom)…</string>
+    <string name="no_image">Sin imagen</string>
 </resources>

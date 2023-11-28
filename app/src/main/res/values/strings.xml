@@ -83,4 +83,7 @@
     <string name="unlock_code">Unlock Code</string>
     <string name="default_design">Default Design</string>
     <string name="custom_image">Custom Image…</string>
+    <string name="custom_image_stretch">Custom Image (Stretch)…</string>
+    <string name="custom_image_zoom">Custom Image (Zoom)…</string>
+    <string name="no_image">No Image</string>
 </resources>

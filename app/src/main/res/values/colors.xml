@@ -7,4 +7,5 @@
     <color name="colorSettingsCheckBoxes">#222</color>
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorBackgroundSecondary">#F2F2F2</color>
+    <color name="colorPreviewBorder">#757575</color> <!-- should look like checkboxes -->
 </resources>

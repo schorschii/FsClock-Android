@@ -75,4 +75,7 @@
     <string name="unlock_code">קוד פתיחה</string>
     <string name="default_design">עיצוב ברירת מחדל</string>
     <string name="custom_image">תמונה מותאמת אישית…</string>
+    <string name="custom_image_stretch">תמונה מותאמת אישית (מתיחה)…</string>
+    <string name="custom_image_zoom">תמונה מותאמת אישית (זום)…</string>
+    <string name="no_image">אין תמונה</string>
 </resources>

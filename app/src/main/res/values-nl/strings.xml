@@ -74,4 +74,7 @@
   <string name="unlock_code">Ontgrendelcode</string>
   <string name="default_design">Standaardontwerp</string>
   <string name="custom_image">Aangepaste afbeelding…</string>
+  <string name="custom_image_stretch">Aangepaste afbeelding (uitrekken)…</string>
+  <string name="custom_image_zoom">Aangepaste afbeelding (zoom)…</string>
+  <string name="no_image">Geen afbeelding</string>
 </resources>

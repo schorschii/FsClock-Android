@@ -85,6 +85,21 @@ public class FsClockApp extends Application {
             editor.apply();
             Log.i("migrate", "own-color-analog-* MIGRATED");
         }
+        if(sharedPref.contains("own-image-back")) {
+            if(!sharedPref.getBoolean("own-image-back", false)) {
+                // delete image if it was disabled in old version
+                StorageControl sc = new StorageControl(this);
+                if(sc.existsImage(StorageControl.FILENAME_BACKGROUND_IMAGE)) {
+                    sc.removeImage(StorageControl.FILENAME_BACKGROUND_IMAGE);
+                    Log.i("migrate", "own-image-back DELETED OLD IMAGE");
+                }
+            }
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean("back-stretch", true); // keep the old stretch behavior on existing installations
+            editor.remove("own-image-back");
+            editor.apply();
+            Log.i("migrate", "own-image-back MIGRATED");
+        }
     }
 
 }

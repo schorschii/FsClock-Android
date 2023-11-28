@@ -74,4 +74,7 @@
     <string name="unlock_code">Code de dévérouillage</string>
     <string name="default_design">Conception par défaut</string>
     <string name="custom_image">Image personnalisée…</string>
+    <string name="custom_image_stretch">Image personnalisée (étirement)…</string>
+    <string name="custom_image_zoom">Image personnalisée (Zoom)…</string>
+    <string name="no_image">Pas d\'image</string>
 </resources>

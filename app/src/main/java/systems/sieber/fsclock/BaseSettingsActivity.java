@@ -43,9 +43,6 @@ import androidx.core.content.ContextCompat;
 
 import com.google.gson.Gson;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -60,6 +57,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
     static final int PICK_SECONDS_HAND_REQUEST = 4;
     static final int PICK_BACKGROUND_REQUEST = 5;
 
+    StorageControl mStorage = new StorageControl(this);
     Gson mGson = new Gson();
     ArrayList<Event> mEvents = new ArrayList<>();
     SharedPreferences mSharedPref;
@@ -102,8 +100,8 @@ public class BaseSettingsActivity extends AppCompatActivity {
     View mColorChangerBack;
     View mColorPreviewBack;
     int mColorBack;
-    CheckBox mCheckBoxBackgroundOwnImage;
-    Button mButtonChooseCustomBackground;
+    Spinner mSpinnerDesignBack;
+    boolean mBackStretch;
     Button mButtonNewEvent;
 
     @SuppressLint("SetTextI18n")
@@ -166,10 +164,9 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorPreviewAnalogSeconds = findViewById(R.id.viewColorPreviewAnalogSecond);
         mColorChangerDigital = findViewById(R.id.viewColorChangerDigital);
         mColorPreviewDigital = findViewById(R.id.viewColorPreviewDigital);
+        mSpinnerDesignBack = findViewById(R.id.spinnerDesignBack);
         mColorChangerBack = findViewById(R.id.viewColorChangerBack);
         mColorPreviewBack = findViewById(R.id.viewColorPreviewBack);
-        mCheckBoxBackgroundOwnImage = findViewById(R.id.checkBoxOwnImageBackground);
-        mButtonChooseCustomBackground = findViewById(R.id.buttonChooseBackground);
         mButtonNewEvent = findViewById(R.id.buttonNewEvent);
 
         // init settings
@@ -193,7 +190,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorAnalogSeconds = mSharedPref.getInt("color-analog-seconds", 0xffffffff);
         mColorDigital = mSharedPref.getInt("color-digital", 0xffffffff);
         mColorBack = mSharedPref.getInt("color-back", 0xff000000);
-        mCheckBoxBackgroundOwnImage.setChecked( mSharedPref.getBoolean("own-image-back", false) );
+        mBackStretch = mSharedPref.getBoolean("back-stretch", false);
 
         // load events
         Event[] eventsArray = mGson.fromJson(mSharedPref.getString("events",""), Event[].class);
@@ -236,35 +233,38 @@ public class BaseSettingsActivity extends AppCompatActivity {
         switch(requestCode) {
             case(PICK_CLOCK_FACE_REQUEST):
                 if(resultCode == RESULT_OK) {
-                    processImage(FILENAME_CLOCK_FACE, data);
+                    mStorage.processImage(StorageControl.FILENAME_CLOCK_FACE, data);
                 } else {
-                    mSpinnerDesignAnalogFace.setSelection(existsImage(FILENAME_CLOCK_FACE) ? 1 : 0, false);
+                    mSpinnerDesignAnalogFace.setSelection(mStorage.existsImage(StorageControl.FILENAME_CLOCK_FACE) ? 1 : 0, false);
                 }
                 break;
             case(PICK_HOURS_HAND_REQUEST):
                 if(resultCode == RESULT_OK) {
-                    processImage(FILENAME_HOURS_HAND, data);
+                    mStorage.processImage(StorageControl.FILENAME_HOURS_HAND, data);
                 } else {
-                    mSpinnerDesignAnalogHours.setSelection(existsImage(FILENAME_HOURS_HAND) ? 1 : 0, false);
+                    mSpinnerDesignAnalogHours.setSelection(mStorage.existsImage(StorageControl.FILENAME_HOURS_HAND) ? 1 : 0, false);
                 }
                 break;
             case(PICK_MINUTES_HAND_REQUEST):
                 if(resultCode == RESULT_OK) {
-                    processImage(FILENAME_MINUTES_HAND, data);
+                    mStorage.processImage(StorageControl.FILENAME_MINUTES_HAND, data);
                 } else {
-                    mSpinnerDesignAnalogMinutes.setSelection(existsImage(FILENAME_MINUTES_HAND) ? 1 : 0, false);
+                    mSpinnerDesignAnalogMinutes.setSelection(mStorage.existsImage(StorageControl.FILENAME_MINUTES_HAND) ? 1 : 0, false);
                 }
                 break;
             case(PICK_SECONDS_HAND_REQUEST):
                 if(resultCode == RESULT_OK) {
-                    processImage(FILENAME_SECONDS_HAND, data);
+                    mStorage.processImage(StorageControl.FILENAME_SECONDS_HAND, data);
                 } else {
-                    mSpinnerDesignAnalogSeconds.setSelection(existsImage(FILENAME_SECONDS_HAND) ? 1 : 0, false);
+                    mSpinnerDesignAnalogSeconds.setSelection(mStorage.existsImage(StorageControl.FILENAME_SECONDS_HAND) ? 1 : 0, false);
                 }
                 break;
             case(PICK_BACKGROUND_REQUEST):
                 if(resultCode == RESULT_OK) {
-                    processImage(FILENAME_BACKGROUND_IMAGE, data);
+                    mStorage.processImage(StorageControl.FILENAME_BACKGROUND_IMAGE, data);
+                    mBackStretch = mSpinnerDesignBack.getSelectedItemPosition() == 1;
+                } else {
+                    mSpinnerDesignBack.setSelection(mStorage.existsImage(StorageControl.FILENAME_SECONDS_HAND) ? 1 : 0, false);
                 }
                 break;
         }
@@ -290,43 +290,54 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorChangerAnalogSeconds.setEnabled(state);
         mColorChangerDigital.setEnabled(state);
         mColorChangerBack.setEnabled(state);
-        mCheckBoxBackgroundOwnImage.setEnabled(state);
-        mButtonChooseCustomBackground.setEnabled(state);
+        mSpinnerDesignBack.setEnabled(state);
         mButtonNewEvent.setEnabled(state);
     }
 
     private void initImageSpinner() {
-        String[] options = {
+        String[] optionsAnalog = {
                 getString(R.string.default_design),
                 getString(R.string.custom_image)
         };
-        ArrayAdapter dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, options);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        String[] optionsBack = {
+                getString(R.string.no_image),
+                getString(R.string.custom_image_stretch),
+                getString(R.string.custom_image_zoom)
+        };
+        ArrayAdapter dataAdapterAnalog = new ArrayAdapter(this, android.R.layout.simple_spinner_item, optionsAnalog);
+        dataAdapterAnalog.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter dataAdapterBack = new ArrayAdapter(this, android.R.layout.simple_spinner_item, optionsBack);
+        dataAdapterBack.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        mSpinnerDesignAnalogFace.setAdapter(dataAdapter);
-        mSpinnerDesignAnalogFace.setSelection(existsImage(FILENAME_CLOCK_FACE) ? 1 : 0, false);
-        mSpinnerDesignAnalogHours.setAdapter(dataAdapter);
-        mSpinnerDesignAnalogHours.setSelection(existsImage(FILENAME_HOURS_HAND) ? 1 : 0, false);
-        mSpinnerDesignAnalogMinutes.setAdapter(dataAdapter);
-        mSpinnerDesignAnalogMinutes.setSelection(existsImage(FILENAME_MINUTES_HAND) ? 1 : 0, false);
-        mSpinnerDesignAnalogSeconds.setAdapter(dataAdapter);
-        mSpinnerDesignAnalogSeconds.setSelection(existsImage(FILENAME_SECONDS_HAND) ? 1 : 0, false);
+        mSpinnerDesignAnalogFace.setAdapter(dataAdapterAnalog);
+        mSpinnerDesignAnalogFace.setSelection(mStorage.existsImage(StorageControl.FILENAME_CLOCK_FACE) ? 1 : 0, false);
+        mSpinnerDesignAnalogHours.setAdapter(dataAdapterAnalog);
+        mSpinnerDesignAnalogHours.setSelection(mStorage.existsImage(StorageControl.FILENAME_HOURS_HAND) ? 1 : 0, false);
+        mSpinnerDesignAnalogMinutes.setAdapter(dataAdapterAnalog);
+        mSpinnerDesignAnalogMinutes.setSelection(mStorage.existsImage(StorageControl.FILENAME_MINUTES_HAND) ? 1 : 0, false);
+        mSpinnerDesignAnalogSeconds.setAdapter(dataAdapterAnalog);
+        mSpinnerDesignAnalogSeconds.setSelection(mStorage.existsImage(StorageControl.FILENAME_SECONDS_HAND) ? 1 : 0, false);
+        mSpinnerDesignBack.setAdapter(dataAdapterBack);
+        mSpinnerDesignBack.setSelection(mStorage.existsImage(StorageControl.FILENAME_BACKGROUND_IMAGE) ? (mBackStretch ? 1 : 2) : 0, false);
 
         AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(adapterView.getId() == mSpinnerDesignAnalogFace.getId()) {
-                    if(i == 0) removeImage(FILENAME_CLOCK_FACE);
+                    if(i == 0) mStorage.removeImage(StorageControl.FILENAME_CLOCK_FACE);
                     else chooseImage(PICK_CLOCK_FACE_REQUEST);
                 } else if(adapterView.getId() == mSpinnerDesignAnalogHours.getId()) {
-                    if(i == 0) removeImage(FILENAME_HOURS_HAND);
+                    if(i == 0) mStorage.removeImage(StorageControl.FILENAME_HOURS_HAND);
                     else chooseImage(PICK_HOURS_HAND_REQUEST);
                 } else if(adapterView.getId() == mSpinnerDesignAnalogMinutes.getId()) {
-                    if(i == 0) removeImage(FILENAME_MINUTES_HAND);
+                    if(i == 0) mStorage.removeImage(StorageControl.FILENAME_MINUTES_HAND);
                     else chooseImage(PICK_MINUTES_HAND_REQUEST);
                 } else if(adapterView.getId() == mSpinnerDesignAnalogSeconds.getId()) {
-                    if(i == 0) removeImage(FILENAME_SECONDS_HAND);
+                    if(i == 0) mStorage.removeImage(StorageControl.FILENAME_SECONDS_HAND);
                     else chooseImage(PICK_SECONDS_HAND_REQUEST);
+                } else if(adapterView.getId() == mSpinnerDesignBack.getId()) {
+                    if(i == 0) mStorage.removeImage(StorageControl.FILENAME_BACKGROUND_IMAGE);
+                    else chooseImage(PICK_BACKGROUND_REQUEST);
                 }
             }
             @Override
@@ -336,6 +347,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mSpinnerDesignAnalogHours.setOnItemSelectedListener(listener);
         mSpinnerDesignAnalogMinutes.setOnItemSelectedListener(listener);
         mSpinnerDesignAnalogSeconds.setOnItemSelectedListener(listener);
+        mSpinnerDesignBack.setOnItemSelectedListener(listener);
     }
     private void initColorPreview() {
         // analog color
@@ -570,7 +582,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.putInt("color-analog-seconds", mColorAnalogSeconds);
         editor.putInt("color-digital", mColorDigital);
         editor.putInt("color-back", mColorBack);
-        editor.putBoolean("own-image-back", mCheckBoxBackgroundOwnImage.isChecked());
+        editor.putBoolean("back-stretch", mBackStretch);
 
         editor.apply();
     }
@@ -580,13 +592,9 @@ public class BaseSettingsActivity extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Image"), requestId);
-        Toast.makeText(this, getString(R.string.own_images_note), Toast.LENGTH_LONG).show();
-    }
-    public void onClickChooseBackground(View v) {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_BACKGROUND_REQUEST);
+        if(requestId != PICK_BACKGROUND_REQUEST) {
+            Toast.makeText(this, getString(R.string.own_images_note), Toast.LENGTH_LONG).show();
+        }
     }
 
     private void displayEvents() {
@@ -664,52 +672,6 @@ public class BaseSettingsActivity extends AppCompatActivity {
                 displayEvents();
             }
         });
-    }
-
-    private void processImage(String path, Intent data) {
-        if(data == null || data.getData() == null) return;
-        try {
-            File fl = getStorage(this, path);
-            InputStream inputStream = this.getContentResolver().openInputStream(data.getData());
-            byte[] targetArray = new byte[inputStream.available()];
-            inputStream.read(targetArray);
-            FileOutputStream stream = new FileOutputStream(fl);
-            stream.write(targetArray);
-            stream.flush();
-            stream.close();
-            scanFile(fl);
-        } catch(Exception ignored) { }
-    }
-    private void removeImage(String path) {
-        try {
-            File fl = getStorage(this, path);
-            fl.delete();
-            scanFile(fl);
-        } catch(Exception ignored) { }
-    }
-    private boolean existsImage(String path) {
-        try {
-            File fl = getStorage(this, path);
-            return fl.exists();
-        } catch(Exception ignored) { }
-        return false;
-    }
-
-    private void scanFile(File f) {
-        Uri uri = Uri.fromFile(f);
-        Intent scanFileIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
-        sendBroadcast(scanFileIntent);
-    }
-
-    public static String FILENAME_CLOCK_FACE = "clockface.png";
-    public static String FILENAME_HOURS_HAND = "hour.png";
-    public static String FILENAME_MINUTES_HAND = "minute.png";
-    public static String FILENAME_SECONDS_HAND = "second.png";
-    public static String FILENAME_BACKGROUND_IMAGE = "bg.png";
-
-    public static File getStorage(Context c, String filename) {
-        File exportDir = c.getExternalFilesDir(null);
-        return new File(exportDir, filename);
     }
 
     public void onClickDreamSettings(View v) {

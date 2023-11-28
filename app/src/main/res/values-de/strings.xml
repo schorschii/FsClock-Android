@@ -74,4 +74,7 @@
     <string name="unlock_code">Freischaltcode</string>
     <string name="default_design">Standard-Design</string>
     <string name="custom_image">Eigenes Bild…</string>
+    <string name="custom_image_stretch">Eigenes Bild (strecken)…</string>
+    <string name="custom_image_zoom">Eigenes Bild (zoomen)…</string>
+    <string name="no_image">Kein Bild</string>
 </resources>

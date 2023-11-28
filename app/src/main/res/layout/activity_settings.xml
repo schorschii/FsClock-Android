@@ -135,11 +135,17 @@
                         android:focusable="true"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
-                        <View
-                            android:id="@+id/viewColorPreviewAnalogFace"
+                        <FrameLayout
                             android:layout_width="@dimen/width_color_preview"
                             android:layout_height="match_parent"
-                            android:background="@color/colorPrimary" />
+                            android:padding="@dimen/color_preview_border"
+                            android:background="@drawable/border">
+                            <View
+                                android:id="@+id/viewColorPreviewAnalogFace"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorPrimary" />
+                        </FrameLayout>
                         <Space
                             android:layout_width="@dimen/space_color_preview"
                             android:layout_height="match_parent" />
@@ -182,11 +188,17 @@
                         android:focusable="true"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
-                        <View
-                            android:id="@+id/viewColorPreviewAnalogHour"
+                        <FrameLayout
                             android:layout_width="@dimen/width_color_preview"
                             android:layout_height="match_parent"
-                            android:background="@color/colorPrimary" />
+                            android:padding="@dimen/color_preview_border"
+                            android:background="@drawable/border">
+                            <View
+                                android:id="@+id/viewColorPreviewAnalogHour"
+                                android:layout_width="@dimen/width_color_preview"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorPrimary" />
+                        </FrameLayout>
                         <Space
                             android:layout_width="@dimen/space_color_preview"
                             android:layout_height="match_parent" />
@@ -229,11 +241,17 @@
                         android:focusable="true"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
-                        <View
-                            android:id="@+id/viewColorPreviewAnalogMinute"
+                        <FrameLayout
                             android:layout_width="@dimen/width_color_preview"
                             android:layout_height="match_parent"
-                            android:background="@color/colorPrimary" />
+                            android:padding="@dimen/color_preview_border"
+                            android:background="@drawable/border">
+                            <View
+                                android:id="@+id/viewColorPreviewAnalogMinute"
+                                android:layout_width="@dimen/width_color_preview"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorPrimary" />
+                        </FrameLayout>
                         <Space
                             android:layout_width="@dimen/space_color_preview"
                             android:layout_height="match_parent" />
@@ -276,11 +294,17 @@
                         android:focusable="true"
                         android:clickable="true"
                         android:background="?attr/selectableItemBackground">
-                        <View
-                            android:id="@+id/viewColorPreviewAnalogSecond"
+                        <FrameLayout
                             android:layout_width="@dimen/width_color_preview"
                             android:layout_height="match_parent"
-                            android:background="@color/colorPrimary" />
+                            android:padding="@dimen/color_preview_border"
+                            android:background="@drawable/border">
+                            <View
+                                android:id="@+id/viewColorPreviewAnalogSecond"
+                                android:layout_width="@dimen/width_color_preview"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorPrimary" />
+                        </FrameLayout>
                         <Space
                             android:layout_width="@dimen/space_color_preview"
                             android:layout_height="match_parent" />
@@ -356,11 +380,17 @@
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground">
-                    <View
-                        android:id="@+id/viewColorPreviewDigital"
+                    <FrameLayout
                         android:layout_width="@dimen/width_color_preview"
                         android:layout_height="match_parent"
-                        android:background="@color/colorPrimary" />
+                        android:padding="@dimen/color_preview_border"
+                        android:background="@drawable/border">
+                        <View
+                            android:id="@+id/viewColorPreviewDigital"
+                            android:layout_width="@dimen/width_color_preview"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimary" />
+                    </FrameLayout>
                     <Space
                         android:layout_width="@dimen/space_color_preview"
                         android:layout_height="match_parent" />
@@ -395,43 +425,57 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <LinearLayout
-                    android:id="@+id/viewColorChangerBack"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/padding_setting"
-                    android:focusable="true"
-                    android:clickable="true"
-                    android:background="?attr/selectableItemBackground">
-                    <View
-                        android:id="@+id/viewColorPreviewBack"
-                        android:layout_width="@dimen/width_color_preview"
-                        android:layout_height="match_parent"
-                        android:background="@color/colorPrimary" />
-                    <Space
-                        android:layout_width="@dimen/space_color_preview"
-                        android:layout_height="match_parent" />
-                    <TextView
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/viewColorChangerBack"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/checkbox_text_color"
-                        android:duplicateParentState="true"
-                        android:text="@string/choose_color" />
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_setting"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <FrameLayout
+                            android:layout_width="@dimen/width_color_preview"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/color_preview_border"
+                            android:background="@drawable/border">
+                            <View
+                                android:id="@+id/viewColorPreviewBack"
+                                android:layout_width="@dimen/width_color_preview"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorPrimary" />
+                        </FrameLayout>
+                        <Space
+                            android:layout_width="@dimen/space_color_preview"
+                            android:layout_height="match_parent" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/checkbox_text_color"
+                            android:duplicateParentState="true"
+                            android:text="@string/choose_color" />
+                    </LinearLayout>
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="30dp"
+                            android:paddingEnd="2dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:src="@drawable/spinner_arrow" />
+                        <Spinner
+                            android:id="@+id/spinnerDesignBack"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </FrameLayout>
                 </LinearLayout>
-
-                <CheckBox
-                    android:id="@+id/checkBoxOwnImageBackground"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/use_own_image" />
-                <Button
-                    android:id="@+id/buttonChooseBackground"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:onClick="onClickChooseBackground"
-                    android:text="@string/choose_own_background_image" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -451,6 +495,7 @@
 
                 <Button
                     android:id="@+id/buttonAllowSystemCalendarAccess"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="onClickAllowSystemCalendarAccess"

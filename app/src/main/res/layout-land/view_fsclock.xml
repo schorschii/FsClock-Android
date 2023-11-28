@@ -7,6 +7,11 @@
     android:layout_height="match_parent"
     android:background="#000">
 
+    <ImageView
+        android:id="@+id/imageViewBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <TextView
         android:id="@+id/textViewEvents"
         android:layout_width="match_parent"
@@ -40,7 +45,7 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/imageViewClockBackground"
+                    android:id="@+id/imageViewClockFace"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_row="0"
