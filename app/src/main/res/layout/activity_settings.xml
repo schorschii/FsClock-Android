@@ -355,10 +355,10 @@
                     android:text="@string/show_digital_clock" />
 
                 <CheckBox
-                    android:id="@+id/checkBoxShowDate"
+                    android:id="@+id/checkBox24HrsFormat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/show_date" />
+                    android:text="@string/format_24hrs" />
 
                 <CheckBox
                     android:id="@+id/checkBoxSecondsDigital"
@@ -366,11 +366,23 @@
                     android:layout_height="wrap_content"
                     android:text="@string/show_seconds" />
 
-                <CheckBox
-                    android:id="@+id/checkBox24HrsFormat"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/format_24hrs" />
+                    android:orientation="horizontal">
+                    <CheckBox
+                        android:id="@+id/checkBoxShowDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/show_date" />
+                    <EditText
+                        android:id="@+id/editTextDateFormat"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/date_format" />
+                </LinearLayout>
 
                 <Space
                     android:layout_width="match_parent"

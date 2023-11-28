@@ -78,4 +78,5 @@
     <string name="custom_image_zoom">Image personnalisée (Zoom)…</string>
     <string name="no_image">Pas d\'image</string>
     <string name="force_landscape_view_only_when_started_manually">Forcer le format paysage (uniquement lors du démarrage manuel de l\'application)</string>
+    <string name="date_format">Format de date</string>
 </resources>

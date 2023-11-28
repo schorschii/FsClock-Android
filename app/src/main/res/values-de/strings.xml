@@ -78,4 +78,5 @@
     <string name="custom_image_zoom">Eigenes Bild (zoomen)…</string>
     <string name="no_image">Kein Bild</string>
     <string name="force_landscape_view_only_when_started_manually">Querformat erzwingen (nur bei manuellem Start der App)</string>
+    <string name="date_format">Datumsformat</string>
 </resources>

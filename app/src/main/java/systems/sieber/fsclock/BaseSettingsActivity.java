@@ -77,6 +77,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
     Spinner mSpinnerDesignAnalogSeconds;
     CheckBox mCheckBoxDigitalClockShow;
     CheckBox mCheckBoxDateShow;
+    EditText mEditTextDateFormat;
     CheckBox mCheckBoxDigitalClockShowSeconds;
     CheckBox mCheckBoxDigitalClock24Format;
     View mColorChangerAnalogFace;
@@ -153,6 +154,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mSpinnerDesignAnalogMinutes = findViewById(R.id.spinnerDesignAnalogMinutes);
         mSpinnerDesignAnalogSeconds = findViewById(R.id.spinnerDesignAnalogSeconds);
         mCheckBoxDigitalClockShow = findViewById(R.id.checkBoxShowDigitalClock);
+        mEditTextDateFormat = findViewById(R.id.editTextDateFormat);
         mCheckBoxDateShow = findViewById(R.id.checkBoxShowDate);
         mCheckBoxDigitalClockShowSeconds = findViewById(R.id.checkBoxSecondsDigital);
         mCheckBoxDigitalClock24Format = findViewById(R.id.checkBox24HrsFormat);
@@ -185,6 +187,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCustomColorAnalogSeconds = mSharedPref.getBoolean("own-color-analog-seconds", false);
         mCheckBoxDigitalClockShow.setChecked( mSharedPref.getBoolean("show-digital", true) );
         mCheckBoxDateShow.setChecked( mSharedPref.getBoolean("show-date", true) );
+        mEditTextDateFormat.setText( mSharedPref.getString("date-format", FsClockView.getDefaultDateFormat(this)) );
         mCheckBoxDigitalClockShowSeconds.setChecked( mSharedPref.getBoolean("show-seconds-digital", true) );
         mCheckBoxDigitalClock24Format.setChecked( mSharedPref.getBoolean("24hrs", true) );
         mColorAnalogFace = mSharedPref.getInt("color-analog-face", 0xffffffff);
@@ -277,6 +280,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxKeepScreenOn.setEnabled(state);
         mCheckBoxShowBatteryInfo.setEnabled(state);
         mCheckBoxShowBatteryInfoWhenCharging.setEnabled(state);
+        mCheckBoxForceLandscape.setEnabled(state);
         mCheckBoxAnalogClockShow.setEnabled(state);
         mCheckBoxAnalogClockShowSeconds.setEnabled(state);
         mSpinnerDesignAnalogFace.setEnabled(state);
@@ -285,6 +289,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mSpinnerDesignAnalogSeconds.setEnabled(state);
         mCheckBoxDigitalClockShow.setEnabled(state);
         mCheckBoxDateShow.setEnabled(state);
+        mEditTextDateFormat.setEnabled(state);
         mCheckBoxDigitalClockShowSeconds.setEnabled(state);
         mCheckBoxDigitalClock24Format.setEnabled(state);
         mColorChangerAnalogFace.setEnabled(state);
@@ -576,6 +581,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.putBoolean("own-color-analog-seconds", mCustomColorAnalogSeconds);
         editor.putBoolean("show-digital", mCheckBoxDigitalClockShow.isChecked());
         editor.putBoolean("show-date", mCheckBoxDateShow.isChecked());
+        editor.putString("date-format", mEditTextDateFormat.getText().toString());
         editor.putBoolean("show-seconds-analog", mCheckBoxAnalogClockShowSeconds.isChecked());
         editor.putBoolean("show-seconds-digital", mCheckBoxDigitalClockShowSeconds.isChecked());
         editor.putBoolean("24hrs", mCheckBoxDigitalClock24Format.isChecked());

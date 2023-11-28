@@ -78,4 +78,5 @@
     <string name="custom_image_zoom">Imagen personalizada (zoom)…</string>
     <string name="no_image">Sin imagen</string>
     <string name="force_landscape_view_only_when_started_manually">Forzar formato horizontal (solo al iniciar la aplicación manualmente)</string>
+    <string name="date_format">Formato de fecha</string>
 </resources>

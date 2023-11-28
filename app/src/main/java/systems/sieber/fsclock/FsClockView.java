@@ -192,25 +192,35 @@ public class FsClockView extends FrameLayout {
         tts.shutdown();
     }
 
-    @SuppressLint("SimpleDateFormat")
-    private void updateClock() {
-        final Calendar cal = Calendar.getInstance();
-
-        // compile date format
-        final SimpleDateFormat sdfSystem = (SimpleDateFormat) DateFormat.getDateFormat(getContext());
+    static String getDefaultDateFormat(Context c) {
+        final SimpleDateFormat sdfSystem = (SimpleDateFormat) DateFormat.getDateFormat(c);
         String strDatePattern = "EEEE, " + sdfSystem.toLocalizedPattern(); // day of week followed by localized date
         if(!strDatePattern.contains("yyyy")) {
             // devices with API level 17 or below return date format already with yyyy,
             // for all other devices we manually replace yy with yyyy
             strDatePattern = strDatePattern.replace("yy", "yyyy");
         }
+        return strDatePattern;
+    }
 
-        final SimpleDateFormat sdfDate = new SimpleDateFormat(strDatePattern, Locale.getDefault());
+    @SuppressLint("SimpleDateFormat")
+    private void updateClock() {
+        final Calendar cal = Calendar.getInstance();
+
+        try {
+            String strDatePattern = mSharedPref.getString("date-format", getDefaultDateFormat(getContext()));
+            final SimpleDateFormat sdfDate = new SimpleDateFormat(strDatePattern, Locale.getDefault());
+            mDateText.setText(sdfDate.format(cal.getTime()));
+        } catch(IllegalArgumentException ignored) {
+            mDateText.setText("---");
+        }
+
         final SimpleDateFormat sdfTime = new SimpleDateFormat(format24hrs ? "HH:mm" : "hh:mm");
-        final SimpleDateFormat sdfSeconds = new SimpleDateFormat("ss");
         mClockText.setText(sdfTime.format(cal.getTime()));
+
+        final SimpleDateFormat sdfSeconds = new SimpleDateFormat("ss");
         mSecondsText.setText(sdfSeconds.format(cal.getTime()));
-        mDateText.setText(sdfDate.format(cal.getTime()));
+
         float secRotation = (cal.get(Calendar.SECOND) + ((float)cal.get(Calendar.MILLISECOND)/1000)) * 360 / 60;
         float minRotation = (cal.get(Calendar.MINUTE) + ((float)cal.get(Calendar.SECOND)/60)) * 360 / 60;
         float hrsRotation = (cal.get(Calendar.HOUR) + ((float)cal.get(Calendar.MINUTE)/60)) * 360 / 12;
