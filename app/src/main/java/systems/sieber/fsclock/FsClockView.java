@@ -188,8 +188,10 @@ public class FsClockView extends FrameLayout {
         super.onDetachedFromWindow();
 
         // destroy tts service connection
-        tts.stop();
-        tts.shutdown();
+        if(tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
     }
 
     static String getDefaultDateFormat(Context c) {
