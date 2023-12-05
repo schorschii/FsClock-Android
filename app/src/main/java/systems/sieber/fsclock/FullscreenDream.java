@@ -38,18 +38,24 @@ public class FullscreenDream extends DreamService {
 
     @Override
     public void onDreamingStarted() {
+        super.onDreamingStarted();
+
         // start the clock
         mContentView.resume();
     }
 
     @Override
     public void onDreamingStopped() {
+        super.onDreamingStopped();
+
         // stop the clock
         mContentView.pause();
     }
 
     @Override
     public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+
         // unregister battery receiver
         try {
             unregisterReceiver(this.mBatInfoReceiver);
