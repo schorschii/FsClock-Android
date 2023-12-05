@@ -449,7 +449,6 @@ public class FsClockView extends FrameLayout {
 
     private void speak(String text) {
         if(tts != null) {
-            tts.setLanguage(Locale.GERMANY);
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
             } else {
