@@ -160,6 +160,7 @@
                             android:layout_weight="1"
                             android:textColor="@color/checkbox_text_color"
                             android:duplicateParentState="true"
+                            android:hyphenationFrequency="normal"
                             android:text="@string/clock_face_color" />
                     </LinearLayout>
                     <FrameLayout
@@ -213,6 +214,7 @@
                             android:layout_weight="1"
                             android:textColor="@color/checkbox_text_color"
                             android:duplicateParentState="true"
+                            android:hyphenationFrequency="normal"
                             android:text="@string/hour_hand_color" />
                     </LinearLayout>
                     <FrameLayout
@@ -266,6 +268,7 @@
                             android:layout_weight="1"
                             android:textColor="@color/checkbox_text_color"
                             android:duplicateParentState="true"
+                            android:hyphenationFrequency="normal"
                             android:text="@string/minute_hand_color" />
                     </LinearLayout>
                     <FrameLayout
@@ -319,6 +322,7 @@
                             android:layout_weight="1"
                             android:textColor="@color/checkbox_text_color"
                             android:duplicateParentState="true"
+                            android:hyphenationFrequency="normal"
                             android:text="@string/seconds_hand_color" />
                     </LinearLayout>
                     <FrameLayout
