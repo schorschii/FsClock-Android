@@ -513,6 +513,7 @@
                 <Button
                     android:id="@+id/buttonAllowSystemCalendarAccess"
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:textAllCaps="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="onClickAllowSystemCalendarAccess"
