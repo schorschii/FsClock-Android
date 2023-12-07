@@ -18,6 +18,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -359,7 +361,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
     }
     private void initColorPreview() {
         // analog color
-        updateColorPreview(mColorAnalogFace, mColorPreviewAnalogFace);
+        updateColorPreview(mColorAnalogFace, mColorPreviewAnalogFace, null);
         mColorChangerAnalogFace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -371,13 +373,13 @@ public class BaseSettingsActivity extends AppCompatActivity {
                         } else {
                             mColorAnalogFace = Color.argb(0xff, red, green, blue);
                             mCustomColorAnalogFace = customColor;
-                            updateColorPreview(mColorAnalogFace, mColorPreviewAnalogFace);
+                            updateColorPreview(mColorAnalogFace, mColorPreviewAnalogFace, null);
                         }
                     }
                 });
             }
         });
-        updateColorPreview(mColorAnalogHours, mColorPreviewAnalogHours);
+        updateColorPreview(mColorAnalogHours, mColorPreviewAnalogHours, null);
         mColorChangerAnalogHours.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -389,13 +391,13 @@ public class BaseSettingsActivity extends AppCompatActivity {
                         } else {
                             mColorAnalogHours = Color.argb(0xff, red, green, blue);
                             mCustomColorAnalogHours = customColor;
-                            updateColorPreview(mColorAnalogHours, mColorPreviewAnalogHours);
+                            updateColorPreview(mColorAnalogHours, mColorPreviewAnalogHours, null);
                         }
                     }
                 });
             }
         });
-        updateColorPreview(mColorAnalogMinutes, mColorPreviewAnalogMinutes);
+        updateColorPreview(mColorAnalogMinutes, mColorPreviewAnalogMinutes, null);
         mColorChangerAnalogMinutes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -407,13 +409,13 @@ public class BaseSettingsActivity extends AppCompatActivity {
                         } else {
                             mColorAnalogMinutes = Color.argb(0xff, red, green, blue);
                             mCustomColorAnalogMinutes = customColor;
-                            updateColorPreview(mColorAnalogMinutes, mColorPreviewAnalogMinutes);
+                            updateColorPreview(mColorAnalogMinutes, mColorPreviewAnalogMinutes, null);
                         }
                     }
                 });
             }
         });
-        updateColorPreview(mColorAnalogSeconds, mColorPreviewAnalogSeconds);
+        updateColorPreview(mColorAnalogSeconds, mColorPreviewAnalogSeconds, null);
         mColorChangerAnalogSeconds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -425,7 +427,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
                         } else {
                             mColorAnalogSeconds = Color.argb(0xff, red, green, blue);
                             mCustomColorAnalogSeconds = customColor;
-                            updateColorPreview(mColorAnalogSeconds, mColorPreviewAnalogSeconds);
+                            updateColorPreview(mColorAnalogSeconds, mColorPreviewAnalogSeconds, null);
                         }
                     }
                 });
@@ -433,7 +435,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         });
 
         // digital color
-        updateColorPreview(mColorDigital, mColorPreviewDigital);
+        updateColorPreview(mColorDigital, mColorPreviewDigital, null);
         mColorChangerDigital.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -441,14 +443,14 @@ public class BaseSettingsActivity extends AppCompatActivity {
                     @Override
                     public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
                         mColorDigital = Color.argb(0xff, red, green, blue);
-                        updateColorPreview(mColorDigital, mColorPreviewDigital);
+                        updateColorPreview(mColorDigital, mColorPreviewDigital, null);
                     }
                 });
             }
         });
 
         // background color
-        updateColorPreview(mColorBack, mColorPreviewBack);
+        updateColorPreview(mColorBack, mColorPreviewBack, null);
         mColorChangerBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -456,7 +458,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
                     @Override
                     public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
                         mColorBack = Color.argb(0xff, red, green, blue);
-                        updateColorPreview(mColorBack, mColorPreviewBack);
+                        updateColorPreview(mColorBack, mColorPreviewBack, null);
                     }
                 });
             }
@@ -465,19 +467,20 @@ public class BaseSettingsActivity extends AppCompatActivity {
     private void applyColorForAllAnalog(boolean customColor, int color) {
         mColorAnalogFace = color;
         mCustomColorAnalogFace = customColor;
-        updateColorPreview(mColorAnalogFace, mColorPreviewAnalogFace);
+        updateColorPreview(mColorAnalogFace, mColorPreviewAnalogFace, null);
         mColorAnalogHours = color;
         mCustomColorAnalogHours = customColor;
-        updateColorPreview(mColorAnalogHours, mColorPreviewAnalogHours);
+        updateColorPreview(mColorAnalogHours, mColorPreviewAnalogHours, null);
         mColorAnalogMinutes = color;
         mCustomColorAnalogMinutes = customColor;
-        updateColorPreview(mColorAnalogMinutes, mColorPreviewAnalogMinutes);
+        updateColorPreview(mColorAnalogMinutes, mColorPreviewAnalogMinutes, null);
         mColorAnalogSeconds = color;
         mCustomColorAnalogSeconds = customColor;
-        updateColorPreview(mColorAnalogSeconds, mColorPreviewAnalogSeconds);
+        updateColorPreview(mColorAnalogSeconds, mColorPreviewAnalogSeconds, null);
     }
-    private void updateColorPreview(int color, View v) {
-        v.setBackgroundColor(Color.argb(0xff, Color.red(color), Color.green(color), Color.blue(color)));
+    private void updateColorPreview(int color, View previewView, EditText hexTextBox) {
+        previewView.setBackgroundColor(Color.argb(0xff, Color.red(color), Color.green(color), Color.blue(color)));
+        if(hexTextBox != null) hexTextBox.setText(String.format("#%06X", (0xFFFFFF & color)));
     }
     interface ColorDialogCallback {
         void ok(boolean customColor, int red, int green, int blue, boolean applyForAll);
@@ -487,6 +490,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         ad.requestWindowFeature(Window.FEATURE_NO_TITLE);
         ad.setContentView(R.layout.dialog_color);
         final CheckBox checkBoxCustomColor = ad.findViewById(R.id.checkBoxCustomColor);
+        final EditText editTextColorHex = ad.findViewById(R.id.editTextColorHex);
         final SeekBar seekBarRed = ad.findViewById(R.id.seekBarRed);
         final SeekBar seekBarGreen = ad.findViewById(R.id.seekBarGreen);
         final SeekBar seekBarBlue = ad.findViewById(R.id.seekBarBlue);
@@ -501,6 +505,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
                 seekBarRed.setEnabled(false);
                 seekBarGreen.setEnabled(false);
                 seekBarBlue.setEnabled(false);
+                editTextColorHex.setEnabled(false);
             }
         }
         checkBoxCustomColor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -509,6 +514,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
                 seekBarRed.setEnabled(b);
                 seekBarGreen.setEnabled(b);
                 seekBarBlue.setEnabled(b);
+                editTextColorHex.setEnabled(b);
             }
         });
         seekBarRed.setProgress(Color.red(initialColor));
@@ -517,7 +523,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         seekBarRed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                updateColorPreview(Color.argb(0xff, seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress()), colorPreview);
+                updateColorPreview(Color.argb(0xff, seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress()), colorPreview, editTextColorHex);
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) { }
@@ -527,7 +533,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         seekBarGreen.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                updateColorPreview(Color.argb(0xff, seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress()), colorPreview);
+                updateColorPreview(Color.argb(0xff, seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress()), colorPreview, editTextColorHex);
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) { }
@@ -537,14 +543,30 @@ public class BaseSettingsActivity extends AppCompatActivity {
         seekBarBlue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                updateColorPreview(Color.argb(0xff, seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress()), colorPreview);
+                updateColorPreview(Color.argb(0xff, seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress()), colorPreview, editTextColorHex);
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) { }
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) { }
         });
-        updateColorPreview(Color.argb(0xff, seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress()), colorPreview);
+        editTextColorHex.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                try {
+                    int newColor = Color.parseColor(charSequence.toString());
+                    seekBarRed.setProgress(Color.red(newColor));
+                    seekBarGreen.setProgress(Color.green(newColor));
+                    seekBarBlue.setProgress(Color.blue(newColor));
+                    //updateColorPreview(Color.argb(0xff, seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress()), colorPreview, null);
+                } catch(Exception ignored) { }
+            }
+            @Override
+            public void afterTextChanged(Editable editable) { }
+        });
+        updateColorPreview(Color.argb(0xff, seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress()), colorPreview, editTextColorHex);
         ad.show();
         ad.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         ad.findViewById(R.id.buttonOK).setOnClickListener(new View.OnClickListener() {

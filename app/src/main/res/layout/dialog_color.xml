@@ -6,11 +6,27 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <CheckBox
-        android:id="@+id/checkBoxCustomColor"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/use_custom_color" />
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/checkBoxCustomColor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_gravity="center_vertical"
+            android:text="@string/use_custom_color" />
+
+        <EditText
+            android:id="@+id/editTextColorHex"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:typeface="monospace" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
