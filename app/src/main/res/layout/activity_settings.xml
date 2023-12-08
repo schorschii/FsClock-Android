@@ -386,6 +386,13 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/date_format" />
+                    <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                        app:tint="@color/colorAccent"
+                        app:srcCompat="@drawable/ic_help_outline_white_24dp"
+                        android:onClick="onClickDateFormatHelp" />
                 </LinearLayout>
 
                 <Space

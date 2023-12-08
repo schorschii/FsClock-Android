@@ -716,6 +716,11 @@ public class BaseSettingsActivity extends AppCompatActivity {
         }
     }
 
+    public final static String URL_DATE_FORMAT_HELP = "https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html";
+    public void onClickDateFormatHelp(View v) {
+        openBrowser(URL_DATE_FORMAT_HELP);
+    }
+
     public final static String APPID_CUSTOMERDB    = "de.georgsieber.customerdb";
     public final static String APPID_REMOTEPOINTER = "systems.sieber.remotespotlight";
     public final static String APPID_BALLBREAK     = "de.georgsieber.ballbreak";
