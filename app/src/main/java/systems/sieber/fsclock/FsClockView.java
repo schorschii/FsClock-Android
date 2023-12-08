@@ -12,7 +12,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -96,7 +95,7 @@ public class FsClockView extends FrameLayout {
         mBatteryView = findViewById(R.id.linearLayoutBattery);
         mBatteryText = findViewById(R.id.textViewBattery);
         mBatteryImage = findViewById(R.id.imageViewBattery);
-        mBatteryImage.setImageResource(R.drawable.ic_battery_full_black_24dp);
+        mBatteryImage.setImageResource(R.drawable.ic_battery_full_white_24dp);
 
         // init font
         final Typeface fontLed = ResourcesCompat.getFont(c, R.font.dseg7classic_regular);
@@ -463,10 +462,14 @@ public class FsClockView extends FrameLayout {
         || (plugged != 0 && mSharedPref.getBoolean("show-battery-info-when-charging", false))) {
             mBatteryText.setText(level + "%");
             mBatteryView.setVisibility(View.VISIBLE);
-            if(level < 10) {
-                mBatteryImage.setImageResource(R.drawable.ic_baseline_battery_alert_24);
+            if(plugged == 0) {
+                if(level < 10) {
+                    mBatteryImage.setImageResource(R.drawable.ic_battery_alert_red_24dp);
+                } else {
+                    mBatteryImage.setImageResource(R.drawable.ic_battery_full_white_24dp);
+                }
             } else {
-                mBatteryImage.setImageResource(R.drawable.ic_battery_full_black_24dp);
+                mBatteryImage.setImageResource(R.drawable.ic_battery_charging_white_24dp);
             }
         } else {
             mBatteryView.setVisibility(View.INVISIBLE);

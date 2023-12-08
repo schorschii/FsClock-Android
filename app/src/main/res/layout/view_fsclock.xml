@@ -168,7 +168,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_battery_full_black_24dp" />
+            app:srcCompat="@drawable/ic_battery_full_white_24dp" />
 
         <TextView
             android:id="@+id/textViewBattery"
