@@ -1,0 +1,7 @@
+Simpler Vollbild-Uhr-Bildschirmschoner
+- Analog- und Digitaluhr können einzeln aktiviert oder deaktiviert werden
+- optionale Datums- und Wochentagsansicht
+- zeigt Termine aus dem Android-Kalender oder der internen Ereignisdatenbank an
+- einstellbare Hintergrund- und Uhrfarbe
+- kann als Android-System-Bildschirmschoner ("DayDream") auf Smartphones und Tablets eingestellt werden
+- kompatibel mit Android TV-Geräten
