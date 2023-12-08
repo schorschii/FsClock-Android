@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.huawei.agconnect'
 
 android {
     defaultConfig {
@@ -31,9 +30,6 @@ android {
         google {
             dimension "appstore"
         }
-        huawei {
-            dimension "appstore"
-        }
         amazon {
             dimension "appstore"
         }
@@ -46,6 +42,5 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.code.gson:gson:2.8.6'
     googleImplementation 'com.android.billingclient:billing:5.2.1'
-    huaweiImplementation 'com.huawei.hms:iap:4.0.4.301'
     amazonImplementation 'com.amazon.device:amazon-appstore-sdk:3.0.3'
 }
