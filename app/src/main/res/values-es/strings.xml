@@ -38,7 +38,7 @@
     <string name="hour_hand_color">Color de la manecilla de la hora…</string>
     <string name="minute_hand_color">Color de la manecilla de minutos…</string>
     <string name="seconds_hand_color">Color de la manecilla de los segundos…</string>
-    <string name="own_images_note">Las im&#225;genes deben ser cuadradas (el mismo ancho y alto) y el ancho y alto no deben ser mayores de 1000px.</string>
+    <string name="own_images_note">Las im&#225;genes deben ser cuadradas (el mismo ancho y alto) y el ancho y alto no deben ser mayores de 1000px. El fondo debe ser transparente y las manecillas del reloj deben estar centradas y apuntando hacia arriba.</string>
     <string name="choose_own_background_image">Elija una imagen de fondo personalizada &#8230;</string>
     <string name="use_own_image">Usar imagen personalizada</string>
     <string name="use_own_color_for_seconds_hand">Utilice un color personalizado para el segundero</string>

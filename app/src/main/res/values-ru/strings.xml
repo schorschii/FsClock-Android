@@ -38,7 +38,7 @@
     <string name="hour_hand_color">Цвет часовой стрелки…</string>
     <string name="minute_hand_color">Цвет минутной стрелки…</string>
     <string name="seconds_hand_color">Цвет секундной стрелки…</string>
-    <string name="own_images_note">Изображения должны быть квадратными (одинаковой ширины и высоты), а ширина и высота не должны превышать 1000 пикселей.</string>
+    <string name="own_images_note">Изображения должны быть квадратными (одинаковой ширины и высоты), а ширина и высота не должны превышать 1000 пикселей. Фон должен быть прозрачным, а стрелки часов должны быть расположены по центру и направлены вверх.</string>
     <string name="choose_own_background_image">Выбрать пользовательское фоновое изображение…</string>
     <string name="use_own_image">Использовать настраиваемое изображение</string>
     <string name="use_own_color_for_seconds_hand">Использовать произвольный цвет для секундной стрелки</string>

@@ -720,6 +720,9 @@ public class BaseSettingsActivity extends AppCompatActivity {
     public void onClickDateFormatHelp(View v) {
         openBrowser(URL_DATE_FORMAT_HELP);
     }
+    public void onClickCustomAnalogImagesHelp(View v) {
+        infoDialog("", getString(R.string.own_images_note));
+    }
 
     public final static String APPID_CUSTOMERDB    = "de.georgsieber.customerdb";
     public final static String APPID_REMOTEPOINTER = "systems.sieber.remotespotlight";

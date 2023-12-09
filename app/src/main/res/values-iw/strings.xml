@@ -39,7 +39,7 @@
     <string name="hour_hand_color">צבע יד שעה…</string>
     <string name="minute_hand_color">צבע יד דקות…</string>
     <string name="seconds_hand_color">צבע יד שניות…</string>
-    <string name="own_images_note">התמונות צריכות להיות מרובעות (אותו רוחב וגובה) והרוחב והגובה לא יהיו גדולים מ-1000 פיקסלים.</string>
+    <string name="own_images_note">תמונות מותאמות אישית צריכות להיות מרובעות (אותו רוחב וגובה) והגובה והרוחב לא צריכים להיות גדולים מ-1000 פיקסלים. הרקע צריך להיות שקוף ומחוגי השעון צריכים להיות ממורכזים ומצביעים כלפי מעלה.</string>
     <string name="choose_own_background_image">בחר תמונת רקע מותאמת אישית…</string>
     <string name="use_own_image">השתמש בתמונה מותאמת אישית</string>
     <string name="use_own_color_for_seconds_hand">השתמש בצבע מותאם אישית עבור שניות</string>

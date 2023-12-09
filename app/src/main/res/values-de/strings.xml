@@ -38,7 +38,7 @@
     <string name="hour_hand_color">Stundenzeiger-Farbe…</string>
     <string name="minute_hand_color">Minutenzeiger-Farbe…</string>
     <string name="seconds_hand_color">Sekundenzeiger-Farbe…</string>
-    <string name="own_images_note">Eigene Bilder sollten quadratisch sein (gleiche Breite und Höhe) und die Höhe und Breite sollte nicht größer als 1000px sein.</string>
+    <string name="own_images_note">Eigene Bilder sollten quadratisch sein (gleiche Breite und Höhe) und die Höhe und Breite sollte nicht größer als 1000px sein. Der Hintergrund sollte transparent sein und die Uhrzeiger mittig ausgerichtet nach oben zeigen.</string>
     <string name="choose_own_background_image">Eigenes Hintergrundbild wählen…</string>
     <string name="use_own_image">Eigenes Bild verwenden</string>
     <string name="use_own_color_for_seconds_hand">Eigene Farbe für Sekundenzeiger verwenden</string>

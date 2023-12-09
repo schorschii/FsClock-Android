@@ -38,7 +38,7 @@
     <string name="hour_hand_color">Couleur de l\'aiguille des heures…</string>
     <string name="minute_hand_color">Couleur de l\'aiguille des minutes…</string>
     <string name="seconds_hand_color">Couleur de l\'aiguille des secondes…</string>
-    <string name="own_images_note">Les images doivent &#234;tre carr&#233;es (m&#234;me largeur et hauteur) et la largeur et la hauteur ne doivent pas d&#233;passer 1000px.</string>
+    <string name="own_images_note">Les images doivent &#234;tre carr&#233;es (m&#234;me largeur et hauteur) et la largeur et la hauteur ne doivent pas d&#233;passer 1000px. Le fond doit être transparent et les aiguilles de l’horloge doivent être centrées et pointées vers le haut.</string>
     <string name="choose_own_background_image">Choisissez une image d\'arri&#232;re-plan personnalis&#233;e&#8230;</string>
     <string name="use_own_image">Utiliser une image personnalis&#233;e</string>
     <string name="use_own_color_for_seconds_hand">Utiliser une couleur personnalis&#233;e pour l\'aiguille des secondes</string>

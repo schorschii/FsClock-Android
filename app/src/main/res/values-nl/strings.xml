@@ -38,7 +38,7 @@
   <string name="hour_hand_color">Uurwijzerkleur…</string>
   <string name="minute_hand_color">Minutenwijzerkleur…</string>
   <string name="seconds_hand_color">Secondewijzerkleur…</string>
-  <string name="own_images_note">Afbeeldingen moeten vierkant zijn (dezelfde breedte en hoogte) en de breedte en hoogte mogen niet groter zijn dan 1000 px.</string>
+  <string name="own_images_note">Afbeeldingen moeten vierkant zijn (dezelfde breedte en hoogte) en de breedte en hoogte mogen niet groter zijn dan 1000 px. De achtergrond moet transparant zijn en de wijzers moeten gecentreerd zijn en naar boven wijzen.</string>
   <string name="choose_own_background_image">Kies een aangepaste achtergrondafbeelding…</string>
   <string name="use_own_image">Gebruik aangepaste afbeelding</string>
   <string name="use_own_color_for_seconds_hand">Gebruik een aangepaste kleur voor de secondewijzer</string>

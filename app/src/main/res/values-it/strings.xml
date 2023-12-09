@@ -38,7 +38,7 @@
     <string name="hour_hand_color">Colore lancetta delle ore…</string>
     <string name="minute_hand_color">Colore lancetta dei minuti…</string>
     <string name="seconds_hand_color">Colore lancetta dei secondi…</string>
-    <string name="own_images_note">Le immagini devono essere quadrate (stessa larghezza e altezza) e larghezza e altezza non devono essere maggiori di 1000 px.</string>
+    <string name="own_images_note">Le immagini devono essere quadrate (stessa larghezza e altezza) e larghezza e altezza non devono essere maggiori di 1000 px. Lo sfondo dovrebbe essere trasparente e le lancette dell\'orologio dovrebbero essere centrate e rivolte verso l\'alto.</string>
     <string name="choose_own_background_image">Scegli immagine di sfondo personalizzata&#8230;</string>
     <string name="use_own_image">Usa immagine personalizzata</string>
     <string name="use_own_color_for_seconds_hand">Usa il colore personalizzato per la lancetta dei secondi</string>
