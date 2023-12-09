@@ -463,8 +463,20 @@ public class FsClockView extends FrameLayout {
             mBatteryText.setText(level + "%");
             mBatteryView.setVisibility(View.VISIBLE);
             if(plugged == 0) {
-                if(level < 10) {
-                    mBatteryImage.setImageResource(R.drawable.ic_battery_alert_red_24dp);
+                if(level < 5) {
+                    mBatteryImage.setImageResource(R.drawable.ic_battery_0_bar_white_24dp);
+                } else if(level < 10) {
+                    mBatteryImage.setImageResource(R.drawable.ic_battery_1_bar_white_24dp);
+                } else if(level < 25) {
+                    mBatteryImage.setImageResource(R.drawable.ic_battery_2_bar_white_24dp);
+                } else if(level < 40) {
+                    mBatteryImage.setImageResource(R.drawable.ic_battery_3_bar_white_24dp);
+                } else if(level < 55) {
+                    mBatteryImage.setImageResource(R.drawable.ic_battery_4_bar_white_24dp);
+                } else if(level < 70) {
+                    mBatteryImage.setImageResource(R.drawable.ic_battery_5_bar_white_24dp);
+                } else if(level < 85) {
+                    mBatteryImage.setImageResource(R.drawable.ic_battery_6_bar_white_24dp);
                 } else {
                     mBatteryImage.setImageResource(R.drawable.ic_battery_full_white_24dp);
                 }
