@@ -80,4 +80,5 @@
     <string name="no_image">אין תמונה</string>
     <string name="force_landscape_view_only_when_started_manually">לכפות פורמט לרוחב (רק בעת הפעלת האפליקציה ידנית)</string>
     <string name="date_format">פורמט תאריך</string>
+    <string name="burn_in_prevention">מניעת צריבה (עבור מסכי OLED; מזיז מעט את התוכן)</string>
 </resources>

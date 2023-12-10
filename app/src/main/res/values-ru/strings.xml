@@ -79,4 +79,5 @@
     <string name="no_image">Нет изображения</string>
     <string name="force_landscape_view_only_when_started_manually">Принудительно использовать альбомный формат (только при запуске приложения вручную)</string>
     <string name="date_format">Формат даты</string>
+    <string name="burn_in_prevention">Предотвращение выгорания (для экранов OLED; слегка перемещает контент)</string>
 </resources>

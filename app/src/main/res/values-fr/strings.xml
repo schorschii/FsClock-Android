@@ -79,4 +79,5 @@
     <string name="no_image">Pas d\'image</string>
     <string name="force_landscape_view_only_when_started_manually">Forcer le format paysage (uniquement lors du démarrage manuel de l\'application)</string>
     <string name="date_format">Format de date</string>
+    <string name="burn_in_prevention">Prévention des brûlures (pour les écrans OLED; déplace légèrement le contenu)</string>
 </resources>

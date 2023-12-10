@@ -79,4 +79,5 @@
   <string name="no_image">Geen afbeelding</string>
   <string name="force_landscape_view_only_when_started_manually">Liggend formaat forceren (alleen bij handmatig starten van de app)</string>
   <string name="date_format">Datumnotatie</string>
+    <string name="burn_in_prevention">Inbrandpreventie (voor OLED-schermen; inhoud iets verplaatst)</string>
 </resources>

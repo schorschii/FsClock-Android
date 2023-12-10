@@ -41,15 +41,26 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class FsClockView extends FrameLayout {
+
+    final static int BURN_IN_PREVENTION_DEVIATION = 15; /*px*/
+    final static int BURN_IN_PREVENTION_CHANGE = 100000; /*ms*/
+    boolean mBurnInPrevention = false;
+
+    Random mRand = new Random();
+
     AppCompatActivity mActivity;
 
     SharedPreferences mSharedPref;
 
     View mRootView;
+    View mMainView;
+    Float mMainViewDefaultX;
+    Float mMainViewDefaultY;
     ImageView mBackgroundImage;
     View mBatteryView;
     TextView mBatteryText;
@@ -66,6 +77,7 @@ public class FsClockView extends FrameLayout {
     Timer timerAnalogClock;
     Timer timerCalendarUpdate;
     Timer timerCheckEvent;
+    Timer timerBurnInPreventionRotation;
 
     TextToSpeech tts;
     Event[] events;
@@ -83,6 +95,7 @@ public class FsClockView extends FrameLayout {
 
         // find views
         mRootView = findViewById(R.id.fsclockRootView);
+        mMainView = findViewById(R.id.linearLayoutMain);
         mBackgroundImage = findViewById(R.id.imageViewBackground);
         mClockText = findViewById(R.id.textViewClock);
         mSecondsText = findViewById(R.id.textViewClockSeconds);
@@ -151,6 +164,18 @@ public class FsClockView extends FrameLayout {
                 }
             });
         }
+
+        // init layout listener
+        mMainView.getViewTreeObserver().addOnGlobalLayoutListener(
+                new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        // layout has happened here
+                        mMainViewDefaultX = mMainView.getX();
+                        mMainViewDefaultY = mMainView.getY();
+                        mMainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                });
 
         // init preferences
         loadSettings(mActivity);
@@ -273,13 +298,42 @@ public class FsClockView extends FrameLayout {
                 });
             }
         };
+        TimerTask taskBurnInAvoidRotation = new TimerTask() {
+            @Override
+            public void run() {
+                post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(mMainViewDefaultX == null || mMainViewDefaultY == null) {
+                            return;
+                        }
+                        if(mBurnInPrevention) {
+                            mMainView.animate()
+                                    .x(mMainViewDefaultX + mRand.nextInt(BURN_IN_PREVENTION_DEVIATION*2) - BURN_IN_PREVENTION_DEVIATION)
+                                    .y(mMainViewDefaultY + mRand.nextInt(BURN_IN_PREVENTION_DEVIATION*2) - BURN_IN_PREVENTION_DEVIATION)
+                                    .setDuration(1000)
+                                    .start();
+                        } else {
+                            // reset position after setting changed
+                            mMainView.animate()
+                                    .x(mMainViewDefaultX)
+                                    .y(mMainViewDefaultY)
+                                    .setDuration(1000)
+                                    .start();
+                        }
+                    }
+                });
+            }
+        };
 
         timerAnalogClock = new Timer(false);
         timerCalendarUpdate = new Timer(false);
         timerCheckEvent = new Timer(false);
+        timerBurnInPreventionRotation = new Timer(false);
         timerAnalogClock.schedule(taskAnalogClock, 0, 100);
         timerCalendarUpdate.schedule(taskCalendarUpdate, 0, 10000);
         timerCheckEvent.schedule(taskCheckEvent, 0, 1000);
+        timerBurnInPreventionRotation.schedule(taskBurnInAvoidRotation, 1000, BURN_IN_PREVENTION_CHANGE);
     }
 
     void loadSettings(Activity a) {
@@ -292,6 +346,8 @@ public class FsClockView extends FrameLayout {
                 Log.i("SCREEN", "Keep OFF");
             }
         }
+
+        mBurnInPrevention = mSharedPref.getBoolean("burn-in-prevention", mBurnInPrevention);
 
         Gson gson = new Gson();
         events = gson.fromJson(mSharedPref.getString("events",""), Event[].class);
@@ -561,6 +617,8 @@ public class FsClockView extends FrameLayout {
         timerCalendarUpdate.purge();
         timerCheckEvent.cancel();
         timerCheckEvent.purge();
+        timerBurnInPreventionRotation.cancel();
+        timerBurnInPreventionRotation.purge();
     }
 
     protected void resume() {

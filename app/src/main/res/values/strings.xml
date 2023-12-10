@@ -88,4 +88,5 @@
     <string name="no_image">No Image</string>
     <string name="force_landscape_view_only_when_started_manually">Force landscape view (only when started manually)</string>
     <string name="date_format">Date Format</string>
+    <string name="burn_in_prevention">Burn-in prevention (for OLED screens; moves content slightly)</string>
 </resources>
