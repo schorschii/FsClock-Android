@@ -4,7 +4,7 @@
 
     <string name="version">Версия</string>
     <string name="analog_clock">Аналоговые часы</string>
-    <string name="show_seconds_hand">Показать секундную стрелку</string>
+    <string name="show_seconds_hand">Показать секундную стрелку (отключить для экономии энергии)</string>
     <string name="digital_clock">Цифровые часы</string>
     <string name="show_seconds">Показать секунды</string>
     <string name="format_24hrs">Использовать 24-часовой формат</string>

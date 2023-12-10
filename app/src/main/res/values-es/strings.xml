@@ -4,7 +4,7 @@
 
     <string name="version">Version</string>
     <string name="analog_clock">Reloj analogo</string>
-    <string name="show_seconds_hand">Mostrar la mano de los segundos</string>
+    <string name="show_seconds_hand">Mostrar la mano de los segundos (desactivar para ahorrar energía)</string>
     <string name="digital_clock">Reloj digital</string>
     <string name="show_seconds">Mostrar segundos</string>
     <string name="format_24hrs">Usar formato de 24 horas</string>

@@ -4,7 +4,7 @@
 
     <string name="version">Version</string>
     <string name="analog_clock">Horloge analogique</string>
-    <string name="show_seconds_hand">Afficher la trotteuse</string>
+    <string name="show_seconds_hand">Afficher la trotteuse (désactiver pour économiser de l\'énergie)</string>
     <string name="digital_clock">Horloge digitale</string>
     <string name="show_seconds">Afficher les secondes</string>
     <string name="format_24hrs">Utiliser le format 24 heures</string>

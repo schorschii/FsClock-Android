@@ -5,7 +5,7 @@
 
     <string name="version">גִרְסָה</string>
     <string name="analog_clock">שעון אנלוגי</string>
-    <string name="show_seconds_hand">הצג יד שניה</string>
+    <string name="show_seconds_hand">הצג יד שניה (השבת כדי לחסוך באנרגיה)</string>
     <string name="digital_clock">שעון דיגיטלי</string>
     <string name="show_seconds">הצג שניות</string>
     <string name="format_24hrs">השתמש בפורמט 24 שעות</string>

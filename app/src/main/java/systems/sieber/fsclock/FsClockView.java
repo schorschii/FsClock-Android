@@ -74,14 +74,18 @@ public class FsClockView extends FrameLayout {
     ImageView mMinutesHand;
     ImageView mHoursHand;
 
-    Timer timerAnalogClock;
-    Timer timerCalendarUpdate;
-    Timer timerCheckEvent;
-    Timer timerBurnInPreventionRotation;
+    Timer mTimerAnalogClock;
+    Timer mTimerCalendarUpdate;
+    Timer mTimerCheckEvent;
+    Timer mTimerBurnInPreventionRotation;
 
-    TextToSpeech tts;
-    Event[] events;
-    boolean format24hrs;
+    TextToSpeech mTts;
+    Event[] mEvents;
+    boolean mFormat24hrs;
+    boolean mShowAnalog;
+    boolean mSmoothSeconds;
+    boolean mShowDigital;
+    boolean mShowDate;
 
     public FsClockView(Context c, AttributeSet attrs) {
         super(c, attrs);
@@ -197,11 +201,11 @@ public class FsClockView extends FrameLayout {
         super.onAttachedToWindow();
 
         // init text to speech
-        tts = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
+        mTts = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if(status != TextToSpeech.SUCCESS) {
-                    tts = null;
+                    mTts = null;
                 }
             }
         });
@@ -212,9 +216,9 @@ public class FsClockView extends FrameLayout {
         super.onDetachedFromWindow();
 
         // destroy tts service connection
-        if(tts != null) {
-            tts.stop();
-            tts.shutdown();
+        if(mTts != null) {
+            mTts.stop();
+            mTts.shutdown();
         }
     }
 
@@ -233,26 +237,32 @@ public class FsClockView extends FrameLayout {
     private void updateClock() {
         final Calendar cal = Calendar.getInstance();
 
-        try {
-            String strDatePattern = mSharedPref.getString("date-format", getDefaultDateFormat(getContext()));
-            final SimpleDateFormat sdfDate = new SimpleDateFormat(strDatePattern, Locale.getDefault());
-            mDateText.setText(sdfDate.format(cal.getTime()));
-        } catch(IllegalArgumentException ignored) {
-            mDateText.setText("---");
+        if(mShowDate) {
+            try {
+                String strDatePattern = mSharedPref.getString("date-format", getDefaultDateFormat(getContext()));
+                final SimpleDateFormat sdfDate = new SimpleDateFormat(strDatePattern, Locale.getDefault());
+                mDateText.setText(sdfDate.format(cal.getTime()));
+            } catch(IllegalArgumentException ignored) {
+                mDateText.setText("---");
+            }
         }
 
-        final SimpleDateFormat sdfTime = new SimpleDateFormat(format24hrs ? "HH:mm" : "hh:mm");
-        mClockText.setText(sdfTime.format(cal.getTime()));
+        if(mShowDigital) {
+            final SimpleDateFormat sdfTime = new SimpleDateFormat(mFormat24hrs ? "HH:mm" : "hh:mm");
+            mClockText.setText(sdfTime.format(cal.getTime()));
 
-        final SimpleDateFormat sdfSeconds = new SimpleDateFormat("ss");
-        mSecondsText.setText(sdfSeconds.format(cal.getTime()));
+            final SimpleDateFormat sdfSeconds = new SimpleDateFormat("ss");
+            mSecondsText.setText(sdfSeconds.format(cal.getTime()));
+        }
 
-        float secRotation = (cal.get(Calendar.SECOND) + ((float)cal.get(Calendar.MILLISECOND)/1000)) * 360 / 60;
-        float minRotation = (cal.get(Calendar.MINUTE) + ((float)cal.get(Calendar.SECOND)/60)) * 360 / 60;
-        float hrsRotation = (cal.get(Calendar.HOUR) + ((float)cal.get(Calendar.MINUTE)/60)) * 360 / 12;
-        mSecondsHand.setRotation(secRotation);
-        mMinutesHand.setRotation(minRotation);
-        mHoursHand.setRotation(hrsRotation);
+        if(mShowAnalog) {
+            float secRotation = (cal.get(Calendar.SECOND) + ((float)cal.get(Calendar.MILLISECOND)/1000)) * 360 / 60;
+            float minRotation = (cal.get(Calendar.MINUTE) + ((float)cal.get(Calendar.SECOND)/60)) * 360 / 60;
+            float hrsRotation = (cal.get(Calendar.HOUR) + ((float)cal.get(Calendar.MINUTE)/60)) * 360 / 12;
+            mSecondsHand.setRotation(secRotation);
+            mMinutesHand.setRotation(minRotation);
+            mHoursHand.setRotation(hrsRotation);
+        }
     }
     private void startTimer() {
         TimerTask taskAnalogClock = new TimerTask() {
@@ -285,8 +295,8 @@ public class FsClockView extends FrameLayout {
                     final Calendar cal = Calendar.getInstance();
                     @Override
                     public void run() {
-                        if(events != null) {
-                            for(Event e : events) {
+                        if(mEvents != null) {
+                            for(Event e : mEvents) {
                                 if(cal.get(Calendar.HOUR_OF_DAY) == e.triggerHour
                                         && cal.get(Calendar.MINUTE) == e.triggerMinute
                                         && cal.get(Calendar.SECOND) == 0) {
@@ -326,14 +336,19 @@ public class FsClockView extends FrameLayout {
             }
         };
 
-        timerAnalogClock = new Timer(false);
-        timerCalendarUpdate = new Timer(false);
-        timerCheckEvent = new Timer(false);
-        timerBurnInPreventionRotation = new Timer(false);
-        timerAnalogClock.schedule(taskAnalogClock, 0, 100);
-        timerCalendarUpdate.schedule(taskCalendarUpdate, 0, 10000);
-        timerCheckEvent.schedule(taskCheckEvent, 0, 1000);
-        timerBurnInPreventionRotation.schedule(taskBurnInAvoidRotation, 1000, BURN_IN_PREVENTION_CHANGE);
+        mTimerAnalogClock = new Timer(false);
+        mTimerCalendarUpdate = new Timer(false);
+        mTimerCheckEvent = new Timer(false);
+        mTimerBurnInPreventionRotation = new Timer(false);
+        mTimerAnalogClock.schedule(taskAnalogClock, 0, mSmoothSeconds ? 100 : 1000);
+        mTimerCalendarUpdate.schedule(taskCalendarUpdate, 0, 10000);
+        mTimerCheckEvent.schedule(taskCheckEvent, 0, 1000);
+        mTimerBurnInPreventionRotation.schedule(taskBurnInAvoidRotation, 1000, BURN_IN_PREVENTION_CHANGE);
+
+        // instant refresh so that the user does not see "00:00:00"
+        if(!mSmoothSeconds) {
+            updateClock();
+        }
     }
 
     void loadSettings(Activity a) {
@@ -350,23 +365,31 @@ public class FsClockView extends FrameLayout {
         mBurnInPrevention = mSharedPref.getBoolean("burn-in-prevention", mBurnInPrevention);
 
         Gson gson = new Gson();
-        events = gson.fromJson(mSharedPref.getString("events",""), Event[].class);
+        mEvents = gson.fromJson(mSharedPref.getString("events",""), Event[].class);
 
-        format24hrs = mSharedPref.getBoolean("24hrs", true);
+        mFormat24hrs = mSharedPref.getBoolean("24hrs", true);
 
-        if(mSharedPref.getBoolean("show-analog", true))
+        if(mSharedPref.getBoolean("show-analog", true)) {
+            mShowAnalog = true;
             findViewById(R.id.analogClockContainer).setVisibility(View.VISIBLE);
-        else
+        } else {
+            mShowAnalog = false;
             findViewById(R.id.analogClockContainer).setVisibility(View.GONE);
+        }
 
-        if(mSharedPref.getBoolean("show-digital", true))
+        if(mSharedPref.getBoolean("show-digital", true)) {
+            mShowDigital = true;
             findViewById(R.id.digitalClockContainer).setVisibility(View.VISIBLE);
-        else
+        } else {
+            mShowDigital = false;
             findViewById(R.id.digitalClockContainer).setVisibility(View.GONE);
+        }
 
-        if(mSharedPref.getBoolean("show-date", true))
+        if(mSharedPref.getBoolean("show-date", true)) {
+            mShowDate = true;
             mDateText.setVisibility(View.VISIBLE);
-        else {
+        } else {
+            mShowDate = false;
             mDateText.setVisibility(View.INVISIBLE);
         }
 
@@ -384,6 +407,9 @@ public class FsClockView extends FrameLayout {
             findViewById(R.id.textViewClockSeconds).setVisibility(View.VISIBLE);
         else
             findViewById(R.id.textViewClockSeconds).setVisibility(View.GONE);
+
+        mSmoothSeconds = mSharedPref.getBoolean("show-seconds-analog", true)
+            && mSharedPref.getBoolean("show-analog", true);
 
         // init custom digital color
         int colorDigital = mSharedPref.getInt("color-digital", 0xffffffff);
@@ -503,11 +529,11 @@ public class FsClockView extends FrameLayout {
     }
 
     private void speak(String text) {
-        if(tts != null) {
+        if(mTts != null) {
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
             } else {
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+                mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
             }
         }
     }
@@ -552,10 +578,10 @@ public class FsClockView extends FrameLayout {
         mTextViewEvents.setVisibility(View.GONE);
 
         // 1. check app internal events
-        if(events != null) {
+        if(mEvents != null) {
             Calendar calNow = Calendar.getInstance();
             long lastDiffMins = EVENT_WINDOW_MINUTES;
-            for(Event e : events) {
+            for(Event e : mEvents) {
                 if(!e.showOnScreen) continue;
                 Calendar calEvent = Calendar.getInstance();
                 calEvent.set(Calendar.HOUR_OF_DAY, e.triggerHour);
@@ -611,14 +637,14 @@ public class FsClockView extends FrameLayout {
     }
 
     protected void pause() {
-        timerAnalogClock.cancel();
-        timerAnalogClock.purge();
-        timerCalendarUpdate.cancel();
-        timerCalendarUpdate.purge();
-        timerCheckEvent.cancel();
-        timerCheckEvent.purge();
-        timerBurnInPreventionRotation.cancel();
-        timerBurnInPreventionRotation.purge();
+        mTimerAnalogClock.cancel();
+        mTimerAnalogClock.purge();
+        mTimerCalendarUpdate.cancel();
+        mTimerCalendarUpdate.purge();
+        mTimerCheckEvent.cancel();
+        mTimerCheckEvent.purge();
+        mTimerBurnInPreventionRotation.cancel();
+        mTimerBurnInPreventionRotation.purge();
     }
 
     protected void resume() {

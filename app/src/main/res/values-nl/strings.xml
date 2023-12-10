@@ -2,9 +2,10 @@
 <resources>
   <string name="app_name">Klok</string>
   <string name="app_name_long">Klok op volledig scherm</string>
+
   <string name="version">Versie</string>
   <string name="analog_clock">Analoge klok</string>
-  <string name="show_seconds_hand">Secondewijzer weergeven</string>
+  <string name="show_seconds_hand">Secondewijzer weergeven (uitschakelen om energie te besparen)</string>
   <string name="digital_clock">Digitale klok</string>
   <string name="show_seconds">Seconden weergeven</string>
   <string name="format_24hrs">Gebruik het 24-uursformaat</string>
