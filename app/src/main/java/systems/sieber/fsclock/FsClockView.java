@@ -19,7 +19,6 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.CalendarContract;
-import android.service.dreams.DreamService;
 import android.speech.tts.TextToSpeech;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
