@@ -80,4 +80,5 @@
     <string name="force_landscape_view_only_when_started_manually">Querformat erzwingen (nur bei manuellem Start der App)</string>
     <string name="date_format">Datumsformat</string>
     <string name="burn_in_prevention">Einbrennschutz (für OLED-Bildschirme, verschiebt den Inhalt leicht)</string>
+    <string name="night_mode_for_dark_rooms">Nachtmodus (für dunkle Räume)</string>
 </resources>

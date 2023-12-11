@@ -80,4 +80,5 @@
     <string name="force_landscape_view_only_when_started_manually">Forzar formato horizontal (solo al iniciar la aplicación manualmente)</string>
     <string name="date_format">Formato de fecha</string>
     <string name="burn_in_prevention">Prevención de quemaduras (para pantallas OLED; mueve ligeramente el contenido)</string>
+    <string name="night_mode_for_dark_rooms">Modo nocturno (para habitaciones oscuras)</string>
 </resources>

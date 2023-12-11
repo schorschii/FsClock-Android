@@ -72,6 +72,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
     CheckBox mCheckBoxShowBatteryInfoWhenCharging;
     CheckBox mCheckBoxBurnInPrevention;
     CheckBox mCheckBoxForceLandscape;
+    CheckBox mCheckBoxDarkMode;
     CheckBox mCheckBoxAnalogClockShow;
     CheckBox mCheckBoxAnalogClockShowSeconds;
     Spinner mSpinnerDesignAnalogFace;
@@ -151,6 +152,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxShowBatteryInfoWhenCharging = findViewById(R.id.checkBoxShowBatteryInfoWhenCharging);
         mCheckBoxBurnInPrevention = findViewById(R.id.checkBoxBurnInPrevention);
         mCheckBoxForceLandscape = findViewById(R.id.checkBoxForceLandscape);
+        mCheckBoxDarkMode = findViewById(R.id.checkBoxDarkMode);
         mCheckBoxAnalogClockShow = findViewById(R.id.checkBoxShowAnalogClock);
         mCheckBoxAnalogClockShowSeconds = findViewById(R.id.checkBoxSecondsAnalog);
         mSpinnerDesignAnalogFace = findViewById(R.id.spinnerDesignAnalogFace);
@@ -184,6 +186,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxShowBatteryInfoWhenCharging.setChecked( mSharedPref.getBoolean("show-battery-info-when-charging", false) );
         mCheckBoxBurnInPrevention.setChecked( mSharedPref.getBoolean("burn-in-prevention", false) );
         mCheckBoxForceLandscape.setChecked( mSharedPref.getBoolean("force-landscape", false) );
+        mCheckBoxDarkMode.setChecked( mSharedPref.getBoolean("dark-mode", false) );
         mCheckBoxAnalogClockShow.setChecked( mSharedPref.getBoolean("show-analog", true) );
         mCheckBoxAnalogClockShowSeconds.setChecked( mSharedPref.getBoolean("show-seconds-analog", true) );
         mCustomColorAnalogFace = mSharedPref.getBoolean("own-color-analog-clock-face", false);
@@ -287,6 +290,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxShowBatteryInfoWhenCharging.setEnabled(state);
         mCheckBoxBurnInPrevention.setEnabled(state);
         mCheckBoxForceLandscape.setEnabled(state);
+        mCheckBoxDarkMode.setEnabled(state);
         mCheckBoxAnalogClockShow.setEnabled(state);
         mCheckBoxAnalogClockShowSeconds.setEnabled(state);
         mSpinnerDesignAnalogFace.setEnabled(state);
@@ -601,6 +605,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.putBoolean("show-battery-info-when-charging", mCheckBoxShowBatteryInfoWhenCharging.isChecked());
         editor.putBoolean("burn-in-prevention", mCheckBoxBurnInPrevention.isChecked());
         editor.putBoolean("force-landscape", mCheckBoxForceLandscape.isChecked());
+        editor.putBoolean("dark-mode", mCheckBoxDarkMode.isChecked());
         editor.putBoolean("show-analog", mCheckBoxAnalogClockShow.isChecked());
         editor.putBoolean("own-color-analog-clock-face", mCustomColorAnalogFace);
         editor.putBoolean("own-color-analog-hours", mCustomColorAnalogHours);

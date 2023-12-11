@@ -22,6 +22,7 @@ public class FullscreenDream extends DreamService {
 
         // find views
         mContentView = findViewById(R.id.fullscreen_fsclock_view);
+        //setScreenBright(false); // doesn't seem to make a difference - or I don't understand it
 
         // hide the system navigation bar with the same flags as done in the Android clock app
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

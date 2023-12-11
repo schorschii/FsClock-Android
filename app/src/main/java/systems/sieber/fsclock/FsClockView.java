@@ -2,21 +2,24 @@ package systems.sieber.fsclock;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.CalendarContract;
+import android.service.dreams.DreamService;
 import android.speech.tts.TextToSpeech;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
@@ -180,9 +183,6 @@ public class FsClockView extends FrameLayout {
                         mMainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     }
                 });
-
-        // init preferences
-        loadSettings(mActivity);
     }
 
     public static int getTextWidth(Context context, CharSequence text, int textSize, Point deviceSize, Typeface typeface) {
@@ -351,15 +351,31 @@ public class FsClockView extends FrameLayout {
         }
     }
 
-    void loadSettings(Activity a) {
-        if(a != null) {
+    void loadSettings() {
+        if(mActivity != null) {
             if(mSharedPref.getBoolean("keep-screen-on", true)) {
-                a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                mActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 Log.i("SCREEN", "Keep ON");
             } else {
-                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                mActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 Log.i("SCREEN", "Keep OFF");
             }
+        }
+
+        WindowManager.LayoutParams layout = null;
+        if(mActivity != null) layout = mActivity.getWindow().getAttributes();
+        if(mSharedPref.getBoolean("dark-mode", false)) {
+            if(layout != null) {
+                layout.screenBrightness = 0;
+                mActivity.getWindow().setAttributes(layout);
+                Log.i("SCREEN", "Dark Mode enabled: set display brightness to lowest");
+            } else {
+                dimClockView(mRootView);
+                Log.i("SCREEN", "Dark Mode enabled: running as dream, dimming clock colors");
+            }
+        } else if(layout != null) {
+            layout.screenBrightness = -1;
+            mActivity.getWindow().setAttributes(layout);
         }
 
         mBurnInPrevention = mSharedPref.getBoolean("burn-in-prevention", mBurnInPrevention);
@@ -510,6 +526,15 @@ public class FsClockView extends FrameLayout {
         }
     }
 
+    void dimClockView(View clockView) {
+        Paint paint = new Paint();
+        paint.setColor(Color.WHITE);
+        paint.setColorFilter(
+                new PorterDuffColorFilter(0x40FFFFFF, PorterDuff.Mode.MULTIPLY)
+        );
+        clockView.setLayerType(View.LAYER_TYPE_HARDWARE, paint);
+    }
+
     void doEventStuff(Event e) {
         if(e.playAlarm) {
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
@@ -648,7 +673,7 @@ public class FsClockView extends FrameLayout {
     }
 
     protected void resume() {
-        loadSettings(mActivity);
+        loadSettings();
         startTimer();
     }
 }

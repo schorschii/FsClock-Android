@@ -83,7 +83,7 @@ public class FullscreenActivity extends AppCompatActivity {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if(result.getResultCode() == Activity.RESULT_OK) {
-                        mContentView.loadSettings(me);
+                        mContentView.loadSettings();
                     }
                 }
             });

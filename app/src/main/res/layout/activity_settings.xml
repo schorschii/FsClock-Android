@@ -108,6 +108,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/force_landscape_view_only_when_started_manually" />
+                <CheckBox
+                    android:id="@+id/checkBoxDarkMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/night_mode_for_dark_rooms" />
 
                 <Space
                     android:layout_width="match_parent"
