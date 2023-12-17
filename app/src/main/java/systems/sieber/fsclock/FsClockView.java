@@ -2,6 +2,7 @@ package systems.sieber.fsclock;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -88,6 +89,7 @@ public class FsClockView extends FrameLayout {
     boolean mSmoothSeconds;
     boolean mShowDigital;
     boolean mShowDate;
+    boolean mShowAlarms;
 
     public FsClockView(Context c, AttributeSet attrs) {
         super(c, attrs);
@@ -381,6 +383,7 @@ public class FsClockView extends FrameLayout {
 
         Gson gson = new Gson();
         mEvents = gson.fromJson(mSharedPref.getString("events",""), Event[].class);
+        mShowAlarms = mSharedPref.getBoolean("show-alarms", false);
 
         mFormat24hrs = mSharedPref.getBoolean("24hrs", true);
 
@@ -603,6 +606,7 @@ public class FsClockView extends FrameLayout {
 
         // 1. check app internal events
         if(mEvents != null) {
+            boolean eventFound = false;
             Calendar calNow = Calendar.getInstance();
             long lastDiffMins = EVENT_WINDOW_MINUTES;
             for(Event e : mEvents) {
@@ -615,16 +619,29 @@ public class FsClockView extends FrameLayout {
                 if(diffMins > 0 && diffMins < EVENT_WINDOW_MINUTES) {
                     // if multiple events are in current time window: show nearest event
                     if(diffMins < lastDiffMins) {
+                        eventFound = true;
                         lastDiffMins = diffMins;
-                        // show event text
                         mTextViewEvents.setVisibility(View.VISIBLE);
                         mTextViewEvents.setText(e.toString());
                     }
                 }
             }
+            if(eventFound) {
+                return;
+            }
         }
 
-        // 2. check system calendar events
+        // 2. check system alarms
+        Long systemAlarmTime = null;
+        if(mShowAlarms && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            final AlarmManager m = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+            AlarmManager.AlarmClockInfo alarmInfo = m.getNextAlarmClock();
+            if(alarmInfo != null) {
+                systemAlarmTime = alarmInfo.getTriggerTime();
+            }
+        }
+
+        // 3. check system calendar events (precedence over alarms)
         if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_CALENDAR) == PackageManager.PERMISSION_GRANTED) {
             //SimpleDateFormat sdfLog = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
             SimpleDateFormat sdfDisplay = new SimpleDateFormat("HH:mm", Locale.getDefault());
@@ -638,9 +655,6 @@ public class FsClockView extends FrameLayout {
             end.add(Calendar.DATE, 1);
 
             String selection = "((dtstart >= "+start.getTimeInMillis()+") AND (dtstart <= "+end.getTimeInMillis()+"))";
-            //Log.e("EVENT", sdfLog.format(start.getTime()));
-            //Log.e("EVENT", sdfLog.format(end.getTime()));
-
             Cursor cursor = getContext().getContentResolver().query(
                     Uri.parse("content://com.android.calendar/events"),
                     new String[]{"calendar_id", "title", "description", "dtstart", "dtend", "eventLocation"},
@@ -649,14 +663,22 @@ public class FsClockView extends FrameLayout {
             if(cursor == null) return;
             cursor.moveToFirst();
             int length = cursor.getCount();
-            for(int i = 0; i < length; i++) {
-                mTextViewEvents.setVisibility(View.VISIBLE);
-                mTextViewEvents.setText(sdfDisplay.format(cursor.getLong(3)) + " " + cursor.getString(1));
-                //Log.e("EVENT",cursor.getString(1) + " "+sdfLog.format(cursor.getLong(3)));
-                cursor.moveToNext();
-                break;
+            if(length != 0 && (systemAlarmTime == null || cursor.getLong(3) < systemAlarmTime)) {
+                for(int i = 0; i < length; i++) {
+                    mTextViewEvents.setVisibility(View.VISIBLE);
+                    mTextViewEvents.setText(sdfDisplay.format(cursor.getLong(3)) + " " + cursor.getString(1));
+                    //Log.e("EVENT", cursor.getString(1)+" "+sdfDisplay.format(cursor.getLong(3))+" "+sdfDisplay.format(systemAlarmTime));
+                    //cursor.moveToNext();
+                    cursor.close();
+                    return;
+                }
             }
-            cursor.close();
+
+            // no calendar entry found, show alarm
+            if(systemAlarmTime != null) {
+                mTextViewEvents.setVisibility(View.VISIBLE);
+                mTextViewEvents.setText(sdfDisplay.format(systemAlarmTime) + " ⏰");
+            }
         }
     }
 

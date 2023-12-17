@@ -108,6 +108,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
     int mColorBack;
     Spinner mSpinnerDesignBack;
     boolean mBackStretch;
+    CheckBox mCheckBoxShowAlarms;
     Button mButtonNewEvent;
 
     @SuppressLint("SetTextI18n")
@@ -177,6 +178,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mSpinnerDesignBack = findViewById(R.id.spinnerDesignBack);
         mColorChangerBack = findViewById(R.id.viewColorChangerBack);
         mColorPreviewBack = findViewById(R.id.viewColorPreviewBack);
+        mCheckBoxShowAlarms = findViewById(R.id.checkBoxShowAlarms);
         mButtonNewEvent = findViewById(R.id.buttonNewEvent);
 
         // init settings
@@ -205,6 +207,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorDigital = mSharedPref.getInt("color-digital", 0xffffffff);
         mColorBack = mSharedPref.getInt("color-back", 0xff000000);
         mBackStretch = mSharedPref.getBoolean("back-stretch", false);
+        mCheckBoxShowAlarms.setChecked(mSharedPref.getBoolean("show-alarms", false));
 
         // load events
         Event[] eventsArray = mGson.fromJson(mSharedPref.getString("events",""), Event[].class);
@@ -309,6 +312,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorChangerDigital.setEnabled(state);
         mColorChangerBack.setEnabled(state);
         mSpinnerDesignBack.setEnabled(state);
+        mCheckBoxShowAlarms.setEnabled(state);
         mButtonNewEvent.setEnabled(state);
     }
 
@@ -625,6 +629,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.putInt("color-digital", mColorDigital);
         editor.putInt("color-back", mColorBack);
         editor.putBoolean("back-stretch", mBackStretch);
+        editor.putBoolean("show-alarms", mCheckBoxShowAlarms.isChecked());
 
         editor.apply();
     }

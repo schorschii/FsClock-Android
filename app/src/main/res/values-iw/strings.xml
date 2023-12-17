@@ -82,4 +82,5 @@
     <string name="date_format">פורמט תאריך</string>
     <string name="burn_in_prevention">מניעת צריבה (עבור מסכי OLED; מזיז מעט את התוכן)</string>
     <string name="night_mode_for_dark_rooms">מצב לילה (לחדרים חשוכים)</string>
+    <string name="show_alarms">הצג אזעקות</string>
 </resources>

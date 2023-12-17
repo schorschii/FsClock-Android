@@ -81,4 +81,5 @@
     <string name="date_format">Format de date</string>
     <string name="burn_in_prevention">Prévention des brûlures (pour les écrans OLED; déplace légèrement le contenu)</string>
     <string name="night_mode_for_dark_rooms">Mode nuit (pour les pièces sombres)</string>
+    <string name="show_alarms">Afficher les alarmes</string>
 </resources>

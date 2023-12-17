@@ -82,4 +82,5 @@
   <string name="date_format">Datumnotatie</string>
     <string name="burn_in_prevention">Inbrandpreventie (voor OLED-schermen; inhoud iets verplaatst)</string>
   <string name="night_mode_for_dark_rooms">Nachtmodus (voor donkere kamers)</string>
+    <string name="show_alarms">Toon alarmen</string>
 </resources>

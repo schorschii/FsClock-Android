@@ -81,4 +81,5 @@
     <string name="date_format">Формат даты</string>
     <string name="burn_in_prevention">Предотвращение выгорания (для экранов OLED; слегка перемещает контент)</string>
     <string name="night_mode_for_dark_rooms">Ночной режим (для темных помещений)</string>
+    <string name="show_alarms">Показать сигналы тревоги</string>
 </resources>
