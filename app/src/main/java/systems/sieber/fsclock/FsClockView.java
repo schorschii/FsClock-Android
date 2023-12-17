@@ -642,10 +642,9 @@ public class FsClockView extends FrameLayout {
         }
 
         // 3. check system calendar events (precedence over alarms)
+        SimpleDateFormat sdfDisplay = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        //SimpleDateFormat sdfLog = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
         if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_CALENDAR) == PackageManager.PERMISSION_GRANTED) {
-            //SimpleDateFormat sdfLog = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
-            SimpleDateFormat sdfDisplay = new SimpleDateFormat("HH:mm", Locale.getDefault());
-
             Calendar start = Calendar.getInstance();
             Calendar end = Calendar.getInstance();
             end.setTime(start.getTime());
@@ -673,12 +672,12 @@ public class FsClockView extends FrameLayout {
                     return;
                 }
             }
+        }
 
-            // no calendar entry found, show alarm
-            if(systemAlarmTime != null) {
-                mTextViewEvents.setVisibility(View.VISIBLE);
-                mTextViewEvents.setText(sdfDisplay.format(systemAlarmTime) + " ⏰");
-            }
+        // no calendar entry found, show alarm
+        if(systemAlarmTime != null) {
+            mTextViewEvents.setVisibility(View.VISIBLE);
+            mTextViewEvents.setText(sdfDisplay.format(systemAlarmTime) + " ⏰");
         }
     }
 
