@@ -1,7 +1,8 @@
-Simpler Vollbild-Uhr-Bildschirmschoner
+Diese App zeigt eine simple Vollbild-Uhr, welche als Bildschirmschoner verwendet werden kann.
+
 - Analog- und Digitaluhr können einzeln aktiviert oder deaktiviert werden
 - optionale Datums- und Wochentagsansicht
-- zeigt Termine aus dem Android-Kalender oder der internen Ereignisdatenbank an
+- zeigt Wecker und Termine aus dem Android-Kalender oder der internen Ereignisdatenbank an
 - einstellbare Hintergrund- und Uhrfarbe
-- kann als Android-System-Bildschirmschoner ("DayDream") auf Smartphones und Tablets eingestellt werden
-- kompatibel mit Android TV-Geräten
+- kann als Android-System-Bildschirmschoner ("DayDream") auf Smartphones, Tablets eingestellt werden und ist mit Android TV-Geräten kompatibel
+- Inhalte können leicht bewegt werden, um ein Einbrennen auf OLED-Displays zu verhindern

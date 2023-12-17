@@ -1,7 +1,8 @@
-Simple Fullscreen Clock Screensaver
+This app displays a simple fullscreen clock which can be used screensaver.
+
 - analog and digital clock can be activated or deactivated individually
 - optional date and weekday view
-- displays appointments from Android calendar or internal event database
+- displays alarms and appointments from Android calendar or internal event database
 - adjustable background and clock color
-- can be set as Android system screensaver ("DayDream") on smartphones and tablets
-- compatible with Android TV devices
+- can be set as Android system screensaver ("DayDream") on smartphones, tablets and is compatible with Android TV devices
+- content can be moved slightly to prevent burn-in on OLED displays
