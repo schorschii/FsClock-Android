@@ -1,0 +1,9 @@
+Deze app geeft een eenvoudige klok op volledig scherm weer die als screensaver kan worden gebruikt.
+
+- analoge en digitale klok kunnen afzonderlijk worden geactiveerd of gedeactiveerd
+- Optionele datum- en weekdagweergave met optie voor aangepast formaat
+- toont alarmen en afspraken uit de Android-agenda of interne evenementendatabase
+- instelbare achtergrond- en klokkleur
+- Kan worden ingesteld als screensaver voor het Android-systeem ("DayDream") op smartphones en tablets
+- compatibel met Android TV-apparaten
+- inhoud kan enigszins worden verplaatst om inbranden op OLED-schermen te voorkomen

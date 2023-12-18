@@ -1,0 +1,9 @@
+Esta aplicación muestra un reloj de pantalla completa simple que se puede usar como protector de pantalla.
+
+- el reloj analógico y digital se puede activar o desactivar individualmente
+- vista opcional de fecha y día de la semana con opción de formato personalizado
+- muestra alarmas y citas del calendario de Android o de la base de datos de eventos interna
+- fondo ajustable y color del reloj
+- se puede configurar como protector de pantalla del sistema Android ("DayDream") en teléfonos inteligentes y tabletas
+- compatible con dispositivos Android TV
+- el contenido se puede mover ligeramente para evitar que se queme en las pantallas OLED

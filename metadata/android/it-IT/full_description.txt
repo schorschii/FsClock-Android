@@ -1,0 +1,9 @@
+Questa app visualizza un semplice orologio a schermo intero che può essere utilizzato come salvaschermo.
+
+- L'orologio analogico e digitale possono essere attivati o disattivati individualmente
+- visualizzazione opzionale della data e del giorno della settimana con opzione di formato personalizzato
+- visualizza allarmi e appuntamenti dal calendario Android o dal database degli eventi interno
+- Sfondo regolabile e colore dell'orologio
+- può essere impostato come salvaschermo del sistema Android ("DayDream") su smartphone e tablet
+- compatibile con dispositivi Android TV
+- il contenuto può essere spostato leggermente per evitare il burn-in sui display OLED
