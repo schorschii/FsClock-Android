@@ -68,6 +68,9 @@ public class FsClockView extends FrameLayout {
     View mBatteryView;
     TextView mBatteryText;
     ImageView mBatteryImage;
+    View mAlarmView;
+    TextView mAlarmText;
+    ImageView mAlarmImage;
     TextView mClockText;
     TextView mSecondsText;
     TextView mDateText;
@@ -117,6 +120,9 @@ public class FsClockView extends FrameLayout {
         mBatteryText = findViewById(R.id.textViewBattery);
         mBatteryImage = findViewById(R.id.imageViewBattery);
         mBatteryImage.setImageResource(R.drawable.ic_battery_full_white_24dp);
+        mAlarmView = findViewById(R.id.linearLayoutAlarm);
+        mAlarmText = findViewById(R.id.textViewAlarm);
+        mAlarmImage = findViewById(R.id.imageViewAlarm);
 
         // init font
         final Typeface fontLed = ResourcesCompat.getFont(c, R.font.dseg7classic_regular);
@@ -437,6 +443,8 @@ public class FsClockView extends FrameLayout {
         mTextViewEvents.setTextColor(colorDigital);
         mBatteryText.setTextColor(colorDigital);
         mBatteryImage.setColorFilter(colorDigital, PorterDuff.Mode.SRC_ATOP);
+        mAlarmText.setTextColor(colorDigital);
+        mAlarmImage.setColorFilter(colorDigital, PorterDuff.Mode.SRC_ATOP);
 
         // init custom analog color
         if(mSharedPref.getBoolean("own-color-analog-clock-face", false)) {
@@ -593,7 +601,7 @@ public class FsClockView extends FrameLayout {
                 mBatteryImage.setImageResource(R.drawable.ic_battery_charging_white_24dp);
             }
         } else {
-            mBatteryView.setVisibility(View.INVISIBLE);
+            mBatteryView.setVisibility(View.GONE);
         }
     }
 
@@ -601,8 +609,12 @@ public class FsClockView extends FrameLayout {
 
     @SuppressLint("SetTextI18n")
     void updateEventView() {
+        SimpleDateFormat sdfDisplay = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        //SimpleDateFormat sdfLog = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+
         // clear previous event
         mTextViewEvents.setVisibility(View.GONE);
+        mAlarmView.setVisibility(View.GONE);
 
         // 1. check app internal events
         if(mEvents != null) {
@@ -632,18 +644,17 @@ public class FsClockView extends FrameLayout {
         }
 
         // 2. check system alarms
-        Long systemAlarmTime = null;
         if(mShowAlarms && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             final AlarmManager m = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
             AlarmManager.AlarmClockInfo alarmInfo = m.getNextAlarmClock();
             if(alarmInfo != null) {
-                systemAlarmTime = alarmInfo.getTriggerTime();
+                Long systemAlarmTime = alarmInfo.getTriggerTime();
+                mAlarmText.setText(sdfDisplay.format(systemAlarmTime));
+                mAlarmView.setVisibility(View.VISIBLE);
             }
         }
 
-        // 3. check system calendar events (precedence over alarms)
-        SimpleDateFormat sdfDisplay = new SimpleDateFormat("HH:mm", Locale.getDefault());
-        //SimpleDateFormat sdfLog = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+        // 3. check system calendar events
         if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_CALENDAR) == PackageManager.PERMISSION_GRANTED) {
             Calendar start = Calendar.getInstance();
             Calendar end = Calendar.getInstance();
@@ -662,7 +673,7 @@ public class FsClockView extends FrameLayout {
             if(cursor == null) return;
             cursor.moveToFirst();
             int length = cursor.getCount();
-            if(length != 0 && (systemAlarmTime == null || cursor.getLong(3) < systemAlarmTime)) {
+            if(length != 0) {
                 for(int i = 0; i < length; i++) {
                     mTextViewEvents.setVisibility(View.VISIBLE);
                     mTextViewEvents.setText(sdfDisplay.format(cursor.getLong(3)) + " " + cursor.getString(1));
@@ -672,12 +683,6 @@ public class FsClockView extends FrameLayout {
                     return;
                 }
             }
-        }
-
-        // no calendar entry found, show alarm
-        if(systemAlarmTime != null) {
-            mTextViewEvents.setVisibility(View.VISIBLE);
-            mTextViewEvents.setText(sdfDisplay.format(systemAlarmTime) + " ⏰");
         }
     }
 

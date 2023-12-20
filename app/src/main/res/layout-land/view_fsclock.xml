@@ -160,29 +160,59 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayoutBattery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="10dp"
+        android:showDividers="middle"
+        android:divider="@drawable/statusbar_divider"
         android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/imageViewBattery"
+        <LinearLayout
+            android:id="@+id/linearLayoutAlarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_battery_full_white_24dp" />
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/imageViewAlarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="4dp"
+                app:srcCompat="@drawable/ic_alarm_white_24dp" />
+            <TextView
+                android:id="@+id/textViewAlarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/clock_prefilled"
+                android:textColor="@color/colorDefaultClock"
+                android:textSize="20sp" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/textViewBattery"
+        <LinearLayout
+            android:id="@+id/linearLayoutBattery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/battery_prefilled"
-            android:textColor="@color/colorDefaultClock"
-            android:textSize="20sp" />
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/imageViewBattery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_battery_full_white_24dp" />
+            <TextView
+                android:id="@+id/textViewBattery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/battery_prefilled"
+                android:textColor="@color/colorDefaultClock"
+                android:textSize="20sp" />
+        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>
