@@ -668,6 +668,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         ((NumberPicker) ad.findViewById(R.id.numberPickerMinute)).setMaxValue(59);
         ad.findViewById(R.id.buttonNewEventRemove).setVisibility(View.GONE);
         ad.show();
+        ad.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         ad.findViewById(R.id.buttonNewEventOK).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -698,6 +699,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         ((CheckBox) ad.findViewById(R.id.checkBoxAlarmNewEvent)).setChecked(e.playAlarm);
         ((CheckBox) ad.findViewById(R.id.checkBoxDisplayNewEvent)).setChecked(e.showOnScreen);
         ad.show();
+        ad.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         ad.findViewById(R.id.buttonNewEventOK).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
