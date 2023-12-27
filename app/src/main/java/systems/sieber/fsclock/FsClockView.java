@@ -123,6 +123,7 @@ public class FsClockView extends FrameLayout {
         mAlarmView = findViewById(R.id.linearLayoutAlarm);
         mAlarmText = findViewById(R.id.textViewAlarm);
         mAlarmImage = findViewById(R.id.imageViewAlarm);
+        mAlarmImage.setImageResource(R.drawable.ic_alarm_white_24dp);
 
         // init font
         final Typeface fontLed = ResourcesCompat.getFont(c, R.font.dseg7classic_regular);
