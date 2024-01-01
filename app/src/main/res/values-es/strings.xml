@@ -82,4 +82,26 @@
     <string name="burn_in_prevention">Prevención de quemaduras (para pantallas OLED; mueve ligeramente el contenido)</string>
     <string name="night_mode_for_dark_rooms">Modo nocturno (para habitaciones oscuras)</string>
     <string name="show_alarms">Mostrar alarmas</string>
+    <string name="reset_default">Restablecer valor predeterminado</string>
+    <string name="date_format_placeholders_help_title">Puede utilizar los siguientes marcadores de posición (con ejemplos)</string>
+    <string name="date_format_placeholders_help">
+    G - Designador de era (AD)\n
+    yyyy o yy - Año (2024 o 24)\n
+    MM - Mes (12)\n
+    ww - Semana en el año (27)\n
+    W - Semana en mes (2)\n
+    DDD - Día del año (189)\n
+    dd - Día del mes (10)\n
+    F - Día de la semana en el mes (2)\n
+    EEEE o E - Nombre del día de la semana (Lunes o Lun.)\n
+    u - Número de día de la semana (1-7)\n
+    a - Marcador AM/PM\n
+    HH - Hora en el día (0-23)\n
+    hh - Hora en AM/PM (1-12)\n
+    mm - Minuto en hora\n
+    ss - Segundo en minuto\n
+    zzzz o z - Nombre de la zona horaria (Pacific Standard Time o PST)\n
+    Z - RFC 822 zona horaria (-0800)\n
+    XXX o X - RFC 8601 zona horaria (-08:00 o -08)\n
+    </string>
 </resources>

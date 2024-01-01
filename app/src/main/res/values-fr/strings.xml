@@ -82,4 +82,26 @@
     <string name="burn_in_prevention">Prévention des brûlures (pour les écrans OLED; déplace légèrement le contenu)</string>
     <string name="night_mode_for_dark_rooms">Mode nuit (pour les pièces sombres)</string>
     <string name="show_alarms">Afficher les alarmes</string>
+    <string name="reset_default">Réinitialiser par défaut</string>
+    <string name="date_format_placeholders_help_title">Vous pouvez utiliser les espaces réservés suivants (avec des exemples)</string>
+    <string name="date_format_placeholders_help">
+    G - Désignateur d\'époque (AD)\n
+    yyyy ou yy - Année (2024 ou 24)\n
+    MM - Mois (12)\n
+    ww - Semaine dans l\'année (27)\n
+    W - Semaine après mois (2)\n
+    DDD - Jour de l\'année (189)\n
+    dd - Jour du mois (10)\n
+    F - Jour de la semaine dans le mois (2)\n
+    EEEE ou E - Nom du jour de la semaine (Lundi ou Lun.)\n
+    u - Numero del giorno della settimana (1-7)\n
+    a - Marqueur AM/PM\n
+    HH - Heure dans la journée (0-23)\n
+    hh - Heure en AM/PM (1-12)\n
+    mm - Minute en heure\n
+    ss - Seconde en minute\n
+    zzzz ou z - Nom du fuseau horaire (Pacific Standard Time ou PST)\n
+    Z - RFC 822 fuseau horaire (-0800)\n
+    XXX ou X - RFC 8601 fuseau horaire (-08:00 ou -08)\n
+    </string>
 </resources>

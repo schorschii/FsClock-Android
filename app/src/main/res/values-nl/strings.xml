@@ -80,7 +80,29 @@
   <string name="no_image">Geen afbeelding</string>
   <string name="force_landscape_view_only_when_started_manually">Liggend formaat forceren (alleen bij handmatig starten van de app)</string>
   <string name="date_format">Datumnotatie</string>
-    <string name="burn_in_prevention">Inbrandpreventie (voor OLED-schermen; inhoud iets verplaatst)</string>
+  <string name="burn_in_prevention">Inbrandpreventie (voor OLED-schermen; inhoud iets verplaatst)</string>
   <string name="night_mode_for_dark_rooms">Nachtmodus (voor donkere kamers)</string>
-    <string name="show_alarms">Toon alarmen</string>
+  <string name="show_alarms">Toon alarmen</string>
+  <string name="reset_default">Terug naar basis instellingen</string>
+  <string name="date_format_placeholders_help_title">U kunt de volgende tijdelijke aanduidingen gebruiken (met voorbeelden)</string>
+  <string name="date_format_placeholders_help">
+    G - Tijdperkaanduiding (AD)\n
+    yyyy of yy - Jaar (2024 of 24)\n
+    MM - Maand (12)\n
+    ww - Week in jaar (27)\n
+    W - Week in maand (2)\n
+    DDD - Dag van het jaar (189)\n
+    dd - Dag van de maand (10)\n
+    F - Dag van de week in de maand (2)\n
+    EEEE of E - Naam van de weekdag (Maandag of Ma.)\n
+    u - Dagnummer van de week (1-7)\n
+    a - AM/PM-markering\n
+    HH - Uur in dag (0-23)\n
+    hh - Uur in AM/PM (1-12)\n
+    mm - Minuut in uur\n
+    ss - Tweede in minuut\n
+    zzzz of z - Naam van tijdzone (Pacific Standard Time of PST)\n
+    Z - RFC 822 tijdzone (-0800)\n
+    XXX of X - RFC 8601 tijdzone (-08:00 of -08)\n
+    </string>
 </resources>

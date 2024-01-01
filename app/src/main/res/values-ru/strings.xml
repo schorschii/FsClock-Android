@@ -82,4 +82,26 @@
     <string name="burn_in_prevention">Предотвращение выгорания (для экранов OLED; слегка перемещает контент)</string>
     <string name="night_mode_for_dark_rooms">Ночной режим (для темных помещений)</string>
     <string name="show_alarms">Показать сигналы тревоги</string>
+    <string name="reset_default">Сбросить настройки по умолчанию</string>
+    <string name="date_format_placeholders_help_title">Вы можете использовать следующие заполнители (с примерами)</string>
+    <string name="date_format_placeholders_help">
+    G - Обозначение эпохи (AD)\n
+    yyyy или yy - Год (2024 или 24)\n
+    MM - Месяц (12)\n
+    ww - Неделя в году (27)\n
+    W - Неделя в месяце (2)\n
+    DDD - День года (189)\n
+    dd - День месяца (10)\n
+    F - День недели в месяце (2)\n
+    EEEE или E - Naam van de weekdag (Понедельник или Пн.)\n
+    u - Номер дня недели (1-7)\n
+    a - Маркер AM/PM\n
+    HH - Час в день (0-23)\n
+    hh - Час в AM/PM (1-12)\n
+    mm - Минута в час\n
+    ss - Секунда в минуте\n
+    zzzz или z - Название часового пояса (Pacific Standard Time или PST)\n
+    Z - RFC 822 часовой пояс (-0800)\n
+    XXX или X - RFC 8601 часовой пояс (-08:00 или -08)\n
+    </string>
 </resources>

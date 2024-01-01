@@ -82,4 +82,26 @@
     <string name="burn_in_prevention">Prevenzione burn-in (per schermi OLED; sposta leggermente il contenuto)</string>
     <string name="night_mode_for_dark_rooms">Modalità notturna (per stanze buie)</string>
     <string name="show_alarms">Mostra allarmi</string>
+    <string name="reset_default">Ripristina impostazione predefinita</string>
+    <string name="date_format_placeholders_help_title">Puoi utilizzare i seguenti segnaposto (con esempi)</string>
+    <string name="date_format_placeholders_help">
+    G - Designatore dell\'era (AD)\n
+    yyyy o yy - Anno (2024 o 24)\n
+    MM - Mese (12)\n
+    ww - Settimana nell\'anno (27)\n
+    W - Settimana nel mese (2)\n
+    DDD - Giorno dell\'anno (189)\n
+    dd - Giorno del mese (10)\n
+    F - Giorno della settimana nel mese (2)\n
+    EEEE o E - Nome del giorno della settimana (Lunedi o Lun.)\n
+    u - Numero del giorno della settimana (1-7)\n
+    a - Indicatore AM/PM\n
+    HH - Ora dopo giornata (0-23)\n
+    hh - Ora in AM/PM (1-12)\n
+    mm - Minuto in ora\n
+    ss - Secondo in minuto\n
+    zzzz o z - Nome del fuso orario (Pacific Standard Time o PST)\n
+    Z - RFC 822 fuso orario (-0800)\n
+    XXX o X - RFC 8601 fuso orario (-08:00 o -08)\n
+    </string>
 </resources>

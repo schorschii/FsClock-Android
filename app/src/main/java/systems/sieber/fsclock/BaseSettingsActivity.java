@@ -14,6 +14,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -733,9 +734,31 @@ public class BaseSettingsActivity extends AppCompatActivity {
         }
     }
 
-    public final static String URL_DATE_FORMAT_HELP = "https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html";
     public void onClickDateFormatHelp(View v) {
-        openBrowser(URL_DATE_FORMAT_HELP);
+        StringBuilder sb = new StringBuilder();
+        for(String s : getString(R.string.date_format_placeholders_help).split("\n")) {
+            sb.append(s.trim()).append("\n");
+        }
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.date_format_placeholders_help_title));
+        builder.setMessage(sb.toString());
+        builder.setPositiveButton(getString(R.string.ok),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        builder.setNeutralButton(getString(R.string.default_design),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        mEditTextDateFormat.setText(FsClockView.getDefaultDateFormat(getBaseContext()));
+                    }
+                });
+        builder.setCancelable(true);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        TextView messageView = dialog.findViewById(android.R.id.message);
+        messageView.setTypeface(Typeface.MONOSPACE);
     }
     public void onClickCustomAnalogImagesHelp(View v) {
         infoDialog("", getString(R.string.own_images_note));

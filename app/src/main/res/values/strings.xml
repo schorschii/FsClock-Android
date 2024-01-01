@@ -91,4 +91,26 @@
     <string name="burn_in_prevention">Burn-in prevention (for OLED screens; moves content slightly)</string>
     <string name="night_mode_for_dark_rooms">Night Mode (for dark rooms)</string>
     <string name="show_alarms">Show Alarms</string>
+    <string name="reset_default">Reset default</string>
+    <string name="date_format_placeholders_help_title">You can use the following placeholders (example in brackets)</string>
+    <string name="date_format_placeholders_help">
+    G - Era designator (AD)\n
+    yyyy or yy - Year (2024 or 24)\n
+    MM - Month (12)\n
+    ww - Week in year (27)\n
+    W - Week in month (2)\n
+    DDD - Day in year (189)\n
+    dd - Day in month (10)\n
+    F - Day of week in month (2)\n
+    EEEE or E - Week day name (Monday or Mon)\n
+    u - Day number of week (1-7)\n
+    a - AM/PM marker\n
+    HH - Hour in day (0-23)\n
+    hh - Hour in AM/PM (1-12)\n
+    mm - Minute in hour\n
+    ss - Second in minute\n
+    zzzz or z - Time zone name (Pacific Standard Time or PST)\n
+    Z - RFC 822 time zone (-0800)\n
+    XXX or X - RFC 8601 time zone (-08:00 or -08)\n
+    </string>
 </resources>
