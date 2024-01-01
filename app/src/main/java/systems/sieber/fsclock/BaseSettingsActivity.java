@@ -748,7 +748,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-        builder.setNeutralButton(getString(R.string.default_design),
+        builder.setNeutralButton(getString(R.string.reset_default),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         mEditTextDateFormat.setText(FsClockView.getDefaultDateFormat(getBaseContext()));
