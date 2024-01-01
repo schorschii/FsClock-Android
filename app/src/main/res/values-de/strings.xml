@@ -83,7 +83,7 @@
     <string name="night_mode_for_dark_rooms">Nachtmodus (für dunkle Räume)</string>
     <string name="show_alarms">Wecker anzeigen</string>
     <string name="reset_default">Standard zurücksetzen</string>
-    <string name="date_format_placeholders_help_title">Sie können die folgenden Platzhalter nutzen (inkl. Beispiele)</string>
+    <string name="date_format_placeholders_help_title">Sie können die folgenden Platzhalter nutzen (Beispiele in Klammern)</string>
     <string name="date_format_placeholders_help">
     G - Epochenbezeichnung (AD)\n
     yyyy or yy - Jahr (2024 oder 24)\n
