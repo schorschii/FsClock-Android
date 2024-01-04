@@ -103,6 +103,7 @@
     ss - Tweede in minuut\n
     zzzz of z - Naam van tijdzone (Pacific Standard Time of PST)\n
     Z - RFC 822 tijdzone (-0800)\n
-    XXX of X - RFC 8601 tijdzone (-08:00 of -08)\n
+    XXX of X - RFC 8601 tijdzone (-08:00 of -08)\n\n
+    Aangepaste tekst kan tussen enkele aanhalingstekens worden toegevoegd, b.v. \'je berichtje\'.
     </string>
 </resources>

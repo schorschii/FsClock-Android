@@ -86,22 +86,23 @@
     <string name="date_format_placeholders_help_title">Sie können die folgenden Platzhalter nutzen (Beispiele in Klammern)</string>
     <string name="date_format_placeholders_help">
     G - Epochenbezeichnung (AD)\n
-    yyyy or yy - Jahr (2024 oder 24)\n
+    yyyy oder yy - Jahr (2024 oder 24)\n
     MM - Monat (12)\n
     ww - Woche des Jahrs (27)\n
     W - Woche des Monats (2)\n
     DDD - Tag des Jahres (189)\n
     dd - Tag des Monats (10)\n
     F - Tag der Woche im Monat (2)\n
-    EEEE or E - Wochentag-Name (Monday or Mon)\n
+    EEEE oder E - Wochentag-Name (Montag oder Mo.)\n
     u - Wochentag-Nummer (1-7)\n
     a - AM/PM-Markierung\n
     HH - Stunde des Tages (0-23)\n
     hh - Stunde in AM/PM (1-12)\n
     mm - Minute der Stunde\n
     ss - Sekunde der Minute\n
-    zzzz or z - Zeitzonenname (Pacific Standard Time or PST)\n
+    zzzz oder z - Zeitzonenname (Pacific Standard Time oder PST)\n
     Z - Zeitzone nach RFC 822 (-0800)\n
-    XXX or X - Zeitzone nach RFC 8601 (-08:00 or -08)\n
+    XXX oder X - Zeitzone nach RFC 8601 (-08:00 oder -08)\n\n
+    Benutzerdefinierter Text kann in einfachen Anführungszeichen hinzugefügt werden, z. B. \'dein Text\'.
     </string>
 </resources>

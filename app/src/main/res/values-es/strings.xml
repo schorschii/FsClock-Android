@@ -102,6 +102,7 @@
     ss - Segundo en minuto\n
     zzzz o z - Nombre de la zona horaria (Pacific Standard Time o PST)\n
     Z - RFC 822 zona horaria (-0800)\n
-    XXX o X - RFC 8601 zona horaria (-08:00 o -08)\n
+    XXX o X - RFC 8601 zona horaria (-08:00 o -08)\n\n
+    Se puede agregar texto personalizado entre comillas simples, p. \'tu texto\'.
     </string>
 </resources>

@@ -102,7 +102,7 @@
     DDD - Day in year (189)\n
     dd - Day in month (10)\n
     F - Day of week in month (2)\n
-    EEEE or E - Week day name (Monday or Mon)\n
+    EEEE or E - Week day name (Monday or Mon.)\n
     u - Day number of week (1-7)\n
     a - AM/PM marker\n
     HH - Hour in day (0-23)\n
@@ -111,6 +111,7 @@
     ss - Second in minute\n
     zzzz or z - Time zone name (Pacific Standard Time or PST)\n
     Z - RFC 822 time zone (-0800)\n
-    XXX or X - RFC 8601 time zone (-08:00 or -08)\n
+    XXX or X - RFC 8601 time zone (-08:00 or -08)\n\n
+    Custom text can be added in single quotes, e.g. \'your text\'.
     </string>
 </resources>

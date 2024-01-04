@@ -102,6 +102,7 @@
     ss - Seconde en minute\n
     zzzz ou z - Nom du fuseau horaire (Pacific Standard Time ou PST)\n
     Z - RFC 822 fuseau horaire (-0800)\n
-    XXX ou X - RFC 8601 fuseau horaire (-08:00 ou -08)\n
+    XXX ou X - RFC 8601 fuseau horaire (-08:00 ou -08)\n\n
+    Un texte personnalisé peut être ajouté entre guillemets simples, par ex. \'ton texte\'.
     </string>
 </resources>

@@ -102,6 +102,7 @@
     ss - Secondo in minuto\n
     zzzz o z - Nome del fuso orario (Pacific Standard Time o PST)\n
     Z - RFC 822 fuso orario (-0800)\n
-    XXX o X - RFC 8601 fuso orario (-08:00 o -08)\n
+    XXX o X - RFC 8601 fuso orario (-08:00 o -08)\n\n
+    È possibile aggiungere testo personalizzato tra virgolette singole, ad es. \'il tuo testo\'.
     </string>
 </resources>
