@@ -105,4 +105,5 @@
     XXX o X - RFC 8601 zona horaria (-08:00 o -08)\n\n
     Se puede agregar texto personalizado entre comillas simples, p. \'tu texto\'.
     </string>
+    <string name="high_contrast_text_notes">Importante: tienes habilitado \'Texto de alto contraste\' en la configuración de accesibilidad del sistema Android. Esto destruirá el diseño del reloj digital. Desactive esta configuración para disfrutar de una experiencia de usuario adecuada.</string>
 </resources>

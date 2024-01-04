@@ -105,4 +105,5 @@
     XXX oder X - Zeitzone nach RFC 8601 (-08:00 oder -08)\n\n
     Benutzerdefinierter Text kann in einfachen Anführungszeichen hinzugefügt werden, z. B. \'dein Text\'.
     </string>
+    <string name="high_contrast_text_notes">Achtung: Sie haben „Text mit hohem Kontrast“ in den Barrierefreiheitseinstellungen des Android-Systems aktiviert. Dadurch wird das Design der Digitaluhr zerstört. Bitte deaktivieren Sie diese Einstellung für ein ordnungsgemäßes Aussehen.</string>
 </resources>

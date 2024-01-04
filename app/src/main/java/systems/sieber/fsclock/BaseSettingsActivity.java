@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -46,6 +47,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.gson.Gson;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -143,6 +145,11 @@ public class BaseSettingsActivity extends AppCompatActivity {
         if(getPackageManager().hasSystemFeature("amazon.hardware.fire_tv")) {
             findViewById(R.id.textViewFireTvNotes).setVisibility(View.VISIBLE);
             findViewById(R.id.buttonDreamSettings).setVisibility(View.GONE);
+        }
+
+        // show info regarding "High Contrast Text" system setting
+        if(isHighContrastTextEnabled(getBaseContext())) {
+            findViewById(R.id.textViewHighContrastNotes).setVisibility(View.VISIBLE);
         }
 
         // find views
@@ -846,6 +853,28 @@ public class BaseSettingsActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public static boolean isHighContrastTextEnabled(Context context) {
+        if(context != null) {
+            AccessibilityManager am = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+            Method m = null;
+            if(am != null) {
+                try {
+                    m = am.getClass().getMethod("isHighTextContrastEnabled", null);
+                } catch(NoSuchMethodException ignored) { }
+            }
+            Object result;
+            if(m != null) {
+                try {
+                    result = m.invoke(am, (Object[]) null);
+                    if(result instanceof Boolean) {
+                        return (Boolean) result;
+                    }
+                } catch(Exception ignored) { }
+            }
+        }
+        return false;
     }
 
 }

@@ -105,4 +105,5 @@
     XXX ou X - RFC 8601 fuseau horaire (-08:00 ou -08)\n\n
     Un texte personnalisé peut être ajouté entre guillemets simples, par ex. \'ton texte\'.
     </string>
+    <string name="high_contrast_text_notes">Important: vous avez activé «Texte à contraste élevé» dans les paramètres d\'accessibilité du système Android. Cela détruirait la conception de l\’horloge numérique. Veuillez désactiver ce paramètre pour une expérience utilisateur appropriée.</string>
 </resources>

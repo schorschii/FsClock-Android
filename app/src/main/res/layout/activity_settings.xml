@@ -40,6 +40,14 @@
                 android:layout_marginBottom="4dp"
                 android:text="@string/fire_tv_notes" />
 
+            <TextView
+                android:id="@+id/textViewHighContrastNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginBottom="4dp"
+                android:text="@string/high_contrast_text_notes" />
+
             <LinearLayout
                 android:id="@+id/linearLayoutInAppPurchase"
                 android:layout_width="match_parent"

@@ -105,4 +105,5 @@
     Z - RFC 822 time zone (-0800)\n
     XXX or X - RFC 8601 time zone (-08:00 or -08)\n
     </string>
+    <string name="high_contrast_text_notes">חשוב: הפעלת את \'טקסט ניגודיות גבוהה\' בהגדרות הנגישות של מערכת אנדרואיד. זה יהרוס את עיצוב השעון הדיגיטלי. אנא השבת את ההגדרה הזו לחוויית משתמש תקינה.</string>
 </resources>
