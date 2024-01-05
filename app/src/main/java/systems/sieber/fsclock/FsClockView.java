@@ -373,17 +373,20 @@ public class FsClockView extends FrameLayout {
         WindowManager.LayoutParams layout = null;
         if(mActivity != null) layout = mActivity.getWindow().getAttributes();
         if(mSharedPref.getBoolean("dark-mode", false)) {
+            // in normal mode, we can set the display brightness to lowest (not possible in screensaver mode)
             if(layout != null) {
                 layout.screenBrightness = 0;
                 mActivity.getWindow().setAttributes(layout);
                 Log.i("SCREEN", "Dark Mode enabled: set display brightness to lowest");
-            } else {
-                dimClockView(mRootView);
-                Log.i("SCREEN", "Dark Mode enabled: running as dream, dimming clock colors");
             }
-        } else if(layout != null) {
-            layout.screenBrightness = -1;
-            mActivity.getWindow().setAttributes(layout);
+            // dim the colors of all UI elements
+            dimClockView(mRootView, true);
+        } else {
+            if(layout != null) {
+                layout.screenBrightness = -1;
+                mActivity.getWindow().setAttributes(layout);
+            }
+            dimClockView(mRootView, false);
         }
 
         mBurnInPrevention = mSharedPref.getBoolean("burn-in-prevention", mBurnInPrevention);
@@ -537,11 +540,11 @@ public class FsClockView extends FrameLayout {
         }
     }
 
-    void dimClockView(View clockView) {
+    void dimClockView(View clockView, boolean enabled) {
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
         paint.setColorFilter(
-                new PorterDuffColorFilter(0x40FFFFFF, PorterDuff.Mode.MULTIPLY)
+                new PorterDuffColorFilter(enabled ? 0x40FFFFFF : 0xFFFFFFFF, PorterDuff.Mode.MULTIPLY)
         );
         clockView.setLayerType(View.LAYER_TYPE_HARDWARE, paint);
     }
