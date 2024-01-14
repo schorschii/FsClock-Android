@@ -9,4 +9,8 @@
         <attr name="metaButtonBarButtonStyle" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="DigitalClockView">
+        <attr name="android:gravity" />
+    </declare-styleable>
+
 </resources>

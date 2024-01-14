@@ -50,7 +50,7 @@ import java.util.TimerTask;
 
 public class FsClockView extends FrameLayout {
 
-    final static int BURN_IN_PREVENTION_DEVIATION = 15; /*px*/
+    final static int BURN_IN_PREVENTION_DEVIATION = 20; /*px*/
     final static int BURN_IN_PREVENTION_CHANGE = 100000; /*ms*/
     boolean mBurnInPrevention = false;
 
@@ -71,8 +71,7 @@ public class FsClockView extends FrameLayout {
     View mAlarmView;
     TextView mAlarmText;
     ImageView mAlarmImage;
-    TextView mClockText;
-    TextView mSecondsText;
+    DigitalClockView mDigitalClock;
     TextView mDateText;
     TextView mTextViewEvents;
     ImageView mClockFace;
@@ -108,8 +107,7 @@ public class FsClockView extends FrameLayout {
         mRootView = findViewById(R.id.fsclockRootView);
         mMainView = findViewById(R.id.linearLayoutMain);
         mBackgroundImage = findViewById(R.id.imageViewBackground);
-        mClockText = findViewById(R.id.textViewClock);
-        mSecondsText = findViewById(R.id.textViewClockSeconds);
+        mDigitalClock = findViewById(R.id.digitalClock);
         mDateText = findViewById(R.id.textViewDate);
         mTextViewEvents = findViewById(R.id.textViewEvents);
         mClockFace = findViewById(R.id.imageViewClockFace);
@@ -128,13 +126,10 @@ public class FsClockView extends FrameLayout {
         // init font
         final Typeface fontLed = ResourcesCompat.getFont(c, R.font.dseg7classic_regular);
         final Typeface fontDate = ResourcesCompat.getFont(c, R.font.cairo_regular);
-        mClockText.setTypeface(fontLed);
-        mSecondsText.setTypeface(fontLed);
+        mDigitalClock.setTypeface(fontLed);
         mDateText.setTypeface(fontDate);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // auto-calc text size
-            mClockText.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-            mSecondsText.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+            // auto-calc text size - must be necessarily set programmatically for screensaver mode!
             mDateText.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         } else {
             // calc text sizes manually on older Android versions
@@ -146,28 +141,8 @@ public class FsClockView extends FrameLayout {
             getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
-                    int clockTextContainerWidth = mClockText.getWidth();
-                    int secondsContainerWidth = mSecondsText.getWidth();
                     int dateContainerWidth = mDateText.getWidth();
-                    String clockText = mClockText.getText().toString();
-                    String secondsText = mSecondsText.getText().toString();
                     String dateText = mDateText.getText().toString();
-                    for(int i = 140; i >= 50; i-=2) {
-                        int textWidth = getTextWidth(getContext(), clockText, i, size, fontLed);
-                        if(textWidth < clockTextContainerWidth) {
-                            mClockText.setTextSize(i);
-                            Log.i("CALC_TSIZE_CLOCK", i+" => "+textWidth+" (max "+clockTextContainerWidth+") @ "+clockText);
-                            break;
-                        }
-                    }
-                    for(int i = 80; i >= 20; i-=2) {
-                        int textWidth = getTextWidth(getContext(), secondsText, i, size, fontLed);
-                        if(textWidth < secondsContainerWidth) {
-                            mSecondsText.setTextSize(i);
-                            Log.i("CALC_TSIZE_SECS", i+" => "+textWidth+" (max "+secondsContainerWidth+") @ "+secondsText);
-                            break;
-                        }
-                    }
                     for(int i = 120; i >= 20; i-=2) {
                         int textWidth = getTextWidth(getContext(), dateText, i, size, fontDate);
                         if(textWidth < dateContainerWidth) {
@@ -257,10 +232,8 @@ public class FsClockView extends FrameLayout {
 
         if(mShowDigital) {
             final SimpleDateFormat sdfTime = new SimpleDateFormat(mFormat24hrs ? "HH:mm" : "hh:mm");
-            mClockText.setText(sdfTime.format(cal.getTime()));
-
             final SimpleDateFormat sdfSeconds = new SimpleDateFormat("ss");
-            mSecondsText.setText(sdfSeconds.format(cal.getTime()));
+            mDigitalClock.setText(sdfTime.format(cal.getTime()), sdfSeconds.format(cal.getTime()));
         }
 
         if(mShowAnalog) {
@@ -407,10 +380,10 @@ public class FsClockView extends FrameLayout {
 
         if(mSharedPref.getBoolean("show-digital", true)) {
             mShowDigital = true;
-            findViewById(R.id.digitalClockContainer).setVisibility(View.VISIBLE);
+            mDigitalClock.setVisibility(View.VISIBLE);
         } else {
             mShowDigital = false;
-            findViewById(R.id.digitalClockContainer).setVisibility(View.GONE);
+            mDigitalClock.setVisibility(View.GONE);
         }
 
         if(mSharedPref.getBoolean("show-date", true)) {
@@ -418,7 +391,7 @@ public class FsClockView extends FrameLayout {
             mDateText.setVisibility(View.VISIBLE);
         } else {
             mShowDate = false;
-            mDateText.setVisibility(View.INVISIBLE);
+            mDateText.setVisibility(View.GONE);
         }
 
         if(!mSharedPref.getBoolean("show-digital", true) && !mSharedPref.getBoolean("show-date", true))
@@ -432,17 +405,16 @@ public class FsClockView extends FrameLayout {
             findViewById(R.id.imageViewClockSecondsHand).setVisibility(View.GONE);
 
         if(mSharedPref.getBoolean("show-seconds-digital", true))
-            findViewById(R.id.textViewClockSeconds).setVisibility(View.VISIBLE);
+            mDigitalClock.setShowSec(true);
         else
-            findViewById(R.id.textViewClockSeconds).setVisibility(View.GONE);
+            mDigitalClock.setShowSec(false);
 
         mSmoothSeconds = mSharedPref.getBoolean("show-seconds-analog", true)
             && mSharedPref.getBoolean("show-analog", true);
 
         // init custom digital color
         int colorDigital = mSharedPref.getInt("color-digital", 0xffffffff);
-        mClockText.setTextColor(colorDigital);
-        mSecondsText.setTextColor(colorDigital);
+        mDigitalClock.setColor(colorDigital);
         mDateText.setTextColor(colorDigital);
         mTextViewEvents.setTextColor(colorDigital);
         mBatteryText.setTextColor(colorDigital);

@@ -35,7 +35,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:gravity="center"
+            android:divider="@drawable/divider_clock_horizontal"
+            android:showDividers="middle"
+            android:layoutDirection="ltr"
             android:orientation="horizontal">
 
             <GridLayout
@@ -86,58 +88,26 @@
                     app:srcCompat="@drawable/ic_s" />
             </GridLayout>
 
-            <Space
-                android:layout_width="20dp"
-                android:layout_height="match_parent" />
-
             <LinearLayout
                 android:id="@+id/digitalClockAndDateContainer"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="fill"
                 android:layout_weight="2"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:divider="@drawable/divider_clock_vertical"
+                android:showDividers="middle"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/digitalClockContainer"
+                <systems.sieber.fsclock.DigitalClockView
+                    android:id="@+id/digitalClock"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_gravity="fill_vertical"
                     android:layoutDirection="ltr"
                     android:layout_weight="10"
-                    tools:ignore="NestedWeights">
-
-                    <TextView
-                        android:id="@+id/textViewClock"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="fill_horizontal|bottom"
-                        android:layout_weight="4"
-                        android:gravity="bottom|right"
-                        android:maxLines="1"
-                        android:text="@string/clock_prefilled"
-                        android:textColor="@color/colorDefaultClock"
-                        app:autoSizeMaxTextSize="1000dp"
-                        app:autoSizeMinTextSize="30dp"
-                        app:autoSizeStepGranularity="1px"
-                        app:autoSizeTextType="uniform"
-                        tools:ignore="NestedWeights" />
-
-                    <TextView
-                        android:id="@+id/textViewClockSeconds"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="fill_horizontal|bottom"
-                        android:layout_weight="1"
-                        android:gravity="bottom|left"
-                        android:maxLines="1"
-                        android:text="@string/clock_prefilled_seconds"
-                        android:textColor="@color/colorDefaultClock"
-                        app:autoSizeMaxTextSize="500dp"
-                        app:autoSizeMinTextSize="5dp"
-                        app:autoSizeStepGranularity="1px"
-                        app:autoSizeTextType="uniform" />
-                </LinearLayout>
+                    tools:ignore="NestedWeights" />
 
                 <TextView
                     android:id="@+id/textViewDate"
@@ -148,7 +118,6 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="@string/clock_prefilled"
-                    android:textAlignment="center"
                     android:textColor="@color/colorDefaultClock"
                     app:autoSizeMaxTextSize="800dp"
                     app:autoSizeMinTextSize="30dp"
@@ -165,7 +134,7 @@
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="10dp"
         android:showDividers="middle"
-        android:divider="@drawable/statusbar_divider"
+        android:divider="@drawable/divider_statusbar"
         android:orientation="horizontal">
         <LinearLayout
             android:id="@+id/linearLayoutAlarm"
