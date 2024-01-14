@@ -26,6 +26,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
@@ -389,9 +390,11 @@ public class FsClockView extends FrameLayout {
         if(mSharedPref.getBoolean("show-date", true)) {
             mShowDate = true;
             mDateText.setVisibility(View.VISIBLE);
+            mDigitalClock.setGravity(Gravity.BOTTOM);
         } else {
             mShowDate = false;
             mDateText.setVisibility(View.GONE);
+            mDigitalClock.setGravity(Gravity.NO_GRAVITY);
         }
 
         if(!mSharedPref.getBoolean("show-digital", true) && !mSharedPref.getBoolean("show-date", true))
