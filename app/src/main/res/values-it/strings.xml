@@ -106,4 +106,5 @@
     È possibile aggiungere testo personalizzato tra virgolette singole, ad es. \'il tuo testo\'.
     </string>
     <string name="high_contrast_text_notes">Importante: hai abilitato \'Testo a contrasto elevato\' nelle impostazioni di accessibilità del sistema Android. Ciò distruggerà il design dell\'orologio digitale. Disattiva questa impostazione per una corretta esperienza utente.</string>
+    <string name="show_until_confirmed">Mostra fino alla conferma</string>
 </resources>

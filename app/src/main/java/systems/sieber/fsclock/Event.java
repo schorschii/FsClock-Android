@@ -9,14 +9,16 @@ class Event {
     String speakText;
     boolean playAlarm;
     boolean showOnScreen;
+    int hideAfter;
 
-    Event(int triggerHour, int triggerMinute, String title, String speakText, boolean playAlarm, boolean showOnScreen) {
+    Event(int triggerHour, int triggerMinute, String title, String speakText, boolean playAlarm, boolean showOnScreen, int hideAfter) {
         this.triggerHour = triggerHour;
         this.triggerMinute = triggerMinute;
         this.title = title;
         this.speakText = speakText;
         this.playAlarm = playAlarm;
         this.showOnScreen = showOnScreen;
+        this.hideAfter = hideAfter;
     }
 
     @SuppressLint("DefaultLocale")

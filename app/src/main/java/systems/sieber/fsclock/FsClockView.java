@@ -3,7 +3,9 @@ package systems.sieber.fsclock;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -524,21 +526,46 @@ public class FsClockView extends FrameLayout {
         clockView.setLayerType(View.LAYER_TYPE_HARDWARE, paint);
     }
 
+    AlertDialog mEventDialog;
+    Ringtone mEventRingtone;
     void doEventStuff(Event e) {
         if(e.playAlarm) {
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-            final Ringtone r = RingtoneManager.getRingtone(getContext(), notification);
-            r.play();
-            TimerTask taskEndAlarm = new TimerTask() {
-                @Override
-                public void run() {
-                    if(r.isPlaying()) r.stop();
-                }
-            };
-            new Timer(false).schedule(taskEndAlarm, 10000);
+            mEventRingtone = RingtoneManager.getRingtone(getContext(), notification);
+            mEventRingtone.play();
         }
         if(e.speakText != null && !e.speakText.trim().equals("")) {
             speak(e.speakText);
+        }
+        if(e.title != null && !e.title.trim().equals("")) {
+            final AlertDialog.Builder dlg = new AlertDialog.Builder(getContext());
+            if(e.title != null) dlg.setTitle(e.title);
+            if(e.speakText != null) dlg.setMessage(e.speakText);
+            dlg.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialogInterface) {
+                    if(mEventRingtone != null && mEventRingtone.isPlaying()) mEventRingtone.stop();
+                }
+            });
+            dlg.setPositiveButton(getContext().getString(R.string.ok),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            dlg.setCancelable(true);
+            mEventDialog = dlg.create();
+            mEventDialog.show();
+        }
+        if(e.hideAfter > 0) {
+            TimerTask taskEndAlarm = new TimerTask() {
+                @Override
+                public void run() {
+                    if(mEventRingtone != null && mEventRingtone.isPlaying()) mEventRingtone.stop();
+                    if(mEventDialog != null && mEventDialog.isShowing()) mEventDialog.dismiss();
+                }
+            };
+            new Timer(false).schedule(taskEndAlarm, e.hideAfter * 1000L);
         }
     }
 

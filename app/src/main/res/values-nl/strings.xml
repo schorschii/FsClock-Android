@@ -107,4 +107,5 @@
     Aangepaste tekst kan tussen enkele aanhalingstekens worden toegevoegd, b.v. \'je berichtje\'.
     </string>
     <string name="high_contrast_text_notes">Belangrijk: je hebt \'Tekst met hoog contrast\' ingeschakeld in de toegankelijkheidsinstellingen van het Android-systeem. Dit zal het ontwerp van de digitale klok vernietigen. Schakel deze instelling uit voor een goede gebruikerservaring.</string>
+    <string name="show_until_confirmed">Tonen tot bevestigd</string>
 </resources>

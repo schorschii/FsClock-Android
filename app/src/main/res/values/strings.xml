@@ -115,4 +115,5 @@
     Custom text can be added in single quotes, e.g. \'your text\'.
     </string>
     <string name="high_contrast_text_notes">Attention: you have \'High Contrast Text\' enabled in the Android system accessibility settings. This will destroy the digital clock design. Please disable this setting for a proper user experience.</string>
+    <string name="show_until_confirmed">Show Until Confirmed</string>
 </resources>

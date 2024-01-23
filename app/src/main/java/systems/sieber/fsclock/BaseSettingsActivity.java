@@ -686,7 +686,8 @@ public class BaseSettingsActivity extends AppCompatActivity {
                         ((EditText) ad.findViewById(R.id.editTextTitleNewEvent)).getText().toString(),
                         ((EditText) ad.findViewById(R.id.editTextSpeakNewEvent)).getText().toString(),
                         ((CheckBox) ad.findViewById(R.id.checkBoxAlarmNewEvent)).isChecked(),
-                        ((CheckBox) ad.findViewById(R.id.checkBoxDisplayNewEvent)).isChecked()
+                        ((CheckBox) ad.findViewById(R.id.checkBoxDisplayNewEvent)).isChecked(),
+                        ((CheckBox) ad.findViewById(R.id.checkBoxShowUntilConfirmed)).isChecked() ? 0 : 15
                 ));
                 ad.dismiss();
                 displayEvents();
@@ -706,6 +707,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         ((EditText) ad.findViewById(R.id.editTextSpeakNewEvent)).setText(e.speakText);
         ((CheckBox) ad.findViewById(R.id.checkBoxAlarmNewEvent)).setChecked(e.playAlarm);
         ((CheckBox) ad.findViewById(R.id.checkBoxDisplayNewEvent)).setChecked(e.showOnScreen);
+        ((CheckBox) ad.findViewById(R.id.checkBoxShowUntilConfirmed)).setChecked(e.hideAfter == 0);
         ad.show();
         ad.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         ad.findViewById(R.id.buttonNewEventOK).setOnClickListener(new View.OnClickListener() {
@@ -717,6 +719,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
                 e.speakText = ((EditText) ad.findViewById(R.id.editTextSpeakNewEvent)).getText().toString();
                 e.playAlarm = ((CheckBox) ad.findViewById(R.id.checkBoxAlarmNewEvent)).isChecked();
                 e.showOnScreen = ((CheckBox) ad.findViewById(R.id.checkBoxDisplayNewEvent)).isChecked();
+                e.hideAfter = ((CheckBox) ad.findViewById(R.id.checkBoxShowUntilConfirmed)).isChecked() ? 0 : 15;
                 ad.dismiss();
                 displayEvents();
             }
