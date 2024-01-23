@@ -657,6 +657,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         llEvents.removeAllViews();
         for(final Event e : mEvents) {
             Button b = new Button(this);
+            b.setAllCaps(false);
             b.setText(e.toString());
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
