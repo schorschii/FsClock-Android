@@ -14,6 +14,7 @@
     <string name="version">Version</string>
     <string name="analog_clock">Analog Clock</string>
     <string name="show_seconds_hand">Show Seconds Hand (disable to save energy)</string>
+    <string name="use_smooth_hands">Use Smooth Clock Hands (disable to save energy)</string>
     <string name="digital_clock">Digital Clock</string>
     <string name="show_seconds">Show Seconds</string>
     <string name="format_24hrs">Use 24-Hours-Format</string>

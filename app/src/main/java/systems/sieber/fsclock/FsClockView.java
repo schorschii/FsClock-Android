@@ -93,7 +93,8 @@ public class FsClockView extends FrameLayout {
     Event[] mEvents;
     boolean mFormat24hrs;
     boolean mShowAnalog;
-    boolean mSmoothSeconds;
+    boolean mSmoothHands;
+    boolean mHighRefreshRate;
     boolean mShowDigital;
     boolean mShowDate;
     boolean mShowAlarms;
@@ -252,9 +253,18 @@ public class FsClockView extends FrameLayout {
         }
 
         if(mShowAnalog) {
-            float secRotation = (cal.get(Calendar.SECOND) + ((float)cal.get(Calendar.MILLISECOND)/1000)) * 360 / 60;
-            float minRotation = (cal.get(Calendar.MINUTE) + ((float)cal.get(Calendar.SECOND)/60)) * 360 / 60;
-            float hrsRotation = (cal.get(Calendar.HOUR) + ((float)cal.get(Calendar.MINUTE)/60)) * 360 / 12;
+            float secRotation = 0;
+            float minRotation = 0;
+            float hrsRotation = 0;
+            if(mSmoothHands) {
+                secRotation = (cal.get(Calendar.SECOND) + ((float)cal.get(Calendar.MILLISECOND)/1000)) * 360 / 60;
+                minRotation = (cal.get(Calendar.MINUTE) + ((float)cal.get(Calendar.SECOND)/60)) * 360 / 60;
+                hrsRotation = (cal.get(Calendar.HOUR) + ((float)cal.get(Calendar.MINUTE)/60)) * 360 / 12;
+            } else {
+                secRotation = cal.get(Calendar.SECOND) * 360f / 60;
+                minRotation = cal.get(Calendar.MINUTE) * 360f / 60;
+                hrsRotation = cal.get(Calendar.HOUR) * 360f / 12;
+            }
             mSecondsHand.setRotation(secRotation);
             mMinutesHand.setRotation(minRotation);
             mHoursHand.setRotation(hrsRotation);
@@ -336,13 +346,13 @@ public class FsClockView extends FrameLayout {
         mTimerCalendarUpdate = new Timer(false);
         mTimerCheckEvent = new Timer(false);
         mTimerBurnInPreventionRotation = new Timer(false);
-        mTimerAnalogClock.schedule(taskAnalogClock, 0, mSmoothSeconds ? 100 : 1000);
+        mTimerAnalogClock.schedule(taskAnalogClock, 0, mHighRefreshRate ? 100 : 1000);
         mTimerCalendarUpdate.schedule(taskCalendarUpdate, 0, 10000);
         mTimerCheckEvent.schedule(taskCheckEvent, 0, 1000);
         mTimerBurnInPreventionRotation.schedule(taskBurnInAvoidRotation, 1000, BURN_IN_PREVENTION_CHANGE);
 
         // instant refresh so that the user does not see "00:00:00"
-        if(!mSmoothSeconds) {
+        if(!mHighRefreshRate) {
             updateClock();
         }
     }
@@ -426,8 +436,9 @@ public class FsClockView extends FrameLayout {
         else
             mDigitalClock.setShowSec(false);
 
-        mSmoothSeconds = mSharedPref.getBoolean("show-seconds-analog", true)
-            && mSharedPref.getBoolean("show-analog", true);
+        mSmoothHands = mSharedPref.getBoolean("smooth-hands", true);
+        mHighRefreshRate = mSmoothHands
+            && mSharedPref.getBoolean("show-seconds-analog", true);
 
         // init custom digital color
         int colorDigital = mSharedPref.getInt("color-digital", 0xffffffff);

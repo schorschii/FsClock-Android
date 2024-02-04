@@ -5,6 +5,7 @@
     <string name="version">Versione</string>
     <string name="analog_clock">Orologio analogico</string>
     <string name="show_seconds_hand">Mostra lancetta dei secondi (disabilitare per risparmiare energia)</string>
+    <string name="use_smooth_hands">Usa le lancette morbide (disabilitare per risparmiare energia)</string>
     <string name="digital_clock">Orologio digitale</string>
     <string name="show_seconds">Mostra secondi</string>
     <string name="format_24hrs">Usa formato 24 ore</string>

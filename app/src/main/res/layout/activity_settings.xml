@@ -157,6 +157,12 @@
                     android:layout_height="wrap_content"
                     android:text="@string/show_seconds_hand" />
 
+                <CheckBox
+                    android:id="@+id/checkBoxAnalogSmoothHands"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/use_smooth_hands" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -6,6 +6,7 @@
   <string name="version">Versie</string>
   <string name="analog_clock">Analoge klok</string>
   <string name="show_seconds_hand">Secondewijzer weergeven (uitschakelen om energie te besparen)</string>
+  <string name="use_smooth_hands">Gebruik zachte wijzers (uitschakelen om energie te besparen)</string>
   <string name="digital_clock">Digitale klok</string>
   <string name="show_seconds">Seconden weergeven</string>
   <string name="format_24hrs">Gebruik het 24-uursformaat</string>
@@ -105,9 +106,9 @@
     Z - RFC 822 tijdzone (-0800)\n
     XXX of X - RFC 8601 tijdzone (-08:00 of -08)\n\n
     Aangepaste tekst kan tussen enkele aanhalingstekens worden toegevoegd, b.v. \'je berichtje\'.
-    </string>
-    <string name="high_contrast_text_notes">Belangrijk: je hebt \'Tekst met hoog contrast\' ingeschakeld in de toegankelijkheidsinstellingen van het Android-systeem. Dit zal het ontwerp van de digitale klok vernietigen. Schakel deze instelling uit voor een goede gebruikerservaring.</string>
-    <string name="show_until_confirmed">Tonen tot bevestigd</string>
-    <string name="gregorian_calendar">Gregoriaanse kalender</string>
+  </string>
+  <string name="high_contrast_text_notes">Belangrijk: je hebt \'Tekst met hoog contrast\' ingeschakeld in de toegankelijkheidsinstellingen van het Android-systeem. Dit zal het ontwerp van de digitale klok vernietigen. Schakel deze instelling uit voor een goede gebruikerservaring.</string>
+  <string name="show_until_confirmed">Tonen tot bevestigd</string>
+  <string name="gregorian_calendar">Gregoriaanse kalender</string>
   <string name="hijri_calendar">Hijri-kalender</string>
 </resources>

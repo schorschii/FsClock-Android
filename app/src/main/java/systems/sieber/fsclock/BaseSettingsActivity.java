@@ -79,6 +79,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
     CheckBox mCheckBoxDarkMode;
     CheckBox mCheckBoxAnalogClockShow;
     CheckBox mCheckBoxAnalogClockShowSeconds;
+    CheckBox mCheckBoxAnalogClockSmoothHands;
     Spinner mSpinnerDesignAnalogFace;
     Spinner mSpinnerDesignAnalogHours;
     Spinner mSpinnerDesignAnalogMinutes;
@@ -167,6 +168,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxDarkMode = findViewById(R.id.checkBoxDarkMode);
         mCheckBoxAnalogClockShow = findViewById(R.id.checkBoxShowAnalogClock);
         mCheckBoxAnalogClockShowSeconds = findViewById(R.id.checkBoxSecondsAnalog);
+        mCheckBoxAnalogClockSmoothHands = findViewById(R.id.checkBoxAnalogSmoothHands);
         mSpinnerDesignAnalogFace = findViewById(R.id.spinnerDesignAnalogFace);
         mSpinnerDesignAnalogHours = findViewById(R.id.spinnerDesignAnalogHours);
         mSpinnerDesignAnalogMinutes = findViewById(R.id.spinnerDesignAnalogMinutes);
@@ -204,6 +206,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxDarkMode.setChecked( mSharedPref.getBoolean("dark-mode", false) );
         mCheckBoxAnalogClockShow.setChecked( mSharedPref.getBoolean("show-analog", true) );
         mCheckBoxAnalogClockShowSeconds.setChecked( mSharedPref.getBoolean("show-seconds-analog", true) );
+        mCheckBoxAnalogClockSmoothHands.setChecked( mSharedPref.getBoolean("smooth-hands", true) );
         mCustomColorAnalogFace = mSharedPref.getBoolean("own-color-analog-clock-face", false);
         mCustomColorAnalogHours = mSharedPref.getBoolean("own-color-analog-hours", false);
         mCustomColorAnalogMinutes = mSharedPref.getBoolean("own-color-analog-minutes", false);
@@ -325,6 +328,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxDarkMode.setEnabled(state);
         mCheckBoxAnalogClockShow.setEnabled(state);
         mCheckBoxAnalogClockShowSeconds.setEnabled(state);
+        mCheckBoxAnalogClockSmoothHands.setEnabled(state);
         mSpinnerDesignAnalogFace.setEnabled(state);
         mSpinnerDesignAnalogHours.setEnabled(state);
         mSpinnerDesignAnalogMinutes.setEnabled(state);
@@ -651,6 +655,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.putString("date-format", mEditTextDateFormat.getText().toString());
         editor.putBoolean("use-hijri", mRadioButtonHijriCalendar.isChecked());
         editor.putBoolean("show-seconds-analog", mCheckBoxAnalogClockShowSeconds.isChecked());
+        editor.putBoolean("smooth-hands", mCheckBoxAnalogClockSmoothHands.isChecked());
         editor.putBoolean("show-seconds-digital", mCheckBoxDigitalClockShowSeconds.isChecked());
         editor.putBoolean("24hrs", mCheckBoxDigitalClock24Format.isChecked());
         editor.putString("events", mGson.toJson(mEvents.toArray()));

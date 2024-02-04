@@ -5,6 +5,7 @@
     <string name="version">Version</string>
     <string name="analog_clock">Analoguhr</string>
     <string name="show_seconds_hand">Sekundenzeiger anzeigen (deaktivieren, um Energie zu sparen)</string>
+    <string name="use_smooth_hands">Weiche Uhrzeiger verwenden (deaktivieren, um Energie zu sparen)</string>
     <string name="digital_clock">Digitaluhr</string>
     <string name="show_seconds">Sekunden anzeigen</string>
     <string name="format_24hrs">24-Stunden-Format benutzen</string>
