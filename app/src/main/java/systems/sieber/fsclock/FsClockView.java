@@ -45,6 +45,8 @@ import com.google.gson.Gson;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.time.chrono.HijrahDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Random;
@@ -226,8 +228,18 @@ public class FsClockView extends FrameLayout {
         if(mShowDate) {
             try {
                 String strDatePattern = mSharedPref.getString("date-format", getDefaultDateFormat(getContext()));
-                final SimpleDateFormat sdfDate = new SimpleDateFormat(strDatePattern, Locale.getDefault());
-                mDateText.setText(sdfDate.format(cal.getTime()));
+                if(mSharedPref.getBoolean("use-hijri", false)
+                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    mDateText.setText(
+                            DateTimeFormatter.ofPattern(strDatePattern, Locale.getDefault())
+                                .format(HijrahDate.now())
+                    );
+                } else {
+                    mDateText.setText(
+                            new SimpleDateFormat(strDatePattern, Locale.getDefault())
+                                .format(cal.getTime())
+                    );
+                }
             } catch(IllegalArgumentException ignored) {
                 mDateText.setText("---");
             }

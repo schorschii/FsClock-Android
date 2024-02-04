@@ -107,4 +107,6 @@
     </string>
     <string name="high_contrast_text_notes">Важно: в настройках специальных возможностей системы Android включен параметр «Высококонтрастный текст». Это разрушит конструкцию цифровых часов. Пожалуйста, отключите этот параметр для более удобного использования.</string>
     <string name="show_until_confirmed">Показать до подтверждения</string>
+    <string name="gregorian_calendar">Григорианский календарь</string>
+    <string name="hijri_calendar">Календарь Хиджры</string>
 </resources>

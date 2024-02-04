@@ -107,4 +107,6 @@
     </string>
     <string name="high_contrast_text_notes">Important: vous avez activé «Texte à contraste élevé» dans les paramètres d\'accessibilité du système Android. Cela détruirait la conception de l\’horloge numérique. Veuillez désactiver ce paramètre pour une expérience utilisateur appropriée.</string>
     <string name="show_until_confirmed">Afficher jusqu\'à confirmation</string>
+    <string name="gregorian_calendar">Calendrier Grégorien</string>
+    <string name="hijri_calendar">Calendrier hégirien</string>
 </resources>

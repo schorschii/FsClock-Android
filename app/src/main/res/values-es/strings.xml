@@ -107,4 +107,6 @@
     </string>
     <string name="high_contrast_text_notes">Importante: tienes habilitado \'Texto de alto contraste\' en la configuración de accesibilidad del sistema Android. Esto destruirá el diseño del reloj digital. Desactive esta configuración para disfrutar de una experiencia de usuario adecuada.</string>
     <string name="show_until_confirmed">Mostrar hasta confirmar</string>
+    <string name="gregorian_calendar">Calendario Gregoriano</string>
+    <string name="hijri_calendar">Calendario Hijri</string>
 </resources>

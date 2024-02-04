@@ -107,4 +107,6 @@
     </string>
     <string name="high_contrast_text_notes">Achtung: Sie haben „Text mit hohem Kontrast“ in den Barrierefreiheitseinstellungen des Android-Systems aktiviert. Dadurch wird das Design der Digitaluhr zerstört. Bitte deaktivieren Sie diese Einstellung für ein ordnungsgemäßes Aussehen.</string>
     <string name="show_until_confirmed">Bis zur Bestätigung anzeigen</string>
+    <string name="gregorian_calendar">Gregorianischer Kalender</string>
+    <string name="hijri_calendar">Islamischer Kalender</string>
 </resources>

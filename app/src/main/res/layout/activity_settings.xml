@@ -426,6 +426,24 @@
                         android:onClick="onClickDateFormatHelp" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/radioButtonGregorianCalendar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/gregorian_calendar" />
+                    <RadioButton
+                        android:id="@+id/radioButtonHijriCalendar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/hijri_calendar" />
+                </LinearLayout>
+
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="5dp" />

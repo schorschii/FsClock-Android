@@ -34,6 +34,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
+import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -85,6 +86,8 @@ public class BaseSettingsActivity extends AppCompatActivity {
     CheckBox mCheckBoxDigitalClockShow;
     CheckBox mCheckBoxDateShow;
     EditText mEditTextDateFormat;
+    RadioButton mRadioButtonGregorianCalendar;
+    RadioButton mRadioButtonHijriCalendar;
     CheckBox mCheckBoxDigitalClockShowSeconds;
     CheckBox mCheckBoxDigitalClock24Format;
     View mColorChangerAnalogFace;
@@ -170,6 +173,8 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mSpinnerDesignAnalogSeconds = findViewById(R.id.spinnerDesignAnalogSeconds);
         mCheckBoxDigitalClockShow = findViewById(R.id.checkBoxShowDigitalClock);
         mEditTextDateFormat = findViewById(R.id.editTextDateFormat);
+        mRadioButtonGregorianCalendar = findViewById(R.id.radioButtonGregorianCalendar);
+        mRadioButtonHijriCalendar = findViewById(R.id.radioButtonHijriCalendar);
         mCheckBoxDateShow = findViewById(R.id.checkBoxShowDate);
         mCheckBoxDigitalClockShowSeconds = findViewById(R.id.checkBoxSecondsDigital);
         mCheckBoxDigitalClock24Format = findViewById(R.id.checkBox24HrsFormat);
@@ -206,6 +211,8 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxDigitalClockShow.setChecked( mSharedPref.getBoolean("show-digital", true) );
         mCheckBoxDateShow.setChecked( mSharedPref.getBoolean("show-date", true) );
         mEditTextDateFormat.setText( mSharedPref.getString("date-format", FsClockView.getDefaultDateFormat(this)) );
+        mRadioButtonGregorianCalendar.setChecked( !mSharedPref.getBoolean("use-hijri", false) );
+        mRadioButtonHijriCalendar.setChecked( mSharedPref.getBoolean("use-hijri", false) );
         mCheckBoxDigitalClockShowSeconds.setChecked( mSharedPref.getBoolean("show-seconds-digital", true) );
         mCheckBoxDigitalClock24Format.setChecked( mSharedPref.getBoolean("24hrs", true) );
         mColorAnalogFace = mSharedPref.getInt("color-analog-face", 0xffffffff);
@@ -216,6 +223,20 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorBack = mSharedPref.getInt("color-back", 0xff000000);
         mBackStretch = mSharedPref.getBoolean("back-stretch", false);
         mCheckBoxShowAlarms.setChecked(mSharedPref.getBoolean("show-alarms", false));
+
+        // init radio button behavior
+        mRadioButtonGregorianCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mRadioButtonHijriCalendar.setChecked(false);
+            }
+        });
+        mRadioButtonHijriCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mRadioButtonGregorianCalendar.setChecked(false);
+            }
+        });
 
         // load events
         Event[] eventsArray = mGson.fromJson(mSharedPref.getString("events",""), Event[].class);
@@ -311,6 +332,8 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxDigitalClockShow.setEnabled(state);
         mCheckBoxDateShow.setEnabled(state);
         mEditTextDateFormat.setEnabled(state);
+        mRadioButtonGregorianCalendar.setEnabled(state);
+        mRadioButtonHijriCalendar.setEnabled(state);
         mCheckBoxDigitalClockShowSeconds.setEnabled(state);
         mCheckBoxDigitalClock24Format.setEnabled(state);
         mColorChangerAnalogFace.setEnabled(state);
@@ -626,6 +649,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.putBoolean("show-digital", mCheckBoxDigitalClockShow.isChecked());
         editor.putBoolean("show-date", mCheckBoxDateShow.isChecked());
         editor.putString("date-format", mEditTextDateFormat.getText().toString());
+        editor.putBoolean("use-hijri", mRadioButtonHijriCalendar.isChecked());
         editor.putBoolean("show-seconds-analog", mCheckBoxAnalogClockShowSeconds.isChecked());
         editor.putBoolean("show-seconds-digital", mCheckBoxDigitalClockShowSeconds.isChecked());
         editor.putBoolean("24hrs", mCheckBoxDigitalClock24Format.isChecked());
