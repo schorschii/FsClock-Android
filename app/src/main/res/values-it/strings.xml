@@ -92,7 +92,7 @@
     ww - Settimana nell\'anno (27)\n
     W - Settimana nel mese (2)\n
     DDD - Giorno dell\'anno (189)\n
-    dd - Giorno del mese (10)\n
+    d o dd - Giorno del mese (1 o 01)\n
     F - Giorno della settimana nel mese (2)\n
     EEEE o E - Nome del giorno della settimana (Lunedi o Lun.)\n
     u - Numero del giorno della settimana (1-7)\n

@@ -92,7 +92,7 @@
     ww - Woche des Jahrs (27)\n
     W - Woche des Monats (2)\n
     DDD - Tag des Jahres (189)\n
-    dd - Tag des Monats (10)\n
+    d oder dd - Tag des Monats (1 oder 01)\n
     F - Tag der Woche im Monat (2)\n
     EEEE oder E - Wochentag-Name (Montag oder Mo.)\n
     u - Wochentag-Nummer (1-7)\n

@@ -93,7 +93,7 @@
     ww - Week in jaar (27)\n
     W - Week in maand (2)\n
     DDD - Dag van het jaar (189)\n
-    dd - Dag van de maand (10)\n
+    d of dd - Dag in de maand (1 of 01)\n
     F - Dag van de week in de maand (2)\n
     EEEE of E - Naam van de weekdag (Maandag of Ma.)\n
     u - Dagnummer van de week (1-7)\n

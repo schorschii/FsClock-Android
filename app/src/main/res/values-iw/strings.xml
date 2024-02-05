@@ -93,7 +93,7 @@
     ww - Week in year (27)\n
     W - Week in month (2)\n
     DDD - Day in year (189)\n
-    dd - Day in month (10)\n
+    d or dd - Day in month (1 or 01)\n
     F - Day of week in month (2)\n
     EEEE or E - Week day name (Monday or Mon)\n
     u - Day number of week (1-7)\n
