@@ -88,7 +88,7 @@
     <string name="date_format_placeholders_help">
     G - Epochenbezeichnung (AD)\n
     yyyy oder yy - Jahr (2024 oder 24)\n
-    MM - Monat (12)\n
+    MM oder MMM oder MMMM - Monat (12 oder Dez oder Dezember)\n
     ww - Woche des Jahrs (27)\n
     W - Woche des Monats (2)\n
     DDD - Tag des Jahres (189)\n

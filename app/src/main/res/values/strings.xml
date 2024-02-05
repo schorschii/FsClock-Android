@@ -97,7 +97,7 @@
     <string name="date_format_placeholders_help">
     G - Era designator (AD)\n
     yyyy or yy - Year (2024 or 24)\n
-    MM - Month (12)\n
+    MM or MMM or MMMM - Month (12 or Dec or December)\n
     ww - Week in year (27)\n
     W - Week in month (2)\n
     DDD - Day in year (189)\n

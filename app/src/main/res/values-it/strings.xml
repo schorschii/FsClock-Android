@@ -88,7 +88,7 @@
     <string name="date_format_placeholders_help">
     G - Designatore dell\'era (AD)\n
     yyyy o yy - Anno (2024 o 24)\n
-    MM - Mese (12)\n
+    MM o MMM o MMMM - Mese (12 o dic o dicembre)\n
     ww - Settimana nell\'anno (27)\n
     W - Settimana nel mese (2)\n
     DDD - Giorno dell\'anno (189)\n

@@ -89,7 +89,7 @@
   <string name="date_format_placeholders_help">
     G - Tijdperkaanduiding (AD)\n
     yyyy of yy - Jaar (2024 of 24)\n
-    MM - Maand (12)\n
+    MM of MMM of MMMM - Maand (12 of dec of december)\n
     ww - Week in jaar (27)\n
     W - Week in maand (2)\n
     DDD - Dag van het jaar (189)\n

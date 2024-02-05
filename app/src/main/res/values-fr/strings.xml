@@ -88,7 +88,7 @@
     <string name="date_format_placeholders_help">
     G - Désignateur d\'époque (AD)\n
     yyyy ou yy - Année (2024 ou 24)\n
-    MM - Mois (12)\n
+    MM ou MMM ou MMMM - Mois (12 ou déc ou décembre)\n
     ww - Semaine dans l\'année (27)\n
     W - Semaine après mois (2)\n
     DDD - Jour de l\'année (189)\n
