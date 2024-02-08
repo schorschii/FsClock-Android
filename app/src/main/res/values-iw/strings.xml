@@ -110,6 +110,6 @@
     <string name="show_until_confirmed">הצג עד לאישור</string>
     <string name="gregorian_calendar">לוח השנה הגרגוריאני</string>
     <string name="hijri_calendar">לוח שנה ההיג\'רי</string>
-    <string name="digital_clock_color">Digital Clock Color</string>
-    <string name="date_color">Date Color</string>
+    <string name="digital_clock_color">צבע שעון דיגיטלי</string>
+    <string name="date_color">צבע תאריך</string>
 </resources>

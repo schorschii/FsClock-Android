@@ -111,6 +111,6 @@
   <string name="show_until_confirmed">Tonen tot bevestigd</string>
   <string name="gregorian_calendar">Gregoriaanse kalender</string>
   <string name="hijri_calendar">Hijri-kalender</string>
-  <string name="digital_clock_color">Digital Clock Color</string>
-  <string name="date_color">Date Color</string>
+  <string name="digital_clock_color">Digitale klokkleur</string>
+  <string name="date_color">Datum kleur</string>
 </resources>

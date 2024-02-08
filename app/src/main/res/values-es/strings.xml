@@ -110,6 +110,6 @@
     <string name="show_until_confirmed">Mostrar hasta confirmar</string>
     <string name="gregorian_calendar">Calendario Gregoriano</string>
     <string name="hijri_calendar">Calendario Hijri</string>
-    <string name="digital_clock_color">Digital Clock Color</string>
-    <string name="date_color">Date Color</string>
+    <string name="digital_clock_color">Color del reloj digital</string>
+    <string name="date_color">Color de fecha</string>
 </resources>
