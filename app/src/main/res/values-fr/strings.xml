@@ -110,4 +110,6 @@
     <string name="show_until_confirmed">Afficher jusqu\'à confirmation</string>
     <string name="gregorian_calendar">Calendrier Grégorien</string>
     <string name="hijri_calendar">Calendrier hégirien</string>
+    <string name="digital_clock_color">Digital Clock Color</string>
+    <string name="date_color">Date Color</string>
 </resources>

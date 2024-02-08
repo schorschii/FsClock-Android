@@ -100,6 +100,15 @@ public class FsClockApp extends Application {
             editor.apply();
             Log.i("migrate", "own-image-back MIGRATED");
         }
+        if(sharedPref.contains("color-digital")) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            int oldValue = sharedPref.getInt("color-digital", 0xffffffff);
+            editor.putInt("color-digital-clock", oldValue);
+            editor.putInt("color-digital-date", oldValue);
+            editor.remove("color-digital");
+            editor.apply();
+            Log.i("migrate", "color-digital MIGRATED");
+        }
     }
 
 }

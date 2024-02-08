@@ -83,6 +83,8 @@ public class FsClockView extends FrameLayout {
     ImageView mSecondsHand;
     ImageView mMinutesHand;
     ImageView mHoursHand;
+    Typeface mFontClock;
+    Typeface mFontDate;
 
     Timer mTimerAnalogClock;
     Timer mTimerCalendarUpdate;
@@ -130,10 +132,6 @@ public class FsClockView extends FrameLayout {
         mAlarmImage.setImageResource(R.drawable.ic_alarm_white_24dp);
 
         // init font
-        final Typeface fontLed = ResourcesCompat.getFont(c, R.font.dseg7classic_regular);
-        final Typeface fontDate = ResourcesCompat.getFont(c, R.font.cairo_regular);
-        mDigitalClock.setTypeface(fontLed);
-        mDateText.setTypeface(fontDate);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // auto-calc text size - must be necessarily set programmatically for screensaver mode!
             mDateText.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
@@ -147,10 +145,11 @@ public class FsClockView extends FrameLayout {
             getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
+                    if(mFontDate == null) return;
                     int dateContainerWidth = mDateText.getWidth();
                     String dateText = mDateText.getText().toString();
                     for(int i = 120; i >= 20; i-=2) {
-                        int textWidth = getTextWidth(getContext(), dateText, i, size, fontDate);
+                        int textWidth = getTextWidth(getContext(), dateText, i, size, mFontDate);
                         if(textWidth < dateContainerWidth) {
                             mDateText.setTextSize(i);
                             Log.i("CALC_TSIZE_DATE", i+" => "+textWidth+" (max "+dateContainerWidth+") @ "+dateText);
@@ -440,15 +439,24 @@ public class FsClockView extends FrameLayout {
         mHighRefreshRate = mSmoothHands
             && mSharedPref.getBoolean("show-seconds-analog", true);
 
+        // init font
+        FontOption fontOptionClock = FontOptions.getById(mSharedPref.getInt("font-digital-clock", FontOptions.DSEG7_CLASSIC));
+        mFontClock = ResourcesCompat.getFont(getContext(), fontOptionClock.mResourceId);
+        FontOption fontOptionDate = FontOptions.getById(mSharedPref.getInt("font-digital-date", FontOptions.CAIRO_REGULAR));
+        mFontDate = ResourcesCompat.getFont(getContext(), fontOptionDate.mResourceId);
+        mDigitalClock.setTypeface(mFontClock, fontOptionClock.mXCorr);
+        mDateText.setTypeface(mFontDate);
+
         // init custom digital color
-        int colorDigital = mSharedPref.getInt("color-digital", 0xffffffff);
-        mDigitalClock.setColor(colorDigital);
-        mDateText.setTextColor(colorDigital);
-        mTextViewEvents.setTextColor(colorDigital);
-        mBatteryText.setTextColor(colorDigital);
-        mBatteryImage.setColorFilter(colorDigital, PorterDuff.Mode.SRC_ATOP);
-        mAlarmText.setTextColor(colorDigital);
-        mAlarmImage.setColorFilter(colorDigital, PorterDuff.Mode.SRC_ATOP);
+        int colorDigitalClock = mSharedPref.getInt("color-digital-clock", 0xffffffff);
+        int colorDigitalDate = mSharedPref.getInt("color-digital-date", 0xffffffff);
+        mDigitalClock.setColor(colorDigitalClock);
+        mDateText.setTextColor(colorDigitalDate);
+        mTextViewEvents.setTextColor(colorDigitalDate);
+        mBatteryText.setTextColor(colorDigitalDate);
+        mBatteryImage.setColorFilter(colorDigitalDate, PorterDuff.Mode.SRC_ATOP);
+        mAlarmText.setTextColor(colorDigitalDate);
+        mAlarmImage.setColorFilter(colorDigitalDate, PorterDuff.Mode.SRC_ATOP);
 
         // init custom analog color
         if(mSharedPref.getBoolean("own-color-analog-clock-face", false)) {

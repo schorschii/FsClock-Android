@@ -110,4 +110,6 @@
     <string name="show_until_confirmed">Показать до подтверждения</string>
     <string name="gregorian_calendar">Григорианский календарь</string>
     <string name="hijri_calendar">Календарь Хиджры</string>
+    <string name="digital_clock_color">Digital Clock Color</string>
+    <string name="date_color">Date Color</string>
 </resources>

@@ -11,17 +11,19 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 public class DigitalClockView extends View {
 
     final static float MIN_SIZE = 0.8f;
     final static float SEC_SIZE = 0.19f;
     final static String MIN_MEASURE_DUMMY = "00:00";
     final static String SEC_MEASURE_DUMMY = "00";
-    final static float X_CORR = 0.15f;
 
     String mTextMin = "00:00";
     String mTextSec = "00";
     boolean mShowSec = true;
+    float mXCorr = 0f;
 
     Rect mBoundsMin = new Rect();
     Rect mBoundsSec = new Rect();
@@ -62,9 +64,10 @@ public class DigitalClockView extends View {
         mPaintSec.setColor(c);
         invalidate();
     }
-    void setTypeface(Typeface tf) {
+    void setTypeface(Typeface tf, float xCorr) {
         mPaintMin.setTypeface(tf);
         mPaintSec.setTypeface(tf);
+        mXCorr = xCorr;
         invalidate();
     }
     void setText(String min, String sec) {
@@ -102,7 +105,7 @@ public class DigitalClockView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
         //canvas.drawLine(0, 0, getWidth(), getHeight(), mPaintMin);
 
@@ -111,12 +114,12 @@ public class DigitalClockView extends View {
         float h = calcMinSizeHeight(canvasWidth, canvasHeight);
         float y;
         if(mGravity == Gravity.BOTTOM) {
-            y = getHeight();
+            y = getHeight() - 4;
         } else {
             y = (getHeight() / 2f) + (h / 2f);
         }
 
-        float x_corr = X_CORR * mPaintMin.getTextSize();
+        float x_corr = mXCorr * mPaintMin.getTextSize();
         if(mShowSec) {
             float fullWidth = mBoundsMin.width() + mBoundsSec.width() + x_corr;
             canvas.drawText(mTextMin, (canvasWidth/2f) - (fullWidth / 2f) - x_corr, y, mPaintMin);
@@ -158,7 +161,6 @@ public class DigitalClockView extends View {
     // acceleration. But there are workarounds for that, too; refer to
     // http://stackoverflow.com/questions/6253528/font-size-too-large-to-fit-in-cache
     final static float TEST_TEXT_SIZE = 48f;
-    final static float TEXT_SIZE_CORR = 1; //0.95f;
     private static void setTextSizeForWidth(Paint paint, float desiredWidth, String text) {
         // Get the bounds of the text, using our testTextSize.
         paint.setTextSize(TEST_TEXT_SIZE);
@@ -168,7 +170,7 @@ public class DigitalClockView extends View {
         float desiredTextSize = TEST_TEXT_SIZE * desiredWidth / width;
 
         // Set the paint for that size.
-        paint.setTextSize(desiredTextSize * TEXT_SIZE_CORR);
+        paint.setTextSize(desiredTextSize);
     }
     private static void setTextSizeForHeight(Paint paint, float desiredHeight, String text) {
         // Get the bounds of the text, using our testTextSize.
@@ -180,7 +182,7 @@ public class DigitalClockView extends View {
         float desiredTextSize = TEST_TEXT_SIZE * desiredHeight / bounds.height();
 
         // Set the paint for that size.
-        paint.setTextSize(desiredTextSize * TEXT_SIZE_CORR);
+        paint.setTextSize(desiredTextSize * 0.97f);
     }
 
 }

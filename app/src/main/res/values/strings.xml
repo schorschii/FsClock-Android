@@ -119,4 +119,6 @@
     <string name="show_until_confirmed">Show Until Confirmed</string>
     <string name="gregorian_calendar">Gregorian Calendar</string>
     <string name="hijri_calendar">Hijri Calendar</string>
+    <string name="digital_clock_color">Digital Clock Color</string>
+    <string name="date_color">Date Color</string>
 </resources>
