@@ -225,6 +225,9 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mEditTextDateFormat.setText( mSharedPref.getString("date-format", FsClockView.getDefaultDateFormat(this)) );
         mRadioButtonGregorianCalendar.setChecked( !mSharedPref.getBoolean("use-hijri", false) );
         mRadioButtonHijriCalendar.setChecked( mSharedPref.getBoolean("use-hijri", false) );
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            findViewById(R.id.linearLayoutCalendarSystem).setVisibility(View.GONE);
+        }
         mCheckBoxDigitalClockShowSeconds.setChecked( mSharedPref.getBoolean("show-seconds-digital", true) );
         mCheckBoxDigitalClock24Format.setChecked( mSharedPref.getBoolean("24hrs", true) );
         mColorAnalogFace = mSharedPref.getInt("color-analog-face", 0xffffffff);
