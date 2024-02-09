@@ -9,7 +9,11 @@
     <string name="project_website" translatable="false">https://github.com/schorschii/FsClock-Android</string>
     <string name="unlock_api" translatable="false">"https://apps.sieber.systems/activate"</string>
 
-    <string name="dseg_font_note" translatable="false">"DSEG" Font Copyright (c) 2017, keshikan (http://www.keshikan.net).\nThis Font Software is licensed under the SIL Open Font License, Version 1.1 (http://scripts.sil.org/OFL).</string>
+    <string name="dseg_font_note" translatable="false">
+DSEG Font Copyright (c) 2017, keshikan (http://www.keshikan.net). Cairo Font Copyright (c) Mohamed Gaber.
+This Font Software is licensed under the SIL Open Font License, Version 1.1 (http://scripts.sil.org/OFL).
+Roboto Font Copyright (c) Christian Robertson. Licensed under the Apache License, Version 2.0.
+    </string>
 
     <string name="version">Version</string>
     <string name="analog_clock">Analog Clock</string>
