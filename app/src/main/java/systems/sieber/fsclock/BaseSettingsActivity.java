@@ -444,7 +444,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorChangerAnalogFace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showColorDialog(mCustomColorAnalogFace, mColorAnalogFace, new ColorDialogCallback() {
+                showColorDialog(mCustomColorAnalogFace, mColorAnalogFace, true, new ColorDialogCallback() {
                     @Override
                     public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
                         if(applyForAll) {
@@ -462,7 +462,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorChangerAnalogHours.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showColorDialog(mCustomColorAnalogHours, mColorAnalogHours, new ColorDialogCallback() {
+                showColorDialog(mCustomColorAnalogHours, mColorAnalogHours, true, new ColorDialogCallback() {
                     @Override
                     public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
                         if(applyForAll) {
@@ -480,7 +480,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorChangerAnalogMinutes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showColorDialog(mCustomColorAnalogMinutes, mColorAnalogMinutes, new ColorDialogCallback() {
+                showColorDialog(mCustomColorAnalogMinutes, mColorAnalogMinutes, true, new ColorDialogCallback() {
                     @Override
                     public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
                         if(applyForAll) {
@@ -498,7 +498,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorChangerAnalogSeconds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showColorDialog(mCustomColorAnalogSeconds, mColorAnalogSeconds, new ColorDialogCallback() {
+                showColorDialog(mCustomColorAnalogSeconds, mColorAnalogSeconds, true, new ColorDialogCallback() {
                     @Override
                     public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
                         if(applyForAll) {
@@ -518,11 +518,15 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorChangerDigitalClock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showColorDialog(null, mColorDigitalClock, new ColorDialogCallback() {
+                showColorDialog(null, mColorDigitalClock, true, new ColorDialogCallback() {
                     @Override
                     public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
                         mColorDigitalClock = Color.argb(0xff, red, green, blue);
                         updateColorPreview(mColorDigitalClock, mColorPreviewDigitalClock, null);
+                        if(applyForAll) {
+                            mColorDigitalDate = Color.argb(0xff, red, green, blue);
+                            updateColorPreview(mColorDigitalDate, mColorPreviewDigitalDate, null);
+                        }
                     }
                 });
             }
@@ -531,11 +535,15 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorChangerDigitalDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showColorDialog(null, mColorDigitalDate, new ColorDialogCallback() {
+                showColorDialog(null, mColorDigitalDate, true, new ColorDialogCallback() {
                     @Override
                     public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
                         mColorDigitalDate = Color.argb(0xff, red, green, blue);
                         updateColorPreview(mColorDigitalDate, mColorPreviewDigitalDate, null);
+                        if(applyForAll) {
+                            mColorDigitalClock = Color.argb(0xff, red, green, blue);
+                            updateColorPreview(mColorDigitalClock, mColorPreviewDigitalClock, null);
+                        }
                     }
                 });
             }
@@ -546,7 +554,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorChangerBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showColorDialog(null, mColorBack, new ColorDialogCallback() {
+                showColorDialog(null, mColorBack, false, new ColorDialogCallback() {
                     @Override
                     public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
                         mColorBack = Color.argb(0xff, red, green, blue);
@@ -577,7 +585,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
     interface ColorDialogCallback {
         void ok(boolean customColor, int red, int green, int blue, boolean applyForAll);
     }
-    private void showColorDialog(Boolean customColor, int initialColor, final ColorDialogCallback colorDialogFinished) {
+    private void showColorDialog(Boolean customColor, int initialColor, boolean showApplyForAll, final ColorDialogCallback colorDialogFinished) {
         final Dialog ad = new Dialog(this);
         ad.requestWindowFeature(Window.FEATURE_NO_TITLE);
         ad.setContentView(R.layout.dialog_color);
@@ -588,9 +596,12 @@ public class BaseSettingsActivity extends AppCompatActivity {
         final SeekBar seekBarBlue = ad.findViewById(R.id.seekBarBlue);
         final View colorPreview = ad.findViewById(R.id.viewColorPreview);
         final Button buttonOkForAll = ad.findViewById(R.id.buttonOkForAll);
+        final Button buttonOK = ad.findViewById(R.id.buttonOK);
+        if(!showApplyForAll) {
+            buttonOkForAll.setVisibility(View.GONE);
+        }
         if(customColor == null) {
             checkBoxCustomColor.setVisibility(View.GONE);
-            buttonOkForAll.setVisibility(View.GONE);
         } else {
             checkBoxCustomColor.setChecked(customColor);
             if(!customColor) {
@@ -661,7 +672,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         updateColorPreview(Color.argb(0xff, seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress()), colorPreview, editTextColorHex);
         ad.show();
         ad.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        ad.findViewById(R.id.buttonOK).setOnClickListener(new View.OnClickListener() {
+        buttonOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(colorDialogFinished != null) {
@@ -670,7 +681,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
                 ad.dismiss();
             }
         });
-        ad.findViewById(R.id.buttonOkForAll).setOnClickListener(new View.OnClickListener() {
+        buttonOkForAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(colorDialogFinished != null) {
