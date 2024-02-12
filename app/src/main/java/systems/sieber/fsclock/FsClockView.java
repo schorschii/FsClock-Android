@@ -69,6 +69,8 @@ public class FsClockView extends FrameLayout {
     View mMainView;
     Float mMainViewDefaultX;
     Float mMainViewDefaultY;
+    View mBottomBar;
+    Float mBottomBarDefaultX;
     ImageView mBackgroundImage;
     View mBatteryView;
     TextView mBatteryText;
@@ -114,6 +116,7 @@ public class FsClockView extends FrameLayout {
         // find views
         mRootView = findViewById(R.id.fsclockRootView);
         mMainView = findViewById(R.id.linearLayoutMain);
+        mBottomBar = findViewById(R.id.linearLayoutBottomBar);
         mBackgroundImage = findViewById(R.id.imageViewBackground);
         mDigitalClock = findViewById(R.id.digitalClock);
         mDateText = findViewById(R.id.textViewDate);
@@ -164,11 +167,22 @@ public class FsClockView extends FrameLayout {
         mMainView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
-                    public void onGlobalLayout() {
-                        // layout has happened here
+                    public void onGlobalLayout() { // layout has happened here
+                        if(mMainViewDefaultX != null && mMainViewDefaultX == mMainView.getX()) {
+                            mMainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        }
                         mMainViewDefaultX = mMainView.getX();
                         mMainViewDefaultY = mMainView.getY();
-                        mMainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                });
+        mBottomBar.getViewTreeObserver().addOnGlobalLayoutListener(
+                new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() { // layout has happened here
+                        if(mBottomBarDefaultX != null && mBottomBarDefaultX == mBottomBar.getX()) {
+                            mBottomBar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        }
+                        mBottomBarDefaultX = mBottomBar.getX();
                     }
                 });
     }
@@ -319,13 +333,19 @@ public class FsClockView extends FrameLayout {
                 post(new Runnable() {
                     @Override
                     public void run() {
-                        if(mMainViewDefaultX == null || mMainViewDefaultY == null) {
+                        if(mMainViewDefaultX == null || mMainViewDefaultY == null || mBottomBarDefaultX == null) {
                             return;
                         }
                         if(mBurnInPrevention) {
+                            int randomDeviationX = mRand.nextInt(BURN_IN_PREVENTION_DEVIATION*2) - BURN_IN_PREVENTION_DEVIATION;
+                            int randomDeviationY = mRand.nextInt(BURN_IN_PREVENTION_DEVIATION*2) - BURN_IN_PREVENTION_DEVIATION;
                             mMainView.animate()
-                                    .x(mMainViewDefaultX + mRand.nextInt(BURN_IN_PREVENTION_DEVIATION*2) - BURN_IN_PREVENTION_DEVIATION)
-                                    .y(mMainViewDefaultY + mRand.nextInt(BURN_IN_PREVENTION_DEVIATION*2) - BURN_IN_PREVENTION_DEVIATION)
+                                    .x(mMainViewDefaultX + randomDeviationX)
+                                    .y(mMainViewDefaultY + randomDeviationY)
+                                    .setDuration(1000)
+                                    .start();
+                            mBottomBar.animate()
+                                    .x(mBottomBarDefaultX + randomDeviationX)
                                     .setDuration(1000)
                                     .start();
                         } else {
@@ -333,6 +353,10 @@ public class FsClockView extends FrameLayout {
                             mMainView.animate()
                                     .x(mMainViewDefaultX)
                                     .y(mMainViewDefaultY)
+                                    .setDuration(1000)
+                                    .start();
+                            mBottomBar.animate()
+                                    .x(mBottomBarDefaultX)
                                     .setDuration(1000)
                                     .start();
                         }
