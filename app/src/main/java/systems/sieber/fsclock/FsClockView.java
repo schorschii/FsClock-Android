@@ -268,15 +268,13 @@ public class FsClockView extends FrameLayout {
         if(mShowAnalog) {
             float secRotation = 0;
             float minRotation = 0;
-            float hrsRotation = 0;
+            float hrsRotation = (cal.get(Calendar.HOUR) + ((float)cal.get(Calendar.MINUTE)/60)) * 360 / 12;
             if(mSmoothHands) {
                 secRotation = (cal.get(Calendar.SECOND) + ((float)cal.get(Calendar.MILLISECOND)/1000)) * 360 / 60;
                 minRotation = (cal.get(Calendar.MINUTE) + ((float)cal.get(Calendar.SECOND)/60)) * 360 / 60;
-                hrsRotation = (cal.get(Calendar.HOUR) + ((float)cal.get(Calendar.MINUTE)/60)) * 360 / 12;
             } else {
                 secRotation = cal.get(Calendar.SECOND) * 360f / 60;
                 minRotation = cal.get(Calendar.MINUTE) * 360f / 60;
-                hrsRotation = cal.get(Calendar.HOUR) * 360f / 12;
             }
             mSecondsHand.setRotation(secRotation);
             mMinutesHand.setRotation(minRotation);
