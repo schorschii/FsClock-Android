@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -270,6 +271,13 @@ public class BaseSettingsActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_settings, menu);
+
+        // display play/pause icon on TV devices for saving settings
+        UiModeManager uiModeManager = (UiModeManager) getSystemService(UI_MODE_SERVICE);
+        if(uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION) {
+            menu.findItem(R.id.action_settings_done).setIcon(R.drawable.ic_play_pause_white);
+        }
+
         return true;
     }
 
@@ -280,13 +288,22 @@ public class BaseSettingsActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.action_settings_done:
-                save();
-                setResult(RESULT_OK);
-                finish();
+                saveAndFinish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        // did I ever told you about the Amazon Echo Show 15, a hazardous waste of technology without proper debugging options?
+        if(event.getKeyCode() == KeyEvent.KEYCODE_MEDIA_PLAY
+        || event.getKeyCode() == KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE) {
+            saveAndFinish();
+            return true;
+        }
+        return super.dispatchKeyEvent(event);
     }
 
     @Override
@@ -331,6 +348,12 @@ public class BaseSettingsActivity extends AppCompatActivity {
                 }
                 break;
         }
+    }
+
+    private void saveAndFinish() {
+        save();
+        setResult(RESULT_OK);
+        finish();
     }
 
     protected void enableDisableAllSettings(boolean state) {
