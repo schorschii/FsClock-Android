@@ -52,6 +52,7 @@ public class DigitalClockView extends View {
         mPaintMin.setColor(Color.WHITE);
         mPaintMin.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL));
         mPaintMin.setTextSize(25);
+        mPaintMin.setTextAlign(Paint.Align.CENTER);
 
         mPaintSec = new Paint();
         mPaintSec.setColor(Color.WHITE);
@@ -122,10 +123,10 @@ public class DigitalClockView extends View {
         float x_corr = mXCorr * mPaintMin.getTextSize();
         if(mShowSec) {
             float fullWidth = mBoundsMin.width() + mBoundsSec.width() + x_corr;
-            canvas.drawText(mTextMin, (canvasWidth/2f) - (fullWidth / 2f) - x_corr, y, mPaintMin);
+            canvas.drawText(mTextMin, (canvasWidth/2f) - (fullWidth / 2f) + (mBoundsMin.width()/2f), y, mPaintMin);
             canvas.drawText(mTextSec, (canvasWidth/2f) - (fullWidth / 2f) + mBoundsMin.width() + x_corr, y, mPaintSec);
         } else {
-            canvas.drawText(mTextMin, canvasWidth/2f - mBoundsMin.width()/2f - x_corr, y, mPaintMin);
+            canvas.drawText(mTextMin, canvasWidth/2f, y, mPaintMin);
         }
     }
 
