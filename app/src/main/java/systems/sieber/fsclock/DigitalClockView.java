@@ -15,9 +15,7 @@ import androidx.annotation.NonNull;
 
 public class DigitalClockView extends View {
 
-    final static float MIN_SIZE = 0.8f;
-    final static float SEC_SIZE = 0.19f;
-    final static String MIN_MEASURE_DUMMY = "00:00";
+    // seconds are always 2 digits, while minutes can be 0:00 or 00:00
     final static String SEC_MEASURE_DUMMY = "00";
 
     String mTextMin = "00:00";
@@ -52,7 +50,6 @@ public class DigitalClockView extends View {
         mPaintMin.setColor(Color.WHITE);
         mPaintMin.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL));
         mPaintMin.setTextSize(25);
-        mPaintMin.setTextAlign(Paint.Align.CENTER);
 
         mPaintSec = new Paint();
         mPaintSec.setColor(Color.WHITE);
@@ -91,6 +88,15 @@ public class DigitalClockView extends View {
     }
 
     float calcMinSizeHeight(int w, int h) {
+        float MIN_SIZE = 0.72f;
+        float SEC_SIZE = 0.24f;
+        String MIN_MEASURE_DUMMY = "0:00";
+        if(mTextMin.length() > 4) {
+            MIN_SIZE = 0.8f;
+            SEC_SIZE = 0.19f;
+            MIN_MEASURE_DUMMY = "00:00";
+        }
+
         float minWidth = mShowSec ? w * MIN_SIZE : w;
         setTextSizeForWidth(mPaintMin, minWidth, MIN_MEASURE_DUMMY);
         mPaintMin.getTextBounds(MIN_MEASURE_DUMMY, 0, MIN_MEASURE_DUMMY.length(), mBoundsMin);
@@ -123,10 +129,10 @@ public class DigitalClockView extends View {
         float x_corr = mXCorr * mPaintMin.getTextSize();
         if(mShowSec) {
             float fullWidth = mBoundsMin.width() + mBoundsSec.width() + x_corr;
-            canvas.drawText(mTextMin, (canvasWidth/2f) - (fullWidth / 2f) + (mBoundsMin.width()/2f), y, mPaintMin);
+            canvas.drawText(mTextMin, (canvasWidth/2f) - (fullWidth / 2f) - x_corr, y, mPaintMin);
             canvas.drawText(mTextSec, (canvasWidth/2f) - (fullWidth / 2f) + mBoundsMin.width() + x_corr, y, mPaintSec);
         } else {
-            canvas.drawText(mTextMin, canvasWidth/2f, y, mPaintMin);
+            canvas.drawText(mTextMin, canvasWidth/2f - mBoundsMin.width()/2f - x_corr, y, mPaintMin);
         }
     }
 
