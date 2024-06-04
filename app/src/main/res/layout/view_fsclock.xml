@@ -98,7 +98,7 @@
                 android:layout_weight="1"
                 tools:ignore="NestedWeights" />
 
-            <TextView
+            <systems.sieber.fsclock.DateView
                 android:id="@+id/textViewDate"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"

@@ -69,9 +69,11 @@ public class DigitalClockView extends View {
         invalidate();
     }
     void setText(String min, String sec) {
-        mTextMin = min;
-        mTextSec = sec;
-        invalidate();
+        if(!mTextMin.equals(min) || !mTextSec.equals(sec)) {
+            mTextMin = min;
+            mTextSec = sec;
+            invalidate();
+        }
     }
     void setShowSec(boolean showSec) {
         mShowSec = showSec;

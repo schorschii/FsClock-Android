@@ -79,7 +79,7 @@ public class FsClockView extends FrameLayout {
     TextView mAlarmText;
     ImageView mAlarmImage;
     DigitalClockView mDigitalClock;
-    TextView mDateText;
+    DateView mDateText;
     TextView mTextViewEvents;
     ImageView mClockFace;
     ImageView mSecondsHand;
@@ -134,35 +134,6 @@ public class FsClockView extends FrameLayout {
         mAlarmImage = findViewById(R.id.imageViewAlarm);
         mAlarmImage.setImageResource(R.drawable.ic_alarm_white_24dp);
 
-        // init font
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // auto-calc text size - must be necessarily set programmatically for screensaver mode!
-            mDateText.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-        } else {
-            // calc text sizes manually on older Android versions
-            updateClock();
-            WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-            Display display = wm.getDefaultDisplay();
-            final Point size = new Point();
-            display.getSize(size);
-            getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    if(mFontDate == null) return;
-                    int dateContainerWidth = mDateText.getWidth();
-                    String dateText = mDateText.getText().toString();
-                    for(int i = 120; i >= 20; i-=2) {
-                        int textWidth = getTextWidth(getContext(), dateText, i, size, mFontDate);
-                        if(textWidth < dateContainerWidth) {
-                            mDateText.setTextSize(i);
-                            Log.i("CALC_TSIZE_DATE", i+" => "+textWidth+" (max "+dateContainerWidth+") @ "+dateText);
-                            break;
-                        }
-                    }
-                }
-            });
-        }
-
         // init layout listener
         mMainView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -185,17 +156,6 @@ public class FsClockView extends FrameLayout {
                         mBottomBarDefaultX = mBottomBar.getX();
                     }
                 });
-    }
-
-    public static int getTextWidth(Context context, CharSequence text, int textSize, Point deviceSize, Typeface typeface) {
-        TextView textView = new TextView(context);
-        textView.setTypeface(typeface);
-        textView.setText(text, TextView.BufferType.SPANNABLE);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
-        int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(deviceSize.x, View.MeasureSpec.AT_MOST);
-        int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(deviceSize.y, View.MeasureSpec.UNSPECIFIED);
-        textView.measure(widthMeasureSpec, heightMeasureSpec);
-        return textView.getMeasuredWidth();
     }
 
     @Override
@@ -473,7 +433,7 @@ public class FsClockView extends FrameLayout {
         int colorDigitalClock = mSharedPref.getInt("color-digital-clock", 0xffffffff);
         int colorDigitalDate = mSharedPref.getInt("color-digital-date", 0xffffffff);
         mDigitalClock.setColor(colorDigitalClock);
-        mDateText.setTextColor(colorDigitalDate);
+        mDateText.setColor(colorDigitalDate);
         mTextViewEvents.setTextColor(colorDigitalDate);
         mBatteryText.setTextColor(colorDigitalDate);
         mBatteryImage.setColorFilter(colorDigitalDate, PorterDuff.Mode.SRC_ATOP);
