@@ -69,8 +69,10 @@ public class FsClockView extends FrameLayout {
     View mMainView;
     Float mMainViewDefaultX;
     Float mMainViewDefaultY;
+    Float mMainViewDefaultTemp;
     View mBottomBar;
     Float mBottomBarDefaultX;
+    Float mBottomBarDefaultTemp;
     ImageView mBackgroundImage;
     View mBatteryView;
     TextView mBatteryText;
@@ -139,21 +141,23 @@ public class FsClockView extends FrameLayout {
                 new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() { // layout has happened here
-                        if(mMainViewDefaultX != null && mMainViewDefaultX == mMainView.getX()) {
+                        if(mMainViewDefaultTemp != null && mMainViewDefaultTemp == mMainView.getX()) {
                             mMainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                            mMainViewDefaultX = mMainView.getX();
+                            mMainViewDefaultY = mMainView.getY();
                         }
-                        mMainViewDefaultX = mMainView.getX();
-                        mMainViewDefaultY = mMainView.getY();
+                        mMainViewDefaultTemp = mMainView.getX();
                     }
                 });
         mBottomBar.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() { // layout has happened here
-                        if(mBottomBarDefaultX != null && mBottomBarDefaultX == mBottomBar.getX()) {
+                        if(mBottomBarDefaultTemp != null && mBottomBarDefaultTemp == mBottomBar.getX()) {
                             mBottomBar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                            mBottomBarDefaultX = mBottomBar.getX();
                         }
-                        mBottomBarDefaultX = mBottomBar.getX();
+                        mBottomBarDefaultTemp = mBottomBar.getX();
                     }
                 });
     }
