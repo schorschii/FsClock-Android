@@ -48,11 +48,13 @@ public class DigitalClockView extends View {
     void commonInit() {
         mPaintMin = new Paint();
         mPaintMin.setColor(Color.WHITE);
+        mPaintMin.setAntiAlias(true);
         mPaintMin.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL));
         mPaintMin.setTextSize(25);
 
         mPaintSec = new Paint();
         mPaintSec.setColor(Color.WHITE);
+        mPaintSec.setAntiAlias(true);
         mPaintSec.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL));
         mPaintSec.setTextSize(25);
     }

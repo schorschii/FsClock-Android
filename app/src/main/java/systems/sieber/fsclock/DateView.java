@@ -39,6 +39,7 @@ public class DateView extends View {
     void commonInit() {
         mPaintMin = new Paint();
         mPaintMin.setColor(Color.WHITE);
+        mPaintMin.setAntiAlias(true);
         mPaintMin.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL));
         mPaintMin.setTextSize(150);
     }
