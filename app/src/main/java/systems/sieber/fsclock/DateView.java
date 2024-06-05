@@ -121,7 +121,7 @@ public class DateView extends View {
     // more accurate results, but may cause problems with hardware
     // acceleration. But there are workarounds for that, too; refer to
     // http://stackoverflow.com/questions/6253528/font-size-too-large-to-fit-in-cache
-    final static float TEST_TEXT_SIZE = 48f;
+    final static float TEST_TEXT_SIZE = 128f;
     private static void setTextSizeForWidth(Paint paint, float desiredWidth, String text) {
         // Get the bounds of the text, using our testTextSize.
         paint.setTextSize(TEST_TEXT_SIZE);
@@ -132,7 +132,7 @@ public class DateView extends View {
         float desiredTextSize = TEST_TEXT_SIZE * desiredWidth / (bounds.width() + bounds.left);
 
         // Set the paint for that size.
-        paint.setTextSize(desiredTextSize * 0.96f);
+        paint.setTextSize(desiredTextSize * 0.97f);
     }
     private static void setTextSizeForHeight(Paint paint, float desiredHeight, String text) {
         // Get the bounds of the text, using our testTextSize.
