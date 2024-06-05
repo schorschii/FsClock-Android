@@ -14,12 +14,12 @@ public class FontOptions {
     public final static int ROBOTO_THIN    = 5;
     public final static ArrayList<FontOption> FONT_OPTIONS = new ArrayList<>(
             Arrays.asList(
-                    new FontOption(DSEG7_CLASSIC, "DSEG7 Classic", R.font.dseg7classic_regular, 0.15f),
-                    new FontOption(DSEG14_CLASSIC, "DSEG14 Classic", R.font.dseg14classic_regular, 0.15f),
-                    new FontOption(CAIRO_REGULAR, "Cairo Regular", R.font.cairo_regular, 0.06f),
-                    new FontOption(CAIRO_LIGHT, "Cairo Light", R.font.cairo_light, 0.06f),
-                    new FontOption(CAIRO_BOLD, "Cairo Bold", R.font.cairo_bold, 0.06f),
-                    new FontOption(ROBOTO_THIN, "Roboto Thin", R.font.roboto_thin, 0.08f)
+                    new FontOption(DSEG7_CLASSIC, "DSEG7 Classic", R.font.dseg7classic_regular, 0.05f),
+                    new FontOption(DSEG14_CLASSIC, "DSEG14 Classic", R.font.dseg14classic_regular, 0.05f),
+                    new FontOption(CAIRO_REGULAR, "Cairo Regular", R.font.cairo_regular, 0.05f),
+                    new FontOption(CAIRO_LIGHT, "Cairo Light", R.font.cairo_light, 0.05f),
+                    new FontOption(CAIRO_BOLD, "Cairo Bold", R.font.cairo_bold, 0.05f),
+                    new FontOption(ROBOTO_THIN, "Roboto Thin", R.font.roboto_thin, 0.06f)
             )
     );
     public static FontOption getById(int id) {

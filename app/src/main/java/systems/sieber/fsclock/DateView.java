@@ -112,7 +112,7 @@ public class DateView extends View {
         // draw all lines
         for(String line : lines) {
             mPaintMin.getTextBounds(line, 0, line.length(), mBoundsMin);
-            canvas.drawText(line, canvasWidth/2f - (mBoundsMin.width()+mBoundsMin.left)/2f, y + (mBoundsMin.height()-mBoundsMin.bottom), mPaintMin);
+            canvas.drawText(line, canvasWidth/2f - (mBoundsMin.width()/2f) - mBoundsMin.left, y + (mBoundsMin.height()-mBoundsMin.bottom), mPaintMin);
             y += mPaintMin.getTextSize() + mBoundsMin.bottom;
         }
     }

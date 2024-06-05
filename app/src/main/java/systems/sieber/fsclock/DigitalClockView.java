@@ -131,10 +131,10 @@ public class DigitalClockView extends View {
         float x_corr = mXCorr * mPaintMin.getTextSize();
         if(mShowSec) {
             float fullWidth = mBoundsMin.width() + mBoundsSec.width() + x_corr;
-            canvas.drawText(mTextMin, (canvasWidth/2f) - (fullWidth / 2f) - x_corr, y, mPaintMin);
+            canvas.drawText(mTextMin, (canvasWidth/2f) - (fullWidth / 2f) - mBoundsMin.left - x_corr, y, mPaintMin);
             canvas.drawText(mTextSec, (canvasWidth/2f) - (fullWidth / 2f) + mBoundsMin.width() + x_corr, y, mPaintSec);
         } else {
-            canvas.drawText(mTextMin, canvasWidth/2f - mBoundsMin.width()/2f - x_corr, y, mPaintMin);
+            canvas.drawText(mTextMin, (canvasWidth/2f) - (mBoundsMin.width()/2f) - (mBoundsMin.left/2f) - x_corr, y, mPaintMin);
         }
     }
 
