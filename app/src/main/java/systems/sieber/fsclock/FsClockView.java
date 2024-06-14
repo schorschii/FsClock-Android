@@ -632,7 +632,7 @@ public class FsClockView extends FrameLayout {
 
     @SuppressLint("SetTextI18n")
     void updateEventView() {
-        SimpleDateFormat sdfDisplay = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        SimpleDateFormat sdfDisplay = new SimpleDateFormat(mFormat24hrs ? "HH:mm" : "h:mm", Locale.getDefault());
         //SimpleDateFormat sdfLog = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
 
         // clear previous event
