@@ -23,12 +23,14 @@ Open Source means free as "free speech" [but not as in "free beer"](https://en.w
 ![Screenshot](.github/screenshot.png)
 
 ## Screensaver on Amazon FireOS / FireTV
-Amazon FireOS (on FireTV devices) does currently not officially allow changing the system screensaver to another (3rd-party) app. While nobody understands this decision Amazon made, there is a workaround possible using the Android developer tools. Without this workaround, the clock can still be started on FireTV devices like a normal app.
+Works only up to FireOS 7.x. On FireOS 8 and newer, it currently no longer seems to be possible to set a custom screensaver.
+
+Amazon FireOS (on FireTV devices) does currently not officially allow changing the system screensaver to another (3rd-party) app. While nobody understands this decision Amazon made, there is a workaround possible using the Android developer tools, which works up to FireOS 7. Without this workaround, the clock can still be started on FireTV devices like a normal app.
 
 1. Enable Debugging on your FireTV.  
    All details (including how to install ADB on your computer) are described [here](https://developer.amazon.com/docs/fire-tv/connecting-adb-to-device.html).
 
-2. Execute the following command
+2. Execute the following command:
    ```
    # execute this command to set this app as screensaver
    # please note: after that, the FireTV settings app still shows the Amazon screensaver, but the underlying Android system will now start the clock instead
