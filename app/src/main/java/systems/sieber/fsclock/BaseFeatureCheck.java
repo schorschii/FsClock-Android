@@ -32,12 +32,12 @@ class BaseFeatureCheck {
     void init() {
         // get settings (faster than google play - after purchase done, billing client needs minutes to realize the purchase)
         mSettings = mContext.getSharedPreferences(SettingsActivity.SHARED_PREF_DOMAIN, 0);
-        unlockedSettings = mSettings.getBoolean("purchased-settings", false);
+        unlockedSettings = mSettings.getBoolean("purchased-settings", true);
     }
 
     boolean isReady = false;
 
-    boolean unlockedSettings = false;
+    boolean unlockedSettings = true;
 
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
     void unlockPurchase(String sku) {
