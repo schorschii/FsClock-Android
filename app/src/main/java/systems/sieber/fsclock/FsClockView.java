@@ -55,7 +55,7 @@ import java.util.TimerTask;
 
 public class FsClockView extends FrameLayout {
 
-    final static int BURN_IN_PREVENTION_DEVIATION = 15; /*px*/
+    final static int BURN_IN_PREVENTION_DEVIATION = 18; /*px*/
     final static int BURN_IN_PREVENTION_CHANGE = 100000; /*ms*/
     boolean mBurnInPrevention = false;
 
