@@ -135,6 +135,13 @@ public class FsClockView extends FrameLayout {
         mAlarmText = findViewById(R.id.textViewAlarm);
         mAlarmImage = findViewById(R.id.imageViewAlarm);
         mAlarmImage.setImageResource(R.drawable.ic_alarm_white_24dp);
+        loadSettings();
+
+        // instant refresh so that the user does not see "00:00:00"
+        updateEventView();
+        if(!mHighRefreshRate) {
+            updateClock();
+        }
 
         // init layout listener
         mMainView.getViewTreeObserver().addOnGlobalLayoutListener(
@@ -335,11 +342,6 @@ public class FsClockView extends FrameLayout {
         mTimerCalendarUpdate.schedule(taskCalendarUpdate, 0, 10000);
         mTimerCheckEvent.schedule(taskCheckEvent, 0, 1000);
         mTimerBurnInPreventionRotation.schedule(taskBurnInAvoidRotation, 1000, BURN_IN_PREVENTION_CHANGE);
-
-        // instant refresh so that the user does not see "00:00:00"
-        if(!mHighRefreshRate) {
-            updateClock();
-        }
     }
 
     void loadSettings() {
