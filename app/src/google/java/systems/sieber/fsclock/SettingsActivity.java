@@ -18,11 +18,13 @@ import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.PendingPurchasesParams;
 import com.android.billingclient.api.ProductDetails;
 import com.android.billingclient.api.ProductDetailsResponseListener;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
+import com.android.billingclient.api.QueryProductDetailsResult;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONObject;
@@ -82,7 +84,7 @@ public class SettingsActivity extends BaseSettingsActivity {
 
         // init Google billing client
         mBillingClient = BillingClient.newBuilder(this)
-                .enablePendingPurchases()
+                .enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts().build())
                 .setListener(new PurchasesUpdatedListener() {
                     @Override
                     public void onPurchasesUpdated(@NonNull BillingResult billingResult, List<Purchase> purchases) {
@@ -131,24 +133,24 @@ public class SettingsActivity extends BaseSettingsActivity {
                 .setProductList(productList)
                 .build();
         mBillingClient.queryProductDetailsAsync(params, new ProductDetailsResponseListener() {
-                    public void onProductDetailsResponse(@NonNull BillingResult billingResult, @NonNull List<ProductDetails> productDetailsList) {
-                        if(billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-                            for(final ProductDetails skuDetails : productDetailsList) {
-                                final String sku = skuDetails.getProductId();
-                                final String price = Objects.requireNonNull(skuDetails.getOneTimePurchaseOfferDetails()).getFormattedPrice();
-                                runOnUiThread(new Runnable(){
-                                    @Override
-                                    public void run() {
-                                        setupPayButton(sku, price, skuDetails);
-                                    }
-                                });
+            @Override
+            public void onProductDetailsResponse(@NonNull BillingResult billingResult, @NonNull QueryProductDetailsResult queryProductDetailsResult) {
+                if(billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                    for(final ProductDetails skuDetails : queryProductDetailsResult.getProductDetailsList()) {
+                        final String sku = skuDetails.getProductId();
+                        final String price = Objects.requireNonNull(skuDetails.getOneTimePurchaseOfferDetails()).getFormattedPrice();
+                        runOnUiThread(new Runnable(){
+                            @Override
+                            public void run() {
+                                setupPayButton(sku, price, skuDetails);
                             }
-                        } else {
-                            Log.e("BILLING", billingResult.getResponseCode() + " " + billingResult.getDebugMessage());
-                        }
+                        });
                     }
+                } else {
+                    Log.e("BILLING", billingResult.getResponseCode() + " " + billingResult.getDebugMessage());
                 }
-        );
+            }
+        });
     }
     @SuppressLint("SetTextI18n")
     @SuppressWarnings("SwitchStatementWithTooFewBranches")

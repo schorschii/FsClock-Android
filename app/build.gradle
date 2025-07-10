@@ -29,6 +29,7 @@ android {
         }
         google {
             dimension "appstore"
+            minSdkVersion 21 // for Play billing library >= 7.0.0
         }
         amazon {
             dimension "appstore"
@@ -41,6 +42,6 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.code.gson:gson:2.8.6'
-    googleImplementation 'com.android.billingclient:billing:6.0.1'
-    amazonImplementation 'com.amazon.device:amazon-appstore-sdk:3.0.3'
+    googleImplementation 'com.android.billingclient:billing:8.0.0'
+    amazonImplementation 'com.amazon.device:amazon-appstore-sdk:3.0.7'
 }
