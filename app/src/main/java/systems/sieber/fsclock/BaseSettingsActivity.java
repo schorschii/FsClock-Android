@@ -122,6 +122,10 @@ public class BaseSettingsActivity extends AppCompatActivity {
     View mColorPreviewDigitalDate;
     int mColorDigitalDate;
     Spinner mSpinnerDigitalDateFont;
+    View mColorChangerEvents;
+    View mColorPreviewEvents;
+    int mColorEvents;
+    Spinner mSpinnerEventsFont;
     View mColorChangerBack;
     View mColorPreviewBack;
     int mColorBack;
@@ -218,6 +222,9 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorPreviewAnalogSeconds = findViewById(R.id.viewColorPreviewAnalogSecond);
         mColorChangerDigitalClock = findViewById(R.id.viewColorChangerDigitalClock);
         mColorPreviewDigitalClock = findViewById(R.id.viewColorPreviewDigitalClock);
+        mSpinnerEventsFont = findViewById(R.id.spinnerEventsFont);
+        mColorChangerEvents = findViewById(R.id.viewColorChangerEvents);
+        mColorPreviewEvents = findViewById(R.id.viewColorPreviewEvents);
         mSpinnerDigitalClockFont = findViewById(R.id.spinnerDigitalClockFont);
         mColorChangerDigitalDate = findViewById(R.id.viewColorChangerDigitalDate);
         mColorPreviewDigitalDate = findViewById(R.id.viewColorPreviewDigitalDate);
@@ -259,6 +266,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mColorAnalogSeconds = mSharedPref.getInt("color-analog-seconds", 0xffffffff);
         mColorDigitalClock = mSharedPref.getInt("color-digital-clock", 0xffffffff);
         mColorDigitalDate = mSharedPref.getInt("color-digital-date", 0xffffffff);
+        mColorEvents = mSharedPref.getInt("color-events", mColorDigitalDate);
         mColorBack = mSharedPref.getInt("color-back", 0xff000000);
         mBackStretch = mSharedPref.getBoolean("back-stretch", false);
         mCheckBoxShowAlarms.setChecked(mSharedPref.getBoolean("show-alarms", false));
@@ -417,6 +425,11 @@ public class BaseSettingsActivity extends AppCompatActivity {
         ArrayAdapter dataAdapterFonts = new ArrayAdapter(this, android.R.layout.simple_spinner_item, FontOptions.FONT_OPTIONS);
         dataAdapterFonts.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        mSpinnerEventsFont.setAdapter(dataAdapterFonts);
+        mSpinnerEventsFont.setSelection(
+                FontOptions.FONT_OPTIONS.indexOf( FontOptions.getById(mSharedPref.getInt("font-events", FontOptions.CAIRO_REGULAR)) ),
+                false
+        );
         mSpinnerDigitalClockFont.setAdapter(dataAdapterFonts);
         mSpinnerDigitalClockFont.setSelection(
                 FontOptions.FONT_OPTIONS.indexOf( FontOptions.getById(mSharedPref.getInt("font-digital-clock", FontOptions.DSEG7_CLASSIC)) ),
@@ -571,6 +584,8 @@ public class BaseSettingsActivity extends AppCompatActivity {
                         if(applyForAll) {
                             mColorDigitalDate = Color.argb(0xff, red, green, blue);
                             updateColorPreview(mColorDigitalDate, mColorPreviewDigitalDate, null);
+                            mColorEvents = Color.argb(0xff, red, green, blue);
+                            updateColorPreview(mColorEvents, mColorPreviewEvents, null);
                         }
                     }
                 });
@@ -586,6 +601,29 @@ public class BaseSettingsActivity extends AppCompatActivity {
                         mColorDigitalDate = Color.argb(0xff, red, green, blue);
                         updateColorPreview(mColorDigitalDate, mColorPreviewDigitalDate, null);
                         if(applyForAll) {
+                            mColorDigitalClock = Color.argb(0xff, red, green, blue);
+                            updateColorPreview(mColorDigitalClock, mColorPreviewDigitalClock, null);
+                            mColorEvents = Color.argb(0xff, red, green, blue);
+                            updateColorPreview(mColorEvents, mColorPreviewEvents, null);
+                        }
+                    }
+                });
+            }
+        });
+
+        // events color
+        updateColorPreview(mColorEvents, mColorPreviewEvents, null);
+        mColorChangerEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showColorDialog(null, mColorEvents, true, new ColorDialogCallback() {
+                    @Override
+                    public void ok(boolean customColor, int red, int green, int blue, boolean applyForAll) {
+                        mColorEvents = Color.argb(0xff, red, green, blue);
+                        updateColorPreview(mColorEvents, mColorPreviewEvents, null);
+                        if(applyForAll) {
+                            mColorDigitalDate = Color.argb(0xff, red, green, blue);
+                            updateColorPreview(mColorDigitalDate, mColorPreviewDigitalDate, null);
                             mColorDigitalClock = Color.argb(0xff, red, green, blue);
                             updateColorPreview(mColorDigitalClock, mColorPreviewDigitalClock, null);
                         }
@@ -768,6 +806,8 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.putInt("font-digital-clock", ((FontOption) mSpinnerDigitalClockFont.getSelectedItem()).mId);
         editor.putInt("color-digital-date", mColorDigitalDate);
         editor.putInt("font-digital-date", ((FontOption) mSpinnerDigitalDateFont.getSelectedItem()).mId);
+        editor.putInt("color-events", mColorEvents);
+        editor.putInt("font-events", ((FontOption) mSpinnerEventsFont.getSelectedItem()).mId);
         editor.putInt("color-back", mColorBack);
         editor.putBoolean("back-stretch", mBackStretch);
         editor.putBoolean("show-alarms", mCheckBoxShowAlarms.isChecked());

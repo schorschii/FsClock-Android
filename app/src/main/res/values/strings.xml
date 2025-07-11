@@ -125,4 +125,5 @@ Roboto Font Copyright (c) Christian Robertson. Licensed under the Apache License
     <string name="hijri_calendar">Hijri Calendar</string>
     <string name="digital_clock_color">Digital Clock Color</string>
     <string name="date_color">Date Color</string>
+    <string name="event_color">Event Color</string>
 </resources>

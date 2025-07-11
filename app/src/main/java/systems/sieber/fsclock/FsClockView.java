@@ -86,6 +86,7 @@ public class FsClockView extends FrameLayout {
     ImageView mHoursHand;
     Typeface mFontClock;
     Typeface mFontDate;
+    Typeface mFontEvents;
 
     Timer mTimerAnalogClock;
     Timer mTimerCalendarUpdate;
@@ -427,21 +428,25 @@ public class FsClockView extends FrameLayout {
         // init font
         FontOption fontOptionClock = FontOptions.getById(mSharedPref.getInt("font-digital-clock", FontOptions.DSEG7_CLASSIC));
         mFontClock = ResourcesCompat.getFont(getContext(), fontOptionClock.mResourceId);
+        mDigitalClock.setTypeface(mFontClock, fontOptionClock.mXCorr);
         FontOption fontOptionDate = FontOptions.getById(mSharedPref.getInt("font-digital-date", FontOptions.CAIRO_REGULAR));
         mFontDate = ResourcesCompat.getFont(getContext(), fontOptionDate.mResourceId);
-        mDigitalClock.setTypeface(mFontClock, fontOptionClock.mXCorr);
         mDateText.setTypeface(mFontDate);
+        FontOption fontOptionEvents = FontOptions.getById(mSharedPref.getInt("font-events", FontOptions.CAIRO_REGULAR));
+        mFontEvents = ResourcesCompat.getFont(getContext(), fontOptionEvents.mResourceId);
+        mTextViewEvents.setTypeface(mFontEvents);
 
         // init custom digital color
         int colorDigitalClock = mSharedPref.getInt("color-digital-clock", 0xffffffff);
         int colorDigitalDate = mSharedPref.getInt("color-digital-date", 0xffffffff);
+        int colorEvents = mSharedPref.getInt("color-events", colorDigitalDate);
         mDigitalClock.setColor(colorDigitalClock);
         mDateText.setColor(colorDigitalDate);
-        mTextViewEvents.setTextColor(colorDigitalDate);
-        mBatteryText.setTextColor(colorDigitalDate);
-        mBatteryImage.setColorFilter(colorDigitalDate, PorterDuff.Mode.SRC_ATOP);
-        mAlarmText.setTextColor(colorDigitalDate);
-        mAlarmImage.setColorFilter(colorDigitalDate, PorterDuff.Mode.SRC_ATOP);
+        mTextViewEvents.setTextColor(colorEvents);
+        mBatteryText.setTextColor(colorEvents);
+        mBatteryImage.setColorFilter(colorEvents, PorterDuff.Mode.SRC_ATOP);
+        mAlarmText.setTextColor(colorEvents);
+        mAlarmImage.setColorFilter(colorEvents, PorterDuff.Mode.SRC_ATOP);
 
         // init custom analog color
         if(mSharedPref.getBoolean("own-color-analog-clock-face", false)) {

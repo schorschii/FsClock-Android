@@ -112,4 +112,5 @@
     <string name="hijri_calendar">Calendario Hijri</string>
     <string name="digital_clock_color">Colore orologio digitale</string>
     <string name="date_color">Colore della data</string>
+    <string name="event_color">Colore dell\'evento</string>
 </resources>

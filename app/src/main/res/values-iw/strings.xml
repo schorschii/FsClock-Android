@@ -112,4 +112,5 @@
     <string name="hijri_calendar">לוח שנה ההיג\'רי</string>
     <string name="digital_clock_color">צבע שעון דיגיטלי</string>
     <string name="date_color">צבע תאריך</string>
+    <string name="event_color">צבע האירוע</string>
 </resources>

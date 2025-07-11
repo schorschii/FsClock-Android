@@ -112,4 +112,5 @@
     <string name="hijri_calendar">Календарь Хиджры</string>
     <string name="digital_clock_color">Цвет цифровых часов</string>
     <string name="date_color">Цвет даты</string>
+    <string name="event_color">Цвет события</string>
 </resources>

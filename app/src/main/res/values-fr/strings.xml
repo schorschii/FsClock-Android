@@ -112,4 +112,5 @@
     <string name="hijri_calendar">Calendrier hégirien</string>
     <string name="digital_clock_color">Couleur de l\'horloge numérique</string>
     <string name="date_color">Couleur des dates</string>
+    <string name="event_color">Couleur de l\'événement</string>
 </resources>
