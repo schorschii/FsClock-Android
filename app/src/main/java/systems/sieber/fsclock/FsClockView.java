@@ -110,9 +110,6 @@ public class FsClockView extends FrameLayout {
     private void commonInit(Context c) {
         inflate(getContext(), R.layout.view_fsclock, this);
 
-        // init settings
-        mSharedPref = c.getSharedPreferences(SettingsActivity.SHARED_PREF_DOMAIN, Context.MODE_PRIVATE);
-
         // find views
         mRootView = findViewById(R.id.fsclockRootView);
         mMainView = findViewById(R.id.linearLayoutMain);
@@ -133,6 +130,9 @@ public class FsClockView extends FrameLayout {
         mAlarmText = findViewById(R.id.textViewAlarm);
         mAlarmImage = findViewById(R.id.imageViewAlarm);
         mAlarmImage.setImageResource(R.drawable.ic_alarm_white_24dp);
+
+        // init settings
+        mSharedPref = c.getSharedPreferences(SettingsActivity.SHARED_PREF_DOMAIN, Context.MODE_PRIVATE);
         loadSettings();
 
         // instant refresh so that the user does not see "00:00:00"
@@ -142,29 +142,7 @@ public class FsClockView extends FrameLayout {
         }
 
         // init layout listener
-        mMainView.getViewTreeObserver().addOnGlobalLayoutListener(
-                new ViewTreeObserver.OnGlobalLayoutListener() {
-                    @Override
-                    public void onGlobalLayout() { // layout has happened here
-                        if(mMainViewDefaultTemp != null && mMainViewDefaultTemp == mMainView.getX()) {
-                            mMainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                            mMainViewDefaultX = mMainView.getX();
-                            mMainViewDefaultY = mMainView.getY();
-                        }
-                        mMainViewDefaultTemp = mMainView.getX();
-                    }
-                });
-        mBottomBar.getViewTreeObserver().addOnGlobalLayoutListener(
-                new ViewTreeObserver.OnGlobalLayoutListener() {
-                    @Override
-                    public void onGlobalLayout() { // layout has happened here
-                        if(mBottomBarDefaultTemp != null && mBottomBarDefaultTemp == mBottomBar.getX()) {
-                            mBottomBar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                            mBottomBarDefaultX = mBottomBar.getX();
-                        }
-                        mBottomBarDefaultTemp = mBottomBar.getX();
-                    }
-                });
+        initLayoutListener();
     }
 
     @Override
@@ -191,6 +169,42 @@ public class FsClockView extends FrameLayout {
             mTts.stop();
             mTts.shutdown();
         }
+    }
+
+    private void initLayoutListener() {
+        mMainViewDefaultTemp = null;
+        mBottomBarDefaultTemp = null;
+        if(mMainViewDefaultX != null && mMainViewDefaultY != null) {
+            mMainView.setX(mMainViewDefaultX);
+            mMainView.setY(mMainViewDefaultY);
+        }
+        if(mBottomBarDefaultX != null) {
+            mBottomBar.setX(mBottomBarDefaultX);
+        }
+        mMainView.getViewTreeObserver().addOnGlobalLayoutListener(
+                new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() { // layout has happened here
+                        if(mMainViewDefaultTemp != null && mMainViewDefaultTemp == mMainView.getX()) {
+                            mMainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                            mMainViewDefaultX = mMainView.getX();
+                            mMainViewDefaultY = mMainView.getY();
+                        }
+                        mMainViewDefaultTemp = mMainView.getX();
+                    }
+                });
+        mBottomBar.getViewTreeObserver().addOnGlobalLayoutListener(
+                new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() { // layout has happened here
+                        if(mBottomBarDefaultTemp != null && mBottomBarDefaultTemp == mBottomBar.getX()) {
+                            mBottomBar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                            mBottomBarDefaultX = mBottomBar.getX();
+                            Log.w("POSI", mBottomBar.getX()+"");
+                        }
+                        mBottomBarDefaultTemp = mBottomBar.getX();
+                    }
+                });
     }
 
     static String getDefaultDateFormat(Context c) {
@@ -726,6 +740,7 @@ public class FsClockView extends FrameLayout {
 
     protected void resume() {
         loadSettings();
+        initLayoutListener();
         startTimer();
     }
 }
