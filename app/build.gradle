@@ -6,8 +6,8 @@ android {
         minSdkVersion 17
         targetSdkVersion 36
         compileSdk 34
-        versionCode 35
-        versionName "1.13.0"
+        versionCode 36
+        versionName "1.13.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
     }
@@ -26,6 +26,12 @@ android {
     productFlavors {
         standalone {
             dimension "appstore"
+            dependenciesInfo {
+                // Disables dependency metadata when building APKs.
+                includeInApk = false
+                // Disables dependency metadata when building Android App Bundles.
+                includeInBundle = false
+            }
         }
         google {
             dimension "appstore"
