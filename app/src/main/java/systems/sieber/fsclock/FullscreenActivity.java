@@ -122,6 +122,7 @@ public class FullscreenActivity extends AppCompatActivity {
             ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
             mlp.leftMargin = insets.left;
             mlp.rightMargin = insets.right;
+            mlp.topMargin = insets.top;
             mlp.bottomMargin = insets.bottom;
             v.setLayoutParams(mlp);
             // Return CONSUMED if you don't want the window insets to keep passing down to descendant views.
