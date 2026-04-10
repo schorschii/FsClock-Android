@@ -24,6 +24,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -31,6 +34,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -98,8 +102,8 @@ public class FullscreenActivity extends AppCompatActivity {
         mSharedPref = getSharedPreferences(SettingsActivity.SHARED_PREF_DOMAIN, Context.MODE_PRIVATE);
 
         // find views
-        mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_fsclock_view);
+        mControlsView = findViewById(R.id.linearLayoutControls);
+        mContentView = findViewById(R.id.fsClockViewFullscreen);
         mContentView.mActivity = this;
         if(uiModeManager.getCurrentModeType() != Configuration.UI_MODE_TYPE_TELEVISION) {
             // we do not enable the onTouch event on TVs because this intersects with the onKeyDown event
@@ -110,6 +114,19 @@ public class FullscreenActivity extends AppCompatActivity {
                 }
             });
         }
+
+        // apply the insets as a margin to the view, so that elements at the bottom
+        // of the ScrollView do not get hidden behind the navigation bar
+        ViewCompat.setOnApplyWindowInsetsListener(mControlsView, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+            mlp.leftMargin = insets.left;
+            mlp.rightMargin = insets.right;
+            mlp.bottomMargin = insets.bottom;
+            v.setLayoutParams(mlp);
+            // Return CONSUMED if you don't want the window insets to keep passing down to descendant views.
+            return WindowInsetsCompat.CONSUMED;
+        });
 
         // apply own background color to navigation bar - especially for Samsung One UI, which displays a white navbar by default
         int colorBack = Color.argb(0xff,
