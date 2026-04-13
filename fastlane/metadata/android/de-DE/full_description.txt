@@ -6,4 +6,4 @@ Diese App zeigt eine simple Vollbild-Uhr, welche als Bildschirmschoner verwendet
 - einstellbare Hintergrund- und Uhrfarbe
 - kann als Android-System-Bildschirmschoner ("DayDream") auf Smartphones und Tablets eingestellt werden
 - kompatibel mit Android TV-Geräten
-- Inhalte können leicht bewegt werden, um ein Einbrennen auf OLED-Displays zu verhindern
+- Inhalte können automatisch bewegt werden, um ein Einbrennen auf OLED-Displays zu verhindern
