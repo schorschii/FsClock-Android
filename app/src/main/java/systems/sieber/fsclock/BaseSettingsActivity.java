@@ -948,12 +948,15 @@ public class BaseSettingsActivity extends AppCompatActivity {
         infoDialog("", getString(R.string.own_images_note));
     }
 
+    public final static String APPID_VSCREENSAVER  = "systems.sieber.vscreensaver";
     public final static String APPID_CUSTOMERDB    = "de.georgsieber.customerdb";
     public final static String APPID_REMOTEPOINTER = "systems.sieber.remotespotlight";
     public final static String APPID_BALLBREAK     = "de.georgsieber.ballbreak";
     public final static String URL_OCO             = "https://github.com/schorschii/oco-server";
-    public final static String URL_MASTERPLAN      = "https://github.com/schorschii/masterplan";
 
+    public void onClickVideoScreensaver(View v) {
+        openPlayStore(APPID_VSCREENSAVER);
+    }
     public void onClickGithub(View v) {
         openBrowser(getString(R.string.project_website));
     }
@@ -968,9 +971,6 @@ public class BaseSettingsActivity extends AppCompatActivity {
     }
     public void onClickOco(View v) {
         openBrowser(URL_OCO);
-    }
-    public void onClickMasterplan(View v) {
-        openBrowser(URL_MASTERPLAN);
     }
     void openBrowser(String url) {
         try {

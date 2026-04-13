@@ -793,6 +793,24 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center_vertical"
+                        android:src="@drawable/logo_video_screensaver" />
+                    <Button
+                        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:onClick="onClickVideoScreensaver"
+                        android:text="@string/video_screensaver_for_android"
+                        android:textAllCaps="false" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
                         android:src="@drawable/logo_customerdb" />
                     <Button
                         style="@style/Widget.AppCompat.Button.Borderless.Colored"
@@ -855,24 +873,6 @@
                         android:layout_gravity="center_vertical"
                         android:onClick="onClickOco"
                         android:text="@string/open_computer_orchestration"
-                        android:textAllCaps="false" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/logo_masterplan" />
-                    <Button
-                        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:onClick="onClickMasterplan"
-                        android:text="@string/masterplan_workforce_management"
                         android:textAllCaps="false" />
                 </LinearLayout>
 
