@@ -415,6 +415,8 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mSpinnerDigitalClockFont.setEnabled(state);
         mColorChangerDigitalDate.setEnabled(state);
         mSpinnerDigitalDateFont.setEnabled(state);
+        mColorChangerEvents.setEnabled(state);
+        mSpinnerEventsFont.setEnabled(state);
         mColorChangerBack.setEnabled(state);
         mSpinnerDesignBack.setEnabled(state);
         mCheckBoxShowAlarms.setEnabled(state);
