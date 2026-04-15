@@ -506,10 +506,10 @@ public class FsClockView extends FrameLayout {
         }
 
         // init (custom) analog clock images
-        mClockFace.setImageResource(R.drawable.ic_bg);
-        mHoursHand.setImageResource(R.drawable.ic_h);
-        mMinutesHand.setImageResource(R.drawable.ic_m);
-        mSecondsHand.setImageResource(R.drawable.ic_s);
+        mClockFace.setImageResource(R.drawable.analog_classic_bg);
+        mHoursHand.setImageResource(R.drawable.analog_classic_h);
+        mMinutesHand.setImageResource(R.drawable.analog_classic_m);
+        mSecondsHand.setImageResource(R.drawable.analog_classic_s);
 
         img = sc.getStorage(StorageControl.FILENAME_CLOCK_FACE);
         if(img.exists()) {
@@ -519,6 +519,10 @@ public class FsClockView extends FrameLayout {
             } catch(Exception ignored) {
                 Toast.makeText(getContext(), "Image corrupted or too large", Toast.LENGTH_SHORT).show();
             }
+        } else {
+            GraphicItem gi = GraphicSelectionAdapter.getById(mSharedPref.getInt("clock-analog-face", 0), GraphicSelectionAdapter.CLOCK_FACES);
+            if(gi != null && gi.mGraphicResourceId != null)
+                mClockFace.setImageResource(gi.mGraphicResourceId);
         }
 
         img = sc.getStorage(StorageControl.FILENAME_HOURS_HAND);
@@ -529,6 +533,10 @@ public class FsClockView extends FrameLayout {
             } catch(Exception ignored) {
                 Toast.makeText(getContext(), "Image corrupted or too large", Toast.LENGTH_SHORT).show();
             }
+        } else {
+            GraphicItem gi = GraphicSelectionAdapter.getById(mSharedPref.getInt("clock-analog-hours", 0), GraphicSelectionAdapter.HOUR_HANDS);
+            if(gi != null && gi.mGraphicResourceId != null)
+                mHoursHand.setImageResource(gi.mGraphicResourceId);
         }
 
         img = sc.getStorage(StorageControl.FILENAME_MINUTES_HAND);
@@ -539,6 +547,10 @@ public class FsClockView extends FrameLayout {
             } catch(Exception ignored) {
                 Toast.makeText(getContext(), "Image corrupted or too large", Toast.LENGTH_SHORT).show();
             }
+        } else {
+            GraphicItem gi = GraphicSelectionAdapter.getById(mSharedPref.getInt("clock-analog-minutes", 0), GraphicSelectionAdapter.MINUTE_HANDS);
+            if(gi != null && gi.mGraphicResourceId != null)
+                mMinutesHand.setImageResource(gi.mGraphicResourceId);
         }
 
         img = sc.getStorage(StorageControl.FILENAME_SECONDS_HAND);
@@ -549,6 +561,10 @@ public class FsClockView extends FrameLayout {
             } catch(Exception ignored) {
                 Toast.makeText(getContext(), "Image corrupted or too large", Toast.LENGTH_SHORT).show();
             }
+        } else {
+            GraphicItem gi = GraphicSelectionAdapter.getById(mSharedPref.getInt("clock-analog-seconds", 0), GraphicSelectionAdapter.SECOND_HANDS);
+            if(gi != null && gi.mGraphicResourceId != null)
+                mSecondsHand.setImageResource(gi.mGraphicResourceId);
         }
     }
 

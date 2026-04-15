@@ -85,7 +85,15 @@ Roboto Font Copyright (c) Christian Robertson. Licensed under the Apache License
     <string name="apply_for_all">Apply for all</string>
     <string name="buy_a_code">Buy a code</string>
     <string name="unlock_code">Unlock Code</string>
-    <string name="default_design">Default Design</string>
+    <string name="classic_design">Classic</string>
+    <string name="rounded_design">Rounded</string>
+    <string name="elegant_design">Elegant</string>
+    <string name="rustic_design">Rustic</string>
+    <string name="outlined_design">Outlined</string>
+    <string name="dot_design">Dot</string>
+    <string name="number_design">Numbers</string>
+    <string name="square_design">Square</string>
+    <string name="vinyl_design">Vinyl</string>
     <string name="custom_image">Custom Image</string>
     <string name="custom_image_stretch">Custom Image (Stretch)</string>
     <string name="custom_image_zoom">Custom Image (Zoom)</string>

@@ -72,7 +72,7 @@
     <string name="apply_for_all">Подать заявку на все</string>
     <string name="buy_a_code">Купите код</string>
     <string name="unlock_code">Код разблокировки</string>
-    <string name="default_design">Дизайн по умолчанию</string>
+    <string name="classic_design">Дизайн по умолчанию</string>
     <string name="custom_image">Пользовательское изображение</string>
     <string name="custom_image_stretch">Пользовательское изображение (Растянуть)</string>
     <string name="custom_image_zoom">Пользовательское изображение (увеличение)</string>

@@ -58,6 +58,7 @@ import com.google.gson.Gson;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class BaseSettingsActivity extends AppCompatActivity {
 
@@ -444,49 +445,98 @@ public class BaseSettingsActivity extends AppCompatActivity {
         );
     }
     private void initImageSpinner() {
-        String[] optionsAnalog = {
-                getString(R.string.default_design),
-                getString(R.string.custom_image)
-        };
+        List<GraphicItem> listFace = Arrays.asList(GraphicSelectionAdapter.CLOCK_FACES);
+        mSpinnerDesignAnalogFace.setAdapter(new GraphicSelectionAdapter(this, R.layout.item_graphic, listFace));
+        mSpinnerDesignAnalogFace.setSelection(
+                listFace.indexOf(
+                        GraphicSelectionAdapter.getById(
+                            mStorage.existsImage(StorageControl.FILENAME_CLOCK_FACE) ? -1 : mSharedPref.getInt("clock-analog-face", 0),
+                            GraphicSelectionAdapter.CLOCK_FACES
+                        )
+                ),
+                false
+        );
+
+        List<GraphicItem> listHours = Arrays.asList(GraphicSelectionAdapter.HOUR_HANDS);
+        mSpinnerDesignAnalogHours.setAdapter(new GraphicSelectionAdapter(this, R.layout.item_graphic, listHours));
+        mSpinnerDesignAnalogHours.setSelection(
+                listHours.indexOf(
+                        GraphicSelectionAdapter.getById(
+                                mStorage.existsImage(StorageControl.FILENAME_HOURS_HAND) ? -1 : mSharedPref.getInt("clock-analog-hours", 0),
+                                GraphicSelectionAdapter.HOUR_HANDS
+                        )
+                ),
+                false
+        );
+
+        List<GraphicItem> listMinutes = Arrays.asList(GraphicSelectionAdapter.MINUTE_HANDS);
+        mSpinnerDesignAnalogMinutes.setAdapter(new GraphicSelectionAdapter(this, R.layout.item_graphic, listMinutes));
+        mSpinnerDesignAnalogMinutes.setSelection(
+                listMinutes.indexOf(
+                        GraphicSelectionAdapter.getById(
+                                mStorage.existsImage(StorageControl.FILENAME_MINUTES_HAND) ? -1 : mSharedPref.getInt("clock-analog-minutes", 0),
+                                GraphicSelectionAdapter.MINUTE_HANDS
+                        )
+                ),
+                false
+        );
+
+        List<GraphicItem> listSeconds = Arrays.asList(GraphicSelectionAdapter.SECOND_HANDS);
+        mSpinnerDesignAnalogSeconds.setAdapter(new GraphicSelectionAdapter(this, R.layout.item_graphic, listSeconds));
+        mSpinnerDesignAnalogSeconds.setSelection(
+                listSeconds.indexOf(
+                        GraphicSelectionAdapter.getById(
+                                mStorage.existsImage(StorageControl.FILENAME_SECONDS_HAND) ? -1 : mSharedPref.getInt("clock-analog-seconds", 0),
+                                GraphicSelectionAdapter.SECOND_HANDS
+                        )
+                ),
+                false
+        );
+
         String[] optionsBack = {
                 getString(R.string.no_image),
                 getString(R.string.custom_image_stretch),
                 getString(R.string.custom_image_zoom)
         };
-        ArrayAdapter dataAdapterAnalog = new ArrayAdapter(this, android.R.layout.simple_spinner_item, optionsAnalog);
-        dataAdapterAnalog.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ArrayAdapter dataAdapterBack = new ArrayAdapter(this, android.R.layout.simple_spinner_item, optionsBack);
         dataAdapterBack.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        mSpinnerDesignAnalogFace.setAdapter(dataAdapterAnalog);
-        mSpinnerDesignAnalogFace.setSelection(mStorage.existsImage(StorageControl.FILENAME_CLOCK_FACE) ? 1 : 0, false);
-        mSpinnerDesignAnalogHours.setAdapter(dataAdapterAnalog);
-        mSpinnerDesignAnalogHours.setSelection(mStorage.existsImage(StorageControl.FILENAME_HOURS_HAND) ? 1 : 0, false);
-        mSpinnerDesignAnalogMinutes.setAdapter(dataAdapterAnalog);
-        mSpinnerDesignAnalogMinutes.setSelection(mStorage.existsImage(StorageControl.FILENAME_MINUTES_HAND) ? 1 : 0, false);
-        mSpinnerDesignAnalogSeconds.setAdapter(dataAdapterAnalog);
-        mSpinnerDesignAnalogSeconds.setSelection(mStorage.existsImage(StorageControl.FILENAME_SECONDS_HAND) ? 1 : 0, false);
         mSpinnerDesignBack.setAdapter(dataAdapterBack);
         mSpinnerDesignBack.setSelection(mStorage.existsImage(StorageControl.FILENAME_BACKGROUND_IMAGE) ? (mBackStretch ? 1 : 2) : 0, false);
 
         AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                GraphicItem gi = (GraphicItem) adapterView.getSelectedItem();
+
                 if(adapterView.getId() == mSpinnerDesignAnalogFace.getId()) {
-                    if(i == 0) mStorage.removeImage(StorageControl.FILENAME_CLOCK_FACE);
-                    else chooseImage(PICK_CLOCK_FACE_REQUEST);
+                    if(gi.mGraphicResourceId == null)
+                        chooseImage(PICK_CLOCK_FACE_REQUEST);
+                    else
+                        mStorage.removeImage(StorageControl.FILENAME_CLOCK_FACE);
+
                 } else if(adapterView.getId() == mSpinnerDesignAnalogHours.getId()) {
-                    if(i == 0) mStorage.removeImage(StorageControl.FILENAME_HOURS_HAND);
-                    else chooseImage(PICK_HOURS_HAND_REQUEST);
+                    if(gi.mGraphicResourceId == null)
+                        chooseImage(PICK_HOURS_HAND_REQUEST);
+                    else
+                        mStorage.removeImage(StorageControl.FILENAME_HOURS_HAND);
+
                 } else if(adapterView.getId() == mSpinnerDesignAnalogMinutes.getId()) {
-                    if(i == 0) mStorage.removeImage(StorageControl.FILENAME_MINUTES_HAND);
-                    else chooseImage(PICK_MINUTES_HAND_REQUEST);
+                    if(gi.mGraphicResourceId == null)
+                        chooseImage(PICK_MINUTES_HAND_REQUEST);
+                    else
+                        mStorage.removeImage(StorageControl.FILENAME_MINUTES_HAND);
+
                 } else if(adapterView.getId() == mSpinnerDesignAnalogSeconds.getId()) {
-                    if(i == 0) mStorage.removeImage(StorageControl.FILENAME_SECONDS_HAND);
-                    else chooseImage(PICK_SECONDS_HAND_REQUEST);
+                    if(gi.mGraphicResourceId == null)
+                        chooseImage(PICK_SECONDS_HAND_REQUEST);
+                    else
+                        mStorage.removeImage(StorageControl.FILENAME_SECONDS_HAND);
+
                 } else if(adapterView.getId() == mSpinnerDesignBack.getId()) {
-                    if(i == 0) mStorage.removeImage(StorageControl.FILENAME_BACKGROUND_IMAGE);
-                    else chooseImage(PICK_BACKGROUND_REQUEST);
+                    if(gi.mGraphicResourceId == null)
+                        chooseImage(PICK_BACKGROUND_REQUEST);
+                    else
+                        mStorage.removeImage(StorageControl.FILENAME_BACKGROUND_IMAGE);
                 }
             }
             @Override
@@ -805,6 +855,10 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.putInt("color-analog-minutes", mColorAnalogMinutes);
         editor.putInt("color-analog-seconds", mColorAnalogSeconds);
         editor.putInt("color-digital-clock", mColorDigitalClock);
+        editor.putInt("clock-analog-face", ((GraphicItem) mSpinnerDesignAnalogFace.getSelectedItem()).mId);
+        editor.putInt("clock-analog-hours", ((GraphicItem) mSpinnerDesignAnalogHours.getSelectedItem()).mId);
+        editor.putInt("clock-analog-minutes", ((GraphicItem) mSpinnerDesignAnalogMinutes.getSelectedItem()).mId);
+        editor.putInt("clock-analog-seconds", ((GraphicItem) mSpinnerDesignAnalogSeconds.getSelectedItem()).mId);
         editor.putInt("font-digital-clock", ((FontOption) mSpinnerDigitalClockFont.getSelectedItem()).mId);
         editor.putInt("color-digital-date", mColorDigitalDate);
         editor.putInt("font-digital-date", ((FontOption) mSpinnerDigitalDateFont.getSelectedItem()).mId);

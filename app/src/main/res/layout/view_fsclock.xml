@@ -47,7 +47,7 @@
                 android:layout_column="0"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/ic_bg" />
+                app:srcCompat="@drawable/analog_classic_bg" />
 
             <ImageView
                 android:id="@+id/imageViewClockHoursHand"
@@ -57,7 +57,7 @@
                 android:layout_column="0"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/ic_h" />
+                app:srcCompat="@drawable/analog_classic_h" />
 
             <ImageView
                 android:id="@+id/imageViewClockMinutesHand"
@@ -67,7 +67,7 @@
                 android:layout_column="0"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/ic_m" />
+                app:srcCompat="@drawable/analog_classic_m" />
 
             <ImageView
                 android:id="@+id/imageViewClockSecondsHand"
@@ -77,7 +77,7 @@
                 android:layout_column="0"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/ic_s" />
+                app:srcCompat="@drawable/analog_classic_s" />
         </GridLayout>
 
         <LinearLayout

@@ -72,7 +72,15 @@
     <string name="apply_for_all">Für alle übernehmen</string>
     <string name="buy_a_code">Code kaufen</string>
     <string name="unlock_code">Freischaltcode</string>
-    <string name="default_design">Standard-Design</string>
+    <string name="classic_design">Klassisch</string>
+    <string name="rounded_design">Rund</string>
+    <string name="elegant_design">Elegant</string>
+    <string name="rustic_design">Rustikal</string>
+    <string name="outlined_design">Umrandet</string>
+    <string name="dot_design">Punkt</string>
+    <string name="number_design">Nummern</string>
+    <string name="square_design">Quatratisch</string>
+    <string name="vinyl_design">Vinyl</string>
     <string name="custom_image">Eigenes Bild</string>
     <string name="custom_image_stretch">Eigenes Bild (strecken)</string>
     <string name="custom_image_zoom">Eigenes Bild (zoomen)</string>
