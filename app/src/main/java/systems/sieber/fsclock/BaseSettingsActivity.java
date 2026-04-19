@@ -375,7 +375,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
                     mStorage.processImage(StorageControl.FILENAME_BACKGROUND_IMAGE, data);
                     mBackStretch = mSpinnerDesignBack.getSelectedItemPosition() == 1;
                 } else {
-                    mSpinnerDesignBack.setSelection(mStorage.existsImage(StorageControl.FILENAME_SECONDS_HAND) ? 1 : 0, false);
+                    mSpinnerDesignBack.setSelection(mStorage.existsImage(StorageControl.FILENAME_BACKGROUND_IMAGE) ? 1 : 0, false);
                 }
                 break;
         }
