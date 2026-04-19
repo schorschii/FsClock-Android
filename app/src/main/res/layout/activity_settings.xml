@@ -873,10 +873,6 @@
                     android:textAllCaps="false"
                     android:text="@string/project_website" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="25dp" />
-
                 <TextView
                     android:id="@+id/textViewBuildInfo"
                     android:layout_width="match_parent"
