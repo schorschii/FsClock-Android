@@ -18,8 +18,7 @@ public class GraphicSelectionAdapter extends ArrayAdapter<GraphicItem> {
     static GraphicItem[] CLOCK_FACES = {
             new GraphicItem(0, R.drawable.analog_classic_bg, R.string.classic_design),
             new GraphicItem(1, R.drawable.analog_number_bg, R.string.number_design),
-            new GraphicItem(2, R.drawable.analog_classic_bg, R.string.square_design),
-            new GraphicItem(3, R.drawable.analog_classic_bg, R.string.vinyl_design),
+            new GraphicItem(2, R.drawable.analog_square_bg, R.string.square_design),
             new GraphicItem(-1, null, R.string.custom_image)
     };
     static GraphicItem[] HOUR_HANDS = {
