@@ -1,5 +1,6 @@
 Diese App zeigt eine simple Vollbild-Uhr, welche als Bildschirmschoner verwendet werden kann.
 
+- wählen Sie zwischen verschiedenen vordefinierten Zeigern und Zifferblättern oder verwenden Sie eigene Bilder
 - Analog- und Digitaluhr können einzeln aktiviert oder deaktiviert werden
 - optionale Datums- und Wochentagsansicht mit der Option eines eigenen Datumsformates
 - zeigt Wecker und Termine aus dem Android-Kalender oder der internen Ereignisdatenbank an

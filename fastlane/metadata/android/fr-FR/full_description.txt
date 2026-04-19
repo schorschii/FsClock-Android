@@ -1,5 +1,6 @@
 Cette application affiche une simple horloge en plein écran qui peut être utilisée comme économiseur d'écran.
 
+- choisissez parmi différents cadrans et aiguilles prédéfinis ou utilisez des images personnalisées
 - l'horloge analogique et numérique peut être activée ou désactivée individuellement
 - vue facultative de la date et du jour de la semaine avec option de format personnalisé
 - affiche les alarmes et les rendez-vous du calendrier Android ou de la base de données d'événements interne

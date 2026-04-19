@@ -1,5 +1,6 @@
 This app displays a simple fullscreen clock which can be used screensaver.
 
+- choose between various pre-defined clock hands and faces or use custom images
 - analog and digital clock can be activated or deactivated individually
 - optional date and weekday view with custom format option
 - displays alarms and appointments from Android calendar or internal event database

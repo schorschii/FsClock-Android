@@ -6,6 +6,7 @@
 
 Simple Fullscreen Clock Screensaver
 
+- choose between various pre-defined clock hands and faces or use custom images
 - analog and digital clock can be activated or deactivated individually
 - optional date and weekday view with custom format option
 - displays alarms and appointments from Android calendar or internal event database
@@ -20,7 +21,11 @@ Simple Fullscreen Clock Screensaver
 Open Source means free as "free speech" [but not as in "free beer"](https://en.wikipedia.org/wiki/Gratis_versus_libre). At first glance, it may not look like it, but even this "tiny" clock app takes a lot of time to maintain because of the quirks of different Android versions and devices in combination with auto text sizing and the DreamService implementation (FireTV!!!).
 
 ## Screenshots
-![Screenshot](.github/screenshot.png)
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot1.png" alt="Screenshot" width="250" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot2.png" alt="Screenshot" width="250" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot3.png" alt="Screenshot" width="250" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot4.png" alt="Screenshot" width="250" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot5.png" alt="Screenshot" width="250" />
 
 ## Screensaver on Amazon FireOS / FireTV
 Works only up to FireOS 7.x. On FireOS 8 and newer, it currently no longer seems to be possible to set a custom screensaver.

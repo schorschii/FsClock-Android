@@ -1,5 +1,6 @@
 Esta aplicación muestra un reloj de pantalla completa simple que se puede usar como protector de pantalla.
 
+- elija entre varias manecillas y esferas de reloj predefinidas o utilice imágenes personalizadas
 - el reloj analógico y digital se puede activar o desactivar individualmente
 - vista opcional de fecha y día de la semana con opción de formato personalizado
 - muestra alarmas y citas del calendario de Android o de la base de datos de eventos interna
