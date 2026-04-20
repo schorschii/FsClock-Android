@@ -531,12 +531,6 @@ public class BaseSettingsActivity extends AppCompatActivity {
                         chooseImage(PICK_SECONDS_HAND_REQUEST);
                     else
                         mStorage.removeImage(StorageControl.FILENAME_SECONDS_HAND);
-
-                } else if(adapterView.getId() == mSpinnerDesignBack.getId()) {
-                    if(gi.mGraphicResourceId == null)
-                        chooseImage(PICK_BACKGROUND_REQUEST);
-                    else
-                        mStorage.removeImage(StorageControl.FILENAME_BACKGROUND_IMAGE);
                 }
             }
             @Override
@@ -546,7 +540,19 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mSpinnerDesignAnalogHours.setOnItemSelectedListener(listener);
         mSpinnerDesignAnalogMinutes.setOnItemSelectedListener(listener);
         mSpinnerDesignAnalogSeconds.setOnItemSelectedListener(listener);
-        mSpinnerDesignBack.setOnItemSelectedListener(listener);
+
+        AdapterView.OnItemSelectedListener listener2 = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i != 0)
+                    chooseImage(PICK_BACKGROUND_REQUEST);
+                else
+                    mStorage.removeImage(StorageControl.FILENAME_BACKGROUND_IMAGE);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) { }
+        };
+        mSpinnerDesignBack.setOnItemSelectedListener(listener2);
     }
     private void initColorPreview() {
         // analog color
