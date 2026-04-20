@@ -5,7 +5,7 @@ android {
         applicationId "systems.sieber.fsclock"
         minSdkVersion 17
         targetSdkVersion 36
-        compileSdk 34
+        compileSdk 36
         versionCode 36
         versionName "1.13.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -41,6 +41,7 @@ android {
             dimension "appstore"
         }
     }
+    namespace 'systems.sieber.fsclock'
 }
 
 dependencies {
