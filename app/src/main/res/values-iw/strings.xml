@@ -74,6 +74,14 @@
     <string name="buy_a_code">קנה קוד</string>
     <string name="unlock_code">קוד פתיחה</string>
     <string name="classic_design">עיצוב ברירת מחדל</string>
+    <string name="rounded_design">מְעוּגָל</string>
+    <string name="elegant_design">אֵלֶגַנטִי</string>
+    <string name="rustic_design">כַּפרִי</string>
+    <string name="outlined_design">מוּקָף</string>
+    <string name="dot_design">נְקוּדָה</string>
+    <string name="number_design">מספרים</string>
+    <string name="square_design">מְרוּבָּע</string>
+    <string name="vinyl_design">ויניל</string>
     <string name="custom_image">תמונה מותאמת אישית</string>
     <string name="custom_image_stretch">תמונה מותאמת אישית (מתיחה)</string>
     <string name="custom_image_zoom">תמונה מותאמת אישית (זום)</string>

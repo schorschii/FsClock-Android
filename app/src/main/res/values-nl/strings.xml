@@ -74,6 +74,14 @@
   <string name="buy_a_code">Koop een code</string>
   <string name="unlock_code">Ontgrendelcode</string>
   <string name="classic_design">Standaardontwerp</string>
+  <string name="rounded_design">Afgerond</string>
+  <string name="elegant_design">Elegant</string>
+  <string name="rustic_design">Rustiek</string>
+  <string name="outlined_design">Omringd</string>
+  <string name="dot_design">Punt</string>
+  <string name="number_design">Getallen</string>
+  <string name="square_design">Vierkant</string>
+  <string name="vinyl_design">Vinyl</string>
   <string name="custom_image">Aangepaste afbeelding</string>
   <string name="custom_image_stretch">Aangepaste afbeelding (uitrekken)</string>
   <string name="custom_image_zoom">Aangepaste afbeelding (zoom)</string>

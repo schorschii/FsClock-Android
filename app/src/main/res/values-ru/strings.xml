@@ -73,6 +73,14 @@
     <string name="buy_a_code">Купите код</string>
     <string name="unlock_code">Код разблокировки</string>
     <string name="classic_design">Дизайн по умолчанию</string>
+    <string name="rounded_design">Закругленный</string>
+    <string name="elegant_design">Элегантный</string>
+    <string name="rustic_design">Деревенский</string>
+    <string name="outlined_design">Окруженный</string>
+    <string name="dot_design">Точка</string>
+    <string name="number_design">Числа</string>
+    <string name="square_design">Квадрат</string>
+    <string name="vinyl_design">Винил</string>
     <string name="custom_image">Пользовательское изображение</string>
     <string name="custom_image_stretch">Пользовательское изображение (Растянуть)</string>
     <string name="custom_image_zoom">Пользовательское изображение (увеличение)</string>

@@ -73,6 +73,14 @@
     <string name="buy_a_code">comprar un codigo</string>
     <string name="unlock_code">Código de desbloqueo</string>
     <string name="classic_design">Diseño predeterminado</string>
+    <string name="rounded_design">Redondeado</string>
+    <string name="elegant_design">Elegante</string>
+    <string name="rustic_design">Rústico</string>
+    <string name="outlined_design">Rodeado</string>
+    <string name="dot_design">Punto</string>
+    <string name="number_design">Números</string>
+    <string name="square_design">Cuadrado</string>
+    <string name="vinyl_design">Vinilo</string>
     <string name="custom_image">Imagen personalizada</string>
     <string name="custom_image_stretch">Imagen personalizada (estirada)</string>
     <string name="custom_image_zoom">Imagen personalizada (zoom)</string>
