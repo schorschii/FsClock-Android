@@ -38,6 +38,7 @@ Roboto Font Copyright (c) Christian Robertson. Licensed under the Apache License
     <string name="unlock_settings">Unlock Settings</string>
     <string name="ok">OK</string>
     <string name="activation_failed">Activation failed</string>
+    <string name="invalid_code">Invalid code</string>
     <string name="red">Red</string>
     <string name="green">Green</string>
     <string name="blue">Blue</string>
@@ -76,6 +77,7 @@ Roboto Font Copyright (c) Christian Robertson. Licensed under the Apache License
     <string name="no_web_browser_found">No web browser found to open this URL</string>
     <string name="set_as_screensaver_in_android_settings">Set as screensaver in Android settings</string>
     <string name="screensaver_not_supported">This device does not support Android screensavers.</string>
+    <string name="check_internet_conn">Please check your internet connection and try again.</string>
     <string name="play_store_not_avail">Google Play Store not available</string>
     <string name="amazon_store_not_avail">Amazon App Store not available</string>
     <string name="huawei_store_not_avail">Huawei App Gallery not available</string>

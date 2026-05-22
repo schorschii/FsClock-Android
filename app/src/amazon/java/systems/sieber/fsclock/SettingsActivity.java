@@ -1,9 +1,7 @@
 package systems.sieber.fsclock;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +25,6 @@ import com.google.android.material.snackbar.Snackbar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -113,34 +110,32 @@ public class SettingsActivity extends BaseSettingsActivity {
             @Override
             public void onClick(View v) {
                 ad.dismiss();
-                String text = ((EditText) ad.findViewById(R.id.editTextInputBox)).getText().toString().trim();
-                HttpRequest hr = new HttpRequest(getResources().getString(R.string.unlock_api), null);
-                ArrayList<KeyValueItem> headers = new ArrayList<>();
-                headers.add(new KeyValueItem("X-Unlock-Feature",requestFeature));
-                headers.add(new KeyValueItem("X-Unlock-Code",text));
-                hr.setRequestHeaders(headers);
-                hr.setReadyListener(new HttpRequest.readyListener() {
+                String code = ((EditText) ad.findViewById(R.id.editTextInputBox)).getText().toString().trim();
+                new Thread(new Runnable() {
                     @Override
-                    public void ready(int statusCode, String responseBody) {
+                    public void run() {
                         try {
-                            if(statusCode != 999) {
-                                throw new Exception("Invalid status code: " + statusCode);
-                            }
-                            JSONObject licenseInfo = new JSONObject(responseBody);
-                            mFc.unlockPurchase(sku);
-                            loadPurchases();
+                            String response = checkCode(requestFeature, code);
+                            if(response == null) throw new Exception();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    //JSONObject licenseInfo = new JSONObject(response);
+                                    mFc.unlockPurchase(sku);
+                                    loadPurchases();
+                                }
+                            });
                         } catch(Exception e) {
-                            Log.e("ACTIVATION",  e.getMessage() + " - " + responseBody);
                             if(me == null || me.isFinishing() || me.isDestroyed()) return;
-                            AlertDialog ad = new AlertDialog.Builder(me).create();
-                            ad.setTitle(getResources().getString(R.string.activation_failed));
-                            ad.setMessage(e.getMessage());
-                            ad.setButton(Dialog.BUTTON_POSITIVE, getResources().getString(R.string.ok), (DialogInterface.OnClickListener) null);
-                            ad.show();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    infoDialog(getString(R.string.activation_failed), e.getMessage()==null?"":e.getMessage());
+                                }
+                            });
                         }
                     }
-                });
-                hr.execute();
+                }).start();
             }
         });
         if(ad.getWindow() != null)

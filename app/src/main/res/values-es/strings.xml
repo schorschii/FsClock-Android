@@ -25,6 +25,7 @@
     <string name="unlock_settings">Desbloquear configuraci&#243;n&#8230;</string>
     <string name="ok">OK</string>
     <string name="activation_failed">Activaci&#243;n fallida</string>
+    <string name="invalid_code">Código no válido</string>
     <string name="red">rojo</string>
     <string name="green">Verde</string>
     <string name="blue">Azul</string>
@@ -63,6 +64,7 @@
     <string name="no_web_browser_found">No se encontró ningún navegador web para abrir esta URL</string>
     <string name="set_as_screensaver_in_android_settings">Establecer como protector de pantalla en la configuración de Android</string>
     <string name="screensaver_not_supported">Este dispositivo no es compatible con los protectores de pantalla de Android.</string>
+    <string name="check_internet_conn">Por favor, compruebe su conexión a internet e inténtelo de nuevo.</string>
     <string name="play_store_not_avail">Google Play Store no disponible</string>
     <string name="amazon_store_not_avail">Tienda de aplicaciones de Amazon no disponible</string>
     <string name="huawei_store_not_avail">Galería de aplicaciones de Huawei no disponible</string>

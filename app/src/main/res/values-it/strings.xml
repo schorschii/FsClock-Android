@@ -25,6 +25,7 @@
     <string name="unlock_settings">Sblocca impostazioni&#8230;</string>
     <string name="ok">ok</string>
     <string name="activation_failed">Attivazione fallita</string>
+    <string name="invalid_code">Codice non valido</string>
     <string name="red">rosso</string>
     <string name="green">Verde</string>
     <string name="blue">Blu</string>
@@ -63,6 +64,7 @@
     <string name="no_web_browser_found">Nessun browser web trovato per aprire questo URL</string>
     <string name="set_as_screensaver_in_android_settings">Imposta come salvaschermo nelle impostazioni di Android</string>
     <string name="screensaver_not_supported">Questo dispositivo non supporta gli screensaver Android.</string>
+    <string name="check_internet_conn">Verifica la tua connessione internet e riprova.</string>
     <string name="play_store_not_avail">Google Play Store non disponibile</string>
     <string name="amazon_store_not_avail">Amazon App Store non disponibile</string>
     <string name="huawei_store_not_avail">Huawei App Gallery non disponibile</string>

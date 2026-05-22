@@ -25,6 +25,7 @@
     <string name="unlock_settings">Einstellungen freischalten</string>
     <string name="ok">OK</string>
     <string name="activation_failed">Aktivierung fehlgeschlagen</string>
+    <string name="invalid_code">Ungültiger Code</string>
     <string name="red">Rot</string>
     <string name="green">Grün</string>
     <string name="blue">Blau</string>
@@ -63,6 +64,7 @@
     <string name="no_web_browser_found">Kein Webbrowser zum Öffnen der URL gefunden</string>
     <string name="set_as_screensaver_in_android_settings">Als Bildschirmschoner in Android-Einstellungen festlegen</string>
     <string name="screensaver_not_supported">Dieses Gerät unterstützt keine Bildschirmschoner.</string>
+    <string name="check_internet_conn">Bitte prüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.</string>
     <string name="play_store_not_avail">Google Play Store nicht verfügbar</string>
     <string name="amazon_store_not_avail">Amazon App Store nicht verfügbar</string>
     <string name="huawei_store_not_avail">Huawei App Gallery nicht verfügbar</string>

@@ -26,6 +26,7 @@
     <string name="unlock_settings">ביטול הנעילה של הגדרות</string>
     <string name="ok">בסדר</string>
     <string name="activation_failed">הפעלה נכשלה</string>
+    <string name="invalid_code">קוד לא תקין</string>
     <string name="red">אָדוֹם</string>
     <string name="green">ירוק</string>
     <string name="blue">כָּחוֹל</string>
@@ -64,6 +65,7 @@
     <string name="no_web_browser_found">לא נמצא דפדפן אינטרנט לפתיחת כתובת האתר הזו</string>
     <string name="set_as_screensaver_in_android_settings">הגדר כשומר מסך בהגדרות אנדרואיד</string>
     <string name="screensaver_not_supported">מכשיר זה אינו תומך בשומרי מסך של אנדרואיד.</string>
+    <string name="check_internet_conn">אנא בדוק את חיבור האינטרנט שלך ונסה שוב.</string>
     <string name="play_store_not_avail">חנות Google Play אינה זמינה</string>
     <string name="amazon_store_not_avail">Amazon App Store לא זמין</string>
     <string name="huawei_store_not_avail">גלריית האפליקציות של Huawei אינה זמינה</string>

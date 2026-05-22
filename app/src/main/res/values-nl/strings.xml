@@ -26,6 +26,7 @@
   <string name="unlock_settings">Instellingen ontgrendelen</string>
   <string name="ok">OK</string>
   <string name="activation_failed">Activatie mislukt</string>
+  <string name="invalid_code">Ongeldige code</string>
   <string name="red">Rood</string>
   <string name="green">Groen</string>
   <string name="blue">Blauw</string>
@@ -64,6 +65,7 @@
   <string name="no_web_browser_found">Er is geen webbrowser gevonden om deze URL te openen</string>
   <string name="set_as_screensaver_in_android_settings">Instellen als screensaver in Android-instellingen</string>
   <string name="screensaver_not_supported">Dit apparaat ondersteunt geen Android-screensavers.</string>
+  <string name="check_internet_conn">Controleer uw internetverbinding en probeer het opnieuw.</string>
   <string name="play_store_not_avail">Google Play Store niet beschikbaar</string>
   <string name="amazon_store_not_avail">Amazon App Store niet beschikbaar</string>
   <string name="huawei_store_not_avail">Huawei App Gallery niet beschikbaar</string>
