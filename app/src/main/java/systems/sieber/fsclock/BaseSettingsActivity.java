@@ -1105,7 +1105,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
             Method m = null;
             if(am != null) {
                 try {
-                    m = am.getClass().getMethod("isHighTextContrastEnabled", null);
+                    m = am.getClass().getMethod("isHighTextContrastEnabled", (Class<?>) null);
                 } catch(NoSuchMethodException ignored) { }
             }
             Object result;
