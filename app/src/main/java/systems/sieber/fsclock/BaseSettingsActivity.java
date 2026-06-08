@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.app.UiModeManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -40,6 +41,7 @@ import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -61,8 +63,11 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 public class BaseSettingsActivity extends AppCompatActivity {
@@ -90,6 +95,8 @@ public class BaseSettingsActivity extends AppCompatActivity {
     CheckBox mCheckBoxBurnInPrevention;
     CheckBox mCheckBoxForceLandscape;
     CheckBox mCheckBoxDarkMode;
+    Button mButtonDarkModeStart;
+    Button mButtonDarkModeEnd;
     CheckBox mCheckBoxAnalogClockShow;
     CheckBox mCheckBoxAnalogClockShowSeconds;
     CheckBox mCheckBoxAnalogClockSmoothHands;
@@ -139,6 +146,8 @@ public class BaseSettingsActivity extends AppCompatActivity {
     boolean mBackStretch;
     CheckBox mCheckBoxShowAlarms;
     Button mButtonNewEvent;
+    int mDarkModeStart = 0;
+    int mDarkModeEnd = 0;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -204,6 +213,8 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxBurnInPrevention = findViewById(R.id.checkBoxBurnInPrevention);
         mCheckBoxForceLandscape = findViewById(R.id.checkBoxForceLandscape);
         mCheckBoxDarkMode = findViewById(R.id.checkBoxDarkMode);
+        mButtonDarkModeStart = findViewById(R.id.buttonDarkModeStart);
+        mButtonDarkModeEnd = findViewById(R.id.buttonDarkModeEnd);
         mCheckBoxAnalogClockShow = findViewById(R.id.checkBoxShowAnalogClock);
         mCheckBoxAnalogClockShowSeconds = findViewById(R.id.checkBoxSecondsAnalog);
         mCheckBoxAnalogClockSmoothHands = findViewById(R.id.checkBoxAnalogSmoothHands);
@@ -249,6 +260,10 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxBurnInPrevention.setChecked( mSharedPref.getBoolean("burn-in-prevention", false) );
         mCheckBoxForceLandscape.setChecked( mSharedPref.getBoolean("force-landscape", false) );
         mCheckBoxDarkMode.setChecked( mSharedPref.getBoolean("dark-mode", false) );
+        mDarkModeStart = mSharedPref.getInt("dark-mode-start", 0);
+        mDarkModeEnd = mSharedPref.getInt("dark-mode-end", 0);
+        mButtonDarkModeStart.setText( timeFormat((int) Math.floor((double)mDarkModeStart / 60), mDarkModeStart % 60) );
+        mButtonDarkModeEnd.setText( timeFormat((int) Math.floor((double)mDarkModeEnd / 60), mDarkModeEnd % 60) );
         mCheckBoxAnalogClockShow.setChecked( mSharedPref.getBoolean("show-analog", true) );
         mCheckBoxAnalogClockShowSeconds.setChecked( mSharedPref.getBoolean("show-seconds-analog", true) );
         mCheckBoxAnalogClockSmoothHands.setChecked( mSharedPref.getBoolean("smooth-hands", true) );
@@ -399,6 +414,8 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mCheckBoxBurnInPrevention.setEnabled(state);
         mCheckBoxForceLandscape.setEnabled(state);
         mCheckBoxDarkMode.setEnabled(state);
+        mButtonDarkModeStart.setEnabled(state);
+        mButtonDarkModeEnd.setEnabled(state);
         mCheckBoxAnalogClockShow.setEnabled(state);
         mCheckBoxAnalogClockShowSeconds.setEnabled(state);
         mCheckBoxAnalogClockSmoothHands.setEnabled(state);
@@ -847,6 +864,8 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.putBoolean("burn-in-prevention", mCheckBoxBurnInPrevention.isChecked());
         editor.putBoolean("force-landscape", mCheckBoxForceLandscape.isChecked());
         editor.putBoolean("dark-mode", mCheckBoxDarkMode.isChecked());
+        editor.putInt("dark-mode-start", mDarkModeStart);
+        editor.putInt("dark-mode-end", mDarkModeEnd);
         editor.putBoolean("show-analog", mCheckBoxAnalogClockShow.isChecked());
         editor.putBoolean("own-color-analog-clock-face", mCustomColorAnalogFace);
         editor.putBoolean("own-color-analog-hours", mCustomColorAnalogHours);
@@ -983,6 +1002,48 @@ public class BaseSettingsActivity extends AppCompatActivity {
                 infoDialog(null, getString(R.string.screensaver_not_supported));
             }
         }
+    }
+
+    public void onClickDarkModeStart(View v) {
+        TimePickerDialog mTimePicker = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @SuppressLint("SimpleDateFormat")
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        mDarkModeStart = selectedHour * 60 + selectedMinute;
+                        ((Button) findViewById(R.id.buttonDarkModeStart)).setText( timeFormat(selectedHour, selectedMinute) );
+                    }
+                },
+                (int) Math.floor((double)mDarkModeStart / 60),
+                mDarkModeStart % 60,
+                android.text.format.DateFormat.is24HourFormat(this)
+        );
+        //mTimePicker.setTitle("Select Time");
+        mTimePicker.show();
+    }
+    public void onClickDarkModeEnd(View v) {
+        TimePickerDialog mTimePicker = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @SuppressLint("SimpleDateFormat")
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        mDarkModeEnd = selectedHour * 60 + selectedMinute;
+                        ((Button) findViewById(R.id.buttonDarkModeEnd)).setText( timeFormat(selectedHour, selectedMinute) );
+                    }
+                },
+                (int) Math.floor((double)mDarkModeEnd / 60),
+                mDarkModeEnd % 60,
+                android.text.format.DateFormat.is24HourFormat(this)
+        );
+        //mTimePicker.setTitle("Select Time");
+        mTimePicker.show();
+    }
+    private String timeFormat(int selectedHour, int selectedMinute) {
+        Calendar time = Calendar.getInstance();
+        time.set(Calendar.HOUR_OF_DAY, selectedHour);
+        time.set(Calendar.MINUTE, selectedMinute);
+        DateFormat sdf = SimpleDateFormat.getTimeInstance(DateFormat.SHORT);
+        return sdf.format(time.getTime());
     }
 
     public void onClickDateFormatHelp(View v) {

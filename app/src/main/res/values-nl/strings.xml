@@ -123,4 +123,6 @@
   <string name="digital_clock_color">Digitale klokkleur</string>
   <string name="date_color">Datum kleur</string>
     <string name="event_color">Evenementkleur</string>
+    <string name="start">Begin:</string>
+  <string name="end">Einde:</string>
 </resources>

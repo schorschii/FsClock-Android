@@ -135,4 +135,6 @@ Roboto Font Copyright (c) Christian Robertson. Licensed under the Apache License
     <string name="digital_clock_color">Digital Clock Color</string>
     <string name="date_color">Date Color</string>
     <string name="event_color">Event Color</string>
+    <string name="start">Start:</string>
+    <string name="end">End:</string>
 </resources>

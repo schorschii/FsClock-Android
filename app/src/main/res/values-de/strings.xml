@@ -122,4 +122,6 @@
     <string name="digital_clock_color">Digitaluhr-Farbe</string>
     <string name="date_color">Datums-Farbe</string>
     <string name="event_color">Event-Farbe</string>
+    <string name="start">Start:</string>
+    <string name="end">Ende:</string>
 </resources>

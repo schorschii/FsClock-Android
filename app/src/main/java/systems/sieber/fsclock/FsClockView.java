@@ -304,6 +304,7 @@ public class FsClockView extends FrameLayout {
                                 }
                             }
                         }
+                        refreshNightMode();
                     }
                 });
             }
@@ -367,24 +368,7 @@ public class FsClockView extends FrameLayout {
             }
         }
 
-        WindowManager.LayoutParams layout = null;
-        if(mActivity != null) layout = mActivity.getWindow().getAttributes();
-        if(mSharedPref.getBoolean("dark-mode", false)) {
-            // in normal mode, we can set the display brightness to lowest (not possible in screensaver mode)
-            if(layout != null) {
-                layout.screenBrightness = 0;
-                mActivity.getWindow().setAttributes(layout);
-                Log.i("SCREEN", "Dark Mode enabled: set display brightness to lowest");
-            }
-            // dim the colors of all UI elements
-            dimClockView(mRootView, true);
-        } else {
-            if(layout != null) {
-                layout.screenBrightness = -1;
-                mActivity.getWindow().setAttributes(layout);
-            }
-            dimClockView(mRootView, false);
-        }
+        refreshNightMode();
 
         mBurnInPrevention = mSharedPref.getBoolean("burn-in-prevention", mBurnInPrevention);
 
@@ -568,6 +552,36 @@ public class FsClockView extends FrameLayout {
         }
     }
 
+    void refreshNightMode() {
+        WindowManager.LayoutParams layout = null;
+        if(mActivity != null) layout = mActivity.getWindow().getAttributes();
+
+        Calendar c = Calendar.getInstance();
+        int time = c.get(Calendar.HOUR_OF_DAY) * 60 + c.get(Calendar.MINUTE);
+        int timeStart = mSharedPref.getInt("dark-mode-start", 0);
+        int timeEnd = mSharedPref.getInt("dark-mode-end", 0);
+        if(mSharedPref.getBoolean("dark-mode", false)
+                && ((timeStart == timeEnd)
+                    || (timeStart < timeEnd && timeStart <= time && timeEnd >= time)
+                    || (timeStart > timeEnd && (time < 12*60 || timeStart <= time) && (time > 12*60 || timeEnd >= time))
+                )
+        ) {
+            // in normal mode, we can set the display brightness to lowest (not possible in screensaver mode)
+            if(layout != null) {
+                layout.screenBrightness = 0;
+                mActivity.getWindow().setAttributes(layout);
+                Log.i("SCREEN", "Dark Mode enabled: set display brightness to lowest");
+            }
+            // dim the colors of all UI elements
+            dimClockView(mRootView, true);
+        } else {
+            if(layout != null) {
+                layout.screenBrightness = -1;
+                mActivity.getWindow().setAttributes(layout);
+            }
+            dimClockView(mRootView, false);
+        }
+    }
     void dimClockView(View clockView, boolean enabled) {
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
