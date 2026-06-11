@@ -702,7 +702,7 @@ public class FsClockView extends FrameLayout {
     @SuppressLint("SetTextI18n")
     void updateEventView() {
         SimpleDateFormat sdfDisplay = new SimpleDateFormat(mFormat24hrs ? "HH:mm" : "h:mm", Locale.getDefault());
-        //SimpleDateFormat sdfLog = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+        SimpleDateFormat sdfDisplayWithDay = new SimpleDateFormat(mFormat24hrs ? "E HH:mm" : "E h:mm", Locale.getDefault());
 
         // clear previous event
         mTextViewEvents.setVisibility(View.GONE);
@@ -742,7 +742,10 @@ public class FsClockView extends FrameLayout {
             AlarmManager.AlarmClockInfo alarmInfo = m.getNextAlarmClock();
             if(alarmInfo != null) {
                 Long systemAlarmTime = alarmInfo.getTriggerTime();
-                mAlarmText.setText(sdfDisplay.format(systemAlarmTime));
+                mAlarmText.setText(
+                        systemAlarmTime - System.currentTimeMillis() > 1000*60*60*24
+                        ? sdfDisplayWithDay.format(systemAlarmTime) : sdfDisplay.format(systemAlarmTime)
+                );
                 mAlarmView.setVisibility(View.VISIBLE);
             }
         }
