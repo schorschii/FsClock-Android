@@ -111,6 +111,7 @@ public class FullscreenActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     me.toggle();
+                    mContentView.resetNotificationCount();
                 }
             });
         }

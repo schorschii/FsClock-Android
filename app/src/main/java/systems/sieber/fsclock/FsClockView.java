@@ -4,8 +4,11 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -57,10 +60,9 @@ public class FsClockView extends FrameLayout {
     boolean mBurnInPrevention = false;
 
     Random mRand = new Random();
-
     AppCompatActivity mActivity;
-
     SharedPreferences mSharedPref;
+    NotificationBroadcastReceiver mNotificationBroadcastReceiver;
 
     View mRootView;
     View mMainView;
@@ -77,6 +79,9 @@ public class FsClockView extends FrameLayout {
     View mAlarmView;
     TextView mAlarmText;
     ImageView mAlarmImage;
+    View mNotificationsView;
+    TextView mNotificationsText;
+    ImageView mNotificationsImage;
     DigitalClockView mDigitalClock;
     DateView mDateText;
     TextView mTextViewEvents;
@@ -130,6 +135,10 @@ public class FsClockView extends FrameLayout {
         mAlarmText = findViewById(R.id.textViewAlarm);
         mAlarmImage = findViewById(R.id.imageViewAlarm);
         mAlarmImage.setImageResource(R.drawable.ic_alarm_white_24dp);
+        mNotificationsView = findViewById(R.id.linearLayoutNotifications);
+        mNotificationsText = findViewById(R.id.textViewNotifications);
+        mNotificationsImage = findViewById(R.id.imageViewNotifications);
+        mNotificationsImage.setImageResource(R.drawable.ic_notifications_white_24dp);
 
         // init settings
         mSharedPref = c.getSharedPreferences(SettingsActivity.SHARED_PREF_DOMAIN, Context.MODE_PRIVATE);
@@ -158,6 +167,14 @@ public class FsClockView extends FrameLayout {
                 }
             }
         });
+
+        // connect to notification service
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            mNotificationBroadcastReceiver = new NotificationBroadcastReceiver();
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(NotificationListener.BROADCAST_ACTION);
+            ContextCompat.registerReceiver(getContext(), mNotificationBroadcastReceiver, intentFilter, ContextCompat.RECEIVER_EXPORTED);
+        }
     }
 
     @Override
@@ -169,6 +186,8 @@ public class FsClockView extends FrameLayout {
             mTts.stop();
             mTts.shutdown();
         }
+
+        getContext().unregisterReceiver(mNotificationBroadcastReceiver);
     }
 
     private void initLayoutListener() {
@@ -445,6 +464,8 @@ public class FsClockView extends FrameLayout {
         mBatteryImage.setColorFilter(colorEvents, PorterDuff.Mode.SRC_ATOP);
         mAlarmText.setTextColor(colorEvents);
         mAlarmImage.setColorFilter(colorEvents, PorterDuff.Mode.SRC_ATOP);
+        mNotificationsText.setTextColor(colorEvents);
+        mNotificationsImage.setColorFilter(colorEvents, PorterDuff.Mode.SRC_ATOP);
 
         // init custom analog color
         if(mSharedPref.getBoolean("own-color-analog-clock-face", false)) {
@@ -686,6 +707,7 @@ public class FsClockView extends FrameLayout {
         // clear previous event
         mTextViewEvents.setVisibility(View.GONE);
         mAlarmView.setVisibility(View.GONE);
+        mNotificationsView.setVisibility(View.GONE);
 
         // 1. check app internal events
         if(mEvents != null) {
@@ -725,7 +747,13 @@ public class FsClockView extends FrameLayout {
             }
         }
 
-        // 3. check system calendar events
+        // 3. check notification number
+        if(mReceivedNotificationCount > 0) {
+            mNotificationsText.setText(String.valueOf(mReceivedNotificationCount));
+            mNotificationsView.setVisibility(View.VISIBLE);
+        }
+
+        // 4. check system calendar events
         if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_CALENDAR) == PackageManager.PERMISSION_GRANTED) {
             Calendar start = Calendar.getInstance();
             Calendar end = Calendar.getInstance();
@@ -773,4 +801,17 @@ public class FsClockView extends FrameLayout {
         initLayoutListener();
         startTimer();
     }
+
+    int mReceivedNotificationCount = 0;
+    public class NotificationBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mReceivedNotificationCount += intent.getIntExtra("count", -1);
+        }
+    }
+    public void resetNotificationCount() {
+        mReceivedNotificationCount = 0;
+        updateEventView();
+    }
+
 }

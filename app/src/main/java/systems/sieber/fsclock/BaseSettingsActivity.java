@@ -1126,6 +1126,12 @@ public class BaseSettingsActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALENDAR}, PERMISSION_REQUEST);
         }
     }
+    public void onClickAllowNotificationAccess(View v) {
+        try {
+            Intent settingsIntent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+            startActivity(settingsIntent);
+        } catch (ActivityNotFoundException ignored) { }
+    }
 
     void infoDialog(String title, String text) {
         final AlertDialog.Builder dlg = new AlertDialog.Builder(this);

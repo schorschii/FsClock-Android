@@ -124,4 +124,5 @@
     <string name="event_color">Цвет события</string>
     <string name="start">Начало:</string>
     <string name="end">Конец:</string>
+    <string name="allow_notification_access">Разрешить доступ к уведомлениям</string>
 </resources>

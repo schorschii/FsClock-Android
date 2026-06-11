@@ -125,4 +125,5 @@
     <string name="event_color">Evenementkleur</string>
     <string name="start">Begin:</string>
   <string name="end">Einde:</string>
+  <string name="allow_notification_access">Toegang tot meldingen toestaan</string>
 </resources>

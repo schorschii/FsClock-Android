@@ -124,4 +124,5 @@
     <string name="event_color">Couleur de l\'événement</string>
     <string name="start">Début:</string>
     <string name="end">Fin:</string>
+    <string name="allow_notification_access">Autoriser l\'accès aux notifications</string>
 </resources>

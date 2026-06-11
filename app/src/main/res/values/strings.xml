@@ -137,4 +137,5 @@ Roboto Font Copyright (c) Christian Robertson. Licensed under the Apache License
     <string name="event_color">Event Color</string>
     <string name="start">Start:</string>
     <string name="end">End:</string>
+    <string name="allow_notification_access">Allow notification access</string>
 </resources>

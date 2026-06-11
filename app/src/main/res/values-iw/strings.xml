@@ -124,4 +124,5 @@
     <string name="event_color">צבע האירוע</string>
     <string name="start">הַתחָלָה:</string>
     <string name="end">סוֹף:</string>
+    <string name="allow_notification_access">אפשר גישה להתראות</string>
 </resources>
