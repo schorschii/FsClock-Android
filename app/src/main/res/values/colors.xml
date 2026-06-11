@@ -10,4 +10,5 @@
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorBackgroundSecondary">#F2F2F2</color>
     <color name="colorPreviewBorder">#757575</color> <!-- should look like checkboxes -->
+    <color name="colorDemoClock">#222</color>
 </resources>

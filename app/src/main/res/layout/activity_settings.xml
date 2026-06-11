@@ -83,6 +83,7 @@
                             android:layout_column="0"
                             android:adjustViewBounds="true"
                             android:scaleType="fitXY"
+                            app:tint="@color/colorDemoClock"
                             app:srcCompat="@drawable/analog_number_bg" />
                         <ImageView
                             android:layout_width="match_parent"
@@ -92,6 +93,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitXY"
                             android:rotation="100"
+                            app:tint="@color/colorDemoClock"
                             app:srcCompat="@drawable/analog_outlined_h" />
                         <ImageView
                             android:layout_width="match_parent"
@@ -101,6 +103,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitXY"
                             android:rotation="140"
+                            app:tint="@color/colorDemoClock"
                             app:srcCompat="@drawable/analog_outlined_m" />
                         <ImageView
                             android:layout_width="match_parent"
@@ -126,6 +129,7 @@
                             android:layout_column="0"
                             android:adjustViewBounds="true"
                             android:scaleType="fitXY"
+                            app:tint="@color/colorDemoClock"
                             app:srcCompat="@drawable/analog_classic_bg" />
                         <ImageView
                             android:layout_width="match_parent"
@@ -135,6 +139,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitXY"
                             android:rotation="220"
+                            app:tint="@color/colorDemoClock"
                             app:srcCompat="@drawable/analog_elegant_h" />
                         <ImageView
                             android:layout_width="match_parent"
@@ -144,6 +149,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitXY"
                             android:rotation="320"
+                            app:tint="@color/colorDemoClock"
                             app:srcCompat="@drawable/analog_elegant_m" />
                         <ImageView
                             android:layout_width="match_parent"
@@ -169,6 +175,7 @@
                             android:layout_column="0"
                             android:adjustViewBounds="true"
                             android:scaleType="fitXY"
+                            app:tint="@color/colorDemoClock"
                             app:srcCompat="@drawable/analog_square_bg" />
                         <ImageView
                             android:layout_width="match_parent"
@@ -178,6 +185,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitXY"
                             android:rotation="20"
+                            app:tint="@color/colorDemoClock"
                             app:srcCompat="@drawable/analog_rounded_h" />
                         <ImageView
                             android:layout_width="match_parent"
@@ -187,6 +195,7 @@
                             android:adjustViewBounds="true"
                             android:scaleType="fitXY"
                             android:rotation="310"
+                            app:tint="@color/colorDemoClock"
                             app:srcCompat="@drawable/analog_rounded_m" />
                     </GridLayout>
                 </LinearLayout>

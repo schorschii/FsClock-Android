@@ -2,6 +2,7 @@ package systems.sieber.fsclock;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import java.util.List;
 
@@ -38,10 +40,10 @@ public class GraphicSelectionAdapter extends ArrayAdapter<GraphicItem> {
             new GraphicItem(-1, null, R.string.custom_image)
     };
     static GraphicItem[] SECOND_HANDS = {
-            new GraphicItem(0, R.drawable.analog_classic_s, R.string.classic_design),
-            new GraphicItem(4, R.drawable.analog_rustic_s, R.string.rustic_design),
-            new GraphicItem(5, R.drawable.analog_dot_s, R.string.dot_design),
-            new GraphicItem(-1, null, R.string.custom_image)
+            new GraphicItem(0, R.drawable.analog_classic_s, R.string.classic_design, true),
+            new GraphicItem(4, R.drawable.analog_rustic_s, R.string.rustic_design, true),
+            new GraphicItem(5, R.drawable.analog_dot_s, R.string.dot_design, true),
+            new GraphicItem(-1, null, R.string.custom_image, true)
     };
 
     LayoutInflater flater;
@@ -79,6 +81,8 @@ public class GraphicSelectionAdapter extends ArrayAdapter<GraphicItem> {
         GraphicItem rowItem = getItem(position);
         if(rowItem.mGraphicResourceId != null)
             holder.imageView.setImageResource(rowItem.mGraphicResourceId);
+        if(!rowItem.mDemoNoTint)
+            holder.imageView.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorDemoClock));
         holder.txtTitle.setText(rowItem.mTextResourceId);
 
         return convertView;
@@ -104,10 +108,17 @@ class GraphicItem {
     Integer mId;
     Integer mGraphicResourceId;
     int mTextResourceId;
+    boolean mDemoNoTint = false;
 
     GraphicItem(Integer id, Integer graphicResourceId, int textResourceId) {
         mId = id;
         mGraphicResourceId = graphicResourceId;
         mTextResourceId = textResourceId;
+    }
+    GraphicItem(Integer id, Integer graphicResourceId, int textResourceId, boolean demoNoTint) {
+        mId = id;
+        mGraphicResourceId = graphicResourceId;
+        mTextResourceId = textResourceId;
+        mDemoNoTint = demoNoTint;
     }
 }
