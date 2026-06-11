@@ -66,6 +66,130 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/purchase_support_note" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <GridLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="top">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_row="0"
+                            android:layout_column="0"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            app:srcCompat="@drawable/analog_number_bg" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_row="0"
+                            android:layout_column="0"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:rotation="100"
+                            app:srcCompat="@drawable/analog_outlined_h" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_row="0"
+                            android:layout_column="0"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:rotation="140"
+                            app:srcCompat="@drawable/analog_outlined_m" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_row="0"
+                            android:layout_column="0"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:rotation="120"
+                            app:srcCompat="@drawable/analog_dot_s" />
+                    </GridLayout>
+                    <Space
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent" />
+                    <GridLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="top">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_row="0"
+                            android:layout_column="0"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            app:srcCompat="@drawable/analog_classic_bg" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_row="0"
+                            android:layout_column="0"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:rotation="220"
+                            app:srcCompat="@drawable/analog_elegant_h" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_row="0"
+                            android:layout_column="0"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:rotation="320"
+                            app:srcCompat="@drawable/analog_elegant_m" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_row="0"
+                            android:layout_column="0"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:rotation="290"
+                            app:srcCompat="@drawable/analog_rustic_s" />
+                    </GridLayout>
+                    <Space
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent" />
+                    <GridLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="top">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_row="0"
+                            android:layout_column="0"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            app:srcCompat="@drawable/analog_square_bg" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_row="0"
+                            android:layout_column="0"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:rotation="20"
+                            app:srcCompat="@drawable/analog_rounded_h" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_row="0"
+                            android:layout_column="0"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:rotation="310"
+                            app:srcCompat="@drawable/analog_rounded_m" />
+                    </GridLayout>
+                </LinearLayout>
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="15dp" />

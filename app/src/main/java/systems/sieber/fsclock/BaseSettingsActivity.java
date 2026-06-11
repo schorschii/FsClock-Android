@@ -292,6 +292,10 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mBackStretch = mSharedPref.getBoolean("back-stretch", false);
         mCheckBoxShowAlarms.setChecked(mSharedPref.getBoolean("show-alarms", false));
 
+        SharedPreferences.Editor edit = mSharedPref.edit();
+        edit.putBoolean("opened-settings", true);
+        edit.apply();
+
         // init radio button behavior
         mRadioButtonGregorianCalendar.setOnClickListener(new View.OnClickListener() {
             @Override

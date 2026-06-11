@@ -44,7 +44,7 @@ Roboto Font Copyright (c) Christian Robertson. Licensed under the Apache License
     <string name="blue">Blue</string>
     <string name="review_app_title">Do you like this app? Please submit a review.</string>
     <string name="review_now">Rate now at the Play Store</string>
-    <string name="purchase_support_note">By unlocking the settings with an in-app purchase, you support the further development of this app ♥</string>
+    <string name="purchase_support_note">By unlocking the settings with the one-time in-app purchase, you also get access to the new clock faces and hands and support the further development of this app ♥</string>
     <string name="background">Background</string>
     <string name="general">General</string>
     <string name="keep_screen_on">Keep Screen On</string>

@@ -37,7 +37,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class FullscreenActivity extends AppCompatActivity {
 
@@ -49,7 +53,11 @@ public class FullscreenActivity extends AppCompatActivity {
 
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
+
     private FsClockView mContentView;
+    private View mControlsView;
+    private FloatingActionButton mFabSettings;
+
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override
@@ -62,7 +70,6 @@ public class FullscreenActivity extends AppCompatActivity {
                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         }
     };
-    private View mControlsView;
     private final Runnable mShowPart2Runnable = new Runnable() {
         @Override
         public void run() {
@@ -103,8 +110,17 @@ public class FullscreenActivity extends AppCompatActivity {
 
         // find views
         mControlsView = findViewById(R.id.linearLayoutControls);
+        mFabSettings = findViewById(R.id.fabSettings);
         mContentView = findViewById(R.id.fsClockViewFullscreen);
         mContentView.mActivity = this;
+
+        // register actions
+        mFabSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSettings(view);
+            }
+        });
         if(uiModeManager.getCurrentModeType() != Configuration.UI_MODE_TYPE_TELEVISION) {
             // we do not enable the onTouch event on TVs because this intersects with the onKeyDown event
             mContentView.setOnClickListener(new View.OnClickListener() {
@@ -197,7 +213,13 @@ public class FullscreenActivity extends AppCompatActivity {
         }
 
         // enter fullscreen mode (again)
-        hide();
+        if(mSharedPref.getBoolean("opened-settings", false) || mSharedPref.getBoolean("purchased-settings", false)) {
+            hide();
+        } else {
+            show();
+            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.settings_blink);
+            mFabSettings.startAnimation(animation);
+        }
     }
 
     private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
@@ -282,7 +304,6 @@ public class FullscreenActivity extends AppCompatActivity {
 
     private void incrementStartedCounter() {
         int oldStartedValue = mSharedPref.getInt("started", 0);
-        Log.i("STARTED",Integer.toString(oldStartedValue));
         SharedPreferences.Editor editor = mSharedPref.edit();
         editor.putInt("started", oldStartedValue+1);
         editor.apply();
