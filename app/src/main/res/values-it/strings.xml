@@ -54,7 +54,7 @@
     <string name="remote_pointer_for_android">RemotePointer per Android</string>
     <string name="ballbreak_for_android">Ball Break per Android</string>
     <string name="video_screensaver_for_android">Salvaschermo video per Android</string>
-    <string name="open_computer_orchestration">Aprire l\'orchestrazione del computer</string>
+    <string name="clock_desklet_for_cinnamon">Desklet Analog Clock per l\'ambiente desktop Cinnamon</string>
     <string name="open_source_text">Questa app &#232; Open Source. Se vuoi migliorare l\'app o le sue traduzioni, controlla il repository su Github.</string>
     <string name="open_source">forchettami</string>
     <string name="allow_system_calendar_access">Consenti accesso al calendario di sistema&#8230;</string>

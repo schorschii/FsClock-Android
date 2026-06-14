@@ -55,7 +55,7 @@
   <string name="remote_pointer_for_android">RemotePointer voor Android</string>
   <string name="ballbreak_for_android">BallBreak voor Android</string>
   <string name="video_screensaver_for_android">Videoscreensaver voor Android</string>
-  <string name="open_computer_orchestration">Open geautomatiseerde configuratie</string>
+  <string name="clock_desklet_for_cinnamon">Analoge klok desklet voor de Cinnamon-desktop</string>
   <string name="open_source_text">Deze app is Open Source.  Als je de app of de vertalingen ervan wilt verbeteren, bekijk dan de repository op Github.</string>
   <string name="open_source">Vork mij</string>
   <string name="allow_system_calendar_access">Toegang tot systeemagenda toestaan</string>

@@ -54,7 +54,7 @@
     <string name="remote_pointer_for_android">RemotePointer para Android</string>
     <string name="ballbreak_for_android">BallBreak para Android</string>
     <string name="video_screensaver_for_android">Protector de pantalla de vídeo para Android</string>
-    <string name="open_computer_orchestration">Orquestaci&#243;n inform&#225;tica abierta</string>
+    <string name="clock_desklet_for_cinnamon">Desklet de reloj analógico para el escritorio Cinnamon</string>
     <string name="open_source_text">Esta aplicaci&#243;n es de c&#243;digo abierto. Si desea mejorar la aplicaci&#243;n o sus traducciones, consulte el repositorio en Github.</string>
     <string name="open_source">Bifurcarme</string>
     <string name="allow_system_calendar_access">Permitir el acceso al calendario del sistema</string>

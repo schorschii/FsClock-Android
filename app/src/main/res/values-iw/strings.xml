@@ -55,7 +55,7 @@
     <string name="remote_pointer_for_android">RemotePointer עבור אנדרואיד</string>
     <string name="ballbreak_for_android">BallBreak עבור אנדרואיד</string>
     <string name="video_screensaver_for_android">שומר מסך וידאו לאנדרואיד</string>
-    <string name="open_computer_orchestration">פתח תזמורת מחשב</string>
+    <string name="clock_desklet_for_cinnamon">שעון אנלוגי לשולחן העבודה של קינמון</string>
     <string name="open_source_text">אפליקציה זו היא קוד פתוח. אם אתה רוצה לשפר את האפליקציה או התרגומים שלה, בדוק את המאגר ב-Github.</string>
     <string name="open_source">מזלג אותי</string>
     <string name="allow_system_calendar_access">אפשר גישה ליומן המערכת</string>

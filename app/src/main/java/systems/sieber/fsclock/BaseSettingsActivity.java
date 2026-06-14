@@ -1084,7 +1084,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
     public final static String APPID_CUSTOMERDB    = "de.georgsieber.customerdb";
     public final static String APPID_REMOTEPOINTER = "systems.sieber.remotespotlight";
     public final static String APPID_BALLBREAK     = "de.georgsieber.ballbreak";
-    public final static String URL_OCO             = "https://github.com/schorschii/oco-server";
+    public final static String URL_DESKLETS        = "https://georg-sieber.de/desklets";
 
     public void onClickVideoScreensaver(View v) {
         openPlayStore(APPID_VSCREENSAVER);
@@ -1101,8 +1101,8 @@ public class BaseSettingsActivity extends AppCompatActivity {
     public void onClickBallBreakApp(View v) {
         openPlayStore(APPID_BALLBREAK);
     }
-    public void onClickOco(View v) {
-        openBrowser(URL_OCO);
+    public void onClickClockProDesklet(View v) {
+        openBrowser(URL_DESKLETS);
     }
     void openBrowser(String url) {
         try {
