@@ -189,6 +189,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
         // start the clock
         mContentView.resume();
+        mContentView.resetNotificationCount();
         incrementStartedCounter();
         showDialogReview();
 
