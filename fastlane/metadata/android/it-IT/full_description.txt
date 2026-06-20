@@ -1,4 +1,4 @@
-Questa app visualizza un semplice orologio a schermo intero che può essere utilizzato come salvaschermo.
+Questa app visualizza un semplice orologio a schermo intero utilizzabile come salvaschermo o widget.
 
 - scegli tra varie lancette e quadranti predefiniti oppure utilizza immagini personalizzate
 - L'orologio analogico e digitale possono essere attivati o disattivati individualmente

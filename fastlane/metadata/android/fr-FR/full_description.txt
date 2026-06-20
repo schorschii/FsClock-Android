@@ -1,4 +1,4 @@
-Cette application affiche une simple horloge en plein écran qui peut être utilisée comme économiseur d'écran.
+Cette application affiche une horloge simple en plein écran, utilisable comme économiseur d'écran ou comme widget.
 
 - choisissez parmi différents cadrans et aiguilles prédéfinis ou utilisez des images personnalisées
 - l'horloge analogique et numérique peut être activée ou désactivée individuellement

@@ -1,10 +1,10 @@
-# Android Fullscreen Clock Screensaver
+# Android Fullscreen Clock Screensaver and Widget
 [![Play Store](.github/playstore-badge.svg)](https://play.google.com/store/apps/details?id=systems.sieber.fsclock)
 [![Amazon Appstore](.github/amazon-appstore-badge.svg)](https://www.amazon.com/gp/product/B09BK3HQJ9)
 [![F-Droid](.github/fdroid-badge.svg)](https://f-droid.org/packages/systems.sieber.fsclock)
 [![APK Download](.github/apk-badge.svg)](https://github.com/schorschii/FsClock-Android/releases)
 
-Simple Fullscreen Clock Screensaver
+This app displays a simple fullscreen clock which can be used screensaver and widget.
 
 - choose between various pre-defined clock hands and faces or use custom images
 - analog and digital clock can be activated or deactivated individually

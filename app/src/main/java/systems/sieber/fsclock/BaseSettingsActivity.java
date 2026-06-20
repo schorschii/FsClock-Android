@@ -6,7 +6,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.app.UiModeManager;
+import android.appwidget.AppWidgetManager;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -903,6 +905,17 @@ public class BaseSettingsActivity extends AppCompatActivity {
         editor.putBoolean("show-alarms", mCheckBoxShowAlarms.isChecked());
 
         editor.apply();
+
+        try {
+            AppWidgetManager widgetManager = AppWidgetManager.getInstance(this);
+            int[] digitalIds = widgetManager.getAppWidgetIds(new ComponentName(this, FsClockWidgetDigitalProvider.class));
+            if(digitalIds.length > 0)
+                FsClockWidgetDigitalProvider.updateAllWidgets(this, widgetManager, digitalIds);
+
+            int[] analogIds = widgetManager.getAppWidgetIds(new ComponentName(this, FsClockWidgetAnalogProvider.class));
+            if(analogIds.length > 0)
+                FsClockWidgetAnalogProvider.updateAllWidgets(this, widgetManager, analogIds);
+        } catch(Exception ignored) {}
     }
 
     private void chooseImage(int requestId) {

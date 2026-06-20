@@ -1,1 +1,1 @@
-Fullscreen Analog- and Digital Clock with Event View
+Fullscreen Analog- and Digital Clock with Alarm, Event & Battery View

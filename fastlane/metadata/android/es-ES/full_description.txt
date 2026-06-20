@@ -1,4 +1,4 @@
-Esta aplicación muestra un reloj de pantalla completa simple que se puede usar como protector de pantalla.
+Esta aplicación muestra un reloj sencillo a pantalla completa que puede utilizarse como protector de pantalla o como widget.
 
 - elija entre varias manecillas y esferas de reloj predefinidas o utilice imágenes personalizadas
 - el reloj analógico y digital se puede activar o desactivar individualmente

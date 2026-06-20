@@ -1,4 +1,4 @@
-Diese App zeigt eine simple Vollbild-Uhr, welche als Bildschirmschoner verwendet werden kann.
+Diese App zeigt eine simple Vollbild-Uhr, welche als Bildschirmschoner und Widget verwendet werden kann.
 
 - wählen Sie zwischen verschiedenen vordefinierten Zeigern und Zifferblättern oder verwenden Sie eigene Bilder
 - Analog- und Digitaluhr können einzeln aktiviert oder deaktiviert werden

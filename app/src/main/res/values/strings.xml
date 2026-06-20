@@ -138,4 +138,6 @@ Roboto Font Copyright (c) Christian Robertson. Licensed under the Apache License
     <string name="start">Start:</string>
     <string name="end">End:</string>
     <string name="allow_notification_access">Allow notification access</string>
+    <string name="widget_digital_name">Digital Clock Widget</string>
+    <string name="widget_analog_name">Analog Clock Widget</string>
 </resources>

@@ -1,4 +1,4 @@
-Deze app geeft een eenvoudige klok op volledig scherm weer die als screensaver kan worden gebruikt.
+Deze app toont een eenvoudige klok op volledig scherm die als screensaver en widget kan worden gebruikt.
 
 - kies uit verschillende vooraf gedefinieerde wijzers en wijzerplaten of gebruik eigen afbeeldingen
 - analoge en digitale klok kunnen afzonderlijk worden geactiveerd of gedeactiveerd
