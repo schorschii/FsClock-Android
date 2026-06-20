@@ -54,7 +54,7 @@
     <string name="remote_pointer_for_android">RemotePointer для Android</string>
     <string name="ballbreak_for_android">BallBreak для Android</string>
     <string name="video_screensaver_for_android">Видеозаставка для Android</string>
-    <string name="clockpro_desklet_for_cinnamon">Десклет «Аналоговые часы» для рабочего стола Cinnamon</string>
+    <string name="clock_desklet_for_cinnamon">Десклет «Аналоговые часы» для рабочего стола Cinnamon</string>
     <string name="open_source_text">Это приложение с открытым исходным кодом. Если вы хотите улучшить приложение или его переводы, посетите репозиторий на Github.</string>
     <string name="open_source">Вилка меня</string>
     <string name="allow_system_calendar_access">Разрешить доступ к системному календарю</string>
