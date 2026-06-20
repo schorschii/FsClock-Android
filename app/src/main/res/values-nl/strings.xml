@@ -126,4 +126,6 @@
     <string name="start">Begin:</string>
   <string name="end">Einde:</string>
   <string name="allow_notification_access">Toegang tot meldingen toestaan</string>
+  <string name="widget_digital_name">Digitale klok-widget</string>
+  <string name="widget_analog_name">Analoge klok-widget</string>
 </resources>

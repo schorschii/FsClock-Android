@@ -125,4 +125,6 @@
     <string name="start">Inizio:</string>
     <string name="end">Fine:</string>
     <string name="allow_notification_access">Consenti l\'accesso alle notifiche</string>
+    <string name="widget_digital_name">Widget orologio digitale</string>
+    <string name="widget_analog_name">Widget orologio analogico</string>
 </resources>

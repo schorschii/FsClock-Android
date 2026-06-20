@@ -125,4 +125,6 @@
     <string name="start">הַתחָלָה:</string>
     <string name="end">סוֹף:</string>
     <string name="allow_notification_access">אפשר גישה להתראות</string>
+    <string name="widget_digital_name">ווידג\'ט שעון דיגיטלי</string>
+    <string name="widget_analog_name">ווידג\'ט שעון אנלוגי</string>
 </resources>

@@ -125,4 +125,6 @@
     <string name="start">Start:</string>
     <string name="end">Ende:</string>
     <string name="allow_notification_access">Zugriff auf Benachrichtigungen erlauben</string>
+    <string name="widget_digital_name">Digitaluhr-Widget</string>
+    <string name="widget_analog_name">Analoguhr-Widget</string>
 </resources>

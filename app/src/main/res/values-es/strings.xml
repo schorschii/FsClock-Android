@@ -125,4 +125,6 @@
     <string name="start">Comienzo:</string>
     <string name="end">Fin:</string>
     <string name="allow_notification_access">Permitir el acceso a las notificaciones</string>
+    <string name="widget_digital_name">Widget de reloj digital</string>
+    <string name="widget_analog_name">Widget de reloj analógico</string>
 </resources>
