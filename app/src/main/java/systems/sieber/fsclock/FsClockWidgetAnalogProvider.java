@@ -26,7 +26,7 @@ import java.util.Calendar;
 public class FsClockWidgetAnalogProvider extends AppWidgetProvider {
 
     static final String ACTION_ANALOG_WIDGET_UPDATE = "systems.sieber.fsclock.ANALOG_CLOCK_WIDGET_UPDATE";
-    private static final int BITMAP_SIZE = 400;
+    private static final int BITMAP_SIZE = 800;
 
     @Override
     public void onUpdate(Context context, AppWidgetManager manager, int[] appWidgetIds) {
@@ -92,7 +92,7 @@ public class FsClockWidgetAnalogProvider extends AppWidgetProvider {
                 prefs.getInt("clock-analog-face", 0),
                 GraphicSelectionAdapter.CLOCK_FACES,
                 R.drawable.analog_classic_bg);
-        if (prefs.getBoolean("own-color-analog-clock-face", false)) {
+        if(prefs.getBoolean("own-color-analog-clock-face", false)) {
             face.setColorFilter(new PorterDuffColorFilter(
                     prefs.getInt("color-analog-face", 0xffffffff), PorterDuff.Mode.SRC_ATOP));
         }
