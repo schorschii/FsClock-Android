@@ -128,4 +128,5 @@
   <string name="allow_notification_access">Toegang tot meldingen toestaan</string>
   <string name="widget_digital_name">Digitale klok-widget</string>
   <string name="widget_analog_name">Analoge klok-widget</string>
+  <string name="widget_draw_background">Achtergrondkleur tekenen</string>
 </resources>

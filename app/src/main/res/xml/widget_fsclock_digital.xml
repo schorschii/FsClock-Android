@@ -5,7 +5,9 @@
     android:targetCellWidth="2"
     android:targetCellHeight="1"
     android:updatePeriodMillis="2000"
+    android:configure="systems.sieber.fsclock.FsClockWidgetDigitalConfigActivity"
+    android:widgetFeatures="reconfigurable"
     android:initialLayout="@layout/widget_fsclock_digital"
-    android:previewImage="@mipmap/ic_launcher"
+    android:previewImage="@drawable/widget_preview_digital"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen|keyguard" />

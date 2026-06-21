@@ -84,7 +84,9 @@ public class FsClockWidgetAnalogProvider extends AppWidgetProvider {
 
         Bitmap bitmap = Bitmap.createBitmap(BITMAP_SIZE, BITMAP_SIZE, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
-        //canvas.drawColor(prefs.getInt("color-back", 0xFF000000));
+        if(prefs.getBoolean(FsClockWidgetAnalogConfigActivity.PREF_KEY, false)) {
+            canvas.drawColor(prefs.getInt("color-back", 0xFF000000));
+        }
 
         // Clock face
         Drawable face = loadClockDrawable(context, sc,

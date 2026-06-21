@@ -127,4 +127,5 @@
     <string name="allow_notification_access">Разрешить доступ к уведомлениям</string>
     <string name="widget_digital_name">Виджет цифровых часов</string>
     <string name="widget_analog_name">Виджет аналоговых часов</string>
+    <string name="widget_draw_background">Рисовать цвет фона</string>
 </resources>

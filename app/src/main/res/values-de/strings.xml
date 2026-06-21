@@ -127,4 +127,5 @@
     <string name="allow_notification_access">Zugriff auf Benachrichtigungen erlauben</string>
     <string name="widget_digital_name">Digitaluhr-Widget</string>
     <string name="widget_analog_name">Analoguhr-Widget</string>
+    <string name="widget_draw_background">Hintergrundfarbe zeichnen</string>
 </resources>

@@ -91,6 +91,24 @@
             android:label="@string/app_name_long"
             android:windowSoftInputMode="stateHidden" />
 
+        <activity
+            android:name=".FsClockWidgetDigitalConfigActivity"
+            android:label="@string/widget_digital_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".FsClockWidgetAnalogConfigActivity"
+            android:label="@string/widget_analog_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
         <receiver
             android:name=".FsClockWidgetDigitalProvider"
             android:exported="true"

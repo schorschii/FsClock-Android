@@ -127,4 +127,5 @@
     <string name="allow_notification_access">Autoriser l\'accès aux notifications</string>
     <string name="widget_digital_name">Widget d\'horloge numérique</string>
     <string name="widget_analog_name">Widget d\'horloge analogique</string>
+    <string name="widget_draw_background">Dessiner la couleur d\'arrière-plan</string>
 </resources>
