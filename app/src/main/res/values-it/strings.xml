@@ -128,4 +128,5 @@
     <string name="widget_digital_name">Widget orologio digitale</string>
     <string name="widget_analog_name">Widget orologio analogico</string>
     <string name="widget_draw_background">Disegna colore di sfondo</string>
+    <string name="widget_seconds_hand_note">A causa delle limitazioni di Android, i widget possono essere aggiornati solo una volta al minuto. Pertanto, non viene visualizzata la lancetta dei secondi.</string>
 </resources>

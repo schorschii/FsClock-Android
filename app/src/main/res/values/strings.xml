@@ -141,4 +141,5 @@ Roboto Font Copyright (c) Christian Robertson. Licensed under the Apache License
     <string name="widget_digital_name">Digital Clock Widget</string>
     <string name="widget_analog_name">Analog Clock Widget</string>
     <string name="widget_draw_background">Draw Background Color</string>
+    <string name="widget_seconds_hand_note">Due to Android restrictions, Widgets can only be updated once in a minute. Therefore, no seconds hand is shown.</string>
 </resources>

@@ -129,4 +129,5 @@
   <string name="widget_digital_name">Digitale klok-widget</string>
   <string name="widget_analog_name">Analoge klok-widget</string>
   <string name="widget_draw_background">Achtergrondkleur tekenen</string>
+    <string name="widget_seconds_hand_note">Vanwege beperkingen van Android kunnen widgets slechts één keer per minuut worden bijgewerkt. Daarom wordt er geen secondewijzer weergegeven.</string>
 </resources>

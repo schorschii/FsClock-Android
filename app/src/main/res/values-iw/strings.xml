@@ -128,4 +128,5 @@
     <string name="widget_digital_name">ווידג\'ט שעון דיגיטלי</string>
     <string name="widget_analog_name">ווידג\'ט שעון אנלוגי</string>
     <string name="widget_draw_background">ציור צבע רקע</string>
+    <string name="widget_seconds_hand_note">עקב מגבלות אנדרואיד, ניתן לעדכן ווידג\'טים רק פעם בדקה. לכן, לא מוצג מחוג שניות.</string>
 </resources>

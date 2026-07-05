@@ -128,4 +128,5 @@
     <string name="widget_digital_name">Widget de reloj digital</string>
     <string name="widget_analog_name">Widget de reloj analógico</string>
     <string name="widget_draw_background">Dibujar color de fondo</string>
+    <string name="widget_seconds_hand_note">Debido a las restricciones de Android, los widgets solo pueden actualizarse una vez por minuto. Por lo tanto, no se muestra el segundero.</string>
 </resources>

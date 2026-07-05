@@ -128,4 +128,5 @@
     <string name="widget_digital_name">Widget d\'horloge numérique</string>
     <string name="widget_analog_name">Widget d\'horloge analogique</string>
     <string name="widget_draw_background">Dessiner la couleur d\'arrière-plan</string>
+    <string name="widget_seconds_hand_note">En raison des restrictions d\'Android, les widgets ne peuvent être mis à jour qu\'une fois par minute. Par conséquent, aucune trotteuse n\'est affichée.</string>
 </resources>
