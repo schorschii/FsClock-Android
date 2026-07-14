@@ -60,8 +60,15 @@
                     android:enabled="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="doBuyUnlockSettings"
                     android:text="@string/unlock_settings" />
+                <Button
+                    android:id="@+id/buttonUnlockSettingsConsumable"
+                    style="@style/Widget.AppCompat.Button"
+                    android:enabled="true"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unlock_settings_consumable" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -23,6 +23,9 @@
     <string name="show_date">Mostra data</string>
     <string name="new_event">Nuovo evento&#8230;</string>
     <string name="unlock_settings">Sblocca impostazioni&#8230;</string>
+    <string name="unlock_settings_all">Sblocca le impostazioni (per tutti i tuoi dispositivi)</string>
+    <string name="unlock_settings_consumable">Sblocca le impostazioni (solo per questo dispositivo)</string>
+    <string name="other_devices_unlock_delay_note">Tieni presente che su Google Play potrebbero essere necessarie fino a 24 ore prima che l\'acquisto sia disponibile su altri dispositivi.</string>
     <string name="ok">ok</string>
     <string name="activation_failed">Attivazione fallita</string>
     <string name="invalid_code">Codice non valido</string>

@@ -44,6 +44,7 @@ class BaseFeatureCheck {
         SharedPreferences.Editor editor = mSettings.edit();
         switch(sku) {
             case "settings":
+            case "settings_consumable":
                 unlockedSettings = true;
                 editor.putBoolean("purchased-settings", true);
                 editor.apply();

@@ -24,6 +24,9 @@
     <string name="show_date">הצג תאריך</string>
     <string name="new_event">אירוע חדש</string>
     <string name="unlock_settings">ביטול הנעילה של הגדרות</string>
+    <string name="unlock_settings_all">ביטול נעילת הגדרות (עבור כל המכשירים שלך)</string>
+    <string name="unlock_settings_consumable">ביטול נעילת הגדרות (במכשיר זה בלבד)</string>
+    <string name="other_devices_unlock_delay_note">שימו לב שב-Google Play ייתכן שיחלפו עד 24 שעות עד שהרכישה תהיה זמינה במכשירים אחרים.</string>
     <string name="ok">בסדר</string>
     <string name="activation_failed">הפעלה נכשלה</string>
     <string name="invalid_code">קוד לא תקין</string>

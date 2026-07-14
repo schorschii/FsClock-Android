@@ -23,6 +23,9 @@
     <string name="show_date">Afficher la date</string>
     <string name="new_event">Nouvel &#233;v&#232;nement&#8230;</string>
     <string name="unlock_settings">D&#233;verrouiller les param&#232;tres&#8230;</string>
+    <string name="unlock_settings_all">Paramètres de déverrouillage (pour tous vos appareils)</string>
+    <string name="unlock_settings_consumable">Paramètres de déverrouillage (cet appareil uniquement)</string>
+    <string name="other_devices_unlock_delay_note">Veuillez noter que sur Google Play, il peut s\'écouler jusqu\'à 24 heures avant que l\'achat ne soit disponible sur d\'autres appareils.</string>
     <string name="ok">d\'accord</string>
     <string name="activation_failed">Activation echou&#233;e</string>
     <string name="invalid_code">Code invalide</string>

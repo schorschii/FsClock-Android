@@ -91,6 +91,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
     LinearLayout mLinearLayoutPurchaseContainer;
     LinearLayout mLinearLayoutSettingsContainer;
     Button mButtonUnlockSettings;
+    Button mButtonUnlockSettingsConsumable;
     CheckBox mCheckBoxKeepScreenOn;
     CheckBox mCheckBoxShowBatteryInfo;
     CheckBox mCheckBoxShowBatteryInfoWhenCharging;
@@ -209,6 +210,7 @@ public class BaseSettingsActivity extends AppCompatActivity {
         mLinearLayoutPurchaseContainer = findViewById(R.id.linearLayoutInAppPurchase);
         mLinearLayoutSettingsContainer = findViewById(R.id.linearLayoutSettings);
         mButtonUnlockSettings = findViewById(R.id.buttonUnlockSettings);
+        mButtonUnlockSettingsConsumable = findViewById(R.id.buttonUnlockSettingsConsumable);
         mCheckBoxKeepScreenOn = findViewById(R.id.checkBoxKeepScreenOn);
         mCheckBoxShowBatteryInfo = findViewById(R.id.checkBoxShowBatteryInfo);
         mCheckBoxShowBatteryInfoWhenCharging = findViewById(R.id.checkBoxShowBatteryInfoWhenCharging);

@@ -37,6 +37,7 @@ public class SettingsActivity extends BaseSettingsActivity {
     FeatureCheck mFc;
     BillingClient mBillingClient;
     ProductDetails skuDetailsUnlockSettings;
+    ProductDetails skuDetailsUnlockSettingsConsumable;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -44,14 +45,30 @@ public class SettingsActivity extends BaseSettingsActivity {
         super.onCreate(savedInstanceState);
         me = this;
 
+        // init unlock
+        mButtonUnlockSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                doBuy(skuDetailsUnlockSettings);
+            }
+        });
+        mButtonUnlockSettingsConsumable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                doBuy(skuDetailsUnlockSettingsConsumable);
+            }
+        });
+
         // init manual unlock
-        mButtonUnlockSettings.setOnLongClickListener(new View.OnLongClickListener() {
+        View.OnLongClickListener olcl = new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 openUnlockInputBox("systems.sieber.fsclock.settings", "settings");
                 return false;
             }
-        });
+        };
+        mButtonUnlockSettings.setOnLongClickListener(olcl);
+        mButtonUnlockSettingsConsumable.setOnLongClickListener(olcl);
 
         // init billing library
         loadPurchases();
@@ -92,6 +109,13 @@ public class SettingsActivity extends BaseSettingsActivity {
                                 if(purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
                                     for(String sku : purchase.getProducts()) {
                                         mFc.unlockPurchase(sku);
+                                        if(sku.equals("settings")) {
+                                            Snackbar.make(
+                                                    findViewById(R.id.settingsMainView),
+                                                    getResources().getString(R.string.other_devices_unlock_delay_note),
+                                                    Snackbar.LENGTH_LONG)
+                                                    .show();
+                                        }
                                     }
                                     FeatureCheck.acknowledgePurchase(mBillingClient, purchase);
                                     loadPurchases();
@@ -127,6 +151,11 @@ public class SettingsActivity extends BaseSettingsActivity {
                 .setProductType(BillingClient.ProductType.INAPP)
                 .build()
         );
+        productList.add(QueryProductDetailsParams.Product.newBuilder()
+                .setProductId("settings_consumable")
+                .setProductType(BillingClient.ProductType.INAPP)
+                .build()
+        );
         QueryProductDetailsParams params = QueryProductDetailsParams.newBuilder()
                 .setProductList(productList)
                 .build();
@@ -157,12 +186,15 @@ public class SettingsActivity extends BaseSettingsActivity {
             case "settings":
                 if(skuDetails != null) skuDetailsUnlockSettings = skuDetails;
                 mButtonUnlockSettings.setEnabled(true);
-                mButtonUnlockSettings.setText( getString(R.string.unlock_settings) + " (" + price + ")" );
+                mButtonUnlockSettings.setText(getString(R.string.unlock_settings_all) + " | " + price);
+                break;
+            case "settings_consumable":
+                if(skuDetails != null) skuDetailsUnlockSettingsConsumable = skuDetails;
+                mButtonUnlockSettingsConsumable.setVisibility(View.VISIBLE);
+                mButtonUnlockSettingsConsumable.setEnabled(true);
+                mButtonUnlockSettingsConsumable.setText(getString(R.string.unlock_settings_consumable) + " | " + price);
                 break;
         }
-    }
-    public void doBuyUnlockSettings(View v) {
-        doBuy(skuDetailsUnlockSettings);
     }
     @SuppressWarnings("UnusedReturnValue")
     private BillingResult doBuy(ProductDetails sku) {

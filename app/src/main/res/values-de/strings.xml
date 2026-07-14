@@ -23,6 +23,9 @@
     <string name="show_date">Datum anzeigen</string>
     <string name="new_event">Neues Event</string>
     <string name="unlock_settings">Einstellungen freischalten</string>
+    <string name="unlock_settings_all">Einstellungen freischalten (für all deine Geräte)</string>
+    <string name="unlock_settings_consumable">Einstellungen freischalten (nur dieses Gerät)</string>
+    <string name="other_devices_unlock_delay_note">Bitte beachten Sie, dass es bei Google Play bis zu 24 Stunden dauern kann, bis der Kauf auf anderen Geräten verfügbar ist.</string>
     <string name="ok">OK</string>
     <string name="activation_failed">Aktivierung fehlgeschlagen</string>
     <string name="invalid_code">Ungültiger Code</string>

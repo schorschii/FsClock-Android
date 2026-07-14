@@ -23,6 +23,9 @@
     <string name="show_date">Показать дату</string>
     <string name="new_event">Новое событие</string>
     <string name="unlock_settings">Разблокировать настройки</string>
+    <string name="unlock_settings_all">Разблокировать настройки (для всех ваших устройств)</string>
+    <string name="unlock_settings_consumable">Разблокировать настройки (только для этого устройства)</string>
+    <string name="other_devices_unlock_delay_note">Обратите внимание, что в Google Play для того, чтобы покупка стала доступна на других устройствах, может потребоваться до 24 часов.</string>
     <string name="ok">В ПОРЯДКЕ</string>
     <string name="activation_failed">Активация не удалось</string>
     <string name="invalid_code">Неверный код</string>

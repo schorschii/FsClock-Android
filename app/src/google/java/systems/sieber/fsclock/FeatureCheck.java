@@ -1,6 +1,7 @@
 package systems.sieber.fsclock;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -9,6 +10,8 @@ import com.android.billingclient.api.AcknowledgePurchaseResponseListener;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.ConsumeParams;
+import com.android.billingclient.api.ConsumeResponseListener;
 import com.android.billingclient.api.PendingPurchasesParams;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.PurchasesResponseListener;
@@ -103,12 +106,27 @@ class FeatureCheck extends BaseFeatureCheck {
         }
     }
 
+    static void consumePurchase(BillingClient client, Purchase purchase) {
+        ConsumeParams consumePurchaseParams = ConsumeParams.newBuilder()
+                .setPurchaseToken(purchase.getPurchaseToken())
+                .build();
+        client.consumeAsync(consumePurchaseParams, new ConsumeResponseListener() {
+            @Override
+            public void onConsumeResponse(@NonNull BillingResult billingResult, @NonNull String s) {
+                Log.i("BILLING", "ConsumeResponse: " + billingResult + " " + s);
+            }
+        });
+    }
+
     private void processPurchases(int responseCode, List<Purchase> purchasesList) {
         if(responseCode == BillingClient.BillingResponseCode.OK) {
             for(Purchase p : purchasesList) {
                 if(p.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
                     for(String sku : p.getProducts()) {
                         unlockPurchase(sku);
+                        if(sku.endsWith("_consumable")) {
+                            consumePurchase(mBillingClient, p);
+                        } else Log.i("BILLING", "No consume");
                     }
                     acknowledgePurchase(mBillingClient, p);
                 }

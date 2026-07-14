@@ -24,6 +24,9 @@
   <string name="show_date">Datum weergeven</string>
   <string name="new_event">Nieuw evenement</string>
   <string name="unlock_settings">Instellingen ontgrendelen</string>
+  <string name="unlock_settings_all">Ontgrendel instellingen (voor al uw apparaten)</string>
+  <string name="unlock_settings_consumable">Ontgrendelingsinstellingen (alleen op dit apparaat)</string>
+  <string name="other_devices_unlock_delay_note">Houd er rekening mee dat het op Google Play tot 24 uur kan duren voordat de aankoop beschikbaar is op andere apparaten.</string>
   <string name="ok">OK</string>
   <string name="activation_failed">Activatie mislukt</string>
   <string name="invalid_code">Ongeldige code</string>

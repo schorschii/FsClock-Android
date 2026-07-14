@@ -38,6 +38,14 @@ public class SettingsActivity extends BaseSettingsActivity {
         super.onCreate(savedInstanceState);
         me = this;
 
+        // init unlock
+        mButtonUnlockSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PurchasingService.purchase("settings");
+            }
+        });
+
         // init manual unlock
         mButtonUnlockSettings.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -96,9 +104,6 @@ public class SettingsActivity extends BaseSettingsActivity {
                 mButtonUnlockSettings.setText( getString(R.string.unlock_settings) + " (" + price + ")" );
                 break;
         }
-    }
-    public void doBuyUnlockSettings(View v) {
-        PurchasingService.purchase("settings");
     }
 
     @SuppressWarnings("SameParameterValue")
