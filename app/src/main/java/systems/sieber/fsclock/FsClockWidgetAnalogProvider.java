@@ -15,6 +15,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.widget.RemoteViews;
 
 import androidx.appcompat.content.res.AppCompatResources;
@@ -31,6 +32,12 @@ public class FsClockWidgetAnalogProvider extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager manager, int[] appWidgetIds) {
         scheduleUpdates(context);
         updateAllWidgets(context, manager, appWidgetIds);
+    }
+
+    @Override
+    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager manager,
+                                          int appWidgetId, Bundle newOptions) {
+        updateAllWidgets(context, manager, new int[] {appWidgetId});
     }
 
     @Override
@@ -64,6 +71,9 @@ public class FsClockWidgetAnalogProvider extends AppWidgetProvider {
     static void updateAllWidgets(Context context, AppWidgetManager manager, int[] ids) {
         if(ids.length == 0) return;
         Bitmap clockBitmap = renderAnalogClock(context);
+        SharedPreferences prefs = context.getSharedPreferences(BaseSettingsActivity.SHARED_PREF_DOMAIN, Context.MODE_PRIVATE);
+        boolean drawBackground = prefs.getBoolean(FsClockWidgetAnalogConfigActivity.PREF_KEY, false);
+        int colorBack = prefs.getInt("color-back", 0xFF000000);
 
         PendingIntent launchIntent = PendingIntent.getActivity(
                 context, 0,
@@ -72,7 +82,8 @@ public class FsClockWidgetAnalogProvider extends AppWidgetProvider {
 
         for(int id : ids) {
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_fsclock_analog);
-            views.setImageViewBitmap(R.id.widgetAnalogClock, clockBitmap);
+            views.setImageViewBitmap(R.id.widgetAnalogClock, drawBackground
+                    ? WidgetBackground.draw(context, manager, id, clockBitmap, colorBack) : clockBitmap);
             views.setOnClickPendingIntent(R.id.widgetAnalogClock, launchIntent);
             manager.updateAppWidget(id, views);
         }
@@ -84,9 +95,6 @@ public class FsClockWidgetAnalogProvider extends AppWidgetProvider {
 
         Bitmap bitmap = Bitmap.createBitmap(BITMAP_SIZE, BITMAP_SIZE, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
-        if(prefs.getBoolean(FsClockWidgetAnalogConfigActivity.PREF_KEY, false)) {
-            canvas.drawColor(prefs.getInt("color-back", 0xFF000000));
-        }
 
         // Clock face
         Drawable face = loadClockDrawable(context, sc,

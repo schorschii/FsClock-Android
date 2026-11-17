@@ -14,6 +14,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -34,6 +35,12 @@ public class FsClockWidgetDigitalProvider extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         scheduleUpdates(context);
         updateAllWidgets(context, appWidgetManager, appWidgetIds);
+    }
+
+    @Override
+    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager manager,
+                                          int appWidgetId, Bundle newOptions) {
+        updateAllWidgets(context, manager, new int[] {appWidgetId});
     }
 
     @Override
@@ -93,8 +100,7 @@ public class FsClockWidgetDigitalProvider extends AppWidgetProvider {
 
         Bitmap bitmap = renderClock(context,
                 timeStr, typefaceClock, fontOptionClock.mXCorr, colorClock,
-                showDate ? dateStr : "", typefaceDate, colorDate,
-                drawBackground, colorBack);
+                showDate ? dateStr : "", typefaceDate, colorDate);
 
         PendingIntent launchIntent = PendingIntent.getActivity(
                 context, 0,
@@ -103,7 +109,8 @@ public class FsClockWidgetDigitalProvider extends AppWidgetProvider {
 
         for(int id : ids) {
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_fsclock_digital);
-            views.setImageViewBitmap(R.id.widgetClock, bitmap);
+            views.setImageViewBitmap(R.id.widgetClock, drawBackground
+                    ? WidgetBackground.draw(context, manager, id, bitmap, colorBack) : bitmap);
             views.setOnClickPendingIntent(R.id.widgetClock, launchIntent);
             manager.updateAppWidget(id, views);
         }
@@ -111,8 +118,7 @@ public class FsClockWidgetDigitalProvider extends AppWidgetProvider {
 
     private static Bitmap renderClock(Context context,
             String timeStr, Typeface typefaceClock, float xCorr,
-            int colorClock, String dateStr, Typeface typefaceDate, int colorDate,
-            boolean drawBackground, int colorBack) {
+            int colorClock, String dateStr, Typeface typefaceDate, int colorDate) {
 
         boolean hasDate = !dateStr.isEmpty();
         int timeH = hasDate ? (int) (BITMAP_H * 0.65f) : BITMAP_H;
@@ -130,7 +136,6 @@ public class FsClockWidgetDigitalProvider extends AppWidgetProvider {
 
         Bitmap bitmap = Bitmap.createBitmap(BITMAP_W, BITMAP_H, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
-        if(drawBackground) canvas.drawColor(colorBack);
         dv.draw(canvas);
 
         if(hasDate) {
