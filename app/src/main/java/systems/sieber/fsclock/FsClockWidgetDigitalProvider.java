@@ -1,7 +1,6 @@
 package systems.sieber.fsclock;
 
 import android.annotation.SuppressLint;
-import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -51,22 +50,23 @@ public class FsClockWidgetDigitalProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
         String action = intent.getAction();
-        if(ACTION_DIGITAL_WIDGET_UPDATE.equals(action)) {
-            AppWidgetManager manager = AppWidgetManager.getInstance(context);
-            int[] ids = manager.getAppWidgetIds(new ComponentName(context, FsClockWidgetDigitalProvider.class));
-            updateAllWidgets(context, manager, ids);
-        } else if(Intent.ACTION_BOOT_COMPLETED.equals(action)) {
+        if(ACTION_DIGITAL_WIDGET_UPDATE.equals(action)
+                || WidgetUpdateScheduler.isRescheduleAction(action)) {
             AppWidgetManager manager = AppWidgetManager.getInstance(context);
             int[] ids = manager.getAppWidgetIds(new ComponentName(context, FsClockWidgetDigitalProvider.class));
             if(ids.length > 0) {
+                // Re-arm before rendering so a rendering failure cannot stop the clock.
                 scheduleUpdates(context);
                 updateAllWidgets(context, manager, ids);
+            } else {
+                cancelUpdates(context);
             }
         }
     }
 
     @SuppressLint("SimpleDateFormat")
     static void updateAllWidgets(Context context, AppWidgetManager manager, int[] ids) {
+        if(ids.length == 0) return;
         SharedPreferences prefs = context.getSharedPreferences(BaseSettingsActivity.SHARED_PREF_DOMAIN, Context.MODE_PRIVATE);
         boolean format24hrs = prefs.getBoolean("24hrs", true);
         boolean showDate = prefs.getBoolean("show-date", true);
@@ -160,18 +160,11 @@ public class FsClockWidgetDigitalProvider extends AppWidgetProvider {
     }
 
     static void scheduleUpdates(Context context) {
-        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        PendingIntent pi = buildUpdatePendingIntent(context);
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        cal.add(Calendar.MINUTE, 1);
-        am.setRepeating(AlarmManager.RTC, cal.getTimeInMillis(), 60_000L, pi);
+        WidgetUpdateScheduler.schedule(context, buildUpdatePendingIntent(context));
     }
 
     static void cancelUpdates(Context context) {
-        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        am.cancel(buildUpdatePendingIntent(context));
+        WidgetUpdateScheduler.cancel(context, buildUpdatePendingIntent(context));
     }
 
     private static PendingIntent buildUpdatePendingIntent(Context context) {

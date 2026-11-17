@@ -15,6 +15,8 @@ import android.widget.CheckBox;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.Arrays;
+
 public class FsClockWidgetDigitalConfigActivity extends AppCompatActivity {
 
     static final String PREF_KEY = "widget-digital-draw-background";
@@ -52,6 +54,19 @@ public class FsClockWidgetDigitalConfigActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if(mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) return;
+        WidgetUpdateScheduler.configurePermissionButton(this);
+        AppWidgetManager manager = AppWidgetManager.getInstance(this);
+        int[] ids = manager.getAppWidgetIds(new ComponentName(this, FsClockWidgetDigitalProvider.class));
+        if(ids.length > 0) {
+            FsClockWidgetDigitalProvider.scheduleUpdates(this);
+            FsClockWidgetDigitalProvider.updateAllWidgets(this, manager, ids);
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_settings, menu);
 
@@ -83,7 +98,17 @@ public class FsClockWidgetDigitalConfigActivity extends AppCompatActivity {
 
         AppWidgetManager manager = AppWidgetManager.getInstance(this);
         int[] ids = manager.getAppWidgetIds(new ComponentName(this, FsClockWidgetDigitalProvider.class));
+        // The launcher may not list a widget until configuration has finished.
+        boolean containsCurrentWidget = false;
+        for(int id : ids) {
+            if(id == mAppWidgetId) containsCurrentWidget = true;
+        }
+        if(!containsCurrentWidget) {
+            ids = Arrays.copyOf(ids, ids.length + 1);
+            ids[ids.length - 1] = mAppWidgetId;
+        }
         FsClockWidgetDigitalProvider.updateAllWidgets(this, manager, ids);
+        FsClockWidgetDigitalProvider.scheduleUpdates(this);
 
         Intent result = new Intent();
         result.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);

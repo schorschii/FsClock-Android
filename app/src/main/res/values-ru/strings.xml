@@ -131,5 +131,5 @@
     <string name="widget_digital_name">Виджет цифровых часов</string>
     <string name="widget_analog_name">Виджет аналоговых часов</string>
     <string name="widget_draw_background">Рисовать цвет фона</string>
-    <string name="widget_seconds_hand_note">Из-за ограничений Android виджеты могут обновляться только раз в минуту. Поэтому секундная стрелка не отображается.</string>
+    <string name="widget_allow_exact_updates">Разрешить точное обновление каждую минуту</string>
 </resources>
